@@ -5,4 +5,5 @@ b=input("tapez ")
 print(b)
 while a<10:
   print(a)
+print("yasser")
 
