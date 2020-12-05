@@ -1,5 +1,8 @@
 #wtfa
-a = 5
-a=input("tapez ")
-print(a)
+print("bnjr")
+a = 1
+b=input("tapez ")
+print(b)
+while a<10:
+  print(a)
 
