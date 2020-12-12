@@ -11,5 +11,5 @@ class Personne(models.Model):
    password = models.CharField(max_length=50)
    datecreationaccount = models.DateField(auto_created=True)
 
-class Professor(Person):
+class Professeur(Personne):
    pass
