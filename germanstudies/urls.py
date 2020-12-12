@@ -18,9 +18,9 @@ from django.urls import path,include
 from Auth import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Auth',include("Auth.urls")),
-    path('Horen', include("Horen.urls")),
-    path('Lesen', include("Lesen.urls")),
-    path('Schreiben', include("Schreiben.urls")),
-    path('Grammar', include("Grammar.urls")),
+    path('Auth',include("Auth.urls"),name="Authentification"),
+    path('Horen', include("Horen.urls"),name="Horen"),
+    path('Lesen', include("Lesen.urls"),name="Lesen"),
+    path('Schreiben', include("Schreiben.urls"),name="Schreiben"),
+    path('Grammar', include("Grammar.urls"),name="Grammar"),
 ]
