@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Grammar.apps.StoreConfig',
+    'Horen.apps.StoreConfig',
+    'Lesen.apps.StoreConfig',
+    'Schreiben.apps.StoreConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -67,16 +72,20 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'zujad.wsgi.application'
+WSGI_APPLICATION = 'germanstudies.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default' : {
+       'ENGINE': 'django.db.backends.mysql', # on utilise l'adaptateur postgresql
+        'NAME': 'django', # le nom de notre base de donnees creee precedemment
+        'USER': 'root', # attention : remplacez par votre nom d'utilisateur
+        'PASSWORD': 'ziad20021960+',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
