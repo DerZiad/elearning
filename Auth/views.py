@@ -5,4 +5,4 @@ from django.template import loader
 
 def index(request):
     template = loader.get_template("Auth/index.html")
-    return HttpResponse("szi")
+    return HttpResponse(template.render(request = request))
