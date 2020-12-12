@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Grammar.apps.StoreConfig',
-    'Horen.apps.StoreConfig',
-    'Lesen.apps.StoreConfig',
-    'Schreiben.apps.StoreConfig',
+    'Grammar.apps.GrammarConfig',
+    'Horen.apps.HorenConfig',
+    'Lesen.apps.LesenConfig',
+    'Schreiben.apps.SchreibenConfig',
+    'Auth.apps.AuthConfig',
 
 ]
 
