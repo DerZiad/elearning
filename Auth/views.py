@@ -13,5 +13,9 @@ def inscription(request):
     return HttpResponse(template.render(request = request))
 
 def seconnecter(request):
-    template = loader.get_template("Connection/connection.html")
-    return HttpResponse(template.render(request= request))
+    if(request.method == 'POST'):
+        name = request.POST.get('name')
+        print(name)
+    else:
+        template = loader.get_template("login/index.html")
+        return HttpResponse(template.render(request= request))
