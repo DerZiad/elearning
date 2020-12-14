@@ -1,5 +1,5 @@
 from django.urls import path
 from . import views
 urlpatterns = [
-    path("",views.seconnecter)
+    path("signup",views.inscription)
 ]

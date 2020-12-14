@@ -1,7 +1,33 @@
 let erreurs;
-
+let day,month,year;
 function addError(key,value){
  	erreurs.set(key,value)
+}
+
+function validate_date(date){
+    year = parseInt(date.substr(0,4),10);
+    month = parseInt(date.substr(5,2),10);
+    day = parseInt(date.substr(8,2));
+    if(isNaN(day)){
+        addError("day","veuillez ne pas entrer une chaîne de caractère dans le jour")
+    }
+     if(isNaN(month)){
+        addError("month","veuillez ne pas entrer une chaîne de caractère dans le mois")
+    }
+     if(isNaN(year)){
+        addError("year","veuillez ne pas entrer une chaîne de caractère dans l'année")
+    }
+
+    if(day < 1 || day > 31){
+          addError("day","le jour doit figurer entre 1 et 31");
+    }
+
+    if(month < 1 || day > 12){
+        addError("month","le mois doit figurer entre 1 et 12");
+    }
+    if(year < 1940 || year > 2100){
+              addError("year","l'année doit figurer entre 1941 et 2100");
+    }
 }
 
 function verifier_Email_Telephone(email,telephone){
@@ -22,65 +48,11 @@ function verifier_Email_Telephone(email,telephone){
 		}
 }
 
-function validatedate(inputText)
-  {
-  var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-  // Match the date format through regular expression
-  if(inputText.match(dateformat))
-  {
-  document.form1.text1.focus();
-  //Test which seperator is used '/' or '-'
-  var opera1 = inputText.value.split('/');
-  var opera2 = inputText.value.split('-');
-  lopera1 = opera1.length;
-  lopera2 = opera2.length;
-  // Extract the string into month, date and year
-  if (lopera1>1)
-  {
-  var pdate = inputText.value.split('/');
-  }
-  else if (lopera2>1)
-  {
-  var pdate = inputText.value.split('-');
-  }
-  var dd = parseInt(pdate[0]);
-  var mm  = parseInt(pdate[1]);
-  var yy = parseInt(pdate[2]);
-  // Create list of days of a month [assume there is no leap year by default]
-  var ListofDays = [31,28,31,30,31,30,31,31,30,31,30,31];
-  if (mm==1 || mm>2)
-  {
-  if (dd>ListofDays[mm-1])
-  {
-   addError(inputText,'Invalid date format!');
-  }
-  }
-  if (mm==2)
-  {
-  var lyear = false;
-  if ( (!(yy % 4) && yy % 100) || !(yy % 400))
-  {
-  lyear = true;
-  }
-  if ((lyear==false) && (dd>=29))
-  {
-  addError(inputText,'Invalid date format!');
-  }
-  if ((lyear==true) && (dd>29))
-  {
- addError(inputText,'Invalid date format!');
-  }
-  }
-  }
-	else{
-   	addError(inputText,"Invalid date format!");
-  	}
-  }
 function verifier_nom_prenom(nom,prenom){
 	if(nom.length == 0){
 		addError("nom","Le nom ne doit pas être vide")
 	}else {
-		if(nom.trim().length> 20 || nom.trim().length <= 9){
+		if(nom.trim().length> 20 || nom.trim().length <= 2){
 		addError("nom","Vous ne devez pas depasser 20 caractères");
 		}
 	}
@@ -88,7 +60,7 @@ function verifier_nom_prenom(nom,prenom){
 	if(prenom.length == 0){
 		addError("prenom","Le prenom ne doit pas être vide")
 	}else {
-		if(prenom.trim().length > 20 || prenom.trim().length <= 9){
+		if(prenom.trim().length > 20 || prenom.trim().length <= 2){
 		addError("prenom","Vous ne devez pas depasser 20 caractères");
 		}
 	}
@@ -96,11 +68,11 @@ function verifier_nom_prenom(nom,prenom){
 
 }
 function verifierUsername(username){
-	if(username == null){
-
+	if(username.length == 0){
+        addError("username","Username doit avoir au plus 18 caractères");
 	}else{
 		if(username.length>18 || username.length <= 0 ){
-			addError(username,"Username doit avoir au plus 18 caractères")
+			addError("username","Username doit avoir au plus 18 caractères");
 		}
 	}
 }
@@ -109,40 +81,59 @@ function verifierPassword(password,cfpassword){
 	let test1 = false
 	let test2 = false
 
-	if(password == null){
-		addError(password,"Le mot de passe doit être rempli")
+	if(password.length == 0){
+		addError("password","Le mot de passe doit être rempli")
 	}else{
 		if(password.length > 20){
-			addError(password,"Le mot de passe doit avoir au plus 20 caractères")
+			addError("password","Le mot de passe doit avoir au plus 20 caractères")
 		}else if(password.length <= 9){
-			addError(password,"Le mot de passe doit depasser au moins 9 caractères")
+			addError("password","Le mot de passe doit depasser au moins 9 caractères")
 		}else{
 			test1 = true
 		}
 	}
 
 
-	if(cfpassword == null){
-		addError(cfpassword,"La confirmation de mot de passe doit être rempli")
+	if(cfpassword.length == 0){
+		addError("cfpassword","La confirmation de mot de passe doit être rempli")
 	}else{
 		if(cfpassword.length > 20){
-			addError(cfpassword,"Le mot de passe doit avoir au plus 20 caractères")
+			addError("cfpassword","Le mot de passe doit avoir au plus 20 caractères")
 		}else if(cfpassword.length <= 9){
-			addError(cfpassword,"Le mot de passe doit depasser au moins 9 caractères")
+			addError("cfpassword","Le mot de passe doit depasser au moins 9 caractères")
 		}else{
 			test2 = true
 		}
 	}
 
 	if(test1 && test2){
-		if(!(password == cfpassword)){
-			addError(cfpassword,"La confirmation doit être compatible")
+		if( !(password == cfpassword)){
+			addError("cfpassword","La confirmation doit être compatible")
 		}
 	}
 
 
 }
 
+function setErrors(){
+    for (const [key, value] of erreurs){
+					$("#" + key).html(value).show();
+    }
+}
+function hideErrorsFirstPane(){
+    $("#nom").hide();
+    $("#prenom").hide();
+    $("#day").hide();
+    $("#month").hide();
+    $("#year").hide();
+    $("#telephone").hide();
+    $("#email").hide();
+}
+function hideErrorsSecondPane(){
+    $("#username").hide();
+    $("#password").hide();
+    $("#cfpassword").hide();
+}
 
  class Personne{
 	constructor( nom,prenom ,datedenaissance,telephone,username ,email ,password){
@@ -161,6 +152,7 @@ var personne = new Personne("","","","","","","","");
 jQuery(document).ready(function(){
     $('#Precedent').hide();
     $('#Connector').hide();
+    hideErrorsFirstPane();
 	$('#Suivant').on('click',function(){
 					erreurs = new Map();
 					nom = $('input[name=prenom]').val();
@@ -172,25 +164,56 @@ jQuery(document).ready(function(){
 					verifier_nom_prenom(nom,prenom);
 					verifier_Email_Telephone(email,telephone);
 					//validatedate(birthday);
-					console.log(erreurs.size);
-                    				for (const [key, value] of erreurs) {
-					console.log("ok");
-					console.log(`${key} = ${value} okk`);
-}
-
+					validate_date(birthday);
 					if(erreurs.size <= 0){
 						personne.nom = nom;
 						personne.prenom = prenom;
-						personne.datedenaissance = birthday;
+						personne.datedenaissance = day + "-" + month + "-" + year;
 						personne.email = email;
 						personne.telephone = telephone;
 						$('#Precedent').show();
 				  		$('#Connector').show();
 				  		$('#ja-ss').hide();
 						$('#Suivant').attr("id", "Inscription");
-						$('#Suivant').attr("value", "Inscription");
-					}else{
+						$('#Suivant').html("Inscription");
+						hideErrorsSecondPane();
+                    $('#Inscription').on('click',function(){
+                        erreurs = new Map();
+                        username = $('input[name=username]').val();
+                        password = $('input[name=password]').val();
+                        cfpassword = $('input[name=cfpassword]').val();
+                        verifierPassword(password,cfpassword);
+                        verifierUsername(username);
+                        if(erreurs.size <= 0){
+                            personne.username = username;
+                            personne.password = password;
+                            console.log("i m here 2");
+                            let token = $('input[name=csrfmiddlewaretoken]').val();
+                            z = $.ajax({
+                                    url: '/Auth/signup',
+                                    type: 'post',
+                                    data: {
+                                    nom:personne.nom,
+                                    prenom: personne.prenom,
+                                    email: personne.email,
+                                    datedenaissance:personne.datedenaissance,
+                                    username:personne.username,
+                                    password:personne.password,
+                                    telephone:personne.telephone,
+                                    csrfmiddlewaretoken:token
+                                           },
+                                    success: function(response){
 
+                                    }
+                            });
+                            console.log(z);
+
+                        }else{
+                            setErrors();
+                        }
+                    });
+					}else{
+                        setErrors();
 					}
 	});
 
@@ -202,36 +225,4 @@ jQuery(document).ready(function(){
 
 
 
-	$('#Precedent').on('click',function(){
-		erreurs = new Map();
-		username = $('input[name=username]').val();
-		password = $('input[name=password]').val();
-		cfpassword = $('input[name=cfpassword]').val();
-		verifierPassword(password,cfpassword);
-		verifierUsername(username);
-		if(erreurs.length <= 0){
-			personne.username = username;
-			personne.password = password;
-
-		}else{
-				let token = $('input[name=csrfmiddlewaretoken]').val();
-				$.ajax({
-					url: '/Auth',
-					type: 'post',
-					data: {
-					nom:personne.nom,
-					prenom: personne.prenom,
-					email: personne.email,
-					datedenaissance:personne.datedenaissance,
-					username:personne.username,
-					password:personne.password,
-					telephone:personne.telephone,
-					csrfmiddlewaretoken:token
-						   },
-					success: function(response){
-
-				   	}
-				});
-		}
-	});
 });

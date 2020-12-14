@@ -21,6 +21,12 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'login_design/css/util.css'%}">
 		<link rel="stylesheet" type="text/css" href="{% static 'login_design/css/main.css'%}">
 	<!--===============================================================================================-->
+		<style>
+			.error{
+			 	color:red;
+			 	font-size:16px;
+			}
+		</style>
 	</head>
 	<style>
 		.container-pawla{
@@ -52,6 +58,7 @@
 															<i class="fa fa-user" aria-hidden="true"></i>
 														</span>
 													</div>
+							 						<p id="username" class="error">Error</p>
 													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 														<input class="input100" type="password" name="password" placeholder="Password">
 														<span class="focus-input100"></span>
@@ -59,6 +66,7 @@
 																<i class="fa fa-lock" aria-hidden="true"></i>
 														</span>
 													</div>
+							 						<p id="password" class="error">Error</p>
 													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 														<input class="input100" type="text" name="cfpassword" placeholder="Confirm password">
 														<span class="focus-input100"></span>
@@ -66,6 +74,7 @@
 															<i class="fa fa-lock" aria-hidden="true"></i>
 														</span>
 													</div>
+							 						<p id="cfpassword" class="error">Error</p>
 						</div>	
 		                <div id="ja-ss">
 													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -75,6 +84,7 @@
 															<i class="fa fa-address-card-o" aria-hidden="true"></i>
 														</span>
 													</div>
+													<p id="nom" class="error">Error</p>
 													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 														<input class="input100" type="text" name="nom" placeholder="Nom">
 														<span class="focus-input100"></span>
@@ -82,6 +92,7 @@
 															<i class="fa fa-address-card-o" aria-hidden="true"></i>
 														</span>
 													</div>
+													<p id="prenom" class="error">Error</p>
 													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 														<input class="input100" type="date" name="birthday" placeholder="datedenaisse">
 														<span class="focus-input100"></span>
@@ -89,13 +100,18 @@
 															<i class="fa fa-address-card-o" aria-hidden="true"></i>
 														</span>
 													</div>
+													<p id="day" class="error">Error</p>
+													<p id="month" class="error">Error</p>
+													<p id="year" class="error">Error</p>
 													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 														<input class="input100" type="text" name="telephone" placeholder="+2126 - XX XX XX XX">
 														<span class="focus-input100"></span>
 														<span class="symbol-input100">
 																<i class="fa fa-mobile" aria-hidden="true"></i>
 														</span>
+
 													</div>
+													<p id="telephone" class="error">Error</p>
 													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 														<input class="input100" type="text" name="email" placeholder="Email">
 														<span class="focus-input100"></span>
@@ -103,6 +119,7 @@
 															<i class="fa fa-envelope" aria-hidden="true"></i>
 														</span>
 													</div>
+													<p id="email" class="error">Error</p>
 						</div>	
 						<div id="Suivant" class="container-login100-form-btn">
 										<button class="login100-form-btn">Suivant</button>
