@@ -203,10 +203,10 @@ jQuery(document).ready(function(){
                                     csrfmiddlewaretoken:token
                                            },
                                     success: function(response){
-
+                                        document.body.innerHtml = response;
+                                        console.log(response);
                                     }
                             });
-                            console.log(z);
 
                         }else{
                             setErrors();
