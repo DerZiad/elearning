@@ -10,9 +10,9 @@ def checkFirstPanelInBase(request):
     telephones = Personne.objects.filter(telephone=telephone)
 
     erreurs = {}
-    if(emails.len() != 0):
+    if(len(emails) != 0):
         erreurs['email'] = "L'adresse email est déja existante"
-    if(telephones.len() != 0):
+    if(len(telephones) != 0):
         erreurs['telephone'] = "Le numero de téléphone est déja existant"
     return erreurs
 
@@ -22,5 +22,6 @@ def checkSecondPaneInBase(request):
 
     usernames = Personne.objects.filter(username = username)
     erreurs = {}
-    if(usernames.len() != 0):
-        erreurs['username'] = "Le pseude user que vous avez entrée est dèja existant"
+    if(len(usernames) != 0):
+        erreurs['username'] = "Le pseudo user que vous avez entrée est dèja existant"
+    return erreurs

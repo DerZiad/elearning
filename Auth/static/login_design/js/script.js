@@ -1,5 +1,6 @@
 let erreurs;
 let day,month,year;
+let vars = new Map();
 function addError(key,value){
  	erreurs.set(key,value)
 }
@@ -152,6 +153,7 @@ var personne = new Personne("","","","","","","","");
 jQuery(document).ready(function(){
     $('#Precedent').hide();
     $('#Connector').hide();
+    let token = $('input[name=csrfmiddlewaretoken]').val();
     hideErrorsFirstPane();
 	$('#Suivant').on('click',function(){
 					erreurs = new Map();
@@ -165,56 +167,93 @@ jQuery(document).ready(function(){
 					verifier_Email_Telephone(email,telephone);
 					//validatedate(birthday);
 					validate_date(birthday);
-					if(erreurs.size <= 0){
-						personne.nom = nom;
-						personne.prenom = prenom;
-						personne.datedenaissance = day + "-" + month + "-" + year;
-						personne.email = email;
-						personne.telephone = telephone;
-						$('#Precedent').show();
-				  		$('#Connector').show();
-				  		$('#ja-ss').hide();
-						$('#Suivant').attr("id", "Inscription");
-						$('#Suivant').html("Inscription");
-						hideErrorsSecondPane();
-                    $('#Inscription').on('click',function(){
-                        erreurs = new Map();
-                        username = $('input[name=username]').val();
-                        password = $('input[name=password]').val();
-                        cfpassword = $('input[name=cfpassword]').val();
-                        verifierPassword(password,cfpassword);
-                        verifierUsername(username);
-                        if(erreurs.size <= 0){
-                            personne.username = username;
-                            personne.password = password;
-                            console.log("i m here 2");
-                            let token = $('input[name=csrfmiddlewaretoken]').val();
-                            z = $.ajax({
+$.ajax({
                                     url: '/Auth/signup',
                                     type: 'post',
                                     data: {
-                                    nom:personne.nom,
-                                    prenom: personne.prenom,
-                                    email: personne.email,
-                                    datedenaissance:personne.datedenaissance,
-                                    username:personne.username,
-                                    password:personne.password,
-                                    telephone:personne.telephone,
+                                    id:"1",
+                                    email: email,
+                                    telephone:telephone,
                                     csrfmiddlewaretoken:token
                                            },
                                     success: function(response){
-                                        document.body.innerHtml = response;
-                                        console.log(response);
+                                        count = Object.keys(response).length;
+                                        if(count == 0){
+                                              if(erreurs.size <= 0){
+                                personne.nom = nom;
+                                personne.prenom = prenom;
+                                personne.datedenaissance = day + "-" + month + "-" + year;
+                                personne.email = email;
+                                personne.telephone = telephone;
+                                $('#Precedent').show();
+                                $('#Connector').show();
+                                $('#ja-ss').hide();
+                                $('#Suivant').attr("id", "Inscription");
+                                $('#Suivant').html("Inscription");
+                                hideErrorsSecondPane();
+                                $('#Inscription').on('click',function(){
+                                    erreurs = new Map();
+                                    username = $('input[name=username]').val();
+                                    password = $('input[name=password]').val();
+                                    cfpassword = $('input[name=cfpassword]').val();
+                                    verifierPassword(password,cfpassword);
+                                    verifierUsername(username);
+                                    $.ajax({
+                                    url: '/Auth/signup',
+                                    type: 'post',
+                                    data: {
+                                    id:"2",
+                                    username: usernamep,
+                                    csrfmiddlewaretoken:token
+                                           },
+                                    success: function(response){
+                                        count = Object.keys(response).length;
+                                        if(count == 0){
+                                                  if(erreurs.size <= 0){
+                                                                personne.username = username;
+                                                                personne.password = password;
+                                                                console.log("i m here 2");
+                                                                $.ajax({
+                                                                        url: '/Auth/signup',
+                                                                        type: 'post',
+                                                                        data: {
+                                                                        nom:personne.nom,
+                                                                        prenom: personne.prenom,
+                                                                        email: personne.email,
+                                                                        datedenaissance:personne.datedenaissance,
+                                                                        username:personne.username,
+                                                                        password:personne.password,
+                                                                        telephone:personne.telephone,
+                                                                        csrfmiddlewaretoken:token
+                                                                               },
+                                                                        success: function(response){
+                                                                            document.body.innerHtml = response;
+                                                                            console.log(response);
+                                                                        }
+                                                                });
+                                                                console.log(z);
+
+                                                            }else{
+                                                                setErrors();
+                                                            }
+                                        }else{
+                                            addError("username",response.username);
+                                            setErrors();
+                                        }
+                                    }
+                            });
+                                        });
+                            }else{
+                                setErrors();
+                            }
+                                        }else{
+                                            addError("email",response.email);
+                                            addError("telephone",response.telephone)
+                                            setErrors();
+                                        }
                                     }
                             });
 
-                        }else{
-                            setErrors();
-                        }
-                    });
-					}else{
-                        setErrors();
-					}
 	});
 
 	$('#Precedent').on('click',function(){
