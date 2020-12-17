@@ -13,7 +13,7 @@ def index(request):
 
 def inscription(request):
     if(request.method == 'GET'):
-        template = loader.get_template("login/index.html")
+        template = loader.get_template("login/login.html")
         return HttpResponse(template.render(request = request))
     else:
         id = request.POST.get('id')
@@ -43,5 +43,5 @@ def seconnecter(request):
         name = request.POST.get('name')
         print(name)
     else:
-        template = loader.get_template("login/index.html")
+        template = loader.get_template("login/login.html")
         return HttpResponse(template.render(request= request))
