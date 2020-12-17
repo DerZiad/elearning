@@ -28,19 +28,10 @@
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
-* {
-	margin: 0px; 
-	padding: 0px; 
-	box-sizing: border-box;
-}
 
-body, html {
-	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
-}
 
 /*---------------------------------------------*/
-a {
+section a {
 	font-family: Poppins-Regular;
 	font-size: 14px;
 	line-height: 1.7;
@@ -51,22 +42,21 @@ a {
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
 }
-
-a:focus {
+ section a:focus {
 	outline: none !important;
 }
 
-a:hover {
+section a:hover {
 	text-decoration: none;
-  color: #57b846;
+    color: #57b846;
 }
 
 /*---------------------------------------------*/
-h1,h2,h3,h4,h5,h6 {
+section h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
 
-p {
+ section p {
 	font-family: Poppins-Regular;
 	font-size: 14px;
 	line-height: 1.7;
@@ -74,24 +64,24 @@ p {
 	margin: 0px;
 }
 
-ul, li {
+ section ul, li {
 	margin: 0px;
 	list-style-type: none;
 }
 
 
 /*---------------------------------------------*/
-input {
+ section input {
 	outline: none;
 	border: none;
 }
 
-textarea {
+ section textarea {
   outline: none;
   border: none;
 }
 
-textarea:focus, input:focus {
+ section textarea:focus, input:focus {
   border-color: transparent !important;
 }
 
@@ -116,7 +106,7 @@ textarea::-moz-placeholder { color: #999999; }
 textarea:-ms-input-placeholder { color: #999999; }
 
 /*---------------------------------------------*/
-button {
+section button {
 	outline: none !important;
 	border: none;
 	background: transparent;
@@ -207,7 +197,6 @@ iframe {
 .login100-form {
   width: 290px;
 }
-
 .login100-form-title {
   font-family: Poppins-Bold;
   font-size: 24px;

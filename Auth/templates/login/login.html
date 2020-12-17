@@ -50,105 +50,108 @@
 	</style>
 	{% endblock %}
 		{% block body %}
-		<div class="limiter">
-			<div class="container-login100">
-				<div class="wrap-login100">
-					<div class="login100-pic js-tilt" data-tilt>
-						<img src="{% static 'login_design/images/img-01.png'%}" alt="IMG">
-					</div>
-
-					<div class="login100-form validate-form">
-						<span class="login100-form-title">
-							Member Login
-						</span>
-						{% csrf_token %}
-
-						 <div id="Connector">
-													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-														<input class="input100" type="text" name="username" placeholder="Username">
-														<span class="focus-input100"></span>
-														<span class="symbol-input100">
-															<i class="fa fa-user" aria-hidden="true"></i>
-														</span>
-													</div>
-							 						<p id="username" class="error">Error</p>
-													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-														<input class="input100" type="password" name="password" placeholder="Password">
-														<span class="focus-input100"></span>
-														<span class="symbol-input100">
-																<i class="fa fa-lock" aria-hidden="true"></i>
-														</span>
-													</div>
-							 						<p id="password" class="error">Error</p>
-													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-														<input class="input100" type="password" name="cfpassword" placeholder="Confirm password">
-														<span class="focus-input100"></span>
-														<span class="symbol-input100">
-																<i class="fa fa-lock" aria-hidden="true"></i>
-														</span>
-													</div>
-							 						<p id="cfpassword" class="error">Error</p>
-						</div>	
-		                <div id="ja-ss">
-													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-														<input class="input100" type="text" name="prenom" placeholder="Prenom">
-														<span class="focus-input100"></span>
-														<span class="symbol-input100">
-															<i class="fa fa-address-card-o" aria-hidden="true"></i>
-														</span>
-													</div>
-													<p id="nom" class="error">Error</p>
-													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-														<input class="input100" type="text" name="nom" placeholder="Nom">
-														<span class="focus-input100"></span>
-														<span class="symbol-input100">
-															<i class="fa fa-address-card-o" aria-hidden="true"></i>
-														</span>
-													</div>
-													<p id="prenom" class="error">Error</p>
-													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-														<input class="input100" type="date" name="birthday" placeholder="datedenaisse">
-														<span class="focus-input100"></span>
-														<span class="symbol-input100">
-															<i class="fa fa-address-card-o" aria-hidden="true"></i>
-														</span>
-													</div>
-													<p id="day" class="error">Error</p>
-													<p id="month" class="error">Error</p>
-													<p id="year" class="error">Error</p>
-													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-														<input class="input100" type="text" name="telephone" placeholder="+2126 - XX XX XX XX">
-														<span class="focus-input100"></span>
-														<span class="symbol-input100">
-																<i class="fa fa-mobile" aria-hidden="true"></i>
-														</span>
-
-													</div>
-													<p id="telephone" class="error">Error</p>
-													<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-														<input class="input100" type="text" name="email" placeholder="Email">
-														<span class="focus-input100"></span>
-														<span class="symbol-input100">
-															<i class="fa fa-envelope" aria-hidden="true"></i>
-														</span>
-													</div>
-													<p id="email" class="error">Error</p>
-						</div>	
-						<div id="Suivant" class="container-login100-form-btn">
-										<button class="login100-form-btn">Suivant</button>
-						</div>	
-						<div id="Precedent"class="container-login100-form-btn">
-										<button class="login100-form-btn">Precedent</button>
+		<section>
+		<div id="all">
+			<div class="limiter">
+				<div class="container-login100">
+					<div class="wrap-login100">
+						<div class="login100-pic js-tilt" data-tilt>
+							<img src="{% static 'login_design/images/img-01.png'%}" alt="IMG">
 						</div>
-						
-						<div class="text-center p-t-136">
-							<a class="txt2" href="#">
-								Se connecter
-								<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-							</a>
+
+						<div class="login100-form validate-form">
+							<span class="login100-form-title">
+								Member Login
+							</span>
+							{% csrf_token %}
+
+							 <div id="Connector">
+														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+															<input class="input100" type="text" name="username" placeholder="Username">
+															<span class="focus-input100"></span>
+															<span class="symbol-input100">
+																<i class="fa fa-user" aria-hidden="true"></i>
+															</span>
+														</div>
+														<p id="username" class="error">Error</p>
+														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+															<input class="input100" type="password" name="password" placeholder="Password">
+															<span class="focus-input100"></span>
+															<span class="symbol-input100">
+																	<i class="fa fa-lock" aria-hidden="true"></i>
+															</span>
+														</div>
+														<p id="password" class="error">Error</p>
+														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+															<input class="input100" type="password" name="cfpassword" placeholder="Confirm password">
+															<span class="focus-input100"></span>
+															<span class="symbol-input100">
+																	<i class="fa fa-lock" aria-hidden="true"></i>
+															</span>
+														</div>
+														<p id="cfpassword" class="error">Error</p>
+							</div>
+							<div id="ja-ss">
+														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+															<input class="input100" type="text" name="prenom" placeholder="Prenom">
+															<span class="focus-input100"></span>
+															<span class="symbol-input100">
+																<i class="fa fa-address-card-o" aria-hidden="true"></i>
+															</span>
+														</div>
+														<p id="nom" class="error">Error</p>
+														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+															<input class="input100" type="text" name="nom" placeholder="Nom">
+															<span class="focus-input100"></span>
+															<span class="symbol-input100">
+																<i class="fa fa-address-card-o" aria-hidden="true"></i>
+															</span>
+														</div>
+														<p id="prenom" class="error">Error</p>
+														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+															<input class="input100" type="date" name="birthday" placeholder="datedenaisse">
+															<span class="focus-input100"></span>
+															<span class="symbol-input100">
+																<i class="fa fa-address-card-o" aria-hidden="true"></i>
+															</span>
+														</div>
+														<p id="day" class="error">Error</p>
+														<p id="month" class="error">Error</p>
+														<p id="year" class="error">Error</p>
+														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+															<input class="input100" type="text" name="telephone" placeholder="+2126 - XX XX XX XX">
+															<span class="focus-input100"></span>
+															<span class="symbol-input100">
+																	<i class="fa fa-mobile" aria-hidden="true"></i>
+															</span>
+
+														</div>
+														<p id="telephone" class="error">Error</p>
+														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+															<input class="input100" type="text" name="email" placeholder="Email">
+															<span class="focus-input100"></span>
+															<span class="symbol-input100">
+																<i class="fa fa-envelope" aria-hidden="true"></i>
+															</span>
+														</div>
+														<p id="email" class="error">Error</p>
+							</div>
+							<div id="Suivant" class="container-login100-form-btn">
+											<button class="login100-form-btn">Suivant</button>
+							</div>
+							<div id="Precedent"class="container-login100-form-btn">
+											<button class="login100-form-btn">Precedent</button>
+							</div>
+
+							<div class="text-center p-t-136">
+								<a class="txt2" href="#">
+									Se connecter
+									<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+								</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 			{% endblock %}
-
+			</section>
