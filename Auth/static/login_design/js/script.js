@@ -167,7 +167,7 @@ jQuery(document).ready(function(){
 					verifier_Email_Telephone(email,telephone);
 					//validatedate(birthday);
 					validate_date(birthday);
-$.ajax({
+                    $.ajax({
                                     url: '/Auth/signup',
                                     type: 'post',
                                     data: {
