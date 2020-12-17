@@ -203,7 +203,7 @@ $.ajax({
                                     type: 'post',
                                     data: {
                                     id:"2",
-                                    username: usernamep,
+                                    username: username,
                                     csrfmiddlewaretoken:token
                                            },
                                     success: function(response){
