@@ -346,8 +346,7 @@ iframe {
 /*------------------------------------------------------------------
 [ Responsive ]*/
 
-
-
+/*
 @media (max-width: 992px) {
   .wrap-login100 {
     padding: 177px 90px 33px 85px;
@@ -381,11 +380,11 @@ iframe {
     padding: 100px 15px 33px 15px;
   }
 }
-
+*/
 
 /*------------------------------------------------------------------
 [ Alert validate ]*/
-
+/*
 .validate-input {
   position: relative;
 }
@@ -449,3 +448,4 @@ iframe {
     opacity: 1;
   }
 }
+*/

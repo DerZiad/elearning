@@ -6,28 +6,35 @@
 	<!--===============================================================================================-->
 		<link rel="icon" type="image/png" href="{% static 'login_design/images/icons/favicon.ico'%}"/>
 	<!--===============================================================================================-->
-		<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/bootstrap/css/bootstrap.min.css'%}">
+
 	<!--===============================================================================================-->
-		<link rel="stylesheet" type="text/css" href="{% static 'login_design/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+
 	<!--===============================================================================================-->
 		<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/animate/animate.css'%}">
 	<!--===============================================================================================-->	
 		<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/css-hamburgers/hamburgers.min.css'%}">
 	<!--===============================================================================================-->
-		<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/select2/select2.min.css'%}">
+
 	<!--===============================================================================================-->
 		<link rel="stylesheet" type="text/css" href="{% static 'login_design/css/util.css'%}">
 		<link rel="stylesheet" type="text/css" href="{% static 'login_design/css/main.css'%}">
+		<link rel="stylesheet" type="text/css" href="{% static 'login_design/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
 	<!--===============================================================================================-->
 	<!--===============================================================================================-->
-		<script src="{% static 'login_design/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
-	<!--===============================================================================================-->
-		<script src="{% static 'login_design/vendor/bootstrap/js/popper.js'%}"></script>
+<!--
+	<script src="{% static 'login_design/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+	<script src="{% static 'login_design/vendor/tilt/tilt.jquery.min.js'%}"></script>
+-->
+	<!--===============================================================================================--><!--
 		<script src="{% static 'login_design/vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+				<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/bootstrap/css/bootstrap.min.css'%}">
+				<script src="{% static 'login_design/vendor/bootstrap/js/popper.js'%}"></script>
+
+	===============================================================================================-->
+	<script src="{% static 'login_design/vendor/select2/select2.min.js'%}"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/select2/select2.min.css'%}">
 	<!--===============================================================================================-->
-		<script src="{% static 'login_design/vendor/select2/select2.min.js'%}"></script>
-	<!--===============================================================================================-->
-		<script src="{% static 'login_design/vendor/tilt/tilt.jquery.min.js'%}"></script>
+
 		<script >
 			$('.js-tilt').tilt({
 				scale: 1.1
@@ -49,8 +56,9 @@
 		}
 	</style>
 	{% endblock %}
+		<!--
 		{% block body %}
-		<section>
+
 		<div id="all">
 			<div class="limiter">
 				<div class="container-login100">
@@ -153,5 +161,7 @@
 				</div>
 			</div>
 		</div>
-			{% endblock %}
+		</div>
 			</section>
+			{% endblock %}
+		-->
