@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Personne(models.Model):
+class Personne:
    nom = models.CharField(max_length=20)
    prenom = models.CharField(max_length=20)
    datedenaissance = models.CharField(max_length=50,default="02-01-2002")
@@ -10,9 +10,9 @@ class Personne(models.Model):
    #Professor
    datecreationaccount = models.DateField(auto_now_add=True)
 
-class Professeur(Personne):
+class Professeur(Personne,models.Model):
    pass
-class User(Personne):
+class User(Personne,models.Model):
    email = models.EmailField(max_length=25)
    passord = models.CharField(max_length=25)
 class Succes(models.Model):
