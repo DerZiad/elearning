@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.template import loader
-from .models import Personne
+from .models import Personne,User
 import Auth.ValidEntry.ValidatorInscript as validator
 # Create your views here.
 
@@ -32,7 +32,7 @@ def inscription(request):
             password = attiribut['password']
             email = attiribut['email']
             telephone = attiribut['telephone']
-            personne = Personne(nom=nom,prenom=prenom,datedenaissance=birthday,username=username,password = password,
+            personne = User(nom=nom,prenom=prenom,datedenaissance=birthday,username=username,password = password,
                 email = email,telephone = telephone)
             personne.save()
             #return HttpResponse("<h1>Good</h1>")
@@ -40,8 +40,13 @@ def inscription(request):
             return JsonResponse(firstpane)
 def seconnecter(request):
     if(request.method == 'POST'):
-        name = request.POST.get('name')
-        print(name)
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        users = User.objects.filter(username = username,password = password)
+        if(len(users) != 0):
+            return
+        else:
+            return JsonResponse()
     else:
         template = loader.get_template("login/login.html")
         return HttpResponse(template.render(request= request))

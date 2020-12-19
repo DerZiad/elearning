@@ -1,26 +1,44 @@
 {% extends 'base.html'%}
-{% load 3
+{% load static %}
+{% csrf_token %}
+{% block besoin %}
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/animate/animate.css'%}">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/css-hamburgers/hamburgers.min.css'%}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/select2/select2.min.css'%}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/css/main.css'%}">
 
 <!--===============================================================================================-->
-</head>
-<body>
 
-	{%
+
+
+
+<!--===============================================================================================-->
+	<script src="{% static 'login_design/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'login_design/vendor/bootstrap/js/popper.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'login_design/vendor/select2/select2.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'login_design/vendor/tilt/tilt.jquery.min.js'%}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+{% endblock %}
+{% block body %}
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -42,13 +60,13 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					
+					<span class="error"><p>{{message}}</p></span>
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Login
@@ -74,26 +92,4 @@
 			</div>
 		</div>
 	</div>
-	
-	
-
-	
-<!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/tilt/tilt.jquery.min.js"></script>
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-	</script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
-
-</body>
-</html>
+{% endblock %}

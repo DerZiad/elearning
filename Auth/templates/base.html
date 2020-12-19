@@ -198,10 +198,9 @@
 								</ul></li>
 							<li><a href="https://deutsch.info/fr/forum">Forum</a></li>
 							<li class="active"><a class="btn-sm btn-white"
-								href="https://deutsch.info/fr/login">Connexion</a></li>
-							<li><a data-toggle="modal" data-target="#language_list"
-								aria-haspopup="true" aria-expanded="false"
-								href="https://deutsch.info/fr/login#">FR<span class="caret"></span></a></li>
+								href="{% url 'signin'%}">Connexion</a></li>
+							<li class="active"><a class="btn-sm btn-white"
+								href="{% url 'signup'%}">Inscription</a></li>
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->

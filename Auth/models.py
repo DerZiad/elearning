@@ -14,7 +14,7 @@ class Professeur(Personne,models.Model):
    pass
 class User(Personne,models.Model):
    email = models.EmailField(max_length=25)
-   passord = models.CharField(max_length=25)
+   password = models.CharField(max_length=25)
 class Succes(models.Model):
    succes_schreiben = models.IntegerField()
    succes_lesen = models.IntegerField()
