@@ -8,9 +8,16 @@ class Personne(models.Model):
    username = models.CharField(max_length=18)
    telephone = models.CharField(max_length=18,default="0652518306")
    #Professor
-   email = models.EmailField(max_length=25)
-   password = models.CharField(max_length=25)
    datecreationaccount = models.DateField(auto_now_add=True)
 
 class Professeur(Personne):
    pass
+class User(Personne):
+   email = models.EmailField(max_length=25)
+   passord = models.CharField(max_length=25)
+class Succes(models.Model):
+   succes_schreiben = models.IntegerField()
+   succes_lesen = models.IntegerField()
+   succes_horen = models.IntegerField()
+   succes_grammar = models.IntegerField()
+   users = models.ManyToManyField(User,related_name="succes",blank=True)

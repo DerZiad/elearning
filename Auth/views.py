@@ -13,7 +13,7 @@ def index(request):
 
 def inscription(request):
     if(request.method == 'GET'):
-        template = loader.get_template("login/login.html")
+        template = loader.get_template("login/signup.html")
         return HttpResponse(template.render(request = request))
     else:
         id = request.POST.get('id')
