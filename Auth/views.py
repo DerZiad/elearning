@@ -48,5 +48,5 @@ def seconnecter(request):
         else:
             return JsonResponse()
     else:
-        template = loader.get_template("login/login.html")
+        template = loader.get_template("login/signin.html")
         return HttpResponse(template.render(request= request))
