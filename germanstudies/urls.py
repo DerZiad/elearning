@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from Auth import urls
+from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Auth/',include("Auth.urls"),name="Authentification"),
-    path('Horen/', include("Horen.urls"),name="Horen"),
-    path('Lesen/', include("Lesen.urls"),name="Lesen"),
-    path('Schreiben/', include("Schreiben.urls"),name="Schreiben"),
-    path('Grammar/', include("Grammar.urls"),name="Grammar"),
+    url(r'^$Auth/',include("Auth.urls",namespace="Authf"),name="Authentification"),
+    url(r'^$Horen/', include("Horen.urls",namespace="Horenf"),name="Horen"),
+    url(r'^$Lesen/', include("Lesen.urls",namespace="Lesenf"),name="Lesen"),
+    url(r'^$Schreiben/', include("Schreiben.urls",namespace="Schreibenf"),name="Schreiben"),
+    url(r'^$Grammar/', include("Grammar.urls",namespace="Grammarf"),name="Grammar"),
+    url(r'^$',include("Home.urls",namespace="Homef"),name="Session")
 ]

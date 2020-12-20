@@ -7,7 +7,7 @@ import Auth.ValidEntry.ValidatorInscript as validator
 # Create your views here.
 
 def index(request):
-    template = loader.get_template("Auth/connection.html")
+    template = loader.get_template("session/session.html")
     return HttpResponse(template.render(request = request))
 
 
@@ -50,7 +50,7 @@ def seconnecter(request):
         else:
             template = loader.get_template("session/session.html")
             request.session['user']=users[0]
-            return HttpResponse(template.render())
+            return HttpResponse(template.render(request=request))
     else:
         template = loader.get_template("login/signin.html")
         return HttpResponse(template.render(request= request))

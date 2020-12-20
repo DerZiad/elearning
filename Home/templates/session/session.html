@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" class=" svg" lang="fr"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    {% load statoc %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,8 +26,8 @@
     <link rel="mask-icon" href="https://deutsch.info/safari-pinned-tab.svg" color="#F3921F">
     <meta name="theme-color" content="#ffffff">
 
-    <link href="session_fichiers/bootstrap.css" rel="stylesheet">
-    <link href="session_fichiers/main.css" rel="stylesheet">
+    <link href="{% static 'session_fichiers/bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'session_fichiers/main.css'%}" rel="stylesheet">
 
     
     <link rel="image_src" href="https://deutsch.info/images/logos/deutsch_info_logo_color_250px.png">
@@ -67,17 +68,17 @@
     <script src="/assets/dc018574/js/respond.min.js"></script>
     <![endif]-->
 
-    <script src="session_fichiers/jquery-2.js"></script>
-    <script src="session_fichiers/jquery-ui.js"></script>
-    <script src="session_fichiers/jquery_002.js"></script>
-    <script src="session_fichiers/bootstrap.js"></script>
+    <script src="{% static 'session_fichiers/jquery-2.js'%}"></script>
+    <script src="{% static 'session_fichiers/jquery-ui.js'%}"></script>
+    <script src="{% static 'session_fichiers/jquery_002.js'%}"></script>
+    <script src="{% static 'session_fichiers/bootstrap.js'%}"></script>
 
-    <script type="text/javascript" src="session_fichiers/main.js"></script>
-    <script type="text/javascript" src="session_fichiers/jquery.js"></script>
+    <script type="text/javascript" src="{% static 'session_fichiers/main.js'%}"></script>
+    <script type="text/javascript" src="{% static 'session_fichiers/jquery.js'%}"></script>
 
-    <script type="text/javascript" src="session_fichiers/select2.js"></script>
-    <link href="session_fichiers/select2.css" rel="stylesheet">
-    <link href="session_fichiers/select2-bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'session_fichiers/select2.js'%}"></script>
+    <link href="{% static 'session_fichiers/select2.css'%}" rel="stylesheet">
+    <link href="{% static 'session_fichiers/select2-bootstrap.css'%}" rel="stylesheet">
 
     
     <title>Cours - deutsch.info</title>
@@ -125,11 +126,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="main_menu">
                 <ul class="nav navbar-nav navbar-right" id="yw1">
-<li class="active"><a href="https://deutsch.info/fr/courses">Grammar</a></li>
-<li><a href="https://deutsch.info/fr/grammar">Hören</a></li>
-<li><a href="https://deutsch.info/fr/mediathek">Lesen</a></li>
-<li><a href="https://deutsch.info/fr/mediathek">Schreiben</a></li>
-<li><a href="https://deutsch.info/fr/mediathek">Level weckseln</a></li>
+<li class="active"><a href="https://deutsch.info/fr/courses">Level</a></li>
+<li><a href="{% url 'Horen'%}">Hören</a></li>
+<li><a href="{% url 'Lesen'%}">Lesen</a></li>
+<li><a href="{% url 'Schreiben'%}">Schreiben</a></li>
+<li><a href="{% url 'Grammar'%}">Grammar</a></li>
 
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Informations utiles <b class="caret"></b></a>
 <ul class="dropdown-menu">
