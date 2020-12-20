@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'Lesen.apps.LesenConfig',
     'Schreiben.apps.SchreibenConfig',
     'Auth.apps.AuthConfig',
-
+    'Home.apps.HomeConfig',
 ]
 
 MIDDLEWARE = [
