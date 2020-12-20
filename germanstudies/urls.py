@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^Lesen/', include("Lesen.urls",namespace="Lesenf"),name="Lesen"),
     url(r'^Schreiben/', include("Schreiben.urls",namespace="Schreibenf"),name="Schreiben"),
     url(r'^Grammar/', include("Grammar.urls",namespace="Grammarf"),name="Grammar"),
-    url(r'^$',include("Home.urls",namespace="Homef"),name="Session")
+    url(r'^',include("Home.urls",namespace="Homef"),name="Session")
 ]
