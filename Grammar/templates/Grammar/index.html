@@ -1,4 +1,6 @@
 {% extends 'Grammar/base.html'%}
-{% block body%}
-  <p>{{questions}}</p>
-{% endblock%}
+{% block body %}
+     <p> UBUNG ZU MACHEN</p>
+     <h1> MOUTCHOU </h1>
+           {% for test in questions%}<em>{{test.frage}}</em></br>{% endfor %}
+{% endblock %}
