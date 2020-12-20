@@ -18,10 +18,10 @@ from django.urls import path,include
 from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$Auth/',include("Auth.urls",namespace="Authf"),name="Authentification"),
-    url(r'^$Horen/', include("Horen.urls",namespace="Horenf"),name="Horen"),
-    url(r'^$Lesen/', include("Lesen.urls",namespace="Lesenf"),name="Lesen"),
-    url(r'^$Schreiben/', include("Schreiben.urls",namespace="Schreibenf"),name="Schreiben"),
-    url(r'^$Grammar/', include("Grammar.urls",namespace="Grammarf"),name="Grammar"),
+    url(r'^Auth/',include("Auth.urls",namespace="Authf"),name="Authentification"),
+    url(r'^Horen/', include("Horen.urls",namespace="Horenf"),name="Horen"),
+    url(r'^Lesen/', include("Lesen.urls",namespace="Lesenf"),name="Lesen"),
+    url(r'^Schreiben/', include("Schreiben.urls",namespace="Schreibenf"),name="Schreiben"),
+    url(r'^Grammar/', include("Grammar.urls",namespace="Grammarf"),name="Grammar"),
     url(r'^$',include("Home.urls",namespace="Homef"),name="Session")
 ]
