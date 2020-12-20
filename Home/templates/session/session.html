@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" class=" svg" lang="fr"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    {% load statoc %}
+    {% load static %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,43 +31,6 @@
 
     
     <link rel="image_src" href="https://deutsch.info/images/logos/deutsch_info_logo_color_250px.png">
-
-    <script>
-        var SITE = {
-            isAuth:true,
-            i18n: {
-                sourceLanguage: 'de',
-                targetLanguage: 'fr',
-                orientation: 'ltr'
-            },
-            auth: {userId:735571, username: "smookerzz"},
-            routes: {
-                notifications: '/fr/notifications',
-                translate: '/fr/translation/sentence'
-            },
-            dict: {
-                available: 0,
-                route: '/fr/dictionary',
-                dictionary: 'de|fr',
-                language: 'fr'
-            },
-            keyboard: false,
-            request: {
-                enableCsrfValidation: true,
-                csrfTokenName: 'YII_CSRF_TOKEN',
-                csrfToken: 'fno4MFVNaTN1enFWVjdsZnBSNVNHdjdacnByRGhnbzOD0I3BPQW9RcjhTpz8dc2gLdaQIfIepquFDwR-TRtnqg=='
-            },
-            utils: {}
-        };
-    </script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="/assets/dc018574/js/html5shiv.min.js"></script>
-    <script src="/assets/dc018574/js/respond.min.js"></script>
-    <![endif]-->
-
     <script src="{% static 'session_fichiers/jquery-2.js'%}"></script>
     <script src="{% static 'session_fichiers/jquery-ui.js'%}"></script>
     <script src="{% static 'session_fichiers/jquery_002.js'%}"></script>
@@ -94,7 +57,7 @@
 <nav class="toolbar fixed affix-top" data-spy="affix" data-offset="90">
     <div class="container-fluid">
         <ul class="nav" id="yw0">
-<li><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#"><span class="visible-xs-inline"><img class="" src="session_fichiers/user_25_25.jpg" alt=""></span><span class="hidden-xs">smookerzz</span><span class="caret"></span></a>
+<li><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#"><span class="visible-xs-inline"><img class="" src="{% static 'session_fichiers/user_25_25.jpg'%}" alt=""></span><span class="hidden-xs">{{request.session['user'].username}}</span><span class="caret"></span></a>
 <ul class="dropdown-menu">
 <li><a href="https://deutsch.info/fr/user/profile">Afficher le profil</a></li>
 <li><a href="https://deutsch.info/fr/user/settings">Préférences</a></li>
@@ -127,10 +90,10 @@
             <div class="collapse navbar-collapse" id="main_menu">
                 <ul class="nav navbar-nav navbar-right" id="yw1">
 <li class="active"><a href="https://deutsch.info/fr/courses">Level</a></li>
-<li><a href="{% url 'Horen'%}">Hören</a></li>
-<li><a href="{% url 'Lesen'%}">Lesen</a></li>
-<li><a href="{% url 'Schreiben'%}">Schreiben</a></li>
-<li><a href="{% url 'Grammar'%}">Grammar</a></li>
+<li><a href="/Horen">Hören</a></li>
+<li><a href="/Lesen">Lesen</a></li>
+<li><a href="/Schreiben">Schreiben</a></li>
+<li><a href="/Grammar">Grammar</a></li>
 
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Informations utiles <b class="caret"></b></a>
 <ul class="dropdown-menu">
@@ -157,7 +120,7 @@
         <ul class="cards list-inline list-unstyled row text-center equal-height">
                             <li class="col-sm-6 card card-bordered   h" style="height: 445px;">
                     <a href="https://deutsch.info/fr/courses/a1">
-                                                <img class="img-responsive" src="session_fichiers/course_a1.png" alt="">                                                <div class="lesson-results"><span class="glyphicon glyphicon-star"></span> 10 / 3410</div>
+                                                <img class="img-responsive" src="{% static 'session_fichiers/course_a1.png'%}" alt="">                                                <div class="lesson-results"><span class="glyphicon glyphicon-star"></span> 10 / 3410</div>
                                                 <div class="card-caption margin-top-sm"><p class="big">Niveau A1</p></div>
 
                     </a>
@@ -165,21 +128,21 @@
                                     </li>
                             <li class="col-sm-6 card card-bordered   h" style="height: 445px;">
                     <a href="https://deutsch.info/fr/courses/a2">
-                                                <img class="img-responsive" src="session_fichiers/course_a2.png" alt="">                                                <div class="lesson-results"><span class="glyphicon glyphicon-star"></span> 0 / 3160</div>
+                                                <img class="img-responsive" src="{% static 'session_fichiers/course_a2.png'%}" alt="">                                                <div class="lesson-results"><span class="glyphicon glyphicon-star"></span> 0 / 3160</div>
                                                 <div class="card-caption margin-top-sm"><p class="big">Niveau A2</p></div>
 
                     </a>
                                     </li>
                             <li class="col-sm-6 card card-bordered   h" style="height: 445px;">
                     <a href="https://deutsch.info/fr/courses/b1">
-                                                <img class="img-responsive" src="session_fichiers/course_b1.png" alt="">                                                <div class="lesson-results"><span class="glyphicon glyphicon-star"></span> 0 / 3330</div>
+                                                <img class="img-responsive" src="{% static 'session_fichiers/course_b1.png'%}" alt="">                                                <div class="lesson-results"><span class="glyphicon glyphicon-star"></span> 0 / 3330</div>
                                                 <div class="card-caption margin-top-sm"><p class="big">Niveau B1</p></div>
 
                     </a>
                                     </li>
                             <li class="col-sm-6 card card-bordered   h" style="height: 445px;">
                     <a href="https://deutsch.info/fr/courses/b2">
-                                                <img class="img-responsive" src="session_fichiers/course_b2.png" alt="">                                                <div class="lesson-results"><span class="glyphicon glyphicon-star"></span> 0 / 1970</div>
+                                                <img class="img-responsive" src="{% static 'session_fichiers/course_b2.png'%}" alt="">                                                <div class="lesson-results"><span class="glyphicon glyphicon-star"></span> 0 / 1970</div>
                                                 <div class="card-caption margin-top-sm"><p class="big">Niveau B2</p></div>
 
                     </a>

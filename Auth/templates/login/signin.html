@@ -1,6 +1,5 @@
 {% extends 'base.html'%}
 {% load static %}
-{% csrf_token %}
 {% block besoin %}
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -46,7 +45,8 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="post" action="{% url 'Authentification:signin' %}">
+					{% csrf_token %}
 					<span class="login100-form-title">
 						Member Login
 					</span>
@@ -82,11 +82,11 @@
 						</a>
 					</div>
 					<div class="container-login100-form-btn">
-						<p>{{erreurs['erreur'}}</p>
+						<p>{{erreur}}</p>
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="{% url 'signup'%}">
+						<a class="txt2" href="{% url 'Authentification:signup'%}">
 							Create your Account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>

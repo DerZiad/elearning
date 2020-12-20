@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.http import JsonResponse
 from django.template import loader
-from .models import Personne,User
+from .models import User
 import Auth.ValidEntry.ValidatorInscript as validator
 # Create your views here.
 
@@ -42,15 +42,15 @@ def seconnecter(request):
     if(request.method == 'POST'):
         username = request.POST.get('username')
         password = request.POST.get('password')
-        users = User.objects.filter(username = username,password = password)
+        users = User.objects.filter(email = username,password = password)
         if(len(users) != 0):
-            template = loader.get_template("login/singin.html")
-            erreurs = {"erreur":"Username ou mot de passe est non valide"}
-            return HttpResponse(template.render(erreurs))
-        else:
-            template = loader.get_template("session/session.html")
             request.session['user']=users[0]
-            return HttpResponse(template.render(request=request))
+            print("good")
+            return HttpResponseRedirect("/")
+        else:
+            template = loader.get_template("login/signin.html")
+            erreurs = {"erreur":"Username ou mot de passe est non valide"}
+            return HttpResponse(template.render(request=request),erreurs)
     else:
         template = loader.get_template("login/signin.html")
         return HttpResponse(template.render(request= request))
