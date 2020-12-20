@@ -44,9 +44,13 @@ def seconnecter(request):
         password = request.POST.get('password')
         users = User.objects.filter(username = username,password = password)
         if(len(users) != 0):
-            return
+            template = loader.get_template("login/singin.html")
+            erreurs = {"erreur":"Username ou mot de passe est non valide"}
+            return HttpResponse(template.render(erreurs))
         else:
-            return JsonResponse()
+            template = loader.get_template("session/session.html")
+            request.session['user']=users[0]
+            return HttpResponse(template.render())
     else:
         template = loader.get_template("login/signin.html")
         return HttpResponse(template.render(request= request))
