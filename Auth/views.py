@@ -40,17 +40,17 @@ def inscription(request):
             return JsonResponse(firstpane)
 def seconnecter(request):
     if(request.method == 'POST'):
-        username = request.POST.get('username')
+        username = request.POST.get('email')
         password = request.POST.get('password')
         users = User.objects.filter(email = username,password = password)
         if(len(users) != 0):
-            request.session['user']=users[0]
+            request.session['username']=users[0].username
             print("good")
             return HttpResponseRedirect("/")
         else:
             template = loader.get_template("login/signin.html")
             erreurs = {"erreur":"Username ou mot de passe est non valide"}
-            return HttpResponse(template.render(request=request),erreurs)
+            return render(request,"login/signin.html",erreurs)
     else:
         template = loader.get_template("login/signin.html")
         return HttpResponse(template.render(request= request))

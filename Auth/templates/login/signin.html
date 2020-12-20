@@ -35,14 +35,14 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="{% static 'login_design/js/main.js'%}"></script>
 {% endblock %}
 {% block body %}
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="images/img-01.png" alt="IMG">
+					<img src="{% static 'login_design/images/img-01.png'%}" alt="IMG">
 				</div>
 
 				<form class="login100-form validate-form" method="post" action="{% url 'Authentification:signin' %}">
