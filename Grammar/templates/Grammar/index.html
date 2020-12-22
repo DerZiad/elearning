@@ -1,6 +1,25 @@
 {% extends 'Grammar/base.html'%}
+
 {% block body %}
-     <p> UBUNG ZU MACHEN</p>
-     <h1> MOUTCHOU </h1>
-           {% for test in questions%}<em>{{test.frage}}</em></br>{% endfor %}
+
+     <h1> APPRENDRE LA LANGUE ALLEMANDE DANS UN SEUL CLIC  </h1>
+        <div>
+            <H2>AUFGABE 1 :</H2>
+            <form method="get" action="/Grammar/">
+              <p>
+                  "?" ist diese Frau? Das ist meine Mutter
+              </p>
+               <li> WO </li><li>WER</li><li>WAS</li><LI>WIE  </LI>
+              <input type="text" name="losung" value="" id="losung" >
+                <input type="submit" value="suuu" >
+            </form>
+        </div>
+     <nav>
+         <ul>
+             <li><a href="https://youtu.be/fEMQh1KUYsM">Das Alphabet </a> </li>
+             <li>TEST 1</li>
+             <li>TEST 2</li>
+             <li>TEST 3</li>
+         </ul>
+     </nav>
 {% endblock %}
