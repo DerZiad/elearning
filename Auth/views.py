@@ -4,6 +4,9 @@ from django.http import JsonResponse
 from django.template import loader
 from .models import User
 import Auth.ValidEntry.ValidatorInscript as validator
+import Auth.ValidEntry.utilconverter as Converter
+import json
+from django.core import serializers
 # Create your views here.
 
 def index(request):
@@ -44,7 +47,8 @@ def seconnecter(request):
         password = request.POST.get('password')
         users = User.objects.filter(email = username,password = password)
         if(len(users) != 0):
-            request.session['username']=users[0].username
+
+            Converter.converttodata(request,users[0])
             print("good")
             return HttpResponseRedirect("/")
         else:

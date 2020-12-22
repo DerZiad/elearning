@@ -5,6 +5,7 @@ class Professeur(models.Model):
 class User(models.Model):
    email = models.EmailField(max_length=25)
    password = models.CharField(max_length=25)
+
    nom = models.CharField(max_length=20)
    prenom = models.CharField(max_length=20)
    datedenaissance = models.CharField(max_length=50,default="02-01-2002")
@@ -12,6 +13,13 @@ class User(models.Model):
    telephone = models.CharField(max_length=18,default="0652518306")
    #Professor
    datecreationaccount = models.DateField(auto_now_add=True)
+   def getData(cls):
+      data = {"nom": cls.nom,"prenom":cls.prenom,
+              "datedenaissance":cls.datedenaissance,"username":cls.username,"telephone":cls.telephone,
+              "email":cls.email,"password":cls.password,
+              }
+      return data;
+
 
 class Succes(models.Model):
    succes_schreiben = models.IntegerField()
