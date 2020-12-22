@@ -103,28 +103,6 @@
 	href="{% static 'Base/cookieconsent.min.css'%}">
 <script
 	src="{% static 'Base/cookieconsent.min.js.download'%}"></script>
-<script>
-            window.addEventListener("load", function () {
-                window.cookieconsent.initialise({
-                    "palette": {
-                        "popup": {
-                            "background": "#aaa",
-                            "text": "#ffffff"
-                        },
-                        "button": {
-                            "background": "#F3921F",
-                            "text": "#ffffff"
-                        }
-                    },
-                    "content": {
-                        "message": "Ce site utilise des cookies pour améliorer son fonctionnement.",
-                        "dismiss": "Accepter",
-                        "link": "En savoir plus",
-                        "href": "https://deutsch.info/fr/privacy"
-                    }
-                })
-            });
-        </script>
 
 <script type="text/javascript"
 	src="{% static 'Base/api.js.download'%}"></script>
@@ -135,25 +113,7 @@
 {% block besoin %}
 {% endblock %}
 <body class="translation">
-	<div role="dialog" aria-live="polite" aria-label="cookieconsent"
-		aria-describedby="cookieconsent:desc"
-		class="cc-window cc-banner cc-type-info cc-theme-block cc-bottom cc-color-override--2053442320 "
-		style="">
-		<!--googleoff: all-->
-		<span id="cookieconsent:desc" class="cc-message">Ce site
-			utilise des cookies pour améliorer son fonctionnement. <a
-			aria-label="learn more about cookies" role="button" tabindex="0"
-			class="cc-link" href="https://deutsch.info/fr/privacy"
-			target="_blank">En savoir plus</a>
-		</span>
-		<div class="cc-compliance">
-			<a aria-label="dismiss cookie message" role="button" tabindex="0"
-				class="cc-btn cc-dismiss">Accepter</a>
-		</div>
 		<!--googleon: all-->
-	</div>
-	<noscript>JavaScript doit être activé pour pouvoir utiliser
-		cette page.</noscript>
 
 		<header id="header">
 			<nav class="menu navbar navbar-default">
@@ -184,11 +144,9 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="main_menu">
 						<ul class="nav navbar-nav navbar-right" id="yw0">
-							<li><a href="https://deutsch.info/fr/courses">Cours</a></li>
-							<li><a href="https://deutsch.info/fr/grammar">Grammaire</a></li>
-							<li><a href="https://deutsch.info/fr/mediathek">Médiathèque</a></li>
+							<li><a href="{% url 'Authentification:signin' %}">Cours</a></li>
 							<li class="dropdown"><a class="dropdown-toggle"
-								data-toggle="dropdown" href="https://deutsch.info/fr/login#">Informations
+								data-toggle="dropdown" href="{% url 'Authentification:signin' %}">Informations
 									utiles <b class="caret"></b>
 							</a>
 								<ul class="dropdown-menu">
@@ -196,7 +154,7 @@
 											pratiques</a></li>
 									<li><a href="https://deutsch.info/fr/test">Tests</a></li>
 								</ul></li>
-							<li><a href="https://deutsch.info/fr/forum">Forum</a></li>
+							<li><a href="{% url 'Authentification:signin' %}">Forum</a></li>
 							<li class="active"><a class="btn-sm btn-white"
 								href="{% url 'Authentification:signin'%}">Connexion</a></li>
 						</ul>
@@ -212,29 +170,6 @@
 		<footer id="footer">
 			<div class="section-sm">
 				<div class="container frame">
-					<nav class="menu navbar navbar-default">
-						<div class="">
-							<div class="nav navbar-nav navbar-left">
-								<button class="btn btn-white" type="button" data-toggle="modal"
-									data-target="#language_list" aria-haspopup="true"
-									aria-expanded="false">
-									Français <span class="caret"></span>
-								</button>
-							</div>
-
-							<ul class="nav navbar-nav navbar-right" id="yw1">
-								<li><a href="https://deutsch.info/fr/about">À propos</a></li>
-								<li><a href="https://deutsch.info/fr/teachers">Lehrer*innen-Portal</a></li>
-								<li><a href="https://deutsch.info/fr/privacy">Politique
-										de confidentialité</a></li>
-								<li><a href="https://deutsch.info/fr/terms">Conditions
-										d’utilisation</a></li>
-								<li><a href="https://deutsch.info/fr/contact">Contact</a></li>
-								<li><a href="https://deutsch.info/fr/press">Presse</a></li>
-							</ul>
-						</div>
-						<!-- /.container-fluid -->
-					</nav>
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="icon svg-sprite svg erasmus">
