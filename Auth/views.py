@@ -47,9 +47,7 @@ def seconnecter(request):
         password = request.POST.get('password')
         users = User.objects.filter(email = username,password = password)
         if(len(users) != 0):
-
             Converter.converttodata(request,users[0])
-            print("good")
             return HttpResponseRedirect("/")
         else:
             template = loader.get_template("login/signin.html")
@@ -58,3 +56,7 @@ def seconnecter(request):
     else:
         template = loader.get_template("login/signin.html")
         return HttpResponse(template.render(request= request))
+def disconnect(request):
+    request.session.flush()
+    request.session.clear_expired()
+    return HttpResponseRedirect("/")

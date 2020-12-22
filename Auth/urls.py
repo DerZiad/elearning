@@ -4,6 +4,5 @@ app_name = "Authentification"
 urlpatterns = [
     path("signup",views.inscription,name = "signup"),
     path("signin",views.seconnecter,name="signin"),
-    path("session",views.index,name="test"),
-
+    path("disconnect",views.disconnect,name="disconnect")
 ]
