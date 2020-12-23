@@ -1,22 +1,28 @@
 {% extends 'Grammar/base.html'%}
-
 {% block body %}
 
      <h1> APPRENDRE LA LANGUE ALLEMANDE DANS UN SEUL CLIC  </h1>
         <div>
-            <H2>AUFGABE 1 :</H2>
-            <form method="get" action="/Grammar/">
+            <form method="post" action="/Grammar/">
+                {% csrf_token %}
+            {% for ubung in ubungs %}
+                <H2>AUFGABE {{forloop.counter}} :</H2>
+
               <p>
-                  "?" ist diese Frau? Das ist meine Mutter
+                  {{ ubung.frage }}
               </p>
-               <li> WO </li><li>WER</li><li>WAS</li><LI>WIE  </LI>
-              <input type="text" name="losung" value="" id="losung" >
+                <input type="number" name="{{ ubung.frage }}" value="" id="losung" >
+               <ol> WO </ol><ol>WER</ol><ol>WAS</ol><ol>WIE  </ol>
+
+            {% endfor %}
+
+
                 <input type="submit" value="suuu" >
             </form>
         </div>
      <nav>
          <ul>
-             <li><a href="https://youtu.be/fEMQh1KUYsM">Das Alphabet </a> </li>
+             <li><a href="https://youtu.be/fEMQh1KUYsM" target="_blank">Das Alphabet </a> </li>
              <li>TEST 1</li>
              <li>TEST 2</li>
              <li>TEST 3</li>
