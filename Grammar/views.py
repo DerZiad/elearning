@@ -15,21 +15,29 @@ def grammarex(request):
     if(request.method == "POST"):
         losung = request.POST
         cmp = 0
-        context = {
-            'ubungs': ubungs
-        }
+
         for ubung in ubungs:
-            print(ubung)
-            print("ziad",losung[ubung.frage])
-            print(ubung.losung)
+            print(losung[ubung.frage],"et",ubung.losung)
             if str(losung[ubung.frage]) == str(ubung.losung):
                 cmp += 1
-        print("le nombre de question acuis",cmp)
+        if len(losung)!=0 :
+         msg ="le nombre de question acuis",cmp
+         context = {
+            'ubungs': ubungs,
+            'message':msg
+         }
+         return render(request, 'Grammar/index.html', context)
+        else :
+            context = {
+                'ubungs': ubungs,
+
+            }
         return render(request, 'Grammar/index.html', context)
     else:
         losung = request.GET
 
         context = {
-            'ubungs': ubungs
+            'ubungs': ubungs,
+
         }
         return render(request, 'Grammar/index.html', context)

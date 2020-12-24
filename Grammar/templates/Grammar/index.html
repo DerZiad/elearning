@@ -1,4 +1,5 @@
 {% extends 'Grammar/base.html'%}
+
 {% block body %}
 
      <h1> APPRENDRE LA LANGUE ALLEMANDE DANS UN SEUL CLIC  </h1>
@@ -11,21 +12,24 @@
               <p>
                   {{ ubung.frage }}
               </p>
-                <input type="number" name="{{ ubung.frage }}" value="" id="losung" >
-               <ol> WO </ol><ol>WER</ol><ol>WAS</ol><ol>WIE  </ol>
+               <input type="checkbox" name="{{ ubung.frage }}" value="" id="losung1" >
+                <label for="losung1">WIE</label>
+                <input type="checkbox" name="{{ ubung.frage }}" value="" id="losung2" >
+                <label for="losung2">WAS</label>
 
             {% endfor %}
 
 
                 <input type="submit" value="suuu" >
+                {{message}}
             </form>
         </div>
-     <nav>
+  <!--   <nav>
          <ul>
              <li><a href="https://youtu.be/fEMQh1KUYsM" target="_blank">Das Alphabet </a> </li>
              <li>TEST 1</li>
              <li>TEST 2</li>
              <li>TEST 3</li>
          </ul>
-     </nav>
+     </nav>-->
 {% endblock %}
