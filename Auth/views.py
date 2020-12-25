@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.http import JsonResponse
 from django.template import loader
-from .models import User
+from .models import Personne
+
+import hashlib
 import Auth.ValidEntry.ValidatorInscript as validator
 import Auth.ValidEntry.utilconverter as Converter
 import json
@@ -16,14 +18,18 @@ def index(request):
 
 def inscription(request):
     if(request.method == 'GET'):
-        template = loader.get_template("login/signup.html")
-        return HttpResponse(template.render(request = request))
+        test = Converter.testerSession(request)
+        if test == False:
+            template = loader.get_template("login/signup.html")
+            return HttpResponse(template.render(request = request))
+        else:
+            return HttpResponseRedirect("/")
     else:
         id = request.POST.get('id')
-        if(id=="1"):
+        if id=="1":
             firstpane = validator.checkFirstPanelInBase(request)
             return JsonResponse(firstpane)
-        elif(id=="2"):
+        elif id=="2":
             secondpane = validator.checkSecondPaneInBase(request)
             return JsonResponse(secondpane)
         else:
@@ -35,24 +41,30 @@ def inscription(request):
             password = attiribut['password']
             email = attiribut['email']
             telephone = attiribut['telephone']
-            personne = User(nom=nom,prenom=prenom,datedenaissance=birthday,username=username,password = password,
+            cpassword = hashlib.md5(password.encode())
+            personne = Personne(nom=nom,prenom=prenom,datedenaissance=birthday,username=username,password = cpassword.hexdigest(),
                 email = email,telephone = telephone)
             personne.save()
             #return HttpResponse("<h1>Good</h1>")
-            firstpane = validator.checkFirstPanelInBase(request)
-            return JsonResponse(firstpane)
+            Converter.converttodata(request,personne)
+            return HttpResponseRedirect("/")
 def seconnecter(request):
     if(request.method == 'POST'):
         username = request.POST.get('email')
         password = request.POST.get('password')
-        users = User.objects.filter(email = username,password = password)
-        if(len(users) != 0):
+        cpassword = hashlib.md5(password.encode())
+        users = Personne.objects.filter(email = username,password = cpassword)
+        if len(users) != 0:
             Converter.converttodata(request,users[0])
             return HttpResponseRedirect("/")
         else:
-            template = loader.get_template("login/signin.html")
-            erreurs = {"erreur":"Username ou mot de passe est non valide"}
-            return render(request,"login/signin.html",erreurs)
+            test = Converter.testerSession(request)
+            if test == True:
+                return HttpResponseRedirect("/")
+            else:
+                template = loader.get_template("login/signin.html")
+                erreurs = {"erreur":"Username ou mot de passe est non valide"}
+                return render(request,"login/signin.html",erreurs)
     else:
         template = loader.get_template("login/signin.html")
         return HttpResponse(template.render(request= request))

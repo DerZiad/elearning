@@ -2,9 +2,9 @@ from django.db import models
 
 class Professeur(models.Model):
    pass
-class User(models.Model):
+class Personne(models.Model):
    email = models.EmailField(max_length=25)
-   password = models.CharField(max_length=25)
+   password = models.CharField(max_length=80)
 
    nom = models.CharField(max_length=20)
    prenom = models.CharField(max_length=20)

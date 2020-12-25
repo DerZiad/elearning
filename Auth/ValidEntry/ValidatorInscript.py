@@ -1,4 +1,4 @@
-from Auth.models import User
+from Auth.models import Personne
 
 def checkFirstPanelInBase(request):
     dictionnaire = request.POST
@@ -6,8 +6,8 @@ def checkFirstPanelInBase(request):
     telephone = dictionnaire['telephone']
 
 
-    emails = User.objects.filter(email=email)
-    telephones = User.objects.filter(telephone=telephone)
+    emails = Personne.objects.filter(email=email)
+    telephones = Personne.objects.filter(telephone=telephone)
 
     erreurs = {}
     if(len(emails) != 0):
@@ -20,7 +20,7 @@ def checkSecondPaneInBase(request):
     dictionnaire = request.POST
     username = dictionnaire['username']
 
-    usernames = User.objects.filter(username = username)
+    usernames = Personne.objects.filter(username = username)
     erreurs = {}
     if(len(usernames) != 0):
         erreurs['username'] = "Le pseudo user que vous avez entrée est dèja existant"

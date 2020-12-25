@@ -13,3 +13,9 @@ def converttodata(request,user):
     attributs["succes_grammar"] = user.succes_grammar
 
 
+def testerSession(request):
+    user = request.session.get('username')
+    if(user == None or len(user) == 0):
+        return False
+    else:
+        return True
