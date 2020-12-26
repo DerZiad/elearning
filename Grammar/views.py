@@ -19,20 +19,14 @@ def grammarex(request):
         for ubung in ubungs:
             print(losung[ubung.frage],"et",ubung.losung)
             if str(losung[ubung.frage]) == str(ubung.losung):
-                cmp += 1
-        if len(losung)!=0 :
-         msg ="le nombre de question acuis",cmp
-         context = {
+              cmp += 1
+        msg ="le nombre de question acuis",cmp
+        context = {
             'ubungs': ubungs,
             'message':msg
-         }
-         return render(request, 'Grammar/index.html', context)
-        else :
-            context = {
-                'ubungs': ubungs,
-
-            }
+          }
         return render(request, 'Grammar/index.html', context)
+
     else:
 
         moglichkeit = Essai.objects.all()
