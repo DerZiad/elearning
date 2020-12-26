@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 # Create your views here.
 
 def principale(request):
@@ -19,3 +19,10 @@ def principale(request):
         }
         return render(request,"session/session.html",context)
 
+def afficherProfil(request):
+    user = request.session['username']
+    if(user == None or len(user) <= 0):
+        return HttpResponseRedirect("/")
+    else:
+        template = loader.get_template("afficher/profil.html")
+        return HttpResponse(template.render(request = request))

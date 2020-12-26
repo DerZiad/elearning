@@ -1,0 +1,87 @@
+{% extends 'Ba.html'%}
+{% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="fr">
+
+    <meta name="keywords" content="allemand en ligne, apprendre l'allemand, apprendre l'allemand gratuitement sur Internet, allemand langue étrangère, cours de langue gratuit, grammaire allemande, cours d'allemand en ligne, allemand, langue allemand, allemand sur Internet, apprendre l'allemand gratuitement, allemand gratuitement, exercices de langue, dictionnaires allemands, grammaire allemande, grammaire de l'allemand, dictionnaire gratuit">
+    <meta name="description" content="Apprendez l’allemand en ligne gratuitement ! Cours de langue, exercices, grammaire allemande, médiathèque et informations pratiques.">
+    <meta name="google-site-verification" content="f70kHNNpGrSnnfwiitstklMWP2VM7zBqrlftO9MrNGg">
+
+    <meta property="og:url" content="https://deutsch.info/user/profile">
+    <meta property="og:site_name" content="deutsch.info">
+    <meta property="og:title" content="Mon profil">
+    <meta property="fb:app_id" content="129941521039092">
+    <meta property="og:type" content="Website">
+    <meta property="og:description" content="Apprendez l’allemand en ligne gratuitement ! Cours de langue, exercices, grammaire allemande, médiathèque et informations pratiques.">
+    <meta property="og:image" content="https://deutsch.info/images/logos/deutsch_info_logo_color_250px.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://deutsch.info/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://deutsch.info/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://deutsch.info/favicon-16x16.png">
+    <link rel="manifest" href="https://deutsch.info/manifest.json">
+    <link rel="mask-icon" href="https://deutsch.info/safari-pinned-tab.svg" color="#F3921F">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="{% static 'profil_fichiers/bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'profil_fichiers/main.css'%}" rel="stylesheet">
+
+    
+    <link rel="image_src" href="https://deutsch.info/images/logos/deutsch_info_logo_color_250px.png">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/assets/dc018574/js/html5shiv.min.js"></script>
+    <script src="/assets/dc018574/js/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="{% static 'profil_fichiers/jquery-2.js'%}"></script>
+    <script src="{% static 'profil_fichiers/jquery-ui.js'%}"></script>
+    <script src="{% static 'profil_fichiers/jquery_002.js'%}"></script>
+    <script src="{% static 'profil_fichiers/bootstrap.js'%}"></script>
+
+    <script type="text/javascript" src="{% static 'profil_fichiers/main.js'%}"></script>
+    <script type="text/javascript" src="{% static 'profil_fichiers/jquery.js'%}"></script>
+
+    <script type="text/javascript" src="{% static 'profil_fichiers/select2.js'%}"></script>
+    <link href="{% static 'profil_fichiers/select2.css'%}" rel="stylesheet">
+    <link href="{% static 'profil_fichiers/select2-bootstrap.css'%}" rel="stylesheet">
+
+    
+    <title>Mon profil - deutsch.info</title>
+
+</head>
+
+
+{% block body %}
+<div id="content" class="content">
+            
+<section class="section-sm">
+    <div class="container frame">
+        <h1 class="text-center sr-only">Mon profil</h1>
+        
+<div id="userprofile735571" class="row">
+    <div class="col-sm-4 text-center">
+        <img class="thumbnail center-block img-responsive" src="{% static 'profil_fichiers/camera.jpg'%}" alt="">                    <p class="big"><span class="label label-success">En ligne</span></p>
+            </div>
+
+    <div class="col-sm-8">
+        <h3 class="nm-top gray"> {{ request.session.username }}</h3>
+                    <p> Votre nom :{{request.session.nom}} {{request.session.prenom}}</p>
+        
+                <table class="table table-borderless small text-left" id="yw0"><tbody><tr><th>Date de naissance</th><td>{{request.session.datedenaissance}}</td></tr>
+                <tr><th>Email</th><td>{{request.session.email}}</td></tr>
+                <tr><th>Telephone</th><td>{{request.session.telephone}}</td></tr>
+<tr><th>Langues parlées</th><td>Français</td></tr>
+</tbody></table>
+    </div>
+</div>
+    </div>
+</section>
+
+        </div><!-- content -->
+{% endblock %}
+ 
