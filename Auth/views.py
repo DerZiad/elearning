@@ -47,13 +47,13 @@ def inscription(request):
             personne.save()
             #return HttpResponse("<h1>Good</h1>")
             Converter.converttodata(request,personne)
-            return HttpResponseRedirect("/")
+            return HttpResponse('<p>L inscription a été bien enregistré, veuillez <a href="/">Cliquez ici</a></p>')
 def seconnecter(request):
     if(request.method == 'POST'):
         username = request.POST.get('email')
         password = request.POST.get('password')
         cpassword = hashlib.md5(password.encode())
-        users = Personne.objects.filter(email = username,password = cpassword)
+        users = Personne.objects.filter(email = username,password = cpassword.hexdigest())
         if len(users) != 0:
             Converter.converttodata(request,users[0])
             return HttpResponseRedirect("/")

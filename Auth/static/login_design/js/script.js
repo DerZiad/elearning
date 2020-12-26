@@ -227,7 +227,11 @@ jQuery(document).ready(function(){
                                                                         csrfmiddlewaretoken:token
                                                                                },
                                                                         success: function(response){
-                                                                            window.locaion.remplace(response)
+                                                                            $("#Suivant").hide()
+                                                                            $("#Precedent").hide()
+                                                                            $("#ja-ss").hide()
+                                                                            $("#Connector").hide()
+                                                                            $("#Error").html(response)
                                                                         }
                                                                 });
                                                                 console.log(z);
