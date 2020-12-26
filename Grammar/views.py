@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.template import loader
 from . import models
 
-from Grammar.models import Ubung
+from Grammar.models import Ubung,Essai
 
 
 def grammarex(request):
@@ -34,10 +34,26 @@ def grammarex(request):
             }
         return render(request, 'Grammar/index.html', context)
     else:
+
+        moglichkeit = Essai.objects.all()
+
+        dic = {
+        }
+        i = 1
+        list = []
+        for ubung in ubungs:
+            list.append(ubung.losung)
+            for mog in moglichkeit:
+                if mog.ayman == ubung:
+                    list.append(mog.test)
+            dic[str(ubung.frage)] = list
+            print(list)
+            print("le se",dic)
+            list =[]
         losung = request.GET
 
         context = {
-            'ubungs': ubungs,
+            'dictionnaire':dic
 
         }
         return render(request, 'Grammar/index.html', context)

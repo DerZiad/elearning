@@ -1,4 +1,6 @@
 {% extends 'Grammar/base.html'%}
+{% load static %}
+{% block besoin %}<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">{% endblock %}
 
 {% block body %}
 
@@ -6,30 +8,22 @@
         <div>
             <form method="post" action="/Grammar/">
                 {% csrf_token %}
-            {% for ubung in ubungs %}
-                <H2>AUFGABE {{forloop.counter}} :</H2>
+            {% for key,values in dictionnaire.items %}
+                <H2>AUFGABE :</H2>
 
               <p>
-                  {{ ubung.frage }}
+                  {{ key }}
               </p>
-               <input type="checkbox" name="{{ ubung.frage }}" value="" id="losung1" >
-                <label for="losung1">WIE</label>
-                <input type="checkbox" name="{{ ubung.frage }}" value="" id="losung2" >
-                <label for="losung2">WAS</label>
+                {% for mo in values %}
+                   <input type="radio" name="{{key}}" value="{{mo}}" id="losung" >
+                        <label for="losung">{{mo}}</label>
+                {% endfor %}
 
             {% endfor %}
 
 
                 <input type="submit" value="suuu" >
-                {{message}}
             </form>
         </div>
-  <!--   <nav>
-         <ul>
-             <li><a href="https://youtu.be/fEMQh1KUYsM" target="_blank">Das Alphabet </a> </li>
-             <li>TEST 1</li>
-             <li>TEST 2</li>
-             <li>TEST 3</li>
-         </ul>
-     </nav>-->
+
 {% endblock %}
