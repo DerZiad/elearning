@@ -9,20 +9,21 @@
             <form method="post" action="/Grammar/">
                 {% csrf_token %}
             {% for key,values in dictionnaire.items %}
-                <H2>AUFGABE :</H2>
+                <H2>AUFGABE {{forloop.counter}} :</H2>
 
               <p>
                   {{ key }}
               </p>
                 {% for mo in values %}
                    <input type="radio" name="{{key}}" value="{{mo}}" id="losung" >
-                        <label for="losung">{{mo}}</label>
+                        <label for="losung">{{mo}}</label><br/>
                 {% endfor %}
 
             {% endfor %}
 
 
-                <input type="submit" value="suuu" >
+                <input type="submit" value="VALIDER" >
+                {{message}}
             </form>
         </div>
 

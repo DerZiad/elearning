@@ -1,2 +1,7 @@
+from django.conf.urls import url
+from Lesen import views
+
 app_name = "Lesen"
-urlpatterns = []
+urlpatterns = [
+    url(r'^$', views.listing),
+]
