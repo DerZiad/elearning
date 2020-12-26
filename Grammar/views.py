@@ -44,8 +44,8 @@ def grammarex(request):
         for ubung in ubungs:
             list.append(ubung.losung)
             for mog in moglichkeit:
-                if mog.ayman == ubung:
-                    list.append(mog.test)
+                if mog.numf == ubung:
+                    list.append(mog.choix)
             dic[str(ubung.frage)] = list
             print(list)
             print("le se",dic)

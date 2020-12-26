@@ -13,6 +13,6 @@ class Ubung(models.Model):
     def __str__(self):
         return self.frage
 class Essai(models.Model):
-    choix  =models.CharField(max_length=15)
+    choix =models.CharField(max_length=15)
     numf=models.ForeignKey(Ubung,on_delete=models.CASCADE)
 
