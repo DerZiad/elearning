@@ -6,7 +6,16 @@ from django.template import loader
 from . import models
 
 from Grammar.models import Ubung,Essai
-
+ubung = Ubung(frage= "'ist diese Frau ? Das ist meine Mutter",losung = "wer")
+ubung.save()
+moglich = Essai(choix="wo",numf=ubung)
+moglich.save()
+moglich = Essai(choix="wo1",numf=ubung)
+moglich.save()
+moglich = Essai(choix="wo2",numf=ubung)
+moglich.save()
+moglich = Essai(choix="wo3",numf=ubung)
+moglich.save()
 
 def grammarex(request):
 
