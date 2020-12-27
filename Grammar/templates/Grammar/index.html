@@ -6,7 +6,7 @@
 
      <h1> APPRENDRE LA LANGUE ALLEMANDE DANS UN SEUL CLIC  </h1>
         <div>
-            <form method="post" action="/Grammar/">
+            <form method="post" action="/Grammar/cours">
                 {% csrf_token %}
             {% for key,values in dictionnaire.items %}
                 <H2>AUFGABE {{forloop.counter}} :</H2>
