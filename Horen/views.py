@@ -17,5 +17,5 @@ def modeltest3(request):
     return render(request, 'Horen/modeltest3.html')
 
 
-def poadcast(response):
-    return HttpResponse('<h1>Poadcast</h1>')
+def poadcast(request):
+    return render(request,'Horen/poadcast.html')
