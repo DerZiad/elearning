@@ -1,9 +1,8 @@
 {% extends 'Ba.html'%}
 {% block body %}
 
-
-
-
+{% load static %}
+<link href="{% static 'Lesen_files/a.css'%}" rel="stylesheet">
 <div class="content background-lightgrey" style="height: auto !important;">
 	<div class="panel" id="exercise" style="height: auto !important;">
 		<div class="fifty_left" style="height: auto !important;">
@@ -15,25 +14,20 @@
 			<p>Juliana und Marie verbringen insgesamt sechs Wochen in Deutschland. Nach dem Sprachkurs machen sie eine Prüfung.</p>
 
 		</div>
-		<div class="fifty_right">
-			<h2>Verstehst du den Text?</h2>
-			<p>Dann beantworte die folgenden Fragen zum Text:</p>
-			<div class="question-box"><div id="result73"></div>
-				<div class="question-number">Frage 1:</div>
-				<div class="question">Woher kommt Juliana?</div>
-				<div class="answers long-answers" data-question="73" data-already-answered="0">
-					<div class="answers-row">
-						<div id="option73_1" class="answer active-answer option1" data-option="1" data-position="1"><span class="mc_number">a</span> aus Hamburg</div>
-						<div id="option73_3" class="answer active-answer option3" data-option="3" data-position="2"><span class="mc_number">b</span> aus Freiburg</div>
-					</div>
-					<div class="answers-row">
-						<div id="option73_2" class="answer active-answer option2" data-option="2" data-position="3"><span class="mc_number">c</span> aus Paris</div>
-						<div id="option73_4" class="answer active-answer option4" data-option="4" data-position="4"><span class="mc_number">d</span> aus Deutschland</div>
-					</div>
+		<div class="question-box"><div id="result73"></div>
+			<div class="question-number">Frage 1:</div>
+			<div class="question">Woher kommt Juliana?</div>
+			<div class="answers long-answers" data-question="73" data-already-answered="0">
+				<div class="answers-row">
+					<div id="option73_1" class="answer active-answer option1" data-option="1" data-position="1"><span class="mc_number">a</span> aus Hamburg</div>
+					<div id="option73_3" class="answer active-answer option3" data-option="3" data-position="2"><span class="mc_number">b</span> aus Freiburg</div>
+				</div>
+				<div class="answers-row"><div id="option73_2" class="answer active-answer option2" data-option="2" data-position="3"><span class="mc_number">c</span> aus Paris</div>
+					<div id="option73_4" class="answer active-answer option4" data-option="4" data-position="4"><span class="mc_number">d</span> aus Deutschland</div>
 				</div>
 			</div>
-			<div class="question-box">
-				<div id="result74"></div>
+		</div>
+		<div class="question-box"><div id="result74"></div>
 				<div class="question-number">Frage 2:</div>
 				<div class="question">Wie viele Schüler sind in Julianas Sprachkurs?</div>
 				<div class="answers " data-question="74" data-already-answered="0">
