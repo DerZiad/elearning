@@ -6,12 +6,7 @@ from django.template import loader
 from . import models
 
 from Grammar.models import Ubung,Essai
-aufgabe1 =Ubung(frage="' 'ist diese Frau ?Das ist meine Mutter",losung="wer")
-aufgabe1.save()
-aufgabe2=Ubung(frage="' 'hast du Geburtstag? Am 10Januar",losung="wann")
-aufgabe2.save()
-aufgabe3=Ubung(frage="' 'bist du in Deutschland?Ich mochte Deutsch lernen",losung="wie")
-aufgabe3.save()
+
 
 def grammarex(request):
 
