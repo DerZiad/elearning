@@ -1,5 +1,8 @@
 h1{
  color : red ;
  text-align : center;
- border : 2px solid red ;
+ border : 0.5px inset #ff6666 ;
+}
+h2{
+
 }

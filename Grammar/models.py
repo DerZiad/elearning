@@ -6,7 +6,7 @@ from django.db import models
 
 
 
-class Ubung(models.Model):
+class  Ubung(models.Model):
     frage = models.CharField(max_length=200)
     losung = models.CharField(max_length=200)
 
