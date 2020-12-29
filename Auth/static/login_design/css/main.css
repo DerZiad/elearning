@@ -1,6 +1,11 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
+body{
+  background-image:url("background.jpg");
+  background-size:cover;
+  background-repeat:no-repeat;
+}
 @font-face {
   font-family: Poppins-Regular;
   src: url('../fonts/poppins/Poppins-Regular.ttf');
@@ -140,6 +145,8 @@ iframe {
 .limiter {
   width: 100%;
   margin: 0 auto;
+
+
 }
 
 .container-login100 {
@@ -157,19 +164,14 @@ iframe {
 }
 
 .wrap-login100 {
-  width: 960px;
-  background: #fff;
+  width: 500px;
+  background: rgba(84, 110, 122, 0.4);
   border-radius: 10px;
   overflow: hidden;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 177px 130px 33px 95px;
+  padding-top:177px;
+  padding-right:40px;
+  padding-bottom:33px;
+  padding-left:95px;
 }
 
 /*------------------------------------------------------------------
