@@ -607,6 +607,7 @@ h1, h2, h5 {
 #header {
 	width: 100%;
 	z-index: 100
+	background-color:rgba(38, 50, 56,0.6);
 }
 
 .main #header, .navbar {
@@ -644,7 +645,7 @@ h1, h2, h5 {
 
 #header .navbar-default .navbar-toggle:focus, #header .navbar-default .navbar-toggle:hover
 	{
-	background-color: #fff
+	border-bottom:3px solid white;
 }
 
 #header .navbar-default .navbar-toggle:focus .icon-bar, #header .navbar-default .navbar-toggle:hover .icon-bar
