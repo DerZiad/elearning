@@ -2,22 +2,24 @@
 {% load static %}
 
 {% block body %}
- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+<link href="{% static 'css/style.css'%}" rel="stylesheet">
 
      <h1> APPRENDRE LA LANGUE ALLEMANDE DANS UN SEUL CLIC  </h1>
         <div>
             <form method="post" action="/Grammar/cours">
                 {% csrf_token %}
             {% for key,values in dictionnaire.items %}
-                <H2>AUFGABE {{forloop.counter}} :</H2>
+                <h2> AUFGABE {{forloop.counter}} :</h2>
 
               <p>
                   {{ key }}
               </p>
-                {% for mo in values %}
-                   <input type="radio" name="{{key}}" value="{{mo}}" id="losung" >
-                        <label for="losung">{{mo}}</label><br/>
-                {% endfor %}
+                <div class="aufgabes">
+                    {% for mo in values %}
+                       <input type="radio" name="{{key}}" value="{{mo}}" id="losung" checked="{{ubung.frage}}" >
+                            <label for="losung">{{mo}}</label><br/>
+                    {% endfor %}
+                </div>
 
             {% endfor %}
 
