@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block body %}
-<link href="{% static 'css/style.css'%}" rel="stylesheet">
-
+<link href="{% static 'css/cours.css'%}" rel="stylesheet">
+ <div class="general">
      <h1> APPRENDRE LA LANGUE ALLEMANDE DANS UN SEUL CLIC  </h1>
         <div>
             <form method="post" action="/Grammar/cours">
@@ -11,7 +11,7 @@
             {% for key,values in dictionnaire.items %}
                 <h2> AUFGABE {{forloop.counter}} :</h2>
 
-              <p>
+              <p class="enonce">
                   {{ key }}
               </p>
                 <div class="aufgabes">
@@ -28,5 +28,5 @@
                 {{message}}
             </form>
         </div>
-
+ </div>
 {% endblock %}
