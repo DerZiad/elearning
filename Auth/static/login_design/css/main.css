@@ -165,7 +165,7 @@ iframe {
 
 .wrap-login100 {
   width: 500px;
-  background: rgba(255,255,255, 0.4);
+  background: rgb(255,255,255);
   border-radius: 10px;
   overflow: hidden;
   padding-top:177px;
@@ -221,7 +221,8 @@ iframe {
   width: 100%;
   background: #e6e6e6;
   height: 50px;
-  border-radius: 25px;
+  border-radius: 10px;
+  border:none;
   padding: 0 30px 0 68px;
 }
 
