@@ -1,0 +1,40 @@
+h1{
+ color : #ff6666;
+ text-align : center;
+ border : 0.5px inset red ;
+
+}
+h2{
+text-align: center ;
+font-family : Impact ;
+}
+.aufgabes {
+display : flex ;
+flex-direction : column ;
+padding : 10px;
+margin : 10px;
+justify-content : center  ;
+}
+.enonce {
+padding : 10px;
+margin : 10px;
+text-align :center ;
+}
+#losung
+{
+padding : 10px;
+margin : 10px;
+}
+
+.submit
+{
+margin:200px ;
+color : green ;
+width: 50px;
+}
+.retour
+{
+width:70px ;
+background: #99ff99 ;
+
+}

@@ -4,7 +4,7 @@ padding:10px;
 margin :10px;
 width:420px;
 height :320px;
-
+border:2px solid black ;
 }
 .firstp
 {
@@ -15,6 +15,7 @@ align-items :center;
 float :reel ;
 font-family:Georgia ;
 border : 0.5px inset #e6e6e6;
+background : url("alimane.jpg");
 }
 p{
 padding:10px;
@@ -24,3 +25,4 @@ h1{
 text-align :center ;
 color : #ffcc66;
 }
+
