@@ -1,0 +1,34 @@
+<style>
+.confirmclass{
+    border:2px solid #64dd17;
+    padding:19px;
+    color:black;
+}
+
+#entry{
+    padding:10px;
+    font-size:20px;
+    background:none;
+    border:none;
+    opactiy:0.95;
+    box-shadow:1px 1px 1px;
+}
+.codeerror{
+    color:red;
+    font-size:15px;
+}
+#btn{
+    background:none;
+    border:2px solid #64dd17;
+    border-radius:10px;
+    padding:18px;
+}
+</style>
+<form class="confirmclass" method="post" action="/Auth/confirm">
+    <label for="textconfirm">Vous devez confirmer votre adresse email</label>
+    <input id="entry" type="text" value="" name="confirm" id="textconfirm" placeholder="#######"/>
+    <br>
+    <br>
+    <input id="btn" type="submit" value="Confirmer" />
+    <p class="codeerror">{{error}}</p>
+</form>

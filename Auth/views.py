@@ -3,14 +3,17 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.http import JsonResponse
 from django.template import loader
 from .models import Personne
-
+import Auth.ValidEntry.sender as emailsend
 import hashlib
 import Auth.ValidEntry.ValidatorInscript as validator
 import Auth.ValidEntry.utilconverter as Converter
+import Auth.ValidEntry.random as randomer
+import Auth.ValidEntry.sender as send
 import json
 from django.core import serializers
 # Create your views here.
-
+personneG = Personne()
+codeG = ""
 def index(request):
     template = loader.get_template("session/session.html")
     return HttpResponse(template.render(request = request))
@@ -42,12 +45,19 @@ def inscription(request):
             email = attiribut['email']
             telephone = attiribut['telephone']
             cpassword = hashlib.md5(password.encode())
-            personne = Personne(nom=nom,prenom=prenom,datedenaissance=birthday,username=username,password = cpassword.hexdigest(),
+            personneG = Personne(nom=nom,prenom=prenom,datedenaissance=birthday,username=username,password = cpassword.hexdigest(),
                 email = email,telephone = telephone)
-            personne.save()
-            #return HttpResponse("<h1>Good</h1>")
-            Converter.converttodata(request,personne)
-            return HttpResponse('<p>L inscription a été bien enregistré, veuillez <a href="/">Cliquez ici</a></p>')
+            context = {
+                "error":""
+            }
+            codeG = randomer.generateRandom()
+            infos = {
+                'address':email,
+                'text':"Votre code de confirmation est {}".format(codeG),
+                'subject':"Confirmation de votre compte deutsch lernen"
+            }
+            send.sendEmail(infos,request)
+            return HttpResponse(render(request,"letter/confirm.html",context))
 def seconnecter(request):
     if(request.method == 'POST'):
         username = request.POST.get('email')
@@ -68,6 +78,22 @@ def seconnecter(request):
     else:
         template = loader.get_template("login/signin.html")
         return HttpResponse(template.render(request= request))
+def confirm(request):
+    if(request.method=='POST'):
+        confirm = request.POST
+        code = confirm['code']
+        if(code == str(codeG)):
+            personneG.save()
+            Converter.converttodata(request,personneG)
+            return HttpResponseRedirect("/")
+        else:
+            context = {
+                "codeerror":"Votre code est erroné"
+            }
+            return render(request,"letter/letter.html",context)
+
+
+
 def disconnect(request):
     request.session.flush()
     request.session.clear_expired()
