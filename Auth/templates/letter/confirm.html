@@ -1,8 +1,9 @@
 <style>
 .confirmclass{
-    border:2px solid #64dd17;
     padding:19px;
     color:black;
+    font-family: "Gill Sans", sans-serif;
+    margin-left:19px;
 }
 
 #entry{
@@ -12,12 +13,14 @@
     border:none;
     opactiy:0.95;
     box-shadow:1px 1px 1px;
+    border-radius:10px;
 }
 .codeerror{
     color:red;
     font-size:15px;
 }
 #btn{
+    margin-left:40px;
     background:none;
     border:2px solid #64dd17;
     border-radius:10px;
@@ -26,7 +29,7 @@
 </style>
 <form class="confirmclass" method="post" action="/Auth/confirm">
     <label for="textconfirm">Vous devez confirmer votre adresse email</label>
-    <input id="entry" type="text" value="" name="confirm" id="textconfirm" placeholder="#######"/>
+    <input id="entry" type="number" value="" name="confirm" id="textconfirm" placeholder="#######"/>
     <br>
     <br>
     <input id="btn" type="submit" value="Confirmer" />

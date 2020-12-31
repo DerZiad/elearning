@@ -359,9 +359,8 @@ ul.items>li {
 }
 
 .section-intro-content {
-    background:url('logos.jpeg') no-repeat;
-    background-size:cover;
-    background-color: #0d5673
+        background-image:url("logos.jpeg");
+        background-size:cover;
 }
 
 .frame {
@@ -2488,7 +2487,7 @@ select.input-size-1, select.input-size-2, select.input-size-3, select.input-size
 
 @media screen and (min-width:992px) {
 	.section-intro {
-		background-image: url(../images/layout/intro.jpg);
+		background-image: url("logos.jpeg");
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: bottom center
@@ -2504,7 +2503,8 @@ select.input-size-1, select.input-size-2, select.input-size-3, select.input-size
 		margin-top: 5px
 	}
 	.section-intro-content {
-		background-color: rgba(13, 86, 115, .85)
+		    background-image:url("logos.jpeg");
+            background-size:cover;
 	}
 	.big li, p.big {
 		font-size: 19px
