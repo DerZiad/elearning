@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.http import JsonResponse
 from django.template import loader
 from .models import Personne
+from Auth.models import temporals
 import Auth.ValidEntry.sender as emailsend
 import hashlib
 import Auth.ValidEntry.ValidatorInscript as validator
@@ -12,8 +13,6 @@ import Auth.ValidEntry.sender as send
 import json
 from django.core import serializers
 # Create your views here.
-personneG = Personne()
-codeG = ""
 def index(request):
     template = loader.get_template("session/session.html")
     return HttpResponse(template.render(request = request))
@@ -47,10 +46,14 @@ def inscription(request):
             cpassword = hashlib.md5(password.encode())
             personneG = Personne(nom=nom,prenom=prenom,datedenaissance=birthday,username=username,password = cpassword.hexdigest(),
                 email = email,telephone = telephone)
+            personneG.save()
             context = {
-                "error":""
+                "error":"",
+                "email":personneG.email
             }
             codeG = randomer.generateRandom()
+            temporal = temporals(personne = personneG, code = codeG)
+            temporal.save()
             infos = {
                 'address':email,
                 'text':"Votre code de confirmation est {}".format(codeG),
@@ -82,15 +85,28 @@ def confirm(request):
     if(request.method=='POST'):
         confirm = request.POST
         code = confirm['code']
-        if(code == str(codeG)):
-            personneG.save()
-            Converter.converttodata(request,personneG)
-            return HttpResponseRedirect("/")
+        email = confirm['email']
+        personne = Personne.objects.get(email = email)
+        tempo = temporals.objects.get(personne = personne)
+        if(tempo != None and personne != None):
+
+            print(code + " " + personne.nom + " "+ tempo.code)
+            if(code == str(tempo.code)):
+                print("yess goood")
+                tempo.delete()
+                personne.save()
+                Converter.converttodata(request,personne)
+                return HttpResponseRedirect("/")
+            else:
+                context = {
+                    "codeerror":"Votre code est erroné"
+                }
+                return render(request,"letter/confirm.html",context)
         else:
             context = {
-                "codeerror":"Votre code est erroné"
+                "codeerror": "Vous êtes introuvable"
             }
-            return render(request,"letter/letter.html",context)
+            return render(request, "letter/confirm.html", context)
 
 
 
