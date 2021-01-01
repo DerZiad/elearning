@@ -26,3 +26,24 @@ def afficherProfil(request):
     else:
         template = loader.get_template("afficher/profil.html")
         return HttpResponse(template.render(request = request))
+
+def impressum(request):
+    template = loader.get_template("impressum.html")
+    return HttpResponse(template.render())
+def informationsgerman(request):
+    template = loader.get_template("Info/German.html")
+    return HttpResponse(template.render())
+def informationsautriche(request):
+    template = loader.get_template("Info/Autriche.html")
+    return HttpResponse(template.render())
+def infos(request):
+    try:
+        id = request.POST['id']
+        if(id == '1'):
+            informationsgerman(request)
+        elif(id == '2'):
+            informationsautriche(request)
+        else:
+            return render(request,"Info/info.html")
+    except:
+        return render(request, "Info/info.html")
