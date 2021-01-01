@@ -1,0 +1,30 @@
+{% load static %}
+<header id="header">
+    <nav class="menu navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main_menu" aria-expanded="false">
+                    <span class="sr-only">Menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><div class="logo icon svg-sprite svg"><img src="{% static 'Home_files/logo.png'%}"/></div></a>            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="main_menu">
+                <ul class="nav navbar-nav navbar-right" id="yw0">
+<li><a href="{% url 'Authentification:signin'%}">Cours</a></li>
+<li><a href="{% url 'Authentification:signin'%}">A propos</a></li>
+<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Informations utiles <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="{% url 'Home:info'%}">Histoire</a></li>
+<li><a href="https://deutsch.info/fr/test">Forum</a></li>
+</ul>
+</li>
+<li><a class="btn-sm btn-white" href="{% url 'Authentification:signin' %}">Connexion</a></li>
+</ul>            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>

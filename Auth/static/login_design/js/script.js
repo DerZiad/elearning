@@ -227,8 +227,8 @@ jQuery(document).ready(function(){
                                                                         csrfmiddlewaretoken:token
                                                                                },
                                                                         success: function(response){
-                                                                            $("#Suivant").hide()
                                                                             $("#Precedent").hide()
+                                                                            $(".container-login100-form-btn").hide()
                                                                             $("#ja-ss").hide()
                                                                             $("#Connector").hide()
                                                                             $("#Error").html(response)

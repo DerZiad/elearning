@@ -1,0 +1,21 @@
+.general
+{
+background :  #e6e6e6 fixed no-repeat;
+border : 2px solid black ;
+
+}
+h1{
+font-family :Courier New;
+border : 2px inset yellow;
+text-align : center ;
+background: url('german-flag.jpg');
+
+}
+.retour {
+font-size : medium ;
+color : #ff944d;
+border : 2px solid white ;
+}
+form{
+margin : 100px;
+}

@@ -2,7 +2,6 @@
 {% load static %}
 {% block besoin %}
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'login_design/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
@@ -38,13 +37,11 @@
 	<script src="{% static 'login_design/js/main.js'%}"></script>
 {% endblock %}
 {% block body %}
+	<div class="bg-image">
 	<div class="limiter">
+
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src="{% static 'login_design/images/img-01.png'%}" alt="IMG">
-				</div>
-
 				<form class="login100-form validate-form" method="post" action="{% url 'Authentification:signin' %}">
 					{% csrf_token %}
 					<span class="login100-form-title">
@@ -94,5 +91,6 @@
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 {% endblock %}
