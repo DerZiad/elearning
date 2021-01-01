@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.template import loader
+from .models import Message
+from Auth.models import  Personne
 from django.http import HttpResponse,HttpResponseRedirect
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 # Create your views here.
 
 def principale(request):
@@ -47,3 +50,43 @@ def infos(request):
             return render(request,"Info/info.html")
     except:
         return render(request, "Info/info.html")
+def forum(request):
+    if(request.method=='GET'):
+        messages = Message.objects.all()
+        paginator = Paginator(messages,5)
+        idpage = request.GET.get('page')
+        try:
+            messagesG = paginator.page(idpage)
+        except PageNotAnInteger:
+            messagesG = paginator.page(1)
+        except EmptyPage:
+            messagesG = paginator.page(paginator.num_pages)
+        context = {
+            "messages":messagesG
+        }
+        return render(request,"forum/forum.html",context)
+    else:
+        attributs = request.POST
+        sujet = attributs['subject']
+        message = attributs['message']
+        username = request.session['username']
+        personne = Personne.objects.get(username =  username)
+        messagess = Message(message = message,personne = personne,subject = sujet)
+        messagess.save()
+        messages = Message.objects.all()
+        paginator = Paginator(messages,5)
+        idpage = request.GET.get('page')
+        try:
+            messagesG = paginator.page(idpage)
+        except PageNotAnInteger:
+            messagesG = paginator.page(1)
+        except EmptyPage:
+            messagesG = paginator.page(paginator.num_pages)
+        context = {
+            "messages":messagesG
+        }
+        return render(request,"forum/forum.html",context)
+
+
+def test(request):
+    return HttpResponse(loader.get_template("forum/forum.html").render())

@@ -1,0 +1,97 @@
+{% extends 'Ba.html'%}
+    {% include 'icon.html'%}
+    {% load static %}
+    {% block besoin %}
+    <link href="{% static 'forum/main.css'%}" rel="stylesheet">
+    <link href="{% static 'forum/file.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'forum/file.css'%}"/>
+    <script type="text/javascript" src="{% static 'forum/main.js'%}"></script>
+    <script type="text/javascript" src="{% static 'forum/jquery.js'%}"></script>
+
+    <script type="text/javascript" src="{% static 'forum/select2.js'%}"></script>
+    <link href="{% static 'forum/select2.css'%}" rel="stylesheet">
+    <link href="{% static 'forum/select2-bootstrap.css'%}" rel="stylesheet">
+
+    {% endblock %}
+
+{% block body %}
+        <div id="content" class="content">
+
+<section class="section-sm">
+    <div id="forum" class="container frame">
+
+<div id="yw0" class="list-view">
+<div class="items">
+{% for message in messages %}
+<div class="forum-item" id="p997">
+    <div class="row">
+        <div class="hidden-xs col-sm-2">
+            <div class="text-center">
+            <img class="img-thumbnail" src="https://fifty-wp.s3.amazonaws.com/detours/uploads/2017/06/Goodd.jpg" alt="">        <p class="margin-top-xs">
+        <b>{{message.personne.username}}</b><br>
+    </p>
+</div>        </div>
+        <div class="col-xs-12 col-sm-10">
+            <div class="row">
+                <div class="col-xs-8">
+                    <p>
+                        <span class="visible-xs"><b>{{message.personne.prenom}}</b></span>
+                        <span class="small">{{message.date}}</span>
+                    </p>
+                </div>
+                <div class="col-xs-4">
+                                            <div class="dropdown img-right">
+    <div class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
+    </div>
+
+                        <div class="forum-post-rating img-right">
+    <a class="forum-rating-button " data-vote="up" href="https://deutsch.info/fr/forum/post/vote?id=997"><svg id="arrow-up1609528413" class="icon-svg" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M22.47937,16H19V26a1,1,0,0,1-1,1H14a1,1,0,0,1-1-1V16H9.52063a1,1,0,0,1-.81921-1.57349l6.47937-9.25616a.99994.99994,0,0,1,1.63842,0l6.47937,9.25616A1,1,0,0,1,22.47937,16Z"></path></svg></a>    <span class="forum-post-rating-amount small text-primary">
+    0    </span>
+    <a class="forum-rating-button " data-vote="down" href="https://deutsch.info/fr/forum/post/vote?id=997"><svg id="arrow-down1609528413" class="icon-svg" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M23.29858,17.57349l-6.47937,9.25616a.99994.99994,0,0,1-1.63842,0L8.70142,17.57349A1,1,0,0,1,9.52063,16H13V6a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1V16h3.47937A1,1,0,0,1,23.29858,17.57349Z"></path></svg></a></div>
+                                    </div>
+            </div>
+
+            <div class="forum-text bbcode">
+                <p><strong style="font-size:19px">Sujet :</strong>  {{message.subject}} </p><br><div dir="ltr">{{message.message}}<br>                       </div>
+                                    <p></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+</div>
+<div class="writemessage">
+<form method="post" action="{% url 'Home:forum'%}">
+    {% csrf_token %}
+    <div class="subjectcl">
+        <label for="subject">Sujet </label>
+        <input name="subject" value="" placeholder="Sujet" id = "subject"/>
+    </div>
+    <br><br>
+    <div class="messagecl">
+        <label for="message">Message </label>
+        <input name="message" value="" placeholder="Message" id="message"/>
+    </div>
+    <div class="btn-sub">
+        <button>Send</button>
+    </div>
+</form>
+</div>
+<nav class="text-center content-item"><div class="pagination"><ul id="yw11" class="yiiPager">
+    <li class="first"><a href="{% url 'Home:forum'%}?page=1">«</a></li>
+    {% if messages.has_previous %}
+        <li class="previous"><a href="{% url 'Home:forum'%}?page={{messages.previous_page_number}}">&lt;</a></li>
+    {% endif %}
+    {% if messages.has_next%}
+        <li class="next"><a href="{% url 'Home:forum'%}?page={{messages.next_page_number}}">&gt;</a></li>
+    {% endif %}
+
+<li class="last"><a href="{% url 'Home:forum'%}?page={{messages.page_numbers}}">»</a></li></ul></div></nav><div class="keys" style="display:none" title="/fr/forum/topic/275"><span>997</span><span>1012</span><span>1041</span><span>1895</span><span>1906</span><span>5313</span><span>5538</span><span>5562</span><span>8350</span><span>8694</span></div>
+</div>    </div>
+</section>
+
+
+        </div><!-- content -->
+{% endblock %}
