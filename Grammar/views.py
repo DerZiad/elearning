@@ -26,7 +26,7 @@ def grammarex(request):
         cmp = 0
 
         for ubung in ubungs:
-            print(losung[ubung.frage], "et", ubung.losung)
+
             if str(losung[ubung.frage]) == str(ubung.losung):
                 cmp += 1
         msg = "le nombre de question acuis", cmp

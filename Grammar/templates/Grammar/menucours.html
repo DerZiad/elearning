@@ -1,89 +1,85 @@
 {% extends 'Ba.html'%}
 {% load static%}
 {% block body%}
-<link href="{% static 'css/menu.css'%}" rel="stylesheet">
+<link href="{% static 'css/menuc.css'%}" rel="stylesheet">
 <div class="general">
-        <h1>Deutsch Übungen</h1>
-    <div class="firstp">
-            <a><img src="{%static 'lehrer.jpg'%}" class="photo"></a>
-            <p class="content_text">Deutsch Übungen für Anfänger, Fortgeschrittene und alle, die online und
-            kostenlos ihre Kenntnisse der deutschen Sprache verbessern möchten.</p>
-            <p>
-            Die Aufgaben richten sich nicht nur an Sprachschüler, die die deutsche
-            Sprache lernen möchten, aber auch an Schüler, die nach zusätzlichem
-            Material zum Üben suchen. Besonders für Ausländer ist die deutsche
-            Sprache mit ihrer anspruchsvollen Grammatik eine Herausforderung. Bei
-            uns gibt es im Speziellen Material für Themen, die vielen Schülern
-            Schwierigkeiten bereiten – z.B. die korrekte Verwendung der Artikel,
-            Adjektive, Pronomen, Zeiten und der Umgang mit den vier Fällen
-            (Nominativ, Genitiv, Akkusativ und Dativ).</p>
-            <p>Fall alleOnline-Übungen bestehen aus Multiple-Choice-Fragen. Die ideale Methode
-            für daheim am PC und unterwegs auf dem Smartphone: Einfach eine Antwort
-            auswählen und direkt die Lösung sehen. Zusätzlich wird jede Übung als
-            Arbeitsblatt im PDF-Format zum Downloaden und Drucken angeboten. Ideal
-            als zusätzliche Hausaufgaben oder als Unterrichtsmaterial für Lehrer.</p>
-    </div>
-</div>
-<div class="panel" id="exercises" style="padding:0; padding-top:20px; clear:both">
+                <h1>Deutsch Übungen</h1>
+            <div class="firstp">
+                    <a><img src="{%static 'lehrer.jpg'%}" class="photo"></a>
+                    <p class="content_text">Deutsch Übungen für Anfänger, Fortgeschrittene und alle, die online und
+                    kostenlos ihre Kenntnisse der deutschen Sprache verbessern möchten.</p>
+                    <p>
+                    Die Aufgaben richten sich nicht nur an Sprachschüler, die die deutsche
+                    Sprache lernen möchten, aber auch an Schüler, die nach zusätzlichem
+                    Material zum Üben suchen. Besonders für Ausländer ist die deutsche
+                    Sprache mit ihrer anspruchsvollen Grammatik eine Herausforderung. Bei
+                    uns gibt es im Speziellen Material für Themen, die vielen Schülern
+                    Schwierigkeiten bereiten – z.B. die korrekte Verwendung der Artikel,
+                    Adjektive, Pronomen, Zeiten und der Umgang mit den vier Fällen
+                    (Nominativ, Genitiv, Akkusativ und Dativ).</p>
+                    <p>Fall alleOnline-Übungen bestehen aus Multiple-Choice-Fragen. Die ideale Methode
+                    für daheim am PC und unterwegs auf dem Smartphone: Einfach eine Antwort
+                    auswählen und direkt die Lösung sehen. Zusätzlich wird jede Übung als
+                    Arbeitsblatt im PDF-Format zum Downloaden und Drucken angeboten. Ideal
+                    als zusätzliche Hausaufgaben oder als Unterrichtsmaterial für Lehrer.</p>
+            </div>
 
-		 <h2 class="content-h2">Niveau A1</h2>
-        <div class="content_left content_text_left">
-            <table style="width:100%">
-                    <tbody>
+        <div class="panel" id="exercises" style="padding:0; padding-top:20px; clear:both">
+
+                 <h2 class="content-h2">Niveau A1</h2>
+                <div class="content_left content_text_left">
+                    <table style="width:100%">
+                            <tbody>
+                                <tr>
+                                    <th>Name</th>
+                                    <th style="padding-right:10px;text-align:center">Test</th>
+                                    <th class="hide360"></th>
+                                    <th class="hide420" style="padding-left:10px">PDF</th>
+                                </tr>
+                                <tr>
+                                    <td class="first-td"><a href="{% url 'Grammar:frage'%}" class="reading-link">Fragewörter für Anfänger</a><br>
+                                        <span style="font-size:0.85em; color:#474747; display:block;">Fragepronomen und -Adverbien unterscheiden</span>
+                                    </td>
+                                    <td style="text-align:center; padding-right:10px; width:42px; font-size:0.9em; vertical-align:middle">
+                                        <span class="button-stats button-stats-table button-stats-pale" title="Bisher noch nicht getestet">?</span></td>
+                                    <td class="hide360" style="vertical-align:middle;"><a href="https://lingua.com/de/deutsch/uebungen/fragewoerter/" class="button" style="margin:0">starten&nbsp;»</a></td>
+                                    <td class="hide420" style="vertical-align:middle; border-left:1px solid #E8E8E8; padding-left:10px;">
+                                        <a href="{% static 'fragewort.pdf' %}" target="_blank">PDF</a>
+                                    </td></tr>
+                                    <tr><td class="first-td"><a href="{% url 'Grammar:gegenteile'%}" class="reading-link">Adjektive und ihre Gegenteile</a>
+                                         <br><span style="font-size:0.85em; color:#474747; display:block;">Welches Adjektiv hat die gegenteilige Bedeutung?</span>
+                                    </td>
+                                        <td style="text-align:center; padding-right:10px; width:42px; font-size:0.9em; vertical-align:middle"><span class="button-stats button-stats-table button-stats-pale" title="Bisher noch nicht getestet">?</span></td>
+                                        <td class="hide360" style="vertical-align:middle;"><a href="https://lingua.com/de/deutsch/uebungen/gegenteile/" class="button" style="margin:0">starten&nbsp;»</a></td>
+                                        <td class="hide420" style="vertical-align:middle; border-left:1px solid #E8E8E8; padding-left:10px;"><a href="{% static 'gegenteile.pdf'%}" target="_blank"><img src="Deutsch%20%C3%9Cbungen%20Aufgaben%20zum%20Grammatik%20lernen_files/pdf.gif" alt="PDF" style="width:25px; height:auto; margin:0px; vertical-align:middle; display:inline-block;"></a></td>
+                                    </tr>
+                            </tbody>
+                    </table>
+                </div>
+            <div class="content_right content_text_right">
+                    <table style=" width:100%">
+                        <tbody>
+
                         <tr>
-                            <th>Name</th>
-                            <th style="padding-right:10px;text-align:center">Test</th>
-                            <th class="hide360"></th>
-                            <th class="hide420" style="padding-left:10px">PDF</th>
+                            <td class="first-td"><a href="https://lingua.com/de/deutsch/uebungen/bestimmte-artikel/" class="reading-link">Bestimmte Artikel</a><br>
+                                <span style="font-size:0.85em; color:#474747; display:block;">Lerne die Artikel häufig genutzter Nomen</span></td>
+                            <td style="text-align:center; padding-right:10px; width:42px; font-size:0.9em; vertical-align:middle"><span class="button-stats button-stats-table button-stats-pale" title="Bisher noch nicht getestet">?</span></td>
+                            <td class="hide360" style="vertical-align:middle;"><a href="https://lingua.com/de/deutsch/uebungen/bestimmte-artikel/" class="button" style="margin:0">starten&nbsp;»</a></td>
+                            <td class="hide420" style="vertical-align:middle; border-left:1px solid #E8E8E8; padding-left:10px;"><a href="{% static 'bestimmte.pdf'%}"target="_blank"><img src="Deutsch%20%C3%9Cbungen%20Aufgaben%20zum%20Grammatik%20lernen_files/pdf.gif" alt="PDF" style="width:25px; height:auto; margin:0px; vertical-align:middle; display:inline-block;"></a>
+                            </td>
                         </tr>
                         <tr>
-                            <td class="first-td"><a href="{% url 'Grammar:frage'%}" class="reading-link">Fragewörter für Anfänger</a><br>
-                                <span style="font-size:0.85em; color:#474747; display:block;">Fragepronomen und -Adverbien unterscheiden</span>
+                            <td class="first-td"><a href="https://lingua.com/de/deutsch/uebungen/unbestimmte-artikel/" class="reading-link">Unbestimmte Artikel</a><br>
+                                <span style="font-size:0.85em; color:#474747; display:block;">Welche sind die richtigen unbestimmten Artikel?</span>
                             </td>
-                            <td style="text-align:center; padding-right:10px; width:42px; font-size:0.9em; vertical-align:middle">
-                                <span class="button-stats button-stats-table button-stats-pale" title="Bisher noch nicht getestet">?</span></td>
-                            <td class="hide360" style="vertical-align:middle;"><a href="https://lingua.com/de/deutsch/uebungen/fragewoerter/" class="button" style="margin:0">starten&nbsp;»</a></td>
-                            <td class="hide420" style="vertical-align:middle; border-left:1px solid #E8E8E8; padding-left:10px;">
-                                <a href="{% static 'fragewort.pdf' %}" target="_blank">PDF</a>
-                            </td></tr>
-                            <tr><td class="first-td"><a href="{% url 'Grammar:gegenteile'%}" class="reading-link">Adjektive und ihre Gegenteile</a>
-                                 <br><span style="font-size:0.85em; color:#474747; display:block;">Welches Adjektiv hat die gegenteilige Bedeutung?</span>
-                            </td>
-                                <td style="text-align:center; padding-right:10px; width:42px; font-size:0.9em; vertical-align:middle"><span class="button-stats button-stats-table button-stats-pale" title="Bisher noch nicht getestet">?</span></td>
-                                <td class="hide360" style="vertical-align:middle;"><a href="https://lingua.com/de/deutsch/uebungen/gegenteile/" class="button" style="margin:0">starten&nbsp;»</a></td>
-                                <td class="hide420" style="vertical-align:middle; border-left:1px solid #E8E8E8; padding-left:10px;"><a href="{% static 'gegenteile.pdf'%}" target="_blank"><img src="Deutsch%20%C3%9Cbungen%20Aufgaben%20zum%20Grammatik%20lernen_files/pdf.gif" alt="PDF" style="width:25px; height:auto; margin:0px; vertical-align:middle; display:inline-block;"></a></td>
-                            </tr>
-                    </tbody>
-            </table>
-        </div>
-    <div class="content_right content_text_right">
-            <table style=" width:100%">
-                <tbody>
-                <tr class="content_right_table_th">
-                    <th>Name</th>
-                    <th style="padding-right:10px;text-align:center">Test</th>
-                    <th class="hide360"></th>
-                    <th class="hide420" style="padding-left:10px">PDF</th>
-                </tr>
-                <tr>
-                    <td class="first-td"><a href="https://lingua.com/de/deutsch/uebungen/bestimmte-artikel/" class="reading-link">Bestimmte Artikel</a><br>
-                        <span style="font-size:0.85em; color:#474747; display:block;">Lerne die Artikel häufig genutzter Nomen</span></td>
-                    <td style="text-align:center; padding-right:10px; width:42px; font-size:0.9em; vertical-align:middle"><span class="button-stats button-stats-table button-stats-pale" title="Bisher noch nicht getestet">?</span></td>
-                    <td class="hide360" style="vertical-align:middle;"><a href="https://lingua.com/de/deutsch/uebungen/bestimmte-artikel/" class="button" style="margin:0">starten&nbsp;»</a></td>
-                    <td class="hide420" style="vertical-align:middle; border-left:1px solid #E8E8E8; padding-left:10px;"><a href="{% static 'bestimmte.pdf'%}"target="_blank"><img src="Deutsch%20%C3%9Cbungen%20Aufgaben%20zum%20Grammatik%20lernen_files/pdf.gif" alt="PDF" style="width:25px; height:auto; margin:0px; vertical-align:middle; display:inline-block;"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first-td"><a href="https://lingua.com/de/deutsch/uebungen/unbestimmte-artikel/" class="reading-link">Unbestimmte Artikel</a><br>
-                        <span style="font-size:0.85em; color:#474747; display:block;">Welche sind die richtigen unbestimmten Artikel?</span>
-                    </td>
-                    <td style="text-align:center; padding-right:10px; width:42px; font-size:0.9em; vertical-align:middle"><span class="button-stats button-stats-table button-stats-pale" title="Bisher noch nicht getestet">?</span></td>
-                    <td class="hide360" style="vertical-align:middle;"><a href="https://lingua.com/de/deutsch/uebungen/unbestimmte-artikel/" class="button" style="margin:0">starten&nbsp;»</a></td>
-                    <td class="hide420" style="vertical-align:middle; border-left:1px solid #E8E8E8; padding-left:10px;"></td>
-                </tr>
-                </tbody>
-            </table>
-    </div>
+                            <td style="text-align:center; padding-right:10px; width:42px; font-size:0.9em; vertical-align:middle"><span class="button-stats button-stats-table button-stats-pale" title="Bisher noch nicht getestet">?</span></td>
+                            <td class="hide360" style="vertical-align:middle;"><a href="https://lingua.com/de/deutsch/uebungen/unbestimmte-artikel/" class="button" style="margin:0">starten&nbsp;»</a></td>
+                            <td class="hide420" style="vertical-align:middle; border-left:1px solid #E8E8E8; padding-left:10px;"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+            </div>
 
-</div>
+        </div>
+  </div>
 {% endblock %}
