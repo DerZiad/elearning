@@ -77,9 +77,6 @@ ul.items>li {
 	{
 	color: #fff
 }
-.big{
-    color:#00b0ff;
-}
 
 .text-warning {
 	color: #f3921f !important
@@ -362,8 +359,7 @@ ul.items>li {
 }
 
 .section-intro-content {
-        background-image:url("logos.jpeg");
-        background-size:cover;
+	background-color: #0d5673
 }
 
 .frame {
@@ -439,7 +435,7 @@ h1 {
 	line-height: 36px;
 	margin-top: 0;
 	font-weight: 700;
-	color: #f3921f
+	color: #fff
 }
 
 h2 {
@@ -2506,8 +2502,7 @@ select.input-size-1, select.input-size-2, select.input-size-3, select.input-size
 		margin-top: 5px
 	}
 	.section-intro-content {
-		    background-image:url("logos.jpeg");
-            background-size:cover;
+		background-color: rgba(13, 86, 115, .85)
 	}
 	.big li, p.big {
 		font-size: 19px
