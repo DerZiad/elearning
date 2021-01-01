@@ -228,7 +228,7 @@ jQuery(document).ready(function(){
                                                                                },
                                                                         success: function(response){
                                                                             $("#Precedent").hide()
-                                                                            $("#Suivant").hide()
+                                                                            $(".container-login100-form-btn").hide()
                                                                             $("#ja-ss").hide()
                                                                             $("#Connector").hide()
                                                                             $("#Error").html(response)
