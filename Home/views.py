@@ -18,9 +18,9 @@ def principale(request):
         succes_lesen = request.session['succes_lesen']
         total = int((succes_lesen + succes_horen + succes_schreiben + succes_grammar) / 4)
         context = {
-            'total':total
+            'total': total
         }
-        return render(request,"session/session.html",context)
+        return render(request, "session/session.html", context)
 
 def afficherProfil(request):
     user = request.session['username']
