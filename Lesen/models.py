@@ -19,4 +19,13 @@ class Text (models.Model):
     numfra = models.ForeignKey(Fragen, on_delete=models.CASCADE)
 
 
+class Fragen (models.Model):
+    frage = models.TextField()
+
+
+class Text (models.Model):
+    text = models.TextField()
+    numfra = models.ForeignKey(Fragen, on_delete=models.CASCADE)
+
+
 # Create your models here.
