@@ -22,8 +22,8 @@
     <link href="{% static 'session_fichiers/select2.css'%}" rel="stylesheet">
     <link href="{% static 'session_fichiers/select2-bootstrap.css'%}" rel="stylesheet">
 
-    {%block title%}
-    <title>Cours - deutsch.info</title>
+    {%block besoin%}
+    <title>Cours - deutsch lernen</title>
     {%endblock %}
 </head>
 
@@ -39,6 +39,8 @@
 <li><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#"><span class="visible-xs-inline"><img class="" src="{% static 'session_fichiers/user_25_25.jpg'%}" alt=""></span><span class="hidden-xs">{{request.session.username}}</span><span class="caret"></span></a>
 <ul class="dropdown-menu">
 <li><a href="/afficher">Afficher le profil</a></li>
+    <li class="divider"><span></span></li>
+<li><a href="{% url 'Home:edit'%}">Préferences</a></li>
 <li class="divider"><span></span></li>
 <li><a href="/Auth/disconnect">Déconnexion</a></li>
 </ul>
@@ -68,6 +70,7 @@
 <li><a href="/Lesen">Lesen</a></li>
 <li><a href="/Schreiben">Schreiben</a></li>
 <li><a href="/Grammar">Grammar</a></li>
+<li><a href="/forum">Forum</a></li>
 </li>
 <!--<li><a href="/forum">Forum</a></li>-->
 </ul>            </div><!-- /.navbar-collapse -->

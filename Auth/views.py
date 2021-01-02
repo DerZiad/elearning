@@ -7,9 +7,11 @@ from Auth.models import temporals
 import Auth.ValidEntry.sender as emailsend
 import hashlib
 import Auth.ValidEntry.ValidatorInscript as validator
+import Auth.ValidEntry.Validator as valid
 import Auth.ValidEntry.utilconverter as Converter
 import Auth.ValidEntry.random as randomer
 import Auth.ValidEntry.sender as send
+import datetime
 import json
 from django.core import serializers
 # Create your views here.
@@ -35,32 +37,45 @@ def inscription(request):
             secondpane = validator.checkSecondPaneInBase(request)
             return JsonResponse(secondpane)
         else:
-            attiribut = request.POST
-            nom = attiribut['nom']
-            prenom = attiribut['prenom']
-            birthday = attiribut['datedenaissance']
-            username = attiribut['username']
-            password = attiribut['password']
-            email = attiribut['email']
-            telephone = attiribut['telephone']
-            cpassword = hashlib.md5(password.encode())
-            personneG = Personne(nom=nom,prenom=prenom,datedenaissance=birthday,username=username,password = cpassword.hexdigest(),
-                email = email,telephone = telephone)
-            personneG.save()
-            context = {
-                "error":"",
-                "email":personneG.email
-            }
-            codeG = randomer.generateRandom()
-            temporal = temporals(personne = personneG, code = codeG)
-            temporal.save()
-            infos = {
-                'address':email,
-                'text':"Votre code de confirmation est {}".format(codeG),
-                'subject':"Confirmation de votre compte deutsch lernen"
-            }
-            send.sendEmail(infos,request)
-            return HttpResponse(render(request,"letter/confirm.html",context))
+            try:
+                    attribut = request.POST
+                    nom = attribut['nom']
+                    prenom = attribut['prenom']
+                    birthday = attribut['datedenaissance']
+                    username = attribut['username']
+                    password = attribut['password']
+                    email = attribut['email']
+                    sexe = attribut['sexe']
+                    address = attribut['address']
+                    list = []
+                    for chaine in birthday.split('-'):
+                        list.append(chaine)
+                    valid.validNom(nom)
+                    valid.validPrenom(prenom)
+                    valid.validSexe(sexe)
+                    valid.validAdress(address)
+                    valid.validEmail(email)
+                    valid.validinfo(email,username)
+                    cpassword = hashlib.md5(password.encode())
+                    personneG = Personne(nom=nom,prenom=prenom,datedenaissance=datetime.date(year=int(list[2]), month=int(list[1]), day=int(list[0])),username=username,password = cpassword.hexdigest(),
+                        email = email,Sexe = sexe,Address = address)
+                    personneG.save()
+                    context = {
+                        "error":"",
+                        "email":personneG.email
+                    }
+                    codeG = randomer.generateRandom()
+                    temporal = temporals(personne = personneG, code = codeG)
+                    temporal.save()
+                    infos = {
+                        'address':email,
+                        'text':"Votre code de confirmation est {}".format(codeG),
+                        'subject':"Confirmation de votre compte deutsch lernen"
+                    }
+                    send.sendEmail(infos,request)
+                    return HttpResponse(render(request,"letter/confirm.html",context))
+            except ValueError:
+                    return HttpResponse("You re trying to hack")
 def seconnecter(request):
     if(request.method == 'POST'):
         username = request.POST.get('email')
@@ -89,10 +104,7 @@ def confirm(request):
         personne = Personne.objects.get(email = email)
         tempo = temporals.objects.get(personne = personne)
         if(tempo != None and personne != None):
-
-            print(code + " " + personne.nom + " "+ tempo.code)
             if(code == str(tempo.code)):
-                print("yess goood")
                 tempo.delete()
                 personne.save()
                 Converter.converttodata(request,personne)
