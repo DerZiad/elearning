@@ -65,16 +65,17 @@
         
 <div id="userprofile735571" class="row">
     <div class="col-sm-4 text-center">
-        <img class="thumbnail center-block img-responsive" src="{% static 'profil_fichiers/camera.jpg'%}" alt="">                    <p class="big"><span class="label label-success">En ligne</span></p>
+        <img class="thumbnail center-block img-responsive" src="/media/{{personne.photo}}" alt="">                    <p class="big"><span class="label label-success">En ligne</span></p>
             </div>
 
     <div class="col-sm-8">
-        <h3 class="nm-top gray"> {{ request.session.username }}</h3>
-                    <p> Votre nom :{{request.session.nom}} {{request.session.prenom}}</p>
+        <h3 class="nm-top gray"> {{personne.username }}</h3>
+                    <p> Votre nom :{{personne.nom}} {{personne.prenom}}</p>
         
-                <table class="table table-borderless small text-left" id="yw0"><tbody><tr><th>Date de naissance</th><td>{{request.session.datedenaissance}}</td></tr>
-                <tr><th>Email</th><td>{{request.session.email}}</td></tr>
-                <tr><th>Telephone</th><td>{{request.session.telephone}}</td></tr>
+                <table class="table table-borderless small text-left" id="yw0"><tbody><tr><th>Date de naissance</th><td>{{personne.datedenaissance}}</td></tr>
+                <tr><th>Email</th><td>{{personne.email}}</td></tr>
+                <tr><th>Sexe</th><td>{{personne.Sexe}}</td></tr>
+                <tr><th>Addresse</th><td>{{personne.Address}}</td></tr>
 <tr><th>Langues parlées</th><td>Français</td></tr>
 </tbody></table>
     </div>

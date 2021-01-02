@@ -1,0 +1,64 @@
+/* -------------------------------------------------------------------
+// markItUp!
+// By Jay Salvat - http://markitup.jaysalvat.com/
+// ------------------------------------------------------------------*/
+.markItUpHeader ul {
+    margin:0;
+    padding:0;
+    height:16px;
+    margin:10px 0;
+}
+.markItUpHeader ul li	{
+    list-style:none;
+    float:left;
+    position:relative;
+    margin:2px;
+}
+.markItUpHeader ul li:hover > ul{
+    display:block;
+}
+.markItUpHeader ul .markItUpSeparator {
+    margin:0 10px;
+    width:1px;
+    height:16px;
+    overflow:hidden;
+    background-color:#CCC;
+}
+.markItUpHeader ul a {
+    display:block;
+    width:16px;
+    height:16px;
+    text-indent:-10000px;
+    background-repeat:no-repeat;
+    padding:3px;
+    margin:0px;
+}
+.markItUp .markItUpButton1 a {
+    background-image:url(images/bold.png);
+}
+.markItUp .markItUpButton2 a {
+    background-image:url(images/italic.png);
+}
+.markItUp .markItUpButton3 a {
+    background-image:url(images/underline.png);
+}
+.markItUp .markItUpButton4 a {
+    background-image:url(images/link.png);
+}
+
+.markItUp .markItUpButton5 a {
+    background-image:url(images/list-bullet.png);
+}
+.markItUp .markItUpButton6 a {
+    background-image:url(images/list-item.png);
+}
+
+.markItUp .markItUpButton7 a {
+    background-image:url(images/quotes.png);
+}
+.markItUp .clean a {
+    background-image:url(images/clean.png);
+}
+.markItUp .preview a {
+    background-image:url(images/preview.png);
+}

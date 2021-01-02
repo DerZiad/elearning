@@ -48,11 +48,6 @@ section a:hover {
 }
 
 /*---------------------------------------------*/
-section{
-  background-image:url("background.jpg");
-  background-size:cover;
-  background-repeat:no-repeat;
-}
 section h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
