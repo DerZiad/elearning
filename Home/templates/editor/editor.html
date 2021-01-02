@@ -58,6 +58,15 @@
 
 					<h2 class="text-important line-text">Compte</h2>
 
+					<div class="container-fluid">
+						<div class="row">
+							<div id="change-email-link" class="change-link">
+								<label>Adresse électronique</label>: <span>{{personne.email}}</span>
+								<a class="internal small"
+									onclick='$(".change-email").toggleClass("hide")'
+									href="javascript:;">changer</a>
+							</div>
+						</div>
 						<div id="change-email-form"
 							class="row hide change-email change-form margin-top-sm">
 							<div class="col-sm-offset-2 col-sm-10">
@@ -91,6 +100,15 @@
 
 </form>
 								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div id="change-password-link" class="change-link margin-top-sm">
+								<label>Mot de passe</label>: <span>********</span> <a
+									class="internal small"
+									onclick='$(".change-password").toggleClass("hide")'
+									href="javascript:;">changer</a>
 							</div>
 						</div>
 						<div id="change-password-form"
@@ -143,9 +161,6 @@
 							</div>
 						</div>
 					</div>
-				<script>
-					JQuery
-				</script>
 					<h2 class="text-important line-text">Profil</h2>
 					<div class="container-fluid">
 						<div class="well">

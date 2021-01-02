@@ -208,7 +208,6 @@ def edit(request):
             personne = Personne.objects.get(username=request.session['username'])
             if fonction == "add":
                 photo = request.FILES['photo']
-                print(photo.__dict__())
                 personne.photo = photo
                 personne.save()
             elif fonction == "remove":
