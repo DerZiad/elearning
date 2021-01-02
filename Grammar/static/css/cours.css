@@ -6,16 +6,24 @@ border : 2px solid black ;
 }
 h1{
 font-family :Courier New;
-border : 2px inset yellow;
-text-align : center ;
-background: url('german-flag.jpg');
 
+text-align : center ;
+background: url('german-flag(1).jpg')  ;
+background-size: cover ;
 }
 .retour {
 font-size : medium ;
 color : #ff944d;
-border : 2px solid white ;
+
+}
+button:hover {
+
 }
 form{
 margin : 100px;
+}
+#msg
+{
+font-size : 18px;
+color : orange ;
 }

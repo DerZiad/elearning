@@ -1,0 +1,67 @@
+.photo {
+float :reel ;
+padding:10px;
+margin :10px;
+width:320px;
+height :220px;
+border:2px solid black ;
+}
+.firstp
+{
+display : flex;
+flex-direction : row ;
+flex:1;
+align-items :center;
+float :reel ;
+font-family:Georgia ;
+border:2px inset black;
+background : #e6e6e6;
+}
+.general{
+
+}
+p{
+padding:10px;
+margin :10px;
+position : fix ;
+}
+h1{
+white-space: nowrap;
+margin: auto;
+width : 520px;
+
+text-align: center ;
+border: 0.5px solid white;
+}
+.panel{
+margin :70px;
+border : 2px solid  #ffffcc ;
+
+}
+h2{
+text-align: center ;
+margin:auto ;
+}
+tbody {
+margin : 100px;
+
+
+}
+#deustch{
+color: orange ;
+}
+#ubungen{
+color : black ;
+}
+td{
+font-family :Times New Roman ;
+padding : 20px ;
+font-size : medium ;
+}
+th {
+padding : 30px;
+font-family : 100em;
+position : relative ;
+}
+
+

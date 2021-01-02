@@ -8,5 +8,7 @@ app_name="Grammar"
 urlpatterns =[
     url(r'^frage', views.grammarex,name="frage"),
     url(r'^$', views.cours,name="grammar"),
-    url(r'^gegenteile',views.gegenteile,name="gegenteile")
+    url(r'^gegenteile',views.gegenteile,name="gegenteile"),
+    url(r'^bestimmte-artikel',views.bartikel,name="bestimmte artikel"),
+    url(r'^register',views.test,name="register")
 ]
