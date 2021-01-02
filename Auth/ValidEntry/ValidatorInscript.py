@@ -3,17 +3,10 @@ from Auth.models import Personne
 def checkFirstPanelInBase(request):
     dictionnaire = request.POST
     email = dictionnaire['email']
-    telephone = dictionnaire['telephone']
-
-
     emails = Personne.objects.filter(email=email)
-    telephones = Personne.objects.filter(telephone=telephone)
-
     erreurs = {}
     if(len(emails) != 0):
         erreurs['email'] = "L'adresse email est déja existante"
-    if(len(telephones) != 0):
-        erreurs['telephone'] = "Le numero de téléphone est déja existant"
     return erreurs
 
 def checkSecondPaneInBase(request):

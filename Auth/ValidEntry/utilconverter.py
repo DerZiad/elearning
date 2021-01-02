@@ -1,10 +1,12 @@
 def converttodata(request,user):
     attributs = request.session
     attributs["nom"] = user.nom
-    attributs["prenom"] = str(user.prenom),
-    attributs["datedenaissance"] = user.datedenaissance
+    attributs["prenom"] = str(user.prenom)
+    birthday = user.datedenaissance
+    attributs["datedenaissance"] = str(birthday.day) + '-' +  str(birthday.month) + '-' + str(birthday.year)
     attributs["username"] = user.username
-    attributs["telephone"] = str(user.telephone),
+    attributs["sexe"] = str(user.Sexe)
+    attributs['address'] = str(user.Address)
     attributs["email"] =  str(user.email)
     attributs["password"] =  user.password
     attributs["succes_lesen"] = user.succes_lesen

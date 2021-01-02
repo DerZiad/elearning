@@ -1,11 +1,6 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
-body{
-  background-image:url("background.jpg");
-  background-size:cover;
-  background-repeat:no-repeat;
-}
 @font-face {
   font-family: Poppins-Regular;
   src: url('../fonts/poppins/Poppins-Regular.ttf');

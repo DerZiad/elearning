@@ -1,0 +1,110 @@
+<div class="container-fluid">
+	<div class="row">
+		<div id="change-email-link" class="change-link">
+			<label>Adresse électronique</label>: <span>ziadbougrine@gmail.com</span>
+			<a class="internal small"
+				onclick="$(&quot;.change-email&quot;).toggleClass(&quot;hide&quot;)"
+				href="javascript:;">changer</a>
+		</div>
+	</div>
+	<div id="change-email-form"
+		class="row change-email change-form margin-top-sm">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="well">
+
+				<form class="" id="email-form"
+					action="/fr/user/settings?scenario=email" method="post">
+					<input type="hidden"
+						value="UlFLNUJCMFlHYzlQfmlieVZrNGtpd1dRRlZlOVRCbHEDfnR2mqHoWgIDwStxos_dtFlV-SalkUCj0TPPyNfa3Q=="
+						name="YII_CSRF_TOKEN">
+					<div class="form-group required">
+						<label class="control-label" for="Profile_email">Adresse
+							électronique</label> <input class="form-control"
+							placeholder="Adresse électronique" name="Profile[email]"
+							id="Profile_email" type="text" value="rachid.2004cde@outlook.fr">
+						<div class="help-block error" id="Profile_email_em_"
+							style="display: none"></div>
+					</div>
+
+					<div class="form-group required">
+						<label class="control-label" for="Profile_password">Mot de
+							passe</label> <input class="form-control" placeholder=""
+							name="Profile[password]" id="Profile_password" type="password">
+						<div class="help-block error" id="Profile_password_em_"
+							style="display: none"></div>
+						<div class="help-block">
+							<a href="/fr/forgot_password">Avez-vous oublié votre mot de
+								passe ?</a>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<input class="btn btn-primary" type="submit" name="yt0"
+							value="Enregistrer">
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div id="change-password-link" class="change-link margin-top-sm">
+			<label>Mot de passe</label>: <span>********</span> <a
+				class="internal small"
+				onclick="$(&quot;.change-password&quot;).toggleClass(&quot;hide&quot;)"
+				href="javascript:;">changer</a>
+		</div>
+	</div>
+	<div id="change-password-form"
+		class="row hide change-password change-form margin-top-sm">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="well">
+
+				<form class="" id="password-form"
+					action="/fr/user/settings?scenario=password" method="post">
+					<input type="hidden"
+						value="UlFLNUJCMFlHYzlQfmlieVZrNGtpd1dRRlZlOVRCbHEDfnR2mqHoWgIDwStxos_dtFlV-SalkUCj0TPPyNfa3Q=="
+						name="YII_CSRF_TOKEN">
+					<div class="form-group">
+						<label class="control-label" for="Profile_password_old">Mot
+							de passe actuel</label> <input class="form-control" placeholder=""
+							name="Profile[password_old]" id="Profile_password_old"
+							type="password">
+						<div class="help-block error" id="Profile_password_old_em_"
+							style="display: none"></div>
+						<div class="help-block">
+							<a href="/fr/forgot_password">Avez-vous oublié votre mot de
+								passe ?</a>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="Profile_password_new">Nouveau
+							mot de passe</label> <input class="form-control" placeholder=""
+							name="Profile[password_new]" id="Profile_password_new"
+							type="password">
+						<div class="help-block error" id="Profile_password_new_em_"
+							style="display: none"></div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="Profile_password_repeat">Confirmer
+							le nouveau mot de passe</label> <input class="form-control"
+							placeholder="" name="Profile[password_repeat]"
+							id="Profile_password_repeat" type="password">
+						<div class="help-block error" id="Profile_password_repeat_em_"
+							style="display: none"></div>
+					</div>
+
+					<div class="form-group">
+						<input class="btn btn-primary" type="submit" name="yt1"
+							value="Enregistrer">
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
