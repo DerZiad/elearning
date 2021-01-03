@@ -3,8 +3,5 @@
 
 {% endblock %}
 {% block content %}
-title=text.titre.filter(available=True)
-formatted_title=["<li>{}</li>".format(text.titre)for title in text
-message="""<ul>{}</ul>""".format("/n".join(text))
-return HttpResponse(message)
+
 {% endblock %}

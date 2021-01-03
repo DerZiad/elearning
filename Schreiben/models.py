@@ -2,9 +2,9 @@ from django.db import models
 
 
 # Create your models here.
-class text(models.Model):
+class TexT(models.Model):
     titre = models.CharField(max_length=200, unique=True)
-    corps = models.CharField(max_length=300)
+    corps = models.TextField(blank=True)
 
 
 class Reponse(models.Model):
