@@ -394,14 +394,20 @@
 								</div>
 
 								<div class="form-group margin-top-md">
-									<div class="pull-right">
-										<a href="{% url 'Home:edit'%}">Supprimer
-											le compte</a>
-									</div>
+
 									<input class="btn btn-primary" type="submit" name="yt2"
 										value="Enregistrer les modifications">
+									<p style="color:red">{{errorthid}}</p>
 								</div>
 
+							</form>
+							<form action="{% url 'Home:edit'%}" method="post">
+								<input type="hidden" name="action" value="delete"/>
+								{% csrf_token %}
+								<div class="pull-right">
+											<button href="{% url 'Home:edit'%}">Supprimer
+												le compte</button>
+								</div>
 							</form>
 						</div>
 					</div>

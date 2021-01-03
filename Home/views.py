@@ -99,7 +99,12 @@ def edit(request):
         action = request.POST.get('action')
         if action == 'delete':
             personne = Personne.objects.get(username = request.session['username'])
+            message = Message.objects.get(personne = personne)
             personne.delete()
+            message.delete()
+            request.session.flush()
+            request.session.clear_expired()
+            return HttpResponseRedirect("/")
         elif action == 'changeemailfirst':
             email = request.POST['email']
             passw = request.POST['password']
@@ -177,7 +182,10 @@ def edit(request):
                     datemonth = request.POST['datemonth']
                     dateyear = request.POST['dateyear']
                     sexe = request.POST['sexe']
-                    list= [dateday,datemonth,dateyear]
+                    list= []
+                    list.append(dateday)
+                    list.append(datemonth)
+                    list.append(dateyear)
                     valid.validNom(nom)
                     valid.validPrenom(prenom)
                     valid.validDate(dateday)
@@ -188,14 +196,19 @@ def edit(request):
                     personne.prenom = prenom
                     personne.Address = address
                     personne.datedenaissance = datetime.date(year=int(dateyear), month=int(datemonth), day=int(dateday))
-                    personne.sexe = sexe
+                    personne.Sexe = sexe
                     personne.save()
+                    context = {
+                        "personne":personne,
+                    }
+                    return render(request, "editor/editor.html", context)
                 except ValueError:
                     personne = Personne.objects.get(username = request.session['username'])
                     context = {
-                        "errorthid":"Vous avez une erreur dans votre informations"
+                        "errorthid":"Vous avez une erreur dans votre informations",
+                        "personne":personne
                     }
-                    return render(request,"forum/forum.html",context)
+                    return render(request,"editor/editor.html",context)
         elif action == "changepic":
             fonction = request.POST['fonction']
             personne = Personne.objects.get(username=request.session['username'])
