@@ -6,80 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="language" content="fr">
-
-<meta name="keywords"
-	content="allemand en ligne, apprendre l&#39;allemand, apprendre l&#39;allemand gratuitement sur Internet, allemand langue étrangère, cours de langue gratuit, grammaire allemande, cours d&#39;allemand en ligne, allemand, langue allemand, allemand sur Internet, apprendre l&#39;allemand gratuitement, allemand gratuitement, exercices de langue, dictionnaires allemands, grammaire allemande, grammaire de l&#39;allemand, dictionnaire gratuit">
-<meta name="description"
-	content="Apprendez l’allemand en ligne gratuitement ! Cours de langue, exercices, grammaire allemande, médiathèque et informations pratiques.">
-<meta name="google-site-verification"
-	content="f70kHNNpGrSnnfwiitstklMWP2VM7zBqrlftO9MrNGg">
-
-<meta property="og:url" content="https://deutsch.info/login">
-<meta property="og:site_name" content="deutsch.info">
-<meta property="og:title" content="Connexion">
-<meta property="fb:app_id" content="129941521039092">
-<meta property="og:type" content="Website">
-<meta property="og:description"
-	content="Apprendez l’allemand en ligne gratuitement ! Cours de langue, exercices, grammaire allemande, médiathèque et informations pratiques.">
-<meta property="og:image"
-	content="https://deutsch.info/images/logos/deutsch_info_logo_color_250px.png">
-
-<link rel="apple-touch-icon" sizes="180x180"
-	href="https://deutsch.info/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="https://deutsch.info/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16"
-	href="https://deutsch.info/favicon-16x16.png">
-<link rel="manifest" href="https://deutsch.info/manifest.json">
-<link rel="mask-icon" href="https://deutsch.info/safari-pinned-tab.svg"
-	color="#F3921F">
-<meta name="theme-color" content="#ffffff">
+{% include 'icon.html'%}
 
 <link href="{% static 'Base/bootstrap.min.css'%}"
 	rel="stylesheet">
 <link href="{% static 'Base/main.min.css'%}"
 	rel="stylesheet">
-
-
-<link rel="image_src"
-	href="https://deutsch.info/images/logos/deutsch_info_logo_color_250px.png">
-
-<script type="text/javascript" async=""
-	src="{% static 'Base/recaptcha__fr.js.download'%}"
-	crossorigin="anonymous"
-	integrity="sha384-fTuMfAliJVfYh38oCRhSw4QBfBaXu/Y+0T66sUEM7g3gc2pgyM8jPbchfGYFatiP"></script>
-<script>
-        var SITE = {
-            isAuth:false,
-            i18n: {
-                sourceLanguage: 'de',
-                targetLanguage: 'fr',
-                orientation: 'ltr'
-            },
-            auth: {},
-            routes: {
-                notifications: '/fr/notifications',
-                translate: '/fr/translation/sentence'
-            },
-            dict: {
-                available: 0,
-                route: '/fr/dictionary',
-                dictionary: 'de|fr',
-                language: 'fr'
-            },
-            keyboard: false,
-            request: {
-                enableCsrfValidation: true,
-                csrfTokenName: 'YII_CSRF_TOKEN',
-                csrfToken: 'VVNYNGFXV1RENVFPWHJLdWREbE45bHZJSHpMUG5naUJ3VUrvL_DFs4qH6k5rQbMjXnwqPUNtrZGiTKOdftYoSg=='
-            },
-            utils: {}
-        };
-    </script>
-
-
 <script
 	src="{% static 'Base/jquery-2.1.1.min.js.download'%}"></script>
 <script src="{% static 'Base/jquery-ui.min.js.download'%}"></script>
@@ -87,13 +19,13 @@
 	src="{% static 'Base/jquery.jplayer.min.js.download'%}"></script>
 <script src="{% static 'Base/bootstrap.min.js.download'%}"></script>
 
-<script type="text/javascript"
-	src="{% static 'Base/main.min.js.download'%}"></script>
+<!--<script type="text/javascript"
+	src="{% static 'Base/main.min.js.download'%}"></script>-->
 <script type="text/javascript"
 	src="{% static 'Base/jquery.ui.touch-punch.min.js.download'%}"></script>
 
-<script type="text/javascript"
-	src="{% static 'Base/select2.min.js.download'%}"></script>
+<!--<script type="text/javascript"
+	src="{% static 'Base/select2.min.js.download'%}"></script>-->
 <link href="{% static 'Base/select2.min.css'%}"
 	rel="stylesheet">
 <link href="{% static 'Base/select2-bootstrap.min.css'%}"
@@ -101,115 +33,23 @@
 
 <link rel="stylesheet" type="text/css"
 	href="{% static 'Base/cookieconsent.min.css'%}">
-<script
-	src="{% static 'Base/cookieconsent.min.js.download'%}"></script>
+<!--<script
+	src="{% static 'Base/cookieconsent.min.js.download'%}"></script>-->
 
-<script type="text/javascript"
-	src="{% static 'Base/api.js.download'%}"></script>
-<title>Connexion - deutsch.info</title>
+<!-- <script type="text/javascript"
+	src="{% static 'Base/api.js.download'%}"></script>-->
+<title>Connection - Deustchlernen</title>
 
 <style></style>
 </head>
 {% block besoin %}
 {% endblock %}
 <body class="translation">
-		<!--googleon: all-->
-
-		<header id="header">
-			<nav class="menu navbar navbar-default">
-				<div class="container-fluid">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target="#main_menu"
-							aria-expanded="false">
-							<span class="sr-only">Menu</span> <span class="icon-bar"></span>
-							<span class="icon-bar"></span> <span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="/"><div
-								class="yo">
-								<img src="{% static 'Base/s.png'%}"/>
-							</div></a>
-					</div>
-
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="main_menu">
-						<ul class="nav navbar-nav navbar-right" id="yw0">
-							<li><a href="{% url 'Authentification:signin' %}">Cours</a></li>
-							<li class="dropdown"><a class="dropdown-toggle"
-								data-toggle="dropdown" href="{% url 'Authentification:signin' %}">Informations
-									utiles <b class="caret"></b>
-							</a>
-								<ul class="dropdown-menu">
-									<li><a href="https://deutsch.info/fr/essentials">Informations
-											pratiques</a></li>
-									<li><a href="https://deutsch.info/fr/test">Tests</a></li>
-								</ul></li>
-							<li><a href="{% url 'Authentification:signin' %}">Forum</a></li>
-							<li class="active"><a class="btn-sm btn-white"
-								href="{% url 'Authentification:signin'%}">Connexion</a></li>
-						</ul>
-					</div>
-					<!-- /.navbar-collapse -->
-				</div>
-				<!-- /.container-fluid -->
-			</nav>
-		</header>
+		{% include 'header.html'%}
+		<div class="ajout">
         {% block body %}
         {% endblock %}
-
-		<footer id="footer">
-			<div class="section-sm">
-				<div class="container frame">
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="icon svg-sprite svg erasmus">
-								<svg xmlns="http://www.w3.org/2000/svg" id="icon-erasmus"
-									viewBox="0 0 130 27.14">
-                            <path
-										d="M53.7 26.6H45v-13h8.7V15h-7v3.7h7v1.5h-7v5h7v1.4zM61.8 18.6H60c-.4 0-1 0-1.3.2-.5.2-1 .5-1.4 1v6.8h-1.7v-9.8h1.7v1.5c.7-.5 1.2-1 1.7-1 .5-.4 1-.5 1.6-.5h1.2v1.8zM70.6 26.6H69v-1c-.2 0-.4.2-.6.4l-.7.4-1 .4h-1.2c-1 0-1.7-.2-2.3-.8-.6-.6-1-1.3-1-2.2 0-.8.3-1.4.6-1.8.3-.5.8-.8 1.3-1 .7-.4 1.5-.5 2.3-.6l2.7-.2V20c0-.5 0-.8-.2-1 0-.3-.3-.5-.6-.6l-.8-.3h-1c-.5 0-1 0-1.5.2-.6 0-1.2.3-1.7.5V17c.2 0 .7 0 1.3-.2.6-.2 1.2-.2 1.8-.2.7 0 1.3 0 1.8.2.5 0 1 .3 1.3.5.4.3.6.7.8 1 .2.5.3 1 .3 1.7v6.6zM69 24.2v-2.7h-1.8l-1.6.4c-.5 0-1 .2-1.2.5-.3.3-.4.7-.4 1.2s.2 1 .5 1.2c.4.2 1 .4 1.6.4.6 0 1.2-.2 1.6-.4l1.4-.8zM80.2 23.8c0 1-.4 1.6-1 2.2-1 .6-2 1-3.2 1-.7 0-1.4-.2-2-.4l-1.5-.6v-1.8l1.8 1c.7 0 1.3.3 2 .3.6 0 1.2-.2 1.6-.4.3 0 .5-.5.5-1 0-.4 0-.7-.4-1l-1-.4c-.4 0-.7 0-1-.2-.4 0-.8 0-1-.2-1-.2-1.5-.5-2-1-.3-.4-.4-1-.4-1.6 0-.4 0-.8.2-1.2l.8-1 1.2-.6 1.7-.2c.6 0 1.2 0 1.8.2l1.5.5V19l-1.6-.7-1.8-.3c-.6 0-1 0-1.5.3-.6.3-.8.6-.8 1 0 .5.2.8.4 1l1.2.5c.3 0 .7 0 1 .2.4 0 .7 0 1 .2.7.2 1.3.5 1.7 1 .5.3.7 1 .7 1.6zM96.2 26.6h-1.6V21v-1.2c0-.4-.2-.7-.3-1l-.6-.5-1-.2c-.6 0-1 .2-1.5.5-.5.2-1 .5-1.4 1v7.1h-1.6V21v-1.2c0-.4 0-.7-.3-1l-.6-.5-1-.2c-.6 0-1 .2-1.5.5l-1.4.8v7.3H82v-9.8h1.6v1l1.5-1 1.7-.2c.7 0 1.3 0 1.7.4s.8.7 1 1c.7-.4 1.3-.8 2-1s1-.4 1.7-.4c1 0 2 .3 2.4 1 .5.6.8 1.5.8 2.7v6.3zM106.6 26.6H105v-1l-1.7 1c-.5.2-1 .3-1.6.3-1 0-2-.4-2.4-1-.6-.7-1-1.6-1-2.8v-6.4h1.7V23.7l.4 1c.2 0 .4.3.6.4.3.3.6.3 1 .3.5 0 1 0 1.5-.3.5-.2 1-.5 1.4-1V17h1.6v9.8zM116.2 23.8c0 1-.4 1.6-1 2.2-.8.6-2 1-3 1s-1.5-.2-2-.4l-1.7-.6v-1.8l2 1c.5 0 1 .3 1.7.3s1.3-.2 1.7-.4c.3 0 .5-.5.5-1 0-.4 0-.7-.3-1s-.7-.2-1.3-.4c-.3 0-.6 0-1-.2-.4 0-.7 0-1-.2-1-.2-1.5-.5-2-1-.2-.4-.4-1-.4-1.6 0-.4 0-.8.2-1.2l.8-1 1.2-.6 1.7-.2c.6 0 1.2 0 1.8.2l1.5.5V19l-1.6-.7-1.8-.3c-.6 0-1 0-1.5.3s-.7.6-.7 1c0 .5 0 .8.3 1l1.2.5c.3 0 .7 0 1 .2.4 0 .8 0 1 .2.8.2 1.4.5 1.8 1 .4.3.6 1 .6 1.6zM130 21.6h-4.8v4.8h-1.4v-4.8H119v-1.4h4.8v-4.8h1.4v4.8h4.8v1.4z"></path>
-                            <path
-										d="M0 0v27h40.2V0H0zm39.7 26.6H.5V.6h39.2v26z"></path>
-                            <path
-										d="M20 3.4l.4 1h1l-.8.6.3 1-1-.6-.8.6.4-1-1-.6H20M15.7 4.6l.4 1h1l-.7.6.3 1-1-.6-.7.6.2-1-.8-.6h1M12.6 7.8l.3 1h1l-1 .6.4 1-.8-.6-1 .6.4-1-.8-.6h1M11.4 12l.3 1h1l-.8.7.2 1-.8-.6-1 .7.5-1-1-.6h1M12.6 16.5l.3 1h1l-1 .6.4 1-.8-.5-1 .6.4-1-.8-.5h1M15.7 19.7l.4 1h1l-.7.6.3 1-1-.6-.7.6.2-1-.8-.6h1M20 20.8l.4 1h1l-.8.6.3 1-1-.6-.8.6.4-1-1-.6H20M24.4 19.7l.4 1h1l-.8.6.3 1-1-.6-.7.6.3-1-1-.6h1M27.6 16.5l.4 1h1l-.8.6.3 1-1-.5-.7.6.3-1-.7-.5h1M28.8 12l.3 1h1.2l-1 .7.4 1-.8-.6-1 .7.5-1-1-.6h1.2M27.6 7.8l.4 1h1l-.8.6.3 1-1-.6-.7.6.3-1-.7-.6h1M24.4 4.6l.4 1h1l-.8.6.3 1-1-.6-.7.6.3-1-1-.6h1"></path>
-                        </svg>
-							</div>
-							<p class="text-justify">
-								<small>Ce projet a été financé grâce au soutien de la
-									Commission européenne. Cette publication ne reflète que
-									l’opinion de son auteur, et la Commission ne peut être tenue
-									pour responsable de l’usage qui sera fait des informations qui
-									s’y trouvent.</small>
-							</p>
-						</div>
-						<div class="col-sm-6">
-
-							<div class="social">
-								<ul class="list-inline">
-									<li><a href="https://facebook.com/deutsch.info"
-										target="_blank"><div class="icon svg-sprite svg facebook">
-												<svg xmlns="http://www.w3.org/2000/svg" id="icon-facebook"
-													viewBox="0 0 35 35">
-													<path
-														d="M35 3.646v27.708C35 33.368 33.368 35 31.354 35h-8.02V21.875h4.374l1.093-5.833h-5.467l.136-2.985c0-1.45.382-2.29 2.335-2.29h3.102l.697-5.22s-3.316-.442-5.268-.442c-4.387 0-6.926 2.925-6.926 7.428l.09 3.51h-4.376v5.832H17.5V35H3.646C1.632 35 0 33.368 0 31.354V3.646C0 1.632 1.632 0 3.646 0h27.708C33.368 0 35 1.632 35 3.646"></path></svg>
-											</div></a></li>
-									<li><a href="https://twitter.com/deutsch_info"
-										target="_blank"><div class="icon svg-sprite svg twitter">
-												<svg xmlns="http://www.w3.org/2000/svg" id="icon-twitter"
-													viewBox="0 0 35 35.001">
-													<path
-														d="M31.354 0H3.646C1.64 0 0 1.64 0 3.646v27.708C0 33.36 1.64 35 3.646 35h27.71C33.36 35 35 33.36 35 31.355V3.646C35 1.64 33.36 0 31.355 0m-3.437 12.99c.01.225.016.452.016.68 0 6.91-5.26 14.874-14.876 14.874-2.954 0-5.7-.863-8.014-2.35.41.048.825.074 1.248.074 2.45 0 4.704-.836 6.493-2.237-2.288-.04-4.218-1.553-4.884-3.63.32.063.646.09.983.09.477 0 .938-.063 1.377-.18-2.392-.48-4.194-2.593-4.194-5.128v-.064c.705.39 1.51.628 2.368.65-1.402-.935-2.326-2.536-2.326-4.348 0-.958.258-1.858.708-2.63 2.578 3.164 6.43 5.246 10.777 5.464-.09-.384-.136-.782-.136-1.193 0-2.883 2.342-5.224 5.23-5.224 1.503 0 2.86.633 3.814 1.65 1.192-.234 2.312-.67 3.32-1.27-.39 1.223-1.22 2.247-2.298 2.893 1.06-.124 2.064-.406 3.003-.823-.702 1.045-1.587 1.966-2.608 2.704"></path></svg>
-											</div></a></li>
-								</ul>
-							</div>
-							<p class="text-white copyright" dir="ltr">
-								<small>© 2013-2020 deutsch.info | <a
-									href="https://deutsch.info/fr/impressum">Impressum</a></small>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
+		</div>
+		{% include 'footer.html'%}
 </body>
 </html>

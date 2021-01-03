@@ -4,7 +4,6 @@ let vars = new Map();
 function addError(key,value){
  	erreurs.set(key,value)
 }
-
 function validate_date(date){
     year = parseInt(date.substr(0,4),10);
     month = parseInt(date.substr(5,2),10);
@@ -31,20 +30,12 @@ function validate_date(date){
     }
 }
 
-function verifier_Email_Telephone(email,telephone){
+function verifierEmail(email){
 		if(email.length == 0){
             addError("email","Vous ne devez pas avoir un email vide")
 		}else{
             if(!email.trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) || email.length <= 0) {
                 addError("email","Veuillez entrer un email compatible")
-            }
-		}
-
-		if(telephone.length == 0){
-            addError("telephone","Vous ne devez pas avoir un numero de téléphone vide")
-		}else{
-            if(telephone.length <= 9) {
-                addError("telephone","Veuillez entrer un numéro de telephone compatible")
             }
 		}
 }
@@ -137,14 +128,16 @@ function hideErrorsSecondPane(){
 }
 
  class Personne{
-	constructor( nom,prenom ,datedenaissance,telephone,username ,email ,password){
+	constructor( nom,prenom ,datedenaissance,address,sexe,username ,email ,password){
 			  		this.nom = nom
 			  		this.prenom = prenom
 			  		this.datedenaissance = datedenaissance
 			  		this.username = username
 			  		this.email = email
 			  		this.password = password
-			  		this.telephone = telephone
+			  		this.address = address
+			  		this.sexe = sexe
+
 	}
 }
 
@@ -160,11 +153,12 @@ jQuery(document).ready(function(){
 					nom = $('input[name=prenom]').val();
 					prenom = $('input[name=nom]').val();
 					birthday = $('input[name=birthday]').val();
-					telephone = $('input[name=telephone]').val();
+					sexe = $('select[name=sexe]').val();
+                    address = $('input[name=address]').val();
 					email = $('input[name=email]').val();
 
 					verifier_nom_prenom(nom,prenom);
-					verifier_Email_Telephone(email,telephone);
+					verifierEmail(email);
 					//validatedate(birthday);
 					validate_date(birthday);
                     $.ajax({
@@ -173,7 +167,6 @@ jQuery(document).ready(function(){
                                     data: {
                                     id:"1",
                                     email: email,
-                                    telephone:telephone,
                                     csrfmiddlewaretoken:token
                                            },
                                     success: function(response){
@@ -184,7 +177,8 @@ jQuery(document).ready(function(){
                                 personne.prenom = prenom;
                                 personne.datedenaissance = day + "-" + month + "-" + year;
                                 personne.email = email;
-                                personne.telephone = telephone;
+                                personne.address = address;
+                                personne.sexe = sexe;
                                 $('#Precedent').show();
                                 $('#Connector').show();
                                 $('#ja-ss').hide();
@@ -212,7 +206,6 @@ jQuery(document).ready(function(){
                                                   if(erreurs.size <= 0){
                                                                 personne.username = username;
                                                                 personne.password = password;
-                                                                console.log("i m here 2");
                                                                 $.ajax({
                                                                         url: '/Auth/signup',
                                                                         type: 'post',
@@ -223,19 +216,22 @@ jQuery(document).ready(function(){
                                                                         datedenaissance:personne.datedenaissance,
                                                                         username:personne.username,
                                                                         password:personne.password,
-                                                                        telephone:personne.telephone,
+                                                                        sexe:personne.sexe,
+                                                                        address:personne.address,
                                                                         csrfmiddlewaretoken:token
                                                                                },
                                                                         success: function(response){
-                                                                            $("#Suivant").hide()
-                                                                            $("#Precedent").hide()
-                                                                            $("#ja-ss").hide()
-                                                                            $("#Connector").hide()
-                                                                            $("#Error").html(response)
+                                                                            if(response == 'You re trying to hack'){
+
+                                                                            }else{
+                                                                                $("#Precedent").hide()
+                                                                                $(".container-login100-form-btn").hide()
+                                                                                $("#ja-ss").hide()
+                                                                                $("#Connector").hide()
+                                                                                $("#Error").html(response)
+                                                                            }
                                                                         }
                                                                 });
-                                                                console.log(z);
-
                                                             }else{
                                                                 setErrors();
                                                             }
@@ -245,18 +241,16 @@ jQuery(document).ready(function(){
                                         }
                                     }
                             });
-                                        });
+                                       });
                             }else{
                                 setErrors();
                             }
                                         }else{
                                             addError("email",response.email);
-                                            addError("telephone",response.telephone)
                                             setErrors();
                                         }
                                     }
                             });
-
 	});
 
 	$('#Precedent').on('click',function(){

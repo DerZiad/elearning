@@ -1,0 +1,51 @@
+.writemessage button{
+    background:none;
+    border:2px solid #0d5673;
+    border-radius:10px;
+    color:#0d5673;
+    font-weight:bold;
+    padding-left:60px;
+    padding-right:60px;
+    padding-top:15px;
+    padding-bottom:15px;
+    font-size:19px;
+    font-family:'sans serif';
+    margin-left:350px;
+}
+.writemessage input{
+    border:none;
+}
+.messagecl input{
+    height:60px;
+    width:600px;
+    border-radius:10px;
+    font-size:19px;
+
+}
+.subjectcl input{
+    height:60px;
+    width:200px;
+    border-radius:10px;
+    font-size:19px;
+    margin-left:25px;
+}
+.subjectcl messagecl{
+    font-size:18px;
+}
+
+@media ( max-width :992px) {
+  .writemessage input{
+    height:60px;
+    width:450px;
+    border-radius:10px;
+    font-size:19px;
+
+}
+.writemessage button{
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:15px;
+    padding-bottom:15px;
+
+}
+}

@@ -1,0 +1,32 @@
+{% extends 'Ba.html' %}
+{% block body %}
+<h1>Deutsch Adjektive und ihre Gegenteile</h1>
+       <p>Welches Adjektiv bedeutet das Gegenteil? Multiple-Choice-Übung zu
+           den deutschen Adjektiven: Finde das Adjektiv, dass die gegenteilige Bedeutung hat.</p>
+       <p>Diese Übung enthält die für Anfänger wichtigsten Adjektive (
+           Eigenschaftswörter) und Ihre Gegensätze. Dadurch sind die
+           Aufgaben ideal zum Aufbau und der Erweiterung deines Wortschatzes.</p>
+      <form method="post" action="/Grammar/gegenteile">
+                {% csrf_token %}
+            {% for key,values in dictionnaire.items %}
+
+                <h2> AUFGABE {{forloop.counter}} :</h2>
+
+                  <p class="enonce">
+                      {{ key }}
+                  </p>
+                    <div class="aufgabes">
+                        {% for mo in values %}
+                           <input type="radio" name="{{key}}" value="" id="losung" checked >
+                           <label for="losung">{{mo}}</label><br/>
+                        {% endfor %}
+                    </div>
+
+            {% endfor %}
+
+
+
+
+               <span class="submit"><input type="submit" value="VALIDER" ></span>
+      </form>
+{% endblock %}

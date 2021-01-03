@@ -4,31 +4,10 @@
     {% load static %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="language" content="fr">
-
-    <meta name="keywords" content="allemand en ligne, apprendre l'allemand, apprendre l'allemand gratuitement sur Internet, allemand langue étrangère, cours de langue gratuit, grammaire allemande, cours d'allemand en ligne, allemand, langue allemand, allemand sur Internet, apprendre l'allemand gratuitement, allemand gratuitement, exercices de langue, dictionnaires allemands, grammaire allemande, grammaire de l'allemand, dictionnaire gratuit">
-    <meta name="description" content="Apprendez l’allemand en ligne gratuitement ! Cours de langue, exercices, grammaire allemande, médiathèque et informations pratiques.">
-    <meta name="google-site-verification" content="f70kHNNpGrSnnfwiitstklMWP2VM7zBqrlftO9MrNGg">
-
-    <meta property="og:url" content="https://deutsch.info/courses">
-    <meta property="og:site_name" content="deutsch.info">
-    <meta property="og:title" content="Cours">
-    <meta property="fb:app_id" content="129941521039092">
-    <meta property="og:type" content="Website">
-    <meta property="og:description" content="Quatre cours complets de niveaux A1, A2, B1 et B2 avec des exercices interactifs et des supports audiovisuels">
-    <meta property="og:image" content="https://deutsch.info/images/logos/deutsch_info_logo_color_250px.png">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="https://deutsch.info/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://deutsch.info/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://deutsch.info/favicon-16x16.png">
-    <link rel="manifest" href="https://deutsch.info/manifest.json">
-    <link rel="mask-icon" href="https://deutsch.info/safari-pinned-tab.svg" color="#F3921F">
-    <meta name="theme-color" content="#ffffff">
-
+    {% include 'icon.html'%}
     <link href="{% static 'session_fichiers/bootstrap.css'%}" rel="stylesheet">
     <link href="{% static 'session_fichiers/main.css'%}" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/6.3.1/d3.min.js"></script>
 
     <link rel="image_src" href="https://deutsch.info/images/logos/deutsch_info_logo_color_250px.png">
     <script src="{% static 'session_fichiers/jquery-2.js'%}"></script>
@@ -36,15 +15,15 @@
     <script src="{% static 'session_fichiers/jquery_002.js'%}"></script>
     <script src="{% static 'session_fichiers/bootstrap.js'%}"></script>
 
-    <script type="text/javascript" src="{% static 'session_fichiers/main.js'%}"></script>
+    <!-- <script type="text/javascript" src="{% static 'session_fichiers/main.js'%}"></script>-->
     <script type="text/javascript" src="{% static 'session_fichiers/jquery.js'%}"></script>
 
     <script type="text/javascript" src="{% static 'session_fichiers/select2.js'%}"></script>
     <link href="{% static 'session_fichiers/select2.css'%}" rel="stylesheet">
     <link href="{% static 'session_fichiers/select2-bootstrap.css'%}" rel="stylesheet">
 
-    {%block title%}
-    <title>Cours - deutsch.info</title>
+    {%block besoin%}
+    <title>Cours - deutsch lernen</title>
     {%endblock %}
 </head>
 
@@ -60,6 +39,8 @@
 <li><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#"><span class="visible-xs-inline"><img class="" src="{% static 'session_fichiers/user_25_25.jpg'%}" alt=""></span><span class="hidden-xs">{{request.session.username}}</span><span class="caret"></span></a>
 <ul class="dropdown-menu">
 <li><a href="/afficher">Afficher le profil</a></li>
+    <li class="divider"><span></span></li>
+<li><a href="{% url 'Home:edit'%}">Préferences</a></li>
 <li class="divider"><span></span></li>
 <li><a href="/Auth/disconnect">Déconnexion</a></li>
 </ul>
@@ -89,6 +70,7 @@
 <li><a href="/Lesen">Lesen</a></li>
 <li><a href="/Schreiben">Schreiben</a></li>
 <li><a href="/Grammar">Grammar</a></li>
+<li><a href="/forum">Forum</a></li>
 </li>
 <!--<li><a href="/forum">Forum</a></li>-->
 </ul>            </div><!-- /.navbar-collapse -->
@@ -97,138 +79,7 @@
 </header>
     {% block body %}
     {% endblock %}
-
-        <footer id="footer">
-    <div class="section-sm">
-        <div class="container frame">
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="icon svg-sprite svg erasmus">
-                        <img src="{% static 'session_fichiers/logoback.png'%}" id="icon-erasmus" viewBox="0 0 130 27.14"/>
-                    </div>
-                    <p class="text-justify">
-                        <small>Ce projet a été réalisé par les éleves de Bachelor genie informatique encadré par Mr Bekri Ali</small>
-                    </p>
-                </div>
-                <div class="col-sm-6">
-
-                    <div class="social">
-                        <ul class="list-inline">
-                            <li>
-                                <a href="https://facebook.com/deutsch.info" target="_blank"><div class="icon svg-sprite svg facebook"><svg xmlns="http://www.w3.org/2000/svg" id="icon-facebook" viewBox="0 0 35 35"><path d="M35 3.646v27.708C35 33.368 33.368 35 31.354 35h-8.02V21.875h4.374l1.093-5.833h-5.467l.136-2.985c0-1.45.382-2.29 2.335-2.29h3.102l.697-5.22s-3.316-.442-5.268-.442c-4.387 0-6.926 2.925-6.926 7.428l.09 3.51h-4.376v5.832H17.5V35H3.646C1.632 35 0 33.368 0 31.354V3.646C0 1.632 1.632 0 3.646 0h27.708C33.368 0 35 1.632 35 3.646"></path></svg></div></a>                            </li>
-                            <li>
-                                <a href="https://twitter.com/deutsch_info" target="_blank"><div class="icon svg-sprite svg twitter"><svg xmlns="http://www.w3.org/2000/svg" id="icon-twitter" viewBox="0 0 35 35.001"><path d="M31.354 0H3.646C1.64 0 0 1.64 0 3.646v27.708C0 33.36 1.64 35 3.646 35h27.71C33.36 35 35 33.36 35 31.355V3.646C35 1.64 33.36 0 31.355 0m-3.437 12.99c.01.225.016.452.016.68 0 6.91-5.26 14.874-14.876 14.874-2.954 0-5.7-.863-8.014-2.35.41.048.825.074 1.248.074 2.45 0 4.704-.836 6.493-2.237-2.288-.04-4.218-1.553-4.884-3.63.32.063.646.09.983.09.477 0 .938-.063 1.377-.18-2.392-.48-4.194-2.593-4.194-5.128v-.064c.705.39 1.51.628 2.368.65-1.402-.935-2.326-2.536-2.326-4.348 0-.958.258-1.858.708-2.63 2.578 3.164 6.43 5.246 10.777 5.464-.09-.384-.136-.782-.136-1.193 0-2.883 2.342-5.224 5.23-5.224 1.503 0 2.86.633 3.814 1.65 1.192-.234 2.312-.67 3.32-1.27-.39 1.223-1.22 2.247-2.298 2.893 1.06-.124 2.064-.406 3.003-.823-.702 1.045-1.587 1.966-2.608 2.704"></path></svg></div></a>                            </li>
-                        </ul>
-                    </div>
-                    <p class="text-white copyright" dir="ltr">
-                        <small>© 2013-2020 deutsch.info | <a href="https://deutsch.info/fr/impressum">Impressum</a></small>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+    {% include 'footer.html'%}
 
 
-
-<a class="sr-only sr-only-focusable" href="#header">Retour au début</a></div><!-- wrapper -->
-
-<div id="language_list" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">Choisissez votre langue</h4>
-            </div>
-            <div class="modal-body">
-                    <div class="row">
-                                                <div class="col-md-4">
-                            <ul class="nav list-unstyled">
-                                                                <li class="tr-pr">
-                                                                        <a href="https://deutsch.info/ar/courses">ar - <span dir="rtl">العربية</span> <small>82%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/bg/courses">bg - Български <small>100%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/cs/courses">cs - Česky <small>91%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/de/courses">de - Deutsch <small>100%</small></a>                                                                    </li>
-                                                                <li class="tr-pr">
-                                                                        <a href="https://deutsch.info/el/courses">el - Ελληνικά <small>82%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/en/courses">en - English <small>91%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/eo/courses">eo - Esperanto <small>90%</small></a>                                                                    </li>
-                                                                <li class="tr-pr">
-                                                                        <a href="https://deutsch.info/es/courses">es - Español <small>83%</small></a>                                                                    </li>
-                                                                <li class="tr-pr">
-                                                                        <a href="https://deutsch.info/fa/courses">fa - <span dir="rtl">فارسی</span> <small>82%</small></a>                                                                    </li>
-                                                            </ul>
-                        </div>
-                                                <div class="col-md-4">
-                            <ul class="nav list-unstyled">
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/fr/courses">fr - Français <small>100%</small></a>                                                                    </li>
-                                                                <li class="tr-pr">
-                                                                        <a href="https://deutsch.info/hr/courses">hr - Hrvatski <small>83%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/hu/courses">hu - Magyar <small>98%</small></a>                                                                    </li>
-                                                                <li class="tr-pr">
-                                                                        <a href="https://deutsch.info/it/courses">it - Italiano <small>76%</small></a>                                                                    </li>
-                                                                <li class="tr-out">
-                                                                        <a href="https://deutsch.info/ko/courses">ko - 한국어 <small>11%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/lt/courses">lt - Lietuvių <small>91%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/pl/courses">pl - Polski <small>91%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/ro/courses">ro - Română <small>91%</small></a>                                                                    </li>
-                                                            </ul>
-                        </div>
-                                                <div class="col-md-4">
-                            <ul class="nav list-unstyled">
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/ru/courses">ru - Русский <small>91%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/sk/courses">sk - Slovenčina <small>91%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/sl/courses">sl - Slovenščina <small>91%</small></a>                                                                    </li>
-                                                                <li class="tr-out">
-                                                                        <a href="https://deutsch.info/sq/courses">sq - Shqip <small>14%</small></a>                                                                    </li>
-                                                                <li class="tr-pr">
-                                                                        <a href="https://deutsch.info/tr/courses">tr - Türkçe <small>82%</small></a>                                                                    </li>
-                                                                <li class="tr-out">
-                                                                        <a href="https://deutsch.info/uk/courses">uk - Українська <small>10%</small></a>                                                                    </li>
-                                                                <li class="tr-pr">
-                                                                        <a href="https://deutsch.info/vi/courses">vi - Tiếng Việt <small>81%</small></a>                                                                    </li>
-                                                                <li class="tr-up">
-                                                                        <a href="https://deutsch.info/zh-cn/courses">zh-cn - 简体中文 <small>99%</small></a>                                                                    </li>
-                                                            </ul>
-                        </div>
-                                            </div>
-
-            </div>
-            <div class="modal-footer">
-                <p class="">Aidez-nous à traduire le site&nbsp;! <a class="btn-sm btn-primary text-nowrap" href="https://deutsch.info/fr/contact">Contactez-nous</a>                    </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="dictionary_modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"></div>
-
-<div class="modal fade" id="ajaxModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <div class="modal-body">
-                ...
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<div id="jquery_jplayer" class="jp-jplayer" style="width: 0px; height: 0px;"><img id="jp_poster_0" style="width: 0px; height: 0px; display: none;"><audio id="jp_audio_0" preload="true"></audio></div></body></html>
+</div></body></html>

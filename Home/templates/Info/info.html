@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html dir="ltr" class=" svg" lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://deutsch.info/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://deutsch.info/favicon-16x16.png">
+    <link href="{% static 'info/bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'info/main.css'%}" rel="stylesheet">
+    <script src="{% static 'info/jquery-2.js'%}"></script>
+    <script src="{% static 'info/jquery-ui.js'%}"></script>
+    <script src="{% static 'info/jquery_002.js'%}"></script>
+    <script src="{% static 'info/bootstrap.js'%}"></script>
+
+    <script type="text/javascript" src="{% static 'info/main.js'%}"></script>
+    <script type="text/javascript" src="{% static 'info/jquery.js'%}"></script>
+
+    <script type="text/javascript" src="{% static 'info/select2.js'%}"></script>
+    <link href="{% static 'info/select2.css'%}" rel="stylesheet">
+    <link href="{% static 'info/select2-bootstrap.css'%}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'info/cookieconsent.css'%}">
+       
+    <title>Informations pratiques - deutsch lernen</title>
+
+<style></style></head>
+
+<body class="translation">
+{% include 'header.html'%}
+<div id="content" class="content">
+            
+<section class="section-sm">
+    <div class="container frame">
+        <h1 class="text-center">Informations pratiques</h1>
+
+        <ul class="cards list-inline list-unstyled row text-center equal-height">
+                            <li class="col-xs-6 col-md-offset-2 col-md-4 card card-bordered h" style="height: 379px;">
+                    <a href="{% url 'Home:germaninfo'%}?id=1">
+                        <img class="img-responsive" src="{% static 'info/germany.png'%}" alt="">                    <div class="card-caption">Allemagne</div>
+                    </a>
+                </li>
+                            <li class="col-xs-6 col-md-4 card card-bordered h" style="height: 379px;">
+                    <a href="{% url 'Home:autricheinfo'%}?id=2">
+                        <img class="img-responsive" src="{% static 'info/austria.png'%}" alt="">                    <div class="card-caption">Autriche</div>
+                    </a>
+                </li>
+                    </ul>
+    </div>
+</section>
+    {% include 'footer.html'%}
+        </div><!-- content -->
+		</body></html>
