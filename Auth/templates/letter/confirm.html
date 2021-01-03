@@ -27,13 +27,15 @@
     padding:18px;
 }
 </style>
-<form class="confirmclass" method="post" action="/Auth/confirm">
-    {% csrf_token %}
-    <input type="hidden" name="email" value="{{email}}">
-    <label for="textconfirm">Vous devez confirmer votre adresse email</label>
-    <input id="entry" type="number" value="" name="code" id="textconfirm" placeholder="#######"/>
-    <br>
-    <br>
-    <input id="btn" type="submit" value="Confirmer" />
-    <p class="codeerror">{{codeerror}}</p>
-</form>
+<div class="confirm">
+    <form class="confirmclass" method="post" action="/Auth/confirm">
+        {% csrf_token %}
+        <input type="hidden" name="email" value="{{email}}">
+        <label for="textconfirm">Vous devez confirmer votre adresse email</label>
+        <input id="entry" type="number" value="" name="code" id="textconfirm" placeholder="#######"/>
+        <br>
+        <br>
+        <input id="btn" type="submit" value="Confirmer" />
+        <p class="codeerror">{{codeerror}}</p>
+    </form>
+</div>

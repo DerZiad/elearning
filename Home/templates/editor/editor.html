@@ -2,8 +2,39 @@
 <link href="{% static 'editor/main.css'%}" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="{% static 'editor/fineuploader-3.css'%}">
+<style>
+.confirmclass{
+    padding:19px;
+    color:black;
+    font-family: "Gill Sans", sans-serif;
+    margin-left:19px;
+}
 
+#entry{
+    padding:10px;
+    font-size:20px;
+    background:none;
+    border:none;
+    opactiy:0.95;
+    box-shadow:1px 1px 1px;
+    border-radius:10px;
+}
+.codeerror{
+    color:red;
+    font-size:15px;
+}
+#btn{
+    margin-left:40px;
+    background:none;
+    border:2px solid #64dd17;
+    border-radius:10px;
+    padding:18px;
+}
+</style>
+<script src="{% static 'editor/login.js'%}"></script>
 {% endblock %} {% block body %}
+<input type="hidden" name="url" value="{% url 'Home:edit'%}"/>
+{% csrf_token %}
 <div id="content" class="content">
 
 	<section class="section-sm">
@@ -42,15 +73,19 @@
                                                     <input name="photo" type="file" value=""/>
 												 	<input name="fonction" type="submit" value="add"/>
                                              </form>
+
                                         </li>
 
 									<li class="remove-pic disabled">
                                             <form method="post" action="{% url 'Home:edit'%}">
+													{% csrf_token %}
                                                     <input name="fonction" type="submit" value="remove"/>
                                             </form>
                                     </li>
-								</ul></li>
+								</ul>
+							</li>
 						</ul>
+						<p class="errors" style="color:red">{{errorimage}}</p>
 					</div>
 				</div>
 
@@ -61,7 +96,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div id="change-email-link" class="change-link">
-								<label>Adresse électronique</label>: <span>{{personne.email}}</span>
+								<label>Adresse électronique</label>: <span id="mop">{{personne.email}}</span>
 								<a class="internal small"
 									onclick='$(".change-email").toggleClass("hide")'
 									href="javascript:;">changer</a>
@@ -71,15 +106,12 @@
 							class="row hide change-email change-form margin-top-sm">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="well">
-									<form class="" id="email-form"
-										action="{% url 'Home:edit'%}" method="post">
-										{% csrf_token %}
-										<input type="hidden" name="action" value="changeemailfirst"/>
+									<div id="email-form">
 										<div class="form-group required">
 											<label class="control-label" for="Profile_email">Adresse
 												électronique</label> <input class="form-control"
 												placeholder="Adresse électronique" name="email"
-												id="Profile_email" type="text" value="smookerzz">
+												id="Profile_email" type="text" value="">
 											<div class="help-block error" id="Profile_email_em_"
 												style="display: none"></div>
 										</div>
@@ -92,13 +124,23 @@
 											<div class="help-block error" id="Profile_password_em_"
 												style="display: none"></div>
 										</div>
-
+										<p id="erroremail" class="error"></p>
 										<div class="form-group">
 											<input class="btn btn-primary" type="submit" name="yt0"
 												value="Enregistrer">
 										</div>
 
-</form>
+</div>
+<div class="confirm">
+
+        <input type="hidden" name="email" value="{{email}}">
+        <label for="textconfirm">Vous devez confirmer votre adresse email</label>
+        <input id="entry" type="number" value="" name="code" id="textconfirm" placeholder="#######"/>
+        <br>
+        <br>
+        <input id="btn" type="submit" value="Confirmer" />
+        <p class="codeerror">{{codeerror}}</p>
+</div>
 								</div>
 							</div>
 						</div>
@@ -115,27 +157,20 @@
 							class="row hide change-password change-form margin-top-sm">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="well">
-									<form class="" id="password-form"
-										action="{% url 'Home:edit' %}" method="post">
-										{% csrf_token %}
 										<input type="hidden" name="action" value="changepass"/>
 										<div class="form-group">
 											<label class="control-label" for="Profile_password_old">Mot
 												de passe actuel</label> <input class="form-control" placeholder=""
-												name="Profile[password_old]" id="Profile_password_old"
+												name="normalpassword" id="Profile_password_old"
 												type="password">
 											<div class="help-block error" id="Profile_password_old_em_"
 												style="display: none"></div>
-											<div class="help-block">
-												<a href="https://deutsch.info/fr/forgot_password">Avez-vous
-													oublié votre mot de passe ?</a>
-											</div>
 										</div>
 
 										<div class="form-group">
 											<label class="control-label" for="Profile_password_new">Nouveau
 												mot de passe</label> <input class="form-control" placeholder=""
-												name="Profile[password_new]" id="Profile_password_new"
+												name="newpassword" id="Profile_password_new"
 												type="password">
 											<div class="help-block error" id="Profile_password_new_em_"
 												style="display: none"></div>
@@ -144,19 +179,17 @@
 										<div class="form-group">
 											<label class="control-label" for="Profile_password_repeat">Confirmer
 												le nouveau mot de passe</label> <input class="form-control"
-												placeholder="" name="Profile[password_repeat]"
+												placeholder="" name="cnewpassword"
 												id="Profile_password_repeat" type="password">
 											<div class="help-block error"
 												id="Profile_password_repeat_em_" style="display: none"></div>
 										</div>
 
 										<div class="form-group">
-											<input class="btn btn-primary" type="submit" name="yt1"
+											<input id="btn1" class="btn btn-primary" type="submit" name="yt1"
 												value="Enregistrer">
 										</div>
-
-
-									</form>
+										<p id="errorpassword"></p>
 								</div>
 							</div>
 						</div>
