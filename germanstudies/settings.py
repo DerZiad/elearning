@@ -84,7 +84,7 @@ DATABASES = {
        'ENGINE': 'django.db.backends.mysql', # on utilise l'adaptateur postgresql
         'NAME': 'django', # le nom de notre base de donnees creee precedemment
         'USER': 'root', # attention : remplacez par votre nom d'utilisateur
-        'PASSWORD': '82134',
+        'PASSWORD': 'ziad20021960+',
         'HOST': 'localhost',
         'PORT': '3306',
     }

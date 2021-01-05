@@ -99,7 +99,7 @@ def edit(request):
         action = request.POST.get('action')
         if action == 'delete':
             personne = Personne.objects.get(username = request.session['username'])
-            message = Message.objects.get(personne = personne)
+            message = Message.objects.filter(personne = personne)
             personne.delete()
             message.delete()
             request.session.flush()

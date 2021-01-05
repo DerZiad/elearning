@@ -1,7 +1,26 @@
 {% extends 'Ba.html'%}
+{% load static %}
 {% block besoin %}
-
+    <link href="{% static 'css/style.css'%}" rel="stylesheet"/>
 {% endblock %}
-{% block content %}
+{% block body %}
+<section>
+    <h1>Schreiben :</h1>
+    <div class="schreiben">
+        <p>Salut {{exercice.text}}</p>
+    </div>
+    <div class="reponse">
+        <form action="{% url 'Schreiben:homeschreiben' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{exercice.id}}"/>
+            <textarea name="schreiben" value="" placeholder="Gebe deine schreiben hier" maxlength="500 wörter">
 
+            </textarea>
+            <div class="btn-submit">
+                 <input type="submit" value="Senden"/>
+            </div>
+        </form>
+
+    </div>
+</section>
 {% endblock %}
