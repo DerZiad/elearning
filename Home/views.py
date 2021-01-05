@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.template import loader
 from .models import Message
 from Auth.models import  Personne
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
+from Home.funktions.funktion import getName
 import hashlib
 import Auth.ValidEntry.sender as sender
 import Auth.ValidEntry.random as randomer
@@ -97,23 +98,24 @@ def edit(request):
     if request.method == "POST":
         action = request.POST.get('action')
         if action == 'delete':
-            username = request.session['username']
-            personne = Personne.objects.get(username = username)
+            personne = Personne.objects.get(username = request.session['username'])
+            message = Message.objects.filter(personne = personne)
             personne.delete()
+            message.delete()
+            request.session.flush()
+            request.session.clear_expired()
+            return HttpResponseRedirect("/")
         elif action == 'changeemailfirst':
-            email = request.session['email']
-            passw = request.session['password']
+            email = request.POST['email']
+            passw = request.POST['password']
             cpassword = hashlib.md5(passw.encode())
-
-            personne = Personne.objects.get(username=email)
+            personne = Personne.objects.get(username=request.session['username'])
             context = {
 
             }
             if personne.password == cpassword.hexdigest():
-                email = request.POST['email']
-                personne = Personne.objects.get(email=email)
-                personnes = Personne.objects.get(email=request.session['username'])
-                if len(personne) == 0:
+                personnes = Personne.objects.filter(email=email)
+                if len(personnes) == 0:
                     code = randomer.generateRandom()
                     request.session['code'] = code
                     request.session['nemail'] = email
@@ -121,36 +123,32 @@ def edit(request):
                         "address":email,
                         "text":"Votre de code changement est " + code,
                         "subject": "Changer le code"
-
                     }
-                    sender.sendEmail(infos)
-                    return HttpResponse("email")
+                    sender.sendEmail(info,request)
+                    context['success'] = "Vrai"
                 else:
-                    context = {
-                        "errorfirst":"Email dèja existant",
-                    }
-                    return render(request,"editor/editor.html",context)
+                    context['success'] = "Faux"
+                    context["errorfirst"] = "Email dèja existant"
             else:
-                context = {
-                    "errorfirst":"Mot de passe incorrect",
-                }
-                return render(request, "editor/editor.html", context)
+                context['success'] = "Faux"
+                context["errorfirst"] = "Mot de passe incorrect",
+            return JsonResponse(context)
         elif action == 'changemailsecond':
-            personne = Personne.objects.get(email = request.session['username'])
+            personne = Personne.objects.get(username = request.session['username'])
             code = request.session['code']
             codeR = request.POST.get('code')
             context = {
-                "personne":personne
             }
             if code == codeR:
                 personne = Personne.objects.get(email = request.session['email'])
                 personne.email = request.session['nemail']
                 personne.save()
+                context['success'] = "Vrai"
             else:
                 context['errorfirst'] = "Le code est incorrect"
-            return render(request,"editor/editor.html",context)
+            return JsonResponse(context)
         elif action == "changepassword":
-            personne = Personne.objects.get(email = request.session['username'])
+            personne = Personne.objects.get(username = request.session['username'])
             normalpassword = request.POST['normalpassword']
             newpassword = request.POST['newpassword']
             cnewpassword = request.POST['cnewpassword']
@@ -162,19 +160,19 @@ def edit(request):
                     encryptednewpassword = hashlib.md5(newpassword.encode()).hexdigest()
                     if hashlib.md5(normalpassword.encode()).hexdigest() == personne.password:
                         personne.password = encryptednewpassword
+                        personne.save()
+                        context['success'] = "Vrai"
                     else:
-                        context = {
-                            "errorsecond":"Votre mot de passe est incorrect"
-                        }
+                        context['success'] = "Faux"
+                        context["errorsecond"] = "Votre mot de passe est incorrect"
+
                 else:
-                    context = {
-                        "errorsecond":"Le nouveau mot de passe doit être identique au confirmation"
-                    }
+                    context['success'] = "Faux"
+                    context["errorsecond"] = "Le nouveau mot de passe doit être identique au confirmation"
             else:
-                context = {
-                    "errorsecond":"le mot de passe doit être au moins 9 caractères"
-                }
-            return HttpResponse(request,"editor/editor",context)
+                context['success'] = "Faux"
+                context["errorsecond"] = "le mot de passe doit être au moins 9 caractères"
+            return JsonResponse(context)
         elif action == "changeinfo":
                 try:
                     nom = request.POST['nom']
@@ -184,7 +182,10 @@ def edit(request):
                     datemonth = request.POST['datemonth']
                     dateyear = request.POST['dateyear']
                     sexe = request.POST['sexe']
-                    list= [dateday,datemonth,dateyear]
+                    list= []
+                    list.append(dateday)
+                    list.append(datemonth)
+                    list.append(dateyear)
                     valid.validNom(nom)
                     valid.validPrenom(prenom)
                     valid.validDate(dateday)
@@ -195,34 +196,51 @@ def edit(request):
                     personne.prenom = prenom
                     personne.Address = address
                     personne.datedenaissance = datetime.date(year=int(dateyear), month=int(datemonth), day=int(dateday))
-                    personne.sexe = sexe
+                    personne.Sexe = sexe
                     personne.save()
+                    context = {
+                        "personne":personne,
+                    }
+                    return render(request, "editor/editor.html", context)
                 except ValueError:
                     personne = Personne.objects.get(username = request.session['username'])
                     context = {
-                        "errorthid":"Vous avez une erreur dans votre informations"
+                        "errorthid":"Vous avez une erreur dans votre informations",
+                        "personne":personne
                     }
-                    return render(request,"forum/forum.html",context)
+                    return render(request,"editor/editor.html",context)
         elif action == "changepic":
             fonction = request.POST['fonction']
             personne = Personne.objects.get(username=request.session['username'])
             if fonction == "add":
-                photo = request.FILES['photo']
-                print(photo.__dict__())
-                personne.photo = photo
-                personne.save()
+                try:
+                    photo = request.FILES['photo']
+                    photo = getName(photo)
+                    personne.photo = photo
+                    personne.save()
+                except ValueError:
+                    personne = Personne.objects.get(username=request.session['username'])
+                    context = {
+                        "personne": personne,
+                        "errorimage":"Le fichier que vous voulez insérer doit être jpg ou jpeg ou png"
+                    }
+                    return render(request, "editor/editor.html", context)
             elif fonction == "remove":
-                personne.photo = None
+                personne.photo = "/media"
                 personne.save()
             else:
                 pass
+            personne = Personne.objects.get(username=request.session['username'])
+            context = {
+                "personne": personne
+            }
+            return render(request, "editor/editor.html", context)
         else:
-            print("error")
-        personne = Personne.objects.get(username=request.session['username'])
-        context = {
-            "personne": personne
-        }
-        return render(request, "editor/editor.html", context)
+            personne = Personne.objects.get(username=request.session['username'])
+            context = {
+                "personne": personne
+            }
+            return render(request, "editor/editor.html", context)
     else:
         personne = Personne.objects.get(username = request.session['username'])
         context = {

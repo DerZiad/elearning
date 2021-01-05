@@ -1,5 +1,7 @@
 {% extends 'Ba.html' %}
+{% load static %}
 {% block body %}
+<link href="{% static 'css/cours.css'%}" rel="stylesheet">
 <h1>Deutsch Adjektive und ihre Gegenteile</h1>
        <p>Welches Adjektiv bedeutet das Gegenteil? Multiple-Choice-Übung zu
            den deutschen Adjektiven: Finde das Adjektiv, dass die gegenteilige Bedeutung hat.</p>
@@ -17,7 +19,7 @@
                   </p>
                     <div class="aufgabes">
                         {% for mo in values %}
-                           <input type="radio" name="{{key}}" value="" id="losung" checked >
+                           <input type="radio" name="{{key}}" value="" id="losung" >
                            <label for="losung">{{mo}}</label><br/>
                         {% endfor %}
                     </div>
@@ -28,5 +30,6 @@
 
 
                <span class="submit"><input type="submit" value="VALIDER" ></span>
+          {{message}}
       </form>
 {% endblock %}

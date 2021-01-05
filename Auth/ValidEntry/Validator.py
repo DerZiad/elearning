@@ -32,9 +32,8 @@ def validSexe(sexe):
         raise ValueError
 def validDate(list):
     try:
-        int(list[0])
-        int(list[1])
-        int(list[2])
+        for ele in list:
+            int(ele)
     except TypeError:
         raise ValueError
 def validAdress(adress):

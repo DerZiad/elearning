@@ -1,0 +1,19 @@
+.schreiben{
+    border:2px solid black;
+    border-radius:15px;
+    padding:30px;
+    margin-left:500px;
+    margin-right:500px;
+}
+.reponse textarea{
+    height:200px;
+    width:850px;
+    resize:none;
+    border:1px dashed blue;
+    overflow:scroll;
+}
+.reponse{
+    margin-left:500px;
+    margin-right:500px;
+    padding:30px;
+}
