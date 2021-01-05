@@ -8,11 +8,9 @@ class Personne(models.Model):
 
    nom = models.CharField(max_length=20)
    prenom = models.CharField(max_length=20)
-   datedenaissance = models.DateField()
+   datedenaissance = models.CharField(max_length=50,default="02-01-2002")
    username = models.CharField(max_length=18)
-   Address = models.CharField(max_length=80)
-   Sexe = models.CharField(max_length=5)
-   photo = models.ImageField(upload_to="pictures/",max_length=255,default="pictures/user_200_200.jpg")
+   telephone = models.CharField(max_length=18,default="0652518306")
 
    #Succes
    succes_schreiben = models.IntegerField(default=0)
@@ -21,7 +19,5 @@ class Personne(models.Model):
    succes_grammar = models.IntegerField(default=0)
    #Professor
    datecreationaccount = models.DateField(auto_now_add=True)
-class temporals(models.Model):
-      code = models.CharField(max_length=10,primary_key=True)
-      personne = models.ForeignKey(Personne,on_delete=models.CASCADE)
+
 
