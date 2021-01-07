@@ -1,19 +1,55 @@
+body{
+	background-color: #eeeeee;
+	font-family: sans-serif;
+}
 .schreiben{
-    border:2px solid black;
-    border-radius:15px;
-    padding:30px;
-    margin-left:500px;
-    margin-right:500px;
+	border:2px solid rgb(243, 146, 31);
+	border-radius: 20px;
+	padding: 15px;
 }
-.reponse textarea{
-    height:200px;
-    width:850px;
-    resize:none;
-    border:1px dashed blue;
-    overflow:scroll;
+.schreiben .schreiben-sujet{
+	color: rgb(243, 146, 31);
+	font-weight: bold;
+	font-size:19px;
 }
-.reponse{
-    margin-left:500px;
-    margin-right:500px;
-    padding:30px;
+.schreiben-reponse #schreiben{
+	border:2px solid rgb(243, 146, 31);
+	border-radius: 10px;
+	padding: 20px;
+	height: 480px;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+section{
+	border:2px solid black;
+	border-radius:10px;
+	background-color: white;
+	padding: 15px;
+	margin:20px;
+	display: flex;
+	flex-direction: column;
+}
+.btn-submit{
+	display: flex;
+	justify-content: center;
+}
+.btn-submit input{
+	background:none;
+	border:2px solid rgb(243, 146, 31);
+	border-radius: 20px;
+	color:rgb(243, 146, 31);
+	font-size: 20px;
+	font-weight: bold;
+
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left:80px;
+	padding-right: 80px; 
+	text-align: center;
+}
+.btn-submit input:hover{
+	color:white;
+	background-color: rgb(243, 146, 31);
 }

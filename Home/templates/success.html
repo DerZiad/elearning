@@ -1,0 +1,17 @@
+{% extends 'Ba.html'%}
+{% load static %}
+
+{% block besoin %}
+<link rel="stylesheet" href="{% static 'outils/style.css'%}"/>
+{% endblock %}
+
+{% block body %}
+    <div class="content-page-success">
+        <div class="content-error-image">
+            <img src="{% static 'outils/success.png'%}" alt="error-image"/>
+        </div>
+        <div class="content-">
+                <p>{{success}}</p>
+        </div>
+    </div>
+{% endblock %}

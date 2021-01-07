@@ -5,19 +5,27 @@
 {% endblock %}
 {% block body %}
 <section>
-    <h1>Schreiben :</h1>
-    <div class="schreiben">
-        <p>Salut {{exercice.text}}</p>
+    <div class="schreiben-enonce">
+        <div class="schreiben">
+            <div class="schreiben-sujet">
+                <p2>Théma ist " {{exercice.sujet}} " </p2>
+            </div>
+            <div class="schreiben-text">
+                <p>{{exercice.text}}</p>
+            </div>
+        </div>
     </div>
-    <div class="reponse">
-        <form action="{% url 'Schreiben:homeschreiben' %}" method="post">
+    <br><br><br>
+    <div class="schreiben-reponse">
+        <form action="{% url 'Schreiben:homeschreiben'%}" method="post">
             {% csrf_token %}
-            <input type="hidden" name="id" value="{{exercice.id}}"/>
-            <textarea name="schreiben" value="" placeholder="Gebe deine schreiben hier" maxlength="500 wörter">
-
-            </textarea>
+            <input name="id" value="{{reponse.id}}" type="hidden"/>
+            <input name="idperso" value="{{reponseperso.id}}" type="hidden"/>
+            <input type="hidden" name="id" value="4">
+            <textarea id="schreiben" name="schreiben" value="" placeholder="Gebe deine schreiben hier" maxlength="500 wörter"></textarea>
+            <br><br>
             <div class="btn-submit">
-                 <input type="submit" value="Senden"/>
+                <input type="submit" value="Senden">
             </div>
         </form>
 
