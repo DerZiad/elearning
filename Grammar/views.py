@@ -1,6 +1,6 @@
 from builtins import print
-
-from django.http import HttpResponse
+from Home.funktions.funktion import checkSession
+from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
 from . import models
@@ -9,84 +9,89 @@ from Grammar.models import Ubung, Essai
 
 
 def grammarex(request):
-    ubungs = Ubung.objects.all()[:10]
+    try:
+            checkSession(request)
+            ubungs = Ubung.objects.all()[:10]
 
-    if (request.method == "POST"):
+            if (request.method == "POST"):
 
-        losung = request.POST
-        cmp = 0
-        erreur = {}
-        for ubung in ubungs:
-            try:
-                if str(losung[ubung.frage]) == str(ubung.losung):
-                    cmp += 1
-                msg = "le nombre de question acuis", cmp
+                losung = request.POST
+                cmp = 0
+                erreur = {}
+                for ubung in ubungs:
+                    try:
+                        if str(losung[ubung.frage]) == str(ubung.losung):
+                            cmp += 1
+                        msg = "le nombre de question acuis", cmp
 
-            except:
-                msg = "veuillez selectionner tous les choix "
-        moglichkeit = Essai.objects.all()[:32]
+                    except:
+                        msg = "veuillez selectionner tous les choix "
+                moglichkeit = Essai.objects.all()[:32]
 
-        dic = {
-        }
+                dic = {
+                }
 
-        list = []
-        for ubung in ubungs:
-            list.append(ubung.losung)
-            for mog in moglichkeit:
-                if mog.numf == ubung:
-                    list.append(mog.choix)
-            dic[str(ubung.frage)] = list
-            list = []
-        context = {
-            'ubungs': ubungs,
+                list = []
+                for ubung in ubungs:
+                    list.append(ubung.losung)
+                    for mog in moglichkeit:
+                        if mog.numf == ubung:
+                            list.append(mog.choix)
+                    dic[str(ubung.frage)] = list
+                    list = []
+                context = {
+                    'ubungs': ubungs,
 
-            'dictionnaire': dic,
-            'erreur': erreur,
-            'message': msg,
-        }
-        return render(request, 'Grammar/index.html', context)
+                    'dictionnaire': dic,
+                    'erreur': erreur,
+                    'message': msg,
+                }
+                return render(request, 'Grammar/index.html', context)
 
-    else:
-        paginator = Paginator(ubungs, 3)
-        seit = request.GET.get('page')
-        try:
-            exer = paginator.page(seit)
+            else:
+                paginator = Paginator(ubungs, 3)
+                seit = request.GET.get('page')
+                try:
+                    exer = paginator.page(seit)
 
-        except PageNotAnInteger:
-            exer = paginator.page(1)
+                except PageNotAnInteger:
+                    exer = paginator.page(1)
 
-        except EmptyPage:
-            exer = paginator.page(paginator.num_pages)
-        moglichkeit = Essai.objects.all()[:32]
+                except EmptyPage:
+                    exer = paginator.page(paginator.num_pages)
+                moglichkeit = Essai.objects.all()[:32]
 
-        dic = {
-        }
-        i = 1
-        list = []
-        for ubung in ubungs:
-            list.append(ubung.losung)
-            for mog in moglichkeit:
-                if mog.numf == ubung:
-                    list.append(mog.choix)
-            dic[str(ubung.frage)] = list
-            print(list)
-            print("test", dic)
-            list = []
-        losung = request.GET
+                dic = {
+                }
+                i = 1
+                list = []
+                for ubung in ubungs:
+                    list.append(ubung.losung)
+                    for mog in moglichkeit:
+                        if mog.numf == ubung:
+                            list.append(mog.choix)
+                    dic[str(ubung.frage)] = list
+                    print(list)
+                    print("test", dic)
+                    list = []
+                losung = request.GET
 
-        context = {
-            'dictionnaire': dic,
-            'paginate': True,
-            'exer': exer
-        }
-        return render(request, 'Grammar/index.html', context)
-
+                context = {
+                    'dictionnaire': dic,
+                    'paginate': True,
+                    'exer': exer
+                }
+                return render(request, 'Grammar/index.html', context)
+    except:
+        return HttpResponseRedirect('/')
 
 def ubung(request):
     return render(request, 'Grammar/menuubungs.html')
 
 
 def gegenteile(request):
+  try :
+    checkSession(request)
     ubungs = Ubung.objects.all()[10:22]
     paginator = Paginator(ubungs, 3)
     seit = request.POST.get('page')
@@ -155,9 +160,12 @@ def gegenteile(request):
             'paginate': True
         }
         return render(request, 'Grammar/gegenteile.html', context)
-
+  except:
+      return HttpResponseRedirect('/')
 
 def bartikel(request):
+ try:
+    checkSession(request)
     ubungs = Ubung.objects.all()[22:]
     paginator = Paginator(ubungs, 3)
     seit = request.POST.get('page')
@@ -226,7 +234,8 @@ def bartikel(request):
             'paginate': True
         }
         return render(request, 'Grammar/bartikel.html', context)
-
+ except :
+    return HttpResponseRedirect('/')
 
 def test(request):
     ubungs = Ubung.objects.all()
@@ -264,26 +273,47 @@ def test(request):
 
 #### ziad ###
 def alphabet(request):
+   try:
+    checkSession(request)
     return render(request, 'Grammar/cours_alphabet.html')
-
+   except:
+       return HttpResponseRedirect('/')
 
 def menu(request):
+   try :
     return render(request, 'Grammar/menu.html')
-
+   except :
+       return HttpResponseRedirect('/')
 
 def general(request):
+   try :
+    checkSession(request)
     return render(request, 'Grammar/general.html')
-
+   except :
+       return HttpResponseRedirect('/')
 
 def artikel(request):
-    return render(request, 'Grammar/artikelcours.html')
-
+    try :
+        checkSession(request)
+        return render(request, 'Grammar/artikelcours.html')
+    except :
+        return HttpResponseRedirect('/')
 
 def pronoms(request):
-    return render(request, 'Grammar/pronoms.html')
-
+   try :
+        checkSession(request)
+        return render(request, 'Grammar/pronoms.html')
+   except :
+         return HttpResponseRedirect('/')
 def adjektive(request):
-    return  render(request,'Grammar/adjektive.html')
-
+    try :
+        checkSession(request)
+        return  render(request,'Grammar/adjektive.html')
+    except:
+        return HttpResponseRedirect('/')
 def pronomsindefinis(request):
-    return render(request,'Grammar/pronomsindefinis.html')
+   try :
+        checkSession(request)
+        return render(request,'Grammar/pronomsindefinis.html')
+   except :
+       return HttpResponseRedirect('/')
