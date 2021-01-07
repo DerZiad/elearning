@@ -8,6 +8,9 @@ def getName(photo):
     photo.name = str(hash(ele)) + extension
     return photo
 def checkSession(request):
-    username = request.session['username']
-    if username == None and len(username) == 0:
+    try:
+        username = request.session['username']
+        if username == None and len(username) == 0:
+            raise IndexError
+    except:
         raise IndexError

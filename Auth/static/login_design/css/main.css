@@ -102,11 +102,7 @@ textarea::-moz-placeholder { color: #999999; }
 textarea:-ms-input-placeholder { color: #999999; }
 
 /*---------------------------------------------*/
-.ajout{
-    background-image:url("background.jpg");
-    background-size:cover;
-    background-repeat:no-repeat;
-}
+
 section button {
 	outline: none !important;
 	border: none;
@@ -343,7 +339,7 @@ iframe {
   border-radius: 25px;
   background: #57b846;
   display: -webkit-box;
-  display: -webkit-flex;
+  display: -webkit-flexf;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
