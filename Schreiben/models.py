@@ -22,4 +22,4 @@ class Reponse(models.Model):
 class Correction(models.Model):
     text = models.TextField()
     remarque = models.TextField()
-    reponse = models.OneToOneField(Reponse)
+    reponse = models.OneToOneField(Reponse,on_delete=models.CASCADE)

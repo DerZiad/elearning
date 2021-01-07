@@ -1,6 +1,7 @@
 from Schreiben.models import Reponse,Excercice
 from Auth.models import Personne
 from random import seed
+
 from random import choice
 def generateRandom(sequence):
     return choice(sequence)

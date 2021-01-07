@@ -15,15 +15,19 @@ def index(request):
     else:
         text = request.POST['schreiben']
         id = request.POST['id']
-        reponse = Reponse(rep=text,personne = Personne(username = request.session['username']),excercice = Excercice.objects.get(id=int(id)))
+        reponse = Reponse(rep=text,personne = Personne.objects.get(username = request.session['username']),excercice = Excercice.objects.get(id=int(id)))
         reponse.save()
         reponses = Reponse.objects.all()
-        reponses.remove(reponse)
+        list = []
+        for rep in reponses:
+            if reponse != rep:
+                list.append(rep)
+
         context = {
-            "reponse":reponses[0],
+            "reponse":list[0],
             "reponseperso":reponse
         }
-        return render(request,"response.html",context)
+        return render(request,"reponse.html",context)
 def correction(request):
     if request.method == "POST":
         textcorr = request.POST['correction']
@@ -37,7 +41,7 @@ def correction(request):
                 "reponseperso":reponse,
                 "reponse": etrresponse
             }
-            return render(request,"responste.html",context)
+            return render(request,"reponse.html",context)
         else:
             reponse.legal = True
             etrresponse.corrected= True
@@ -49,8 +53,10 @@ def correction(request):
                     "text": correction.text +'\n Remarques \n' + correction.remarque,
                     "subject":"Correction d'excercice" + correction.reponse.excercice.sujet
                 }
+                print("sending1")
                 sendEmail(info)
             if etrresponse.legal:
+                print("sending2")
                 correction1 = Correction(text = textcorr,remarque = remarque,reponse = etrresponse)
                 info = {
                     "address": etrresponse.personne.email,
@@ -58,6 +64,16 @@ def correction(request):
                     "subject": "Correction d'excercice" + correction1.reponse.excercice.sujet
                 }
                 sendEmail(info)
-            return HttpResponse("good")
+            context = {
+                "keyword":"success",
+                "success":"Votre corrigé a été bien reçu, vous allez reçevoir votre correction sur votre email"
+            }
+            return render(request,"success.html",context)
+    else:
+        context = {
+            "keyword": "error",
+            "error": "n'essaye pas de pirater"
+        }
+        return render(request,"errorpagesession.html",context)
 
 
