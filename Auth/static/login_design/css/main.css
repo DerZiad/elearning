@@ -102,6 +102,11 @@ textarea::-moz-placeholder { color: #999999; }
 textarea:-ms-input-placeholder { color: #999999; }
 
 /*---------------------------------------------*/
+.ajout{
+    background-image:url("background.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+}
 section button {
 	outline: none !important;
 	border: none;
