@@ -1,7 +1,4 @@
 from django.db import models
-
-class Professeur(models.Model):
-   pass
 class Personne(models.Model):
    email = models.EmailField(max_length=25)
    password = models.CharField(max_length=80)
