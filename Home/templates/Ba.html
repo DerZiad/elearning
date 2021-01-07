@@ -4,17 +4,20 @@
     {% load static %}
     <meta charset="utf-8">
     {% include 'icon.html'%}
+
     <link href="{% static 'session_fichiers/bootstrap.css'%}" rel="stylesheet">
     <link href="{% static 'session_fichiers/main.css'%}" rel="stylesheet">
-    <script
-			  src="https://code.jquery.com/jquery-2.2.4.js"
-			  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-			  crossorigin="anonymous"></script>
+    <script src="{% static 'session_fichiers/jquery-2.js'%}"></script>
+    <script src="{% static 'session_fichiers/jquery-ui.js'%}"></script>
+    <script src="{% static 'session_fichiers/jquery_002.js'%}"></script>
     <script src="{% static 'session_fichiers/bootstrap.js'%}"></script>
 
-    <!-- <script type="text/javascript" src="{% static 'session_fichiers/main.js'%}"></script>-->
-    <script type="text/javascript" src="{% static 'session_fichiers/jquery.js'%}"></script>
+    <script type="text/javascript" src="session_fichiers/main.js'%}"></script>
+    <script type="text/javascript" src="session_fichiers/jquery.js'%}"></script>
 
+    <script type="text/javascript" src="{% static 'session_fichiers/select2.js'%}"></script>
+    <link href="{% static 'session_fichiers/select2.css'%}" rel="stylesheet">
+    <link href="{% static 'session_fichiers/select2-bootstrap.css'%}" rel="stylesheet">
     {% block besoin %}
     <title>Cours - deutsch lernen</title>
     {%endblock %}

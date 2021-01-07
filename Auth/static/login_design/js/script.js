@@ -105,9 +105,7 @@ function setErrors(){
 function hideErrorsFirstPane(){
     $("#nom").hide();
     $("#prenom").hide();
-    $("#day").hide();
-    $("#month").hide();
-    $("#year").hide();
+    $("#dateerror").hide();
     $("#telephone").hide();
     $("#email").hide();
 }
