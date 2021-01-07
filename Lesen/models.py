@@ -15,7 +15,7 @@ class Fragen (models.Model):
 
 
 class Answers (models.Model):
-    an = models.CharField(max_length=20)
+    an = models.CharField(max_length=50)
     numfra = models.ForeignKey(Fragen, on_delete=models.CASCADE)
 
 
