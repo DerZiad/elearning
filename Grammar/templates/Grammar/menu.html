@@ -1,0 +1,56 @@
+{% extends 'Ba.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container frame">
+	<h1 class="text-center">Grammaire</h1>
+
+	<ul class="cards list-inline list-unstyled row text-center equal-height">
+		<li class="col-sm-6 col-md-4 card card-bordered h"
+			style="height: 274px;"><a
+			href="{% url 'Grammar:alphabet'%}"> <img
+				class="img-responsive"
+				src="{% static 'phonetics.png'%}" alt="">
+				<div class="card-caption">Phonétique</div>
+		</a></li>
+		<li class="col-sm-6 col-md-4 card card-bordered h"
+			style="height: 274px;"><a
+			href="{% url 'Grammar:artikel'%}"> <img
+				class="img-responsive"
+				src="{% static 'nouns.png'%}" alt="">
+				<div class="card-caption">Substantifs et articles</div>
+		</a></li>
+		<li class="col-sm-6 col-md-4 card card-bordered h"
+			style="height: 274px;"><a
+			href="{% url 'Grammar:pronoms' %}"> <img
+				class="img-responsive"
+				src="{% static 'pronouns.png' %}" alt="">
+				<div class="card-caption">Pronoms</div>
+		</a></li>
+
+		<li class="col-sm-6 col-md-4 card card-bordered h"
+			style="height: 274px;"><a
+			href="{% url 'Grammar:adjektive'%}"> <img
+				class="img-responsive"
+				src="{% static 'adjectives.png' %}" alt="">
+				<div class="card-caption">Adjectifs</div>
+		</a></li>
+		<li class="col-sm-6 col-md-4 card card-bordered h"
+			style="height: 274px;"><a
+			href="https://deutsch.info/fr/grammar/adverbs"> <img
+				class="img-responsive"
+				src="{% static 'adverbs.png'%}" alt="">
+				<div class="card-caption">Adverbes</div>
+		</a></li>
+
+		<li class="col-sm-6 col-md-4 card card-bordered h"
+			style="height: 274px;"><a
+			href="https://deutsch.info/fr/grammar/numerals"> <img
+				class="img-responsive"
+				src="{% static 'numerals.png'%}" alt="">
+				<div class="card-caption">Numéraux</div>
+		</a></li>
+
+	</ul>
+</div>
+{% endblock %}
