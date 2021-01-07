@@ -12,3 +12,6 @@ class Ubung(models.Model):
 class Essai(models.Model):
     choix = models.CharField(max_length=15)
     numf = models.ForeignKey(Ubung, on_delete=models.CASCADE)
+
+
+
