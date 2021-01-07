@@ -1,0 +1,98 @@
+{% extends 'Ba.html'%}
+{% load static %}
+
+{% block body %}
+ <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-icon-180x180.png' %}">
+  <link href="./assets/favicon.ico" rel="icon">
+<link href="{ static 'css/main.3f6952e4.css'%}" rel="stylesheet">
+<div class="container">
+	<button type="button" class="navbar-toggle collapsed"
+		data-toggle="collapse" data-target="#navbar-collapse"
+		aria-expanded="false">
+		<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+		<span class="icon-bar"></span> <span class="icon-bar"></span>
+	</button>
+
+
+</div>
+
+
+<div class="section-container">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-sm-8 col-sm-offset-2 section-container-spacer">
+				<div class="text-center">
+					<h1 class="h2"> GRAMMAIR</h1>
+					<p>Pour parler et écrire correctement l’allemand, il est important de connaître les principales règles de grammaire et certains termes techniques. Nos explications ont été conçues pour que
+						tu puisses les apprendre facilement et faire des progrès rapides. Tous les points
+						essentiels sont résumés de manière simple et claire. Les exercices te permettent d’appliquer et de conforter
+						tout de suite tes nouvelles connaissances</p>
+				</div>
+			</div>
+
+			<div class="col-md-12">
+
+				<div id="myCarousel" class="carousel slide projects-carousel">
+					<!-- Carousel items -->
+					<div class="carousel-inner">
+						<div class="item active">
+							<div class="row">
+								<div class="col-sm-4">
+
+									<a href="{% url 'Grammar:menuCours' %}" title=""
+										class="black-image-project-hover"> <img
+										src="{% static 'work01-hover.jpg' %}" alt=""
+										class="img-responsive">
+									</a>
+									<div class="card-container card-container-lg">
+										<h4>001</h4>
+										<h3>COURS</h3>
+										<p>Vous souhaitez apprendre l’allemand ou simplement réviser vos acquis, améliorer
+											vos connaissances ou approfondir le sujet ? Venez testez notre site en ligne spécialisé  pour les étudiants souhaitant apprendre la langue
+											et n’ayant aucune base</p>
+										<a href="{% url 'Grammar:menuCours' %}" title="" class="btn btn-default">Discover</a>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<a href="./work.html" title=""
+										class="black-image-project-hover"> <img
+										src="{% static 'work001-04.jpg' %}" alt=""
+										class="img-responsive">
+									</a>
+									<div class="card-container card-container-lg">
+										<h4>002</h4>
+										<h3>EXERCICES</h3>
+										<p>Exercices d'allemand pour les débutants
+											et tous ceux qui souhaitent améliorer leurs connaissances de la langue allemande en ligne et gratuitement
+										 Testez notre site en ligne spécialisé  pour les étudiants souhaitant exercicer la langue
+											et n’ayant aucune base
+										</p>
+										<a href="{% url 'Grammar:grammar' %}" title="" class="btn btn-default">Discover</a>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<a href="./work.html" title=""
+										class="black-image-project-hover"> <img
+										src="{% static 'work001-03.jpg' %}" alt=""
+										class="img-responsive">
+									</a>
+									<div class="card-container card-container-lg">
+										<h4>003</h4>
+										<h3>L'ALLEMAND AUTREMENT</h3>
+										<p> quizz et jeux pour vous divertir en approfondissant vos connaissances
+											de la civilisation des pays de langue allemande</p>
+										<a href="" title="" class="btn btn-default">Discover</a>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

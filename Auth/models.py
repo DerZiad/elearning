@@ -20,4 +20,6 @@ class Personne(models.Model):
    #Professor
    datecreationaccount = models.DateField(auto_now_add=True)
 
-
+class temporals(models.Model):
+      code = models.CharField(max_length=10, primary_key=True)
+      personne = models.ForeignKey(Personne, on_delete=models.CASCADE)

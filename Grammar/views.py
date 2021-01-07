@@ -9,7 +9,7 @@ from Grammar.models import Ubung, Essai
 
 
 def grammarex(request):
-    ubungs = Ubung.objects.all()[:7]
+    ubungs = Ubung.objects.all()[:10]
 
     if (request.method == "POST"):
 
@@ -82,12 +82,12 @@ def grammarex(request):
         return render(request, 'Grammar/index.html', context)
 
 
-def cours(request):
-    return render(request, 'Grammar/menucours.html')
+def ubung(request):
+    return render(request, 'Grammar/menuubungs.html')
 
 
 def gegenteile(request):
-    ubungs = Ubung.objects.all()[7:]
+    ubungs = Ubung.objects.all()[10:22]
     paginator = Paginator(ubungs, 3)
     seit = request.POST.get('page')
     try:
@@ -133,7 +133,7 @@ def gegenteile(request):
 
     else:
 
-        moglichkeit = Essai.objects.all()[32:]
+        moglichkeit = Essai.objects.all()[32:70]
 
         dic = {
         }
@@ -158,7 +158,7 @@ def gegenteile(request):
 
 
 def bartikel(request):
-    ubungs = Ubung.objects.all()[7:]
+    ubungs = Ubung.objects.all()[22:]
     paginator = Paginator(ubungs, 3)
     seit = request.POST.get('page')
     try:
@@ -180,7 +180,7 @@ def bartikel(request):
                 msg = "le nombre de question acuis", cmp
             except:
                 msg = "veuillez selectionner tous les choix "
-        moglichkeit = Essai.objects.all()[32:]
+        moglichkeit = Essai.objects.all()[70:]
 
         dic = {
         }
@@ -260,4 +260,30 @@ def test(request):
     for ele in listp:
         f.write(ele + '\n')
     return HttpResponse("ok")
+
+
 #### ziad ###
+def alphabet(request):
+    return render(request, 'Grammar/cours_alphabet.html')
+
+
+def menu(request):
+    return render(request, 'Grammar/menu.html')
+
+
+def general(request):
+    return render(request, 'Grammar/general.html')
+
+
+def artikel(request):
+    return render(request, 'Grammar/artikelcours.html')
+
+
+def pronoms(request):
+    return render(request, 'Grammar/pronoms.html')
+
+def adjektive(request):
+    return  render(request,'Grammar/adjektive.html')
+
+def pronomsindefinis(request):
+    return render(request,'Grammar/pronomsindefinis.html')
