@@ -1,24 +1,49 @@
 {% extends 'Ba.html'%}
 {% load static %}
 {% block besoin %}
-    <link href="{% static 'css/style.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/style1.css'%}" rel="stylesheet"/>
 {% endblock %}
 {% block body %}
 <section>
-    <h1>Correction</h1>
-    <h1>Schreiben :</h1>
-    <div class="schreiben">
-        <p>Salut {{reponse.exercice.text}}</p>
+    <div class="premiersection">
+            <h1>Correction</h1>
+            <form method="post" action="{% url 'Schreiben:correction'%}">
+                {% csrf_token %}
+                <div class="">
+                    <input name="id" value="{{reponse.id}}" type="hidden"/>
+                    <input name="idperso" value="{{reponseperso.id}}" type="hidden"/>
+
+                    <div class="correction-input">
+                        <label for="corr">Correction</label>
+                        <textarea id = "corr" class="text-area" name="correction"></textarea>
+                    </div>
+                    <div class="correction-input">
+                        <label for="remarque">Remarque</label>
+                        <textarea class="text-area" name="remarque" id="remarque"></textarea>
+                    </div>
+                    <div class="btn-submit">
+                        <input value="senden" type="submit"/>
+                    </div>
+                    <p style="color:red" style="text-align:center">{{error}}</p>
+                </div>
+            </form>
+
     </div>
-    <form method="post" action="{% url 'Schreiben:correction'%}">
-        <div class="">
-            <input name="id" value="{{response.id}}" type="hidden"/>
-            <input name="idperso" value="{{response.id}}" type="hidden"/>
-            <label for="corr">Correction</label>
-            <textarea id = "corr" class="text-area" name="correction"></textarea>
-            <label for="remarque">Remarque</label>
-            <textarea class="text-area" name="remarque" id="remarque"></textarea>
-        </div>
-    </form>
+    <br><br>
+    <div class="deusiemesection">
+            <div class="schreiben-enonce">
+                <div class="schreiben">
+                    <div class="schreiben-sujet">
+                        <p2>Théma ist " {{reponseperso.excercice.sujet}} " </p2>
+                    </div>
+                    <div class="schreiben-text">
+                                    <p>{{reponseperso.excercice.text}}</p>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+
 </section>
 {% endblock %}

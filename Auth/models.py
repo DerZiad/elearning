@@ -23,3 +23,5 @@ class Personne(models.Model):
 class temporals(models.Model):
       code = models.CharField(max_length=10, primary_key=True)
       personne = models.ForeignKey(Personne, on_delete=models.CASCADE)
+
+
