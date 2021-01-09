@@ -1,0 +1,12 @@
+table {
+ border-collapse :collapse;
+ color :  #004d00 ;
+}
+td ,th {
+border :1px solid black ;
+padding : 2px ;
+text-align : center ;
+}
+#article-main{
+margin : 70px ;
+}

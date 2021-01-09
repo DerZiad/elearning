@@ -1,0 +1,14 @@
+{% extends 'Ba.html' %}
+{% block body %}
+  {% for quiz in quizat %}
+<p>{{quiz.jeu}}</p>
+  {% endfor %}
+
+  {% for tipp in tipps %}
+<h1>{{tipp.titre}}</h1>
+<p>{{tipp.text}}</p>
+  {% endfor %}
+{% for essai in essais %}
+    <P>{{essai.mog}} </P>
+{% endfor %}
+{% endblock %}

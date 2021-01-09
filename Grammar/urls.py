@@ -12,11 +12,16 @@ urlpatterns = [
     url(r'^gegenteile', views.gegenteile, name="gegenteile"),
     url(r'^bestimmte-artikel', views.bartikel, name="bestimmte artikel"),
     url(r'^register', views.test, name="register"),
+    url(r'^save', views.save, name="save"),
     url(r'^alphabet', views.alphabet, name="alphabet"),
     url(r'^menuCours', views.menu, name="menuCours"),
     url(r'^artikel', views.artikel, name="artikel"),
     url(r'^pronomscours', views.pronoms, name="pronoms"),
     url(r'^adjektive', views.adjektive, name="adjektive"),
-    url(r'^pronomsindefinis',views.pronomsindefinis,name="pronomsindefinis"),
+    url(r'^pronomsindefinis', views.pronomsindefinis, name="pronomsindefinis"),
+    url(r'^pronompersonnels', views.pronompersonnels, name="pronompersonnels"),
+    url(r'^adverbes', views.adverbs, name="adverbes"),
+    url(r'^numeraux',views.numeraux,name="numeraux"),
+    url(r'^quiz',views.quiz,name="quiz"),
     url(r'^$', views.general, name="menu")
 ]

@@ -84,4 +84,5 @@ def correction(request):
                 return render(request,"errorpagesession.html",context)
     except:
         return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/")
 
