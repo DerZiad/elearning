@@ -1,3 +1,4 @@
+from Auth.models import Personne
 def getName(photo):
     name = photo.name
     ele = name[0:int(name.index('.'))]
@@ -12,5 +13,9 @@ def checkSession(request):
         username = request.session['username']
         if username == None and len(username) == 0:
             raise IndexError
+        else:
+            personne = Personne.objects.get(username='username')
+            if not personne.valid:
+                raise IndexError
     except:
         raise IndexError

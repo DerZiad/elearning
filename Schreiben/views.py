@@ -17,6 +17,7 @@ def index(request):
                     "error": "Nous nous somme désolé , nous avons pas encore d'excercices de schreiben"
                 }
                 return render(request, "errorpagesession.html", context)
+            print(exercice.sujet)
             context = {
                 "exercice":exercice
             }
@@ -24,6 +25,7 @@ def index(request):
         else:
             text = request.POST['schreiben']
             id = request.POST['id']
+            print(id)
             reponse = Reponse(rep=text,personne = Personne.objects.get(username = request.session['username']),excercice = Excercice.objects.get(id=int(id)))
             reponse.save()
             reponses = Reponse.objects.all()
