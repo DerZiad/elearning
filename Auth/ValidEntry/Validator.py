@@ -10,10 +10,10 @@ regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 
 # Define a function for
 # for validating an Email
-def validinfo(username,email):
+def validinfo(email,username):
     personne1 = Personne.objects.filter(email = email)
     personne2 = Personne.objects.filter(username = username)
-    if len(personne1) != 0 or len(personne2) != 0:
+    if len(personne1) >= 1 or len(personne2) >= 1:
         raise ValueError
 def validEmail(email):
     # pass the regular expression
