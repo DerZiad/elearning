@@ -9,69 +9,65 @@ from Grammar.models import Ubung, Essai, Quiz, Tipps, Choix
 
 
 def grammarex(request):
+    ubungs = Ubung.objects.all()[:10]
 
+    if request.method == "POST":
 
-        ubungs = Ubung.objects.all()[:10]
+        losung = request.POST
+        cmp = 0
+        erreur = {}
+        for ubung in ubungs:
+            try:
+                if str(losung[ubung.losung]) == str(ubung.losung):
+                    cmp += 1
+                msg = "le nombre de question Juste est ", cmp
+            except:
+                msg = "Veuillez selectionner tous les questions "
 
-        if request.method == "POST":
+        moglichkeit = Essai.objects.all()[:32]
 
-            losung = request.POST
-            cmp = 0
-            erreur = {}
-            for ubung in ubungs:
+        dic = {
+        }
 
-                    if str(losung[ubung.losung]) == str(ubung.losung):
-                        cmp += 1
-                    msg = "le nombre de question acuis", cmp
-                    print(str(losung[ubung.losung]), 'et', str(ubung.losung))
-                    print('zbi')
-
-            moglichkeit = Essai.objects.all()[:32]
-
-            dic = {
-            }
-
+        list = []
+        for ubung in ubungs:
+            list.append(ubung.losung)
+            for mog in moglichkeit:
+                if mog.numf == ubung:
+                    list.append(mog.choix)
+            dic[str(ubung.frage)] = list
             list = []
-            for ubung in ubungs:
-                list.append(ubung.losung)
-                for mog in moglichkeit:
-                    if mog.numf == ubung:
-                        list.append(mog.choix)
-                dic[str(ubung.frage)] = list
-                list = []
-            context = {
-                'ubungs': ubungs,
+        context = {
+            'ubungs': ubungs,
 
-                'dictionnaire': dic,
-                'erreur': erreur,
-                'message': msg,
-            }
-            return render(request, 'Grammar/index.html', context)
+            'dictionnaire': dic,
+            'erreur': erreur,
+            'message': msg,
+        }
+        return render(request, 'Grammar/index.html', context)
 
-        else:
+    else:
 
-            moglichkeit = Essai.objects.all()[:32]
+        moglichkeit = Essai.objects.all()[:32]
 
-            dic = {
-            }
-            i = 1
+        dic = {
+        }
+        i = 1
+        list = []
+        for ubung in ubungs:
+            list.append(ubung.losung)
+            for mog in moglichkeit:
+                if mog.numf == ubung:
+                    list.append(mog.choix)
+            dic[str(ubung.frage)] = list
             list = []
-            for ubung in ubungs:
-                list.append(ubung.losung)
-                for mog in moglichkeit:
-                    if mog.numf == ubung:
-                        list.append(mog.choix)
-                dic[str(ubung.frage)] = list
-                list = []
 
-            print(dic)
-            context = {
-                'dictionnaire': dic,
+        print(dic)
+        context = {
+            'dictionnaire': dic,
 
-
-            }
-            return render(request, 'Grammar/index.html', context)
-
+        }
+        return render(request, 'Grammar/index.html', context)
 
 
 def ubung(request):
@@ -79,66 +75,65 @@ def ubung(request):
 
 
 def gegenteile(request):
+    # checkSession(request)
+    ubungs = Ubung.objects.all()[10:22]
 
-        # checkSession(request)
-        ubungs = Ubung.objects.all()[10:22]
+    if request.method == "POST":
+        losung = request.POST
+        cmp = 0
 
-        if request.method == "POST":
-            losung = request.POST
-            cmp = 0
-
-            for ubung in ubungs:
-
+        for ubung in ubungs:
+            try:
                 if str(losung[ubung.losung]) == str(ubung.losung):
                     cmp += 1
                 print(str(losung[ubung.losung]), 'et', str(ubung.losung))
-                msg = "le nombre de question acuis", cmp
+                msg = "le nombre de question juste", cmp
+            except:
+                msg = "Veuillez selectionnez tous les questions "
 
-            moglichkeit = Essai.objects.all()[32:]
+        moglichkeit = Essai.objects.all()[32:]
 
-            dic = {
-            }
+        dic = {
+        }
 
+        list = []
+        for ubung in ubungs:
+            list.append(ubung.losung)
+            for mog in moglichkeit:
+                if mog.numf == ubung:
+                    list.append(mog.choix)
+            dic[str(ubung.frage)] = list
             list = []
-            for ubung in ubungs:
-                list.append(ubung.losung)
-                for mog in moglichkeit:
-                    if mog.numf == ubung:
-                        list.append(mog.choix)
-                dic[str(ubung.frage)] = list
-                list = []
-            context = {
-                'ubungs': ubungs,
-                'message': msg,
-                'dictionnaire': dic,
+        context = {
+            'ubungs': ubungs,
+            'message': msg,
+            'dictionnaire': dic,
 
+        }
+        return render(request, 'Grammar/gegenteile.html', context)
 
-            }
-            return render(request, 'Grammar/gegenteile.html', context)
+    else:
 
-        else:
+        moglichkeit = Essai.objects.all()[32:70]
 
-            moglichkeit = Essai.objects.all()[32:70]
-
-            dic = {
-            }
-            i = 1
+        dic = {
+        }
+        i = 1
+        list = []
+        for ubung in ubungs:
+            list.append(ubung.losung)
+            for mog in moglichkeit:
+                if mog.numf == ubung:
+                    list.append(mog.choix)
+            dic[str(ubung.frage)] = list
             list = []
-            for ubung in ubungs:
-                list.append(ubung.losung)
-                for mog in moglichkeit:
-                    if mog.numf == ubung:
-                        list.append(mog.choix)
-                dic[str(ubung.frage)] = list
-                list = []
-            losung = request.GET
+        losung = request.GET
 
-            context = {
-                'dictionnaire': dic,
+        context = {
+            'dictionnaire': dic,
 
-            }
-            return render(request, 'Grammar/gegenteile.html', context)
-
+        }
+        return render(request, 'Grammar/gegenteile.html', context)
 
 
 def bartikel(request):
@@ -152,7 +147,7 @@ def bartikel(request):
 
             for ubung in ubungs:
                 try:
-                    if str(losung[ubung.frage]) == str(ubung.losung):
+                    if str(losung[ubung.losung]) == str(ubung.losung):
                         cmp += 1
                     msg = "le nombre de question acuis", cmp
                 except:
@@ -174,7 +169,6 @@ def bartikel(request):
                 'ubungs': ubungs,
                 'message': msg,
                 'dictionnaire': dic,
-
 
             }
             return render(request, 'Grammar/bartikel.html', context)
@@ -559,14 +553,22 @@ def adverbs(request):
 def numeraux(request):
     return render(request, 'Grammar/numeraux.html')
 
+
 def quiz(request):
-    quizat = Quiz.objects.all()
-    tipps = Tipps.objects.all()
-    essais =Choix.objects.all()
-    context ={
-        'quizat':quizat,
-        'tipps':tipps,
-        'essais':essais
+    if request.method == "GET":
+        quizat = Quiz.objects.all()
+        essais = Choix.objects.all()
+        dic = {}
+        lista = []
+        for quiz in quizat:
+            lista.append(quiz.jeu)
+            for essai in essais:
+                if essai.numf == quiz:
+                    lista.append(essai.mog)
+            dic[str(quiz.jeu)] = lista
+            lista = []
+    context = {
+        'dictionnaire': dic,
     }
 
-    return render(request,'Grammar/quiz.html',context)
+    return render(request, 'Grammar/quiz.html', context)

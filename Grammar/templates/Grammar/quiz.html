@@ -1,14 +1,12 @@
 {% extends 'Ba.html' %}
 {% block body %}
-  {% for quiz in quizat %}
-<p>{{quiz.jeu}}</p>
-  {% endfor %}
+  {% for key , values in dictionnaire.items %}
+        <p>{{key}}</p>
 
-  {% for tipp in tipps %}
-<h1>{{tipp.titre}}</h1>
-<p>{{tipp.text}}</p>
+
+      {% for mo in values %}
+        <input type="radio" name="{{mo}}" value="{{mo}}" id="losung"  >
+        <label for="losung">{{mo}}</label><br/>
+      {% endfor %}
   {% endfor %}
-{% for essai in essais %}
-    <P>{{essai.mog}} </P>
-{% endfor %}
 {% endblock %}
