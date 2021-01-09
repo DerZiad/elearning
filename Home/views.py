@@ -9,6 +9,7 @@ import hashlib
 import Auth.ValidEntry.sender as sender
 import Auth.ValidEntry.random as randomer
 import Auth.ValidEntry.Validator as valid
+from Schreiben.models import Reponse,Correction
 import datetime
 from Home.funktions.funktion import checkSession
 # Create your views here.
@@ -107,6 +108,12 @@ def edit(request):
                 if action == 'delete':
                     personne = Personne.objects.get(username = request.session['username'])
                     message = Message.objects.filter(personne = personne)
+                    reponses = Reponse.objects.filter(personne = personne)
+                    for rep in reponses:
+                        corrections = Correction.objects.filter(reponse = rep)
+                        for correction in corrections:
+                            correction.delete()
+                        rep.delete()
                     personne.delete()
                     message.delete()
                     request.session.flush()

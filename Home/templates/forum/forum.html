@@ -80,7 +80,6 @@
 </form>
 </div>
 <nav class="text-center content-item"><div class="pagination"><ul id="yw11" class="yiiPager">
-    <li class="first"><a href="{% url 'Home:forum'%}?page=1">«</a></li>
     {% if messages.has_previous %}
         <li class="previous"><a href="{% url 'Home:forum'%}?page={{messages.previous_page_number}}">&lt;</a></li>
     {% endif %}
@@ -88,7 +87,7 @@
         <li class="next"><a href="{% url 'Home:forum'%}?page={{messages.next_page_number}}">&gt;</a></li>
     {% endif %}
 
-<li class="last"><a href="{% url 'Home:forum'%}?page={{messages.page_numbers}}">»</a></li></ul></div></nav><div class="keys" style="display:none" title="/fr/forum/topic/275"><span>997</span><span>1012</span><span>1041</span><span>1895</span><span>1906</span><span>5313</span><span>5538</span><span>5562</span><span>8350</span><span>8694</span></div>
+</ul></div></nav><div class="keys" style="display:none" title="/fr/forum/topic/275"><span>997</span><span>1012</span><span>1041</span><span>1895</span><span>1906</span><span>5313</span><span>5538</span><span>5562</span><span>8350</span><span>8694</span></div>
 </div>    </div>
 </section>
 
