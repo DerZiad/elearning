@@ -4,9 +4,29 @@
     <title> Hören - Modeltest1</title>
 {%endblock%}
 {% block body %}
-    <h1>ModelTest1</h1>
-    <audio controls  src="{% static 'Audios/Track_111.mp3'%}" ></audio>
-    <audio controls  src="{% static 'Audios/Track_112.mp3'%}" ></audio>
+{% for key,value in questions.items %}
+    {% for keyo,valueo in audios.items %}
+        {% if keyo == key %}
+            <audio controls src="{{valueo.track.url}}"></audio>
+        {% endif %}
+    {% endfor %}
+    <p> Frage : {{key}}</p>
+    {% for mo in value %}
+        <input type="radio" name="{{key}}" value="{{ mo }}" id="{{mo}}" checked >
+        <label for="{{mo}}">{{mo}}</label><br/>
+    {% endfor %}
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
