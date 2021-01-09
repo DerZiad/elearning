@@ -10,7 +10,13 @@ def index(request):
     try:
         checkSession(request)
         if request.method == "GET":
-            exercice = pioche.getSchreiben(request)
+            try:
+                exercice = pioche.getSchreiben(request)
+            except:
+                context = {
+                    "error": "Nous nous somme désolé , nous avons pas encore d'excercices de schreiben"
+                }
+                return render(request, "errorpagesession.html", context)
             context = {
                 "exercice":exercice
             }
@@ -25,13 +31,19 @@ def index(request):
             for rep in reponses:
                 if reponse != rep:
                     list.append(rep)
-
+            try:
+                reponse = list[0]
+            except:
+                context = {
+                    "error": "Nous nous sommes désolé , nous ne avons pas autre client pour que vous corrigé"
+                }
+                return render(request, "errorpagesession.html", context)
             context = {
                 "reponse":list[0],
                 "reponseperso":reponse
             }
             return render(request,"reponse.html",context)
-    except:
+    except IndexError:
         return HttpResponseRedirect("/")
 def correction(request):
     try:

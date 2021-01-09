@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from Auth.models import Personne
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
+#import spotipy
+#from spotipy.oauth2 import SpotifyClientCredentials
 
 
 def Horen(request):

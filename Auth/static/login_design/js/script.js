@@ -8,26 +8,22 @@ function validate_date(date){
     year = parseInt(date.substr(0,4),10);
     month = parseInt(date.substr(5,2),10);
     day = parseInt(date.substr(8,2));
-    if(isNaN(day)){
-        addError("day","veuillez ne pas entrer une chaîne de caractère dans le jour")
-    }
-     if(isNaN(month)){
-        addError("month","veuillez ne pas entrer une chaîne de caractère dans le mois")
-    }
-     if(isNaN(year)){
-        addError("year","veuillez ne pas entrer une chaîne de caractère dans l'année")
-    }
 
+     if(isNaN(month) ||  isNaN(day) || isNaN(year)){
+        addError("dateerror","Le format de la date est incompatible")
+     }else{
     if(day < 1 || day > 31){
-          addError("day","le jour doit figurer entre 1 et 31");
+          addError("dateerror","le jour doit être entre 1 et 31");
     }
 
     if(month < 1 || day > 12){
-        addError("month","le mois doit figurer entre 1 et 12");
+        addError("dateerror","le mois doit être entre 1 et 12");
     }
-    if(year < 1940 || year > 2100){
-              addError("year","l'année doit figurer entre 1941 et 2100");
+    if(year < 1940 || year > 2020){
+              addError("dateerror","l'année doit être entre 1941 et 2100");
     }
+     }
+
 }
 
 function verifierEmail(email){
@@ -71,7 +67,6 @@ function verifierUsername(username){
 
 function verifierPassword(password,cfpassword){
 	let test1 = false
-	let test2 = false
 
 	if(password.length == 0){
 		addError("password","Le mot de passe doit être rempli")
@@ -81,26 +76,21 @@ function verifierPassword(password,cfpassword){
 		}else if(password.length <= 9){
 			addError("password","Le mot de passe doit depasser au moins 9 caractères")
 		}else{
-			test1 = true
+            let cmp = 0
+            for(let i =0;i<password.length;i++){
+                if(!isNaN(parseInt(password.substr(i)))){
+                    cmp = cmp + 1;
+                }
+		    }
+		    if(cmp < 4){
+                addError("password","Le mot de passe doit contenir au moins 4 chiffres")
+		    }
 		}
+
 	}
-
-
-	if(cfpassword.length == 0){
-		addError("cfpassword","La confirmation de mot de passe doit être rempli")
-	}else{
-		if(cfpassword.length > 20){
-			addError("cfpassword","Le mot de passe doit avoir au plus 20 caractères")
-		}else if(cfpassword.length <= 9){
-			addError("cfpassword","Le mot de passe doit depasser au moins 9 caractères")
-		}else{
-			test2 = true
-		}
-	}
-
-	if(test1 && test2){
+	if(test1 == true){
 		if( !(password == cfpassword)){
-			addError("cfpassword","La confirmation doit être compatible")
+			addError("cfpassword","La confirmation doit être identique")
 		}
 	}
 
@@ -115,9 +105,7 @@ function setErrors(){
 function hideErrorsFirstPane(){
     $("#nom").hide();
     $("#prenom").hide();
-    $("#day").hide();
-    $("#month").hide();
-    $("#year").hide();
+    $("#dateerror").hide();
     $("#telephone").hide();
     $("#email").hide();
 }
