@@ -11,7 +11,6 @@ def converttodata(request,user):
     attributs["password"] =  user.password
     attributs["succes_lesen"] = user.succes_lesen
     attributs["succes_horen"] = user.succes_horen
-    attributs["succes_schreiben"] = user.succes_schreiben
     attributs["succes_grammar"] = user.succes_grammar
 
 

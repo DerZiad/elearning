@@ -64,7 +64,6 @@ function verifierUsername(username) {
 		}
 	}
 }
-
 function verifierPassword(password, cfpassword) {
 	let test1 = false
 
@@ -85,6 +84,18 @@ function verifierPassword(password, cfpassword) {
 			if (cmp < 4) {
 				addError("password", "Le mot de passe doit contenir au moins 4 chiffres")
 			}
+            var c = false;
+            for (let i = 0; i < password.length; i++) {
+				if(isNaN(parseInt(password.substr(i,1)))){
+					if (password.substr(i,1) == password.substr(i,1).toUpperCase()) {
+						c = true;
+					}
+				}
+			}
+			if(!c){
+			    addError("password","Le mot de passe doit contenir au moins une lettre en majiscule");
+				console.log("password","Le mot de passe doit contenir au moins une lettre en majiscule");
+			}
 		}
 
 	}
@@ -93,6 +104,7 @@ function verifierPassword(password, cfpassword) {
 			addError("cfpassword", "La confirmation doit être identique")
 		}
 	}
+
 
 
 }
@@ -188,8 +200,11 @@ jQuery(document).ready(function() {
 							username = $('input[name=username]').val();
 							password = $('input[name=password]').val();
 							cfpassword = $('input[name=cfpassword]').val();
+							console.log("ok");
 							verifierPassword(password, cfpassword);
 							verifierUsername(username);
+							console.log(password,cfpassword);
+							if(erreurs.size <=0){
 							$.ajax({
 								url: '/Auth/signup',
 								type: 'post',
@@ -199,6 +214,7 @@ jQuery(document).ready(function() {
 									csrfmiddlewaretoken: token
 								},
 								success: function(response) {
+								console.log("okkkk");
 									count = Object.keys(response).length;
 									if (count == 0) {
 										if (erreurs.size <= 0) {
@@ -239,6 +255,9 @@ jQuery(document).ready(function() {
 									}
 								}
 							});
+							}else{
+							    setErrors();
+							}
 						});
 
 	$('#Precedent').on('click', function() {

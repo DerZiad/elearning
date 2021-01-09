@@ -40,15 +40,8 @@
                     </p>
                 </div>
                 <div class="col-xs-4">
-                                            <div class="dropdown img-right">
-    <div class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
-    </div>
-
-                        <div class="forum-post-rating img-right">
-    <a class="forum-rating-button " data-vote="up" href="https://deutsch.info/fr/forum/post/vote?id=997"><svg id="arrow-up1609528413" class="icon-svg" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M22.47937,16H19V26a1,1,0,0,1-1,1H14a1,1,0,0,1-1-1V16H9.52063a1,1,0,0,1-.81921-1.57349l6.47937-9.25616a.99994.99994,0,0,1,1.63842,0l6.47937,9.25616A1,1,0,0,1,22.47937,16Z"></path></svg></a>    <span class="forum-post-rating-amount small text-primary">
-    0    </span>
-    <a class="forum-rating-button " data-vote="down" href="https://deutsch.info/fr/forum/post/vote?id=997"><svg id="arrow-down1609528413" class="icon-svg" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M23.29858,17.57349l-6.47937,9.25616a.99994.99994,0,0,1-1.63842,0L8.70142,17.57349A1,1,0,0,1,9.52063,16H13V6a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1V16h3.47937A1,1,0,0,1,23.29858,17.57349Z"></path></svg></a></div>
-                                    </div>
+                    <a style="text-decoration:none" style="color:white" href="{% url 'Home:deletemessage'%}?id={{message.id}}">delete</a>
+                </div>
             </div>
 
             <div class="forum-text bbcode">

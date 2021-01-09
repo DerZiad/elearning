@@ -7,5 +7,6 @@ urlpatterns = [
     path("confirm", views.confirm, name="confirm"),
     path("disconnect",views.disconnect,name="disconnect"),
     path("recover",views.recoverPassword,name="recover"),
-    path("delete",views.suprimerNotValid,name="delete")
+    path("delete",views.suprimerNotValid,name="delete"),
+    path("change",views.changePassword,name="change")
 ]

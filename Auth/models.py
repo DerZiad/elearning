@@ -12,11 +12,9 @@ class Personne(models.Model):
    photo = models.ImageField(upload_to="pictures/", max_length=255, default="pictures/user_200_200.jpg")
    valid = models.BooleanField(default=False)
    #Succes
-   succes_schreiben = models.IntegerField(default=0)
    succes_lesen = models.IntegerField(default=0)
    succes_horen = models.IntegerField(default=0)
    succes_grammar = models.IntegerField(default=0)
-   #Professor
    datecreationaccount = models.DateField(auto_now_add=True)
 
 

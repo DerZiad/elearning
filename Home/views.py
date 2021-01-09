@@ -21,10 +21,9 @@ def principale(request):
         return HttpResponse(template.render(request=request))
     else:
         succes_grammar = request.session['succes_lesen']
-        succes_schreiben = request.session['succes_schreiben']
         succes_horen = request.session['succes_horen']
         succes_lesen = request.session['succes_lesen']
-        total = int((succes_lesen + succes_horen + succes_schreiben + succes_grammar) / 4)
+        total = int(succes_lesen + succes_horen + succes_grammar)
         context = {
             'total': total
         }
@@ -264,5 +263,11 @@ def edit(request):
     except IndexError:
         return HttpResponseRedirect("/")
 
-def test(request):
-    return HttpResponse(loader.get_template("forum/forum.html").render())
+def delete(request):
+    try:
+        checkSession(request)
+        reponse = Message.objects.get(id = request.GET['id'])
+        reponse.delete()
+        return HttpResponseRedirect("/forum")
+    except:
+        pass

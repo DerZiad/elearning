@@ -33,6 +33,14 @@
 			color:#00b0ff;
 			text-decoration:none;
 		}
+		.rot{
+			font-size:18px;
+			padding:30px;
+			color:red;
+			border:2px solid red;
+			background-color:#ffa4a2;
+			margin-bottom:15px;
+		}
 	</style>
 	{% endblock %}
 
@@ -49,6 +57,9 @@
 							{% csrf_token %}
 							<div id="Error"></div>
 							 <div id="Connector">
+								 						<div id="#rot"class="rot" data-validate = "Valid email is required: ex@abc.xyz">
+															<p>Le mot de passe doit contenir au moins 4 chiffres <br> et une  lettre en majiscule<br>Mieux d'ajouter caractère speciaux</p>
+														</div>
 														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 															<input class="input100" type="text" name="username" placeholder="Username">
 															<span class="focus-input100"></span>
