@@ -1,0 +1,196 @@
+{% extends 'Ba.html' %}
+{% load static %}
+{% block body %}
+<link href="{% static 'css/pp.css'%}" rel="stylesheet">
+
+ <div class="ce_text first block">
+	<h2 id="a-introduction">Introduction</h2>
+	  <button><a class="retour" href="{% url 'Grammar:pronoms'%}"> << COURS PRONOMS</a></button>
+	<p style="text-align: left;">
+		<strong>Les pronoms personnels</strong> désignent des personnes. Ils
+		remplacent des noms déjà mentionnés, permettent de parler à la
+		première personne <em>(ich)</em> et de s’adresser à d’autres
+		personnes. Les pronoms personnels allemands se déclinent.
+	</p>
+	<p style="text-align: left;">
+		<span>Grâce à nos explications simples et claires accompagnées
+			de nombreux exemples, tu apprendras tout ce qu’il faut savoir sur
+			l’emploi et la <span class="glossary" data-term="347">déclinaison</span>
+			des pronoms personnels allemands et tu pourras tester tes nouvelles
+			connaissances avec nos exercices.
+		</span>
+	</p>
+	<div class="table-scrollable">
+		<table class="center middle">
+			<thead>
+				<tr>
+					<th rowspan="2"></th>
+					<th class="no-border" colspan="5">Singulier</th>
+					<th class="no-border" colspan="3">Pluriel</th>
+				</tr>
+				<tr>
+					<th>1<sup>re</sup> pers.
+					</th>
+					<th>2<sup>e</sup> pers.
+					</th>
+					<th colspan="3">3<sup>e</sup> pers.
+					</th>
+					<th>1<sup>re</sup> pers.
+					</th>
+					<th>2<sup>e</sup> pers.
+					</th>
+					<th>3<sup>e</sup> pers.
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td valign="top"><strong>Nominatif</strong></td>
+					<td valign="top">ich</td>
+					<td valign="top">du</td>
+					<td valign="top">er</td>
+					<td valign="top">sie</td>
+					<td valign="top">es</td>
+					<td valign="top">wir</td>
+					<td valign="top">ihr</td>
+					<td valign="top">sie</td>
+				</tr>
+				<tr>
+					<td valign="top"><strong><strong>Accusatif</strong></strong></td>
+					<td valign="top">mich</td>
+					<td valign="top">dich</td>
+					<td valign="top">ihn</td>
+					<td valign="top">sie</td>
+					<td valign="top">es</td>
+					<td valign="top">uns</td>
+					<td valign="top">euch</td>
+					<td valign="top">sie</td>
+				</tr>
+				<tr>
+					<td valign="top"><strong>Datif</strong></td>
+					<td valign="top">mir</td>
+					<td valign="top">dir</td>
+					<td valign="top">ihm</td>
+					<td valign="top">ihr</td>
+					<td valign="top">ihm</td>
+					<td valign="top">uns</td>
+					<td valign="top">euch</td>
+					<td valign="top">ihnen</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="ce_text block">
+	<h2 id="a-emploi">Emploi</h2>
+	<ul>
+		<li><span>Le <span class="glossary" data-term="430">pronom
+					personnel</span> à la première personne
+		</span><em>(ich, wir) </em>permet de parler de soi.
+			<dl class="example">
+				<dt>Exemples&nbsp;:</dt>
+				<dd lang="de">
+					<em class="char">Ich</em> habe Hunger.<span
+						class="tooltip tooltip-fa color_text" lang="fr"><i
+						class="fa fa-comment-o"></i><span class="tooltip-content">J’ai
+							faim.</span></span>
+				</dd>
+				<dd lang="de">
+					<span style="text-decoration: underline;">Wir</span> gehen ins
+					Kino.<span class="tooltip tooltip-fa color_text" lang="fr"><i
+						class="fa fa-comment-o"></i><span class="tooltip-content">Nous
+							allons au cinéma.</span></span>
+				</dd>
+			</dl></li>
+		<li><span>Le <span class="glossary" data-term="442">pronom</span>
+				personnel à la deuxième personne
+		</span><em>(du, ihr)</em> permet de parler à d’autres personnes. La forme de
+			politesse allemande est marquée par l’emploi du pronom <em>Sie</em>
+			(majuscule obligatoire) qui correspond au <em>vous </em>de politesse
+			français.
+			<dl class="example">
+				<dt>Exemples&nbsp;:</dt>
+				<dd lang="de">
+					Wie heißt <em class="char">du</em>? Wie geht es <em class="char">dir</em>?<span
+						class="tooltip tooltip-fa color_text" lang="fr"><i
+						class="fa fa-comment-o"></i><span class="tooltip-content">Comment
+							t’appelles-tu? Comment vas-tu?</span></span>
+				</dd>
+				<dd lang="de">
+					Woher kommt <em class="char">ihr</em>? Welche Musik gefällt <em
+						class="char">euch</em>?<span class="tooltip tooltip-fa color_text"
+						lang="fr"><i class="fa fa-comment-o"></i><span
+						class="tooltip-content">D’où venez-vous? Quelle musique
+							aimez-vous?</span></span>
+				</dd>
+				<dd lang="de">
+					Können <em class="char">Sie</em> das bitte wiederholen? Kann ich <em
+						class="char">Ihnen</em> helfen?<span
+						class="tooltip tooltip-fa color_text" lang="fr"><i
+						class="fa fa-comment-o"></i><span class="tooltip-content">Pouvez-vous
+							répéter cela s’il vous plaît? Puis-je vous aider?</span></span>
+				</dd>
+			</dl></li>
+		<li>Le pronom personnel à la troisième personne <em>(er,
+				sie, es) </em><span>remplace habituellement un <span
+				class="glossary" data-term="420">nom</span> déjà mentionné.
+		</span>
+		<dl class="example">
+				<dt>Exemple&nbsp;:</dt>
+				<dd lang="de">
+					Ich habe <em>eine Katze</em>. <em class="char">Sie</em> ist sehr
+					niedlich.<span class="tooltip tooltip-fa color_text" lang="fr"><i
+						class="fa fa-comment-o"></i><span class="tooltip-content">J’ai
+							un chat. Il est très mignon.</span></span>
+				</dd>
+			</dl>
+			<p>Afin d’éviter des malentendus, il est important de savoir
+				clairement quel est le nom remplacé (en cas de doute, il vaut mieux
+				répéter le nom).</p>
+			<dl class="example">
+				<dt>Exemple&nbsp;:</dt>
+				<dd lang="de">
+					Herr Schneider hatte <em>einen Hund</em>. <span
+						style="text-decoration: underline;">Er</span> ist gestorben<em>.</em><span
+						class="tooltip tooltip-fa color_text" lang="fr"><i
+						class="fa fa-comment-o"></i><span class="tooltip-content">Monsieur
+							Schneider avait un chien. Il est mort.</span></span>
+				</dd>
+				<dd lang="de">
+					<p class="info" lang="fr">Qui est mort? M. Schneider ou le
+						chien?</p>
+				</dd>
+			</dl></li>
+		<li>Le pronom <em>es </em><span>est <span class="glossary"
+				data-term="456">sujet</span> des verbes et phrases impersonnelles
+				comme
+		</span><em>il </em>en français.
+			<dl class="example">
+				<dt>Exemple&nbsp;:</dt>
+				<dd lang="de">
+					<em class="char">Es</em> regnet.<span
+						class="tooltip tooltip-fa color_text" lang="fr"><i
+						class="fa fa-comment-o"></i><span class="tooltip-content">Il
+							pleut.</span></span> <em class="char">Es</em> ist schon spät.<span
+						class="tooltip tooltip-fa color_text" lang="fr"><i
+						class="fa fa-comment-o"></i><span class="tooltip-content">Il
+							est déjà tard.</span></span>
+				</dd>
+			</dl></li>
+		<li><em>Es</em><span> peut également remplacer un membre
+				entier de phrase qui est situé plus loin. Il correspond alors au <span
+				class="glossary" data-term="348">pronom démonstratif</span>
+		</span><em>ça/cela</em> en français.
+			<dl class="example">
+				<dt>Exemple&nbsp;:</dt>
+				<dd lang="de">
+					<em class="char">Es</em> freut mich, <em>dass du mich besuchst</em>.<span
+						class="tooltip tooltip-fa color_text" lang="fr"><i
+						class="fa fa-comment-o"></i><span class="tooltip-content">Cela
+							me fait plaisir que tu me rendes visite.</span></span>
+				</dd>
+			</dl></li>
+	</ul>
+</div>
+
+{% endblock %}

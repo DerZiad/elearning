@@ -4,7 +4,7 @@
 
 <div class="container frame">
 	<h1 class="text-center">Grammaire</h1>
-
+ <button><a class="retour" href="/Grammar"> << MENU </a></button>
 	<ul class="cards list-inline list-unstyled row text-center equal-height">
 		<li class="col-sm-6 col-md-4 card card-bordered h"
 			style="height: 274px;"><a
@@ -37,7 +37,7 @@
 		</a></li>
 		<li class="col-sm-6 col-md-4 card card-bordered h"
 			style="height: 274px;"><a
-			href="https://deutsch.info/fr/grammar/adverbs"> <img
+			href="{% url 'Grammar:adverbes'%}"> <img
 				class="img-responsive"
 				src="{% static 'adverbs.png'%}" alt="">
 				<div class="card-caption">Adverbes</div>
@@ -45,7 +45,7 @@
 
 		<li class="col-sm-6 col-md-4 card card-bordered h"
 			style="height: 274px;"><a
-			href="https://deutsch.info/fr/grammar/numerals"> <img
+			href="{% url 'Grammar:numeraux'%}"> <img
 				class="img-responsive"
 				src="{% static 'numerals.png'%}" alt="">
 				<div class="card-caption">Numéraux</div>

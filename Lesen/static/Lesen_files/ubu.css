@@ -1,7 +1,7 @@
 a, abbr, acronym, address, applet, article, aside, audio, big,
 	blockquote, body, canvas, caption, center, cite, code, dd, del, details,
 	dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form,
-	h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd,
+	 h2, h3, h4, h5, h6, html, i, iframe, ins, kbd,
 	label, legend, mark, menu, object, ol, output, p, pre, q, ruby, s,
 	samp, section, small, span, strike, strong, sub, summary, sup, table,
 	tbody, td, tfoot, th, time, tr, tt, u, var, video {
@@ -11,6 +11,45 @@ a, abbr, acronym, address, applet, article, aside, audio, big,
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline
+}
+
+input[type=button]:active {
+  background-color: #e7e7e7;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+input[type=button]:hover {
+  background-color: #f44336;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+input[type=button]:focus{
+background-color:#a6a6a6;
+}
+
+input[type=button] {
+background-color: #e7e7e7; color: black;
+text-decoration: none;
+transition-duration: 0.4s;
+margin-top: 7px;
+border: none;
+border-radius: 8px;
+display: block;
+width:100%;
+text-decoration: none;
+outline: none;
+cursor: pointer;
+}
+
+p.small {
+  line-height: 0.8;
+}
+
+p.big {
+  line-height: 1.8;
 }
 
 article, aside, details, figcaption, figure, hgroup,
@@ -39,11 +78,6 @@ table {
 form {
 	display: inline
 }
-
-button, input, select, textarea {
-	outline: 0
-}
-
 html {
 	font-size: 15px
 }
@@ -57,15 +91,23 @@ body {
 	background-color: #f9f9f9;
 	position: relative
 }
+.heading {
+  text-align: center;
+}
+
+.heading h1 {
+  display: inline-block;
+}
 
 .h1_style, .h2_style, .h3_style, .h4_style, h1, h2, h3, h4, h5 {
-	margin: 0;
+
 	padding: 0;
 	display: block;
 	font-weight: 600
 }
 
 .h1_style, h1 {
+    margin-right: 10px
 	font-size: 1.4em;
 	margin-bottom: .1em
 }
@@ -195,10 +237,6 @@ th {
 	margin-bottom: 1%
 }
 
-.modal-content .button {
-	margin-right: 6px
-}
-
 .data-consent-modal .modal-content, .modal-content.modal-content-invoice,
 	.modal-content.modal-content-login, .modal-content.modal-content-password-forgotten,
 	.modal-content.modal-content-register {
@@ -276,13 +314,27 @@ th {
 	width: 20px;
 	height: 20px
 }
-
-.form .form-status img {
-	width: 100%;
-	height: auto;
-	display: inline-block;
-	vertical-align: top;
-	margin: 0
+img{
+max-width: 100%;
+height: auto;
+}
+.photo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 65%;
+}
+.photo{
+    border-radius: 8px;
+    border: 2px solid #e8e8e8;
+    padding: 8px;
+    background-color: #fff;
+    max-width: 600px;
+    width: 65%;
+    height: auto;
+    -webkit-box-shadow: 0 6px 9px 0 rgba(237, 237, 237, .9);
+    -moz-box-shadow: 0 6px 9px 0 rgba(237, 237, 237, .9);
+    box-shadow: 0 6px 9px 0 rgba(237, 237, 237, .9);
 }
 
 .form-error-message {
@@ -401,23 +453,6 @@ h2.content-h2 {
 		width: 100%
 	}
 }
-
-
-.button-stats-green {
-	background-color: #5fba7d
-}
-
-.button-stats-pale {
-	background-color: #e7e7e7;
-	color: #b0b0b0
-}
-
-
-
-
-
-
-
 
 
 td.first-td {
@@ -578,11 +613,6 @@ input, select {
 	border-radius: 6px
 }
 
-.keypad .button {
-	vertical-align: top;
-	margin-bottom: 0
-}
-
 .exercise-hint {
 	color: #878787
 }
@@ -623,7 +653,7 @@ input.exercise-input {
 	opacity: 1
 }
 
-.inactive-speaker:hover img {
+.inactive-speaker:hover {
 	-webkit-filter: grayscale(0);
 	-moz-filter: grayscale(0);
 	filter: grayscale(0)
@@ -661,13 +691,6 @@ input.exercise-input {
 		padding: 6px;
 		margin-top: .5rem;
 		margin-left: .5rem
-	}
-	.speaker-box img {
-		width: auto;
-		height: 40px;
-		position: absolute;
-		left: 4px;
-		top: 4px
 	}
 	.speaker-box div {
 		margin-left: 44px;
@@ -718,7 +741,6 @@ input.exercise-input {
 .rate-the-text, .text-rated {
 	display: inline-block;
 	cursor: pointer;
-	background-image: url(/images/radio0.png);
 	background-position: 0 4px;
 	background-repeat: no-repeat;
 	padding: 4px 3px 8px 31px;
@@ -728,7 +750,6 @@ input.exercise-input {
 }
 
 .rate-the-text-chosen, .rate-the-text:hover {
-	background-image: url(/images/radio1.png);
 	border-radius: 3px
 }
 
@@ -741,16 +762,14 @@ input.exercise-input {
 
 .text-rated {
 	cursor: auto;
-	background-image: url(/images/correct.png);
 	padding-left: 26px
 }
 
-.answer, .button, .corrected-result, .modal input[type=submit] {
+.answer, .corrected-result, .modal input[type=submit] {
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	border: 3px solid #e8e8e8;
-	background-image: url(/images/button.back.gif);
 	background-repeat: repeat-x;
 	padding: 6px;
 	TEXT-DECORATION: none;
@@ -762,29 +781,6 @@ input.exercise-input {
 	cursor: pointer
 }
 
-.button:hover, .modal input[type=submit]:hover {
-	TEXT-DECORATION: none;
-	border-color: #dbdbdb
-}
-
-.button--orange {
-	border-color: #fb544e;
-	background: #fb544e;
-	margin: 0 auto;
-	color: #fff
-}
-
-.button--orange:hover {
-	border-color: #fb544e
-}
-
-.button--smaller, .button--smaller:hover {
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
-	padding: 3px;
-	font-size: .9em
-}
 
 .modal input[type=submit] {
 	padding: 9px
@@ -834,10 +830,6 @@ input.exercise-input {
 	color: red
 }
 
-.active-answer, .button {
-	cursor: pointer
-}
-
 .active-answer:hover {
 	border: 3px solid #dbdbdb
 }
@@ -849,7 +841,6 @@ input.exercise-input {
 }
 
 .mc_number.mc_number_chosen {
-	background-image: url(/images/spinner2.gif);
 	background-repeat: repeat-x
 }
 
@@ -857,9 +848,6 @@ input[type=submit] {
 	padding: 9px
 }
 
-.button {
-	display: inline-block
-}
 
 .answer {
 	display: block;
@@ -888,7 +876,6 @@ input[type=submit] {
 
 .vc-correct {
 	display: inline-block;
-	background-image: url(/images/correct.png);
 	background-position: 3px 0;
 	background-repeat: no-repeat;
 	padding-left: 29px;
@@ -897,7 +884,6 @@ input[type=submit] {
 
 .vc-wrong {
 	display: inline-block;
-	background-image: url(/images/wrong.png);
 	background-position: 3px 0;
 	background-repeat: no-repeat;
 	padding-left: 29px;
@@ -924,7 +910,7 @@ input[type=submit] {
 }
 
 .input .hintbox {
-	background: url(/images/trainerback.gif) top left repeat-x;
+    top left repeat-x;
 	z-index: 0;
 	border: 0;
 	padding: 7px;
@@ -943,60 +929,10 @@ input[type=submit] {
 	outline: 0
 }
 
-.button--sc {
-	position: relative;
-	margin-right: 3px;
-	display: inline-block;
-	padding: 4px;
-	padding-left: 9px;
-	padding-right: 12px;
-	background-color: #eee;
-	border-width: 2px
-}
-
-.button--sc__letter {
-	display: inline-block
-}
-
-.button--sc__shortcut {
-	position: absolute;
-	right: 10%;
-	bottom: 5%;
-	font-size: .7em;
-	color: #7f7f7f
-}
-
 @media ( max-width :680px) {
 	.extra-navi {
 		display: none
 	}
-}
-
-@media ( max-width :600px) {
-	.button--sc {
-		padding: 3px 8px
-	}
-	.button--sc__shortcut {
-		display: none
-	}
-}
-
-.button--specialcharacter, .button--specialcharacter__small,
-	.specialcharacter {
-	position: relative;
-	display: inline-block;
-	padding: 6px;
-	padding-left: 10px;
-	padding-right: 16px;
-	background-color: #eee
-}
-
-.button--specialcharacter__small {
-	padding: 4px;
-	padding-left: 8px;
-	padding-right: 12px;
-	margin-right: .1rem;
-	border-size: 1px
 }
 
 .sc_letter {
@@ -1029,7 +965,7 @@ input[type=submit] {
 	vertical-align: middle;
 	border-radius: 5px;
 	height: 25px;
-	background: url(/images/bar.gif) top left no-repeat;
+    top left no-repeat;
 	background-size: 50% 100%;
 	background-color: #eee
 }
@@ -1074,7 +1010,7 @@ input[type=submit] {
 }
 
 .informus {
-	background: url(/images/send.gif) top left no-repeat;
+	 top left no-repeat;
 	background-position: 3px 0;
 	padding-left: 36px
 }
@@ -1155,7 +1091,7 @@ input[type=submit] {
 	.versionright {
 		padding-right: 2px
 	}
-	.header .button {
+	.header {
 		background: #fff;
 		padding: 5px;
 		font-size: 12px;
@@ -1183,7 +1119,8 @@ input[type=submit] {
 @media ( max-width :480px) {
 	.h1_style, h1 {
 		font-size: 1.25em;
-		margin-bottom: 7px
+		margin-bottom: 7px;
+		margin-right: 10px
 	}
 	.h2_style, h2 {
 		font-size: 1.1em;
@@ -1234,12 +1171,6 @@ input[type=submit] {
 		margin-left: -4px;
 		width: calc(100% + 8px)
 	}
-	.panel_navigation_button {
-		padding: 5px 7px 9px 7px
-	}
-	.panel_navigation_button_inactive {
-		padding: 5px 7px 4px 7px
-	}
 	.sub-header {
 		margin-top: -8px;
 		padding-top: 1.5%
@@ -1262,14 +1193,6 @@ input[type=submit] {
 		position: absolute;
 		right: 22px;
 		top: 20px
-	}
-	.button-circle--toggle {
-		width: 42px;
-		height: 42px
-	}
-	.button-circle--login {
-		width: 42px;
-		height: 42px
 	}
 	.circle:hover {
 		color: #fb544e
@@ -1345,7 +1268,7 @@ input[type=submit] {
 }
 
 .form .inputerror {
-	background: url(/images/warning.gif) 5px center no-repeat;
+	5px center no-repeat;
 	background-color: #fff;
 	padding-left: 33px
 }
@@ -1373,12 +1296,6 @@ input[type=submit] {
 	width: 85%
 }
 
-.form .codeimage {
-	display: inline-block;
-	vertical-align: center;
-	padding-left: 10px
-}
-
 .terms {
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -1387,7 +1304,6 @@ input[type=submit] {
 	padding-left: 32px;
 	border-top: 3px dotted #dbdbdb;
 	border-bottom: 3px dotted #dbdbdb;
-	background-image: url(/images/info.gif);
 	background-position: 0 10px;
 	line-height: 25px;
 	background-repeat: no-repeat
@@ -1397,28 +1313,6 @@ input[type=submit] {
 	display: none
 }
 
-.photo {
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
-	border: 2px solid #e8e8e8;
-	padding: 8px;
-	background-color: #fff;
-	max-width: 400px;
-	width: 34%;
-	float: left;
-	margin-right: 2%;
-	margin-bottom: 2%;
-	-webkit-box-shadow: 0 6px 9px 0 rgba(237, 237, 237, .9);
-	-moz-box-shadow: 0 6px 9px 0 rgba(237, 237, 237, .9);
-	box-shadow: 0 6px 9px 0 rgba(237, 237, 237, .9)
-}
-
-.photo.photo--right {
-	float: right;
-	margin-left: 2%;
-	margin-right: 0
-}
 
 @media ( max-width :1000px) {
 	.include-background {
@@ -1426,7 +1320,6 @@ input[type=submit] {
 		background-position: 100% center
 	}
 	.include-background.background-index {
-		background-image: url(/images/student-small.jpg);
 		background-position: 100% center
 	}
 	.include-background.background-speaking {
@@ -1465,10 +1358,6 @@ input[type=submit] {
 	.leader {
 		background: 0 0
 	}
-	.button_flag_small {
-		width: 32.3%;
-		width: calc(33.3% - .7rem)
-	}
 	.content_left, .content_right {
 		width: auto;
 		display: block;
@@ -1492,31 +1381,7 @@ input[type=submit] {
 	.content_text_right {
 		padding-bottom: 2%
 	}
-	.button-index-show-more {
-		display: none
-	}
-	.button_flag {
-		-webkit-box-shadow: 0 8px 9px 0 rgba(227, 227, 227, .9);
-		-moz-box-shadow: 0 8px 9px 0 rgba(227, 227, 227, .9);
-		box-shadow: 0 8px 9px 0 rgba(227, 227, 227, .9);
-		border-radius: 8px;
-		background-color: #fff;
-		display: inline-block;
-		width: 31.8%;
-		margin-right: 1.5%;
-		margin-bottom: 1.5%;
-		box-sizing: border-box;
-		text-decoration: none;
-		color: #544f4e;
-		height: 3.3rem;
-		line-height: 3.3rem;
-		background-repeat: no-repeat;
-		background-position: .4rem center;
-		border: 0;
-		padding: 0;
-		padding-left: 3.6rem;
-		background-size: 2.6rem auto
-	}
+
 }
 
 @media ( max-width :750px) {
@@ -1531,43 +1396,16 @@ input[type=submit] {
 	}
 }
 
-@media ( max-width :680px) {
-	.photo {
-		-webkit-border-radius: 4px;
-		-moz-border-radius: 4px;
-		border-radius: 4px;
-		border: 1px solid #e8e8e8;
-		padding: 4px;
-		background-color: #fff;
-		max-width: 400px;
-		width: 34%;
-		float: left;
-		margin-right: 2%;
-		margin-bottom: 2%;
-		-webkit-box-shadow: 0 6px 9px 0 rgba(237, 237, 237, .9);
-		-moz-box-shadow: 0 6px 9px 0 rgba(237, 237, 237, .9);
-		box-shadow: 0 6px 9px 0 rgba(237, 237, 237, .9)
-	}
-}
 
 @media ( max-width :620px) {
-	.button_flag {
-		width: 48%;
-		margin-right: 2%;
-		margin-bottom: 2%;
-		font-size: 1em
-	}
+
 	.hide620 {
 		display: none
 	}
 }
 
 @media ( max-width :580px) {
-	.button_flag_small {
-		width: 48.8%;
-		width: calc(50% - .7rem);
-		font-size: 1em
-	}
+
 	.sub-header .container .content {
 		padding-right: 0
 	}
@@ -1583,11 +1421,6 @@ input[type=submit] {
 }
 
 @media ( max-width :420px) {
-	.button_flag {
-		height: 3rem;
-		background-size: 2.3rem auto;
-		padding-left: 3.2rem
-	}
 	td.first-td {
 		width: 70%
 	}
@@ -1605,17 +1438,6 @@ input[type=submit] {
 }
 
 @media ( max-width :360px) {
-	.button_flag_small {
-		width: auto;
-		display: block;
-		max-width: none
-	}
-	.button_flag {
-		width: 96%;
-		margin: 0;
-		margin-bottom: 2%;
-		font-size: 1em
-	}
 	.hide360 {
 		display: none
 	}
@@ -1644,11 +1466,6 @@ input[type=submit] {
 	width: calc(100% - 120px)
 }
 
-@media ( min-width :800px) {
-	.jump-to-button {
-		display: none
-	}
-}
 
 #bugdesk .bugdesk {
 	box-sizing: border-box;
@@ -1677,7 +1494,6 @@ input[type=submit] {
 	font-weight: 700;
 	background-color: #fff;
 	cursor: pointer;
-	background-image: url(/images/exclamation.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: 70% auto;

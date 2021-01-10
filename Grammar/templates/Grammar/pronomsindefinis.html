@@ -1,31 +1,11 @@
 {% extends 'Ba.html' %}
 {% load static %}
 {% block body %}
-<link rel="stylesheet" href="static 'lingolia.css'">
+<link rel="stylesheet" href="{% static 'css/pi.css'%}">
 <div id="article-main">
 	<div id="content">
 		<h1>Les pronoms indéfinis allemands</h1>
-		<ul class="page-links">
-			<li><a
-				href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-indefinis#a-etwas-nichts"
-				class="h2-link">Etwas/Nichts</a></li>
-			<li><a
-				href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-indefinis#a-jemand-jeder"
-				class="h2-link">Jemand/Jeder</a></li>
-			<li><a
-				href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-indefinis#a-man"
-				class="h2-link">Man</a></li>
-			<li><a
-				href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-indefinis#a-irgend"
-				class="h2-link">Irgend…</a></li>
-			<li><a
-				href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-indefinis#a-declinaisons-de-jemand-jeder-man"
-				class="h2-link">Déclinaisons de jemand/jeder/man</a></li>
-			<li><a
-				href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-indefinis#a-exercices-en-ligne-pour-apprendre"
-				class="h2-link"><i class="fa fa-pencil-square-o"></i> Exercices
-					en ligne pour apprendre l’allemand</a></li>
-		</ul>
+         <button><a class="retour" href="{% url 'Grammar:pronoms'%}"> << COURS PRONOMS</a></button>
 		<section class="mod_article first last block"
 			id="les-pronoms-indefinis">
 			<div class="ce_text first block">

@@ -1,0 +1,208 @@
+{% extends 'Ba.html' %}
+{% load static %}
+{% block body %}
+<div id="content">
+	<link href="{% static 'css/num.css'%}" rel="stylesheet">
+
+	<h1>Les nombres cardinaux</h1>
+	 <button><a class="retour" href="{% url 'Grammar:menuCours'%}"> << MENU </a></button>
+	<section class="mod_article first last block" id="article-2386">
+		<div class="ce_text first block">
+			<h2 id="a-introduction">Introduction</h2>
+			<p>Les nombres cardinaux sont les nombres entiers naturels. Nous
+				les utilisons pour exprimer une quantité.</p>
+		</div>
+		<div class="ce_text last block">
+			<h2 id="a-ecriture">Écriture</h2>
+			<div class="table-scrollable">
+				<table>
+					<tbody>
+						<tr>
+							<td><strong>1</strong></td>
+							<td>eins</td>
+							<td><strong>11</strong></td>
+							<td>elf</td>
+							<td><strong>21</strong></td>
+							<td>einundzwanzig</td>
+							<td><strong>31</strong></td>
+							<td>einunddreißig</td>
+						</tr>
+						<tr>
+							<td><strong>2</strong></td>
+							<td>zwei</td>
+							<td><strong>12</strong></td>
+							<td>zwölf</td>
+							<td><strong>22</strong></td>
+							<td>zweiundzwanzig</td>
+							<td><strong>40</strong></td>
+							<td>vierzig</td>
+						</tr>
+						<tr>
+							<td><strong>3</strong></td>
+							<td>drei</td>
+							<td><strong>13</strong></td>
+							<td>dreizehn</td>
+							<td><strong>23</strong></td>
+							<td>dreiundzwanzig</td>
+							<td><strong>50</strong></td>
+							<td>fünfzig</td>
+						</tr>
+						<tr>
+							<td><strong>4</strong></td>
+							<td>vier</td>
+							<td><strong>14</strong></td>
+							<td>vierzehn</td>
+							<td><strong>24</strong></td>
+							<td>vierundzwanzig</td>
+							<td><strong>60</strong></td>
+							<td>sechzig</td>
+						</tr>
+						<tr>
+							<td><strong>5</strong></td>
+							<td>fünf</td>
+							<td><strong>15</strong></td>
+							<td>fünfzehn</td>
+							<td><strong>25</strong></td>
+							<td>fünfundzwanzig</td>
+							<td><strong>70</strong></td>
+							<td>siebzig</td>
+						</tr>
+						<tr>
+							<td><strong>6</strong></td>
+							<td>sechs</td>
+							<td><strong>16</strong></td>
+							<td>sechzehn</td>
+							<td><strong>26</strong></td>
+							<td>sechsundzwanzig</td>
+							<td><strong>80</strong></td>
+							<td>achtzig</td>
+						</tr>
+						<tr>
+							<td><strong>7</strong></td>
+							<td>sieben</td>
+							<td><strong>17</strong></td>
+							<td>siebzehn</td>
+							<td><strong>27</strong></td>
+							<td>siebenundzwanzig</td>
+							<td><strong>90</strong></td>
+							<td>neunzig</td>
+						</tr>
+						<tr>
+							<td><strong>8</strong></td>
+							<td>acht</td>
+							<td><strong>18</strong></td>
+							<td>achtzehn</td>
+							<td><strong>28</strong></td>
+							<td>achtundzwanzig</td>
+							<td><strong>100</strong></td>
+							<td>einhundert</td>
+						</tr>
+						<tr>
+							<td><strong>9</strong></td>
+							<td>neun</td>
+							<td><strong>19</strong></td>
+							<td>neunzehn</td>
+							<td><strong>29</strong></td>
+							<td>neunundzwanzig</td>
+							<td><strong>1000</strong></td>
+							<td>eintausend</td>
+						</tr>
+						<tr>
+							<td><strong>10</strong></td>
+							<td>zehn</td>
+							<td><strong>20</strong></td>
+							<td>zwanzig</td>
+							<td><strong>30</strong></td>
+							<td>dreißig</td>
+							<td><strong>1.000.000</strong></td>
+							<td>eine Million</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<h3 id="magicdomid4">Dizaines</h3>
+			<p>
+				Nous nommons les unités avant les dizaines et lions les deux à
+				l’aide de <em>und</em>.
+			</p>
+			<dl class="example">
+				<dt>Exemples&nbsp;:</dt>
+				<dd lang="de">
+					35 – fünfunddreißig<span class="tooltip tooltip-fa color_text"
+						lang="fr"><i class="fa fa-comment-o"></i><span
+						class="tooltip-content">«&nbsp;cinq et trente&nbsp;»</span></span>
+				</dd>
+				<dd lang="de">
+					43 – dreiundvierzig<span class="tooltip tooltip-fa color_text"
+						lang="fr"><i class="fa fa-comment-o"></i><span
+						class="tooltip-content">«&nbsp;trois et quarante&nbsp;»</span></span>
+				</dd>
+				<dd lang="de">
+					89 – neunundachtzig<span class="tooltip tooltip-fa color_text"
+						lang="fr"><i class="fa fa-comment-o"></i><span
+						class="tooltip-content">«&nbsp;neuf et quatre-vingts&nbsp;»</span></span>
+				</dd>
+			</dl>
+			<h3 id="magicdomid9">Centaines et milliers</h3>
+			<p>
+				Nous pouvons lier les centaines et milliers aux dizaines et unités
+				avec ou sans <em>und</em>. Entre les milliers et les centaines en
+				revanche, nous n’utilisons pas le mot <em>und</em>.
+			</p>
+			<dl class="example">
+				<dt>Exemples&nbsp;:</dt>
+				<dd lang="de">309 – dreihundert(und)neun</dd>
+				<dd lang="de">598 – fünfhundert(und)achtundneunzig</dd>
+				<dd lang="de">7024 – siebentausend(und)vierundzwanzig</dd>
+				<dd lang="de">9815 – neuntausendachthundert(und)fünfzehn</dd>
+			</dl>
+			<p>
+				Au début du mot, nous pouvons réduire les nombres <em>einhundert/eintausend</em>
+				en <em>hundert/tausend</em>
+			</p>
+			<dl class="example">
+				<dt>Exemples&nbsp;:</dt>
+				<dd lang="de">147 – (ein)hundert(und)siebenundvierzig</dd>
+				<dd lang="de">1147 –
+					(ein)tausendeinhundert(und)siebenundvierzig</dd>
+			</dl>
+			<p>Pour une lecture plus facile, les nombres au-dessus de 10000
+				sont souvent écrits avec un point ou espace.</p>
+			<dl class="example">
+				<dt>Exemple&nbsp;:</dt>
+				<dd lang="de">
+					57.458.302<br>57 458 302
+				</dd>
+			</dl>
+			<p>Jusqu'à 999.999, les nombres s'écrivent en un seul mot.</p>
+			<dl class="example">
+				<dt>Exemple&nbsp;:</dt>
+				<dd lang="de">999.999 –
+					neunhundertneunundneunzigtausendneunhundertneunundneunzig</dd>
+			</dl>
+			<p>Les années jusqu'à 1999 sont transcrites en centaines. Pour
+				les années à partir de 2000, nous utilisons les nombres cardinaux
+				classiques.</p>
+			<dl class="example">
+				<dt>Exemples&nbsp;:</dt>
+				<dd lang="de">1999 – neunzehnhundertneunundneunzig</dd>
+				<dd lang="de">2011 – zweitausend(und)elf</dd>
+			</dl>
+			<h3 id="magicdomid31">Millions</h3>
+			<p>
+				<span>À partir du <span class="glossary" data-term="422">nombre</span>
+					2.000.000, nous utilisons le <span class="glossary" data-term="431">pluriel</span>.
+					Attention: „Million“ est toujours utilisé comme un mot distinct.
+				</span>
+			</p>
+			<dl class="example">
+				<dt>Exemples&nbsp;:</dt>
+				<dd lang="de">1.500.000 – eine Million fünfhunderttausend</dd>
+				<dd lang="de">2.000.000 – zwei Millionen</dd>
+				<dd lang="de">47.850.203 – siebenundvierzig Millionen
+					achthundertfünfzigtausendzweihundert(und)drei</dd>
+			</dl>
+		</div>
+	</section>
+</div>
+{% endblock %}

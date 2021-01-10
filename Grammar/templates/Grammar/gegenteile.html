@@ -1,35 +1,111 @@
-{% extends 'Ba.html' %}
+{% extends 'Ba.html'%}
 {% load static %}
+
 {% block body %}
 <link href="{% static 'css/cours.css'%}" rel="stylesheet">
-<h1>Deutsch Adjektive und ihre Gegenteile</h1>
-       <p>Welches Adjektiv bedeutet das Gegenteil? Multiple-Choice-Übung zu
-           den deutschen Adjektiven: Finde das Adjektiv, dass die gegenteilige Bedeutung hat.</p>
-       <p>Diese Übung enthält die für Anfänger wichtigsten Adjektive (
-           Eigenschaftswörter) und Ihre Gegensätze. Dadurch sind die
-           Aufgaben ideal zum Aufbau und der Erweiterung deines Wortschatzes.</p>
-      <form method="post" action="/Grammar/gegenteile">
+<style>
+    .alignement{
+        display:flex;
+        flex-direction:row;
+    }
+    .image img{
+        height:20px;
+        width:20px;
+    }
+</style>
+ <div class="general">
+     <h1> APPRENDRE LA LANGUE ALLEMANDE DANS UN SEUL CLIC  </h1>
+     <button><a class="retour" href="{% url 'Grammar:grammar'%}"> << ALLE UBUNGEN</a></button>
+
+     <div>
+         {% if validator == None %}
+            <form method="post" action="/Grammar/gegenteile">
                 {% csrf_token %}
             {% for key,values in dictionnaire.items %}
-
                 <h2> AUFGABE {{forloop.counter}} :</h2>
 
-                  <p class="enonce">
-                      {{ key }}
-                  </p>
-                    <div class="aufgabes">
-                        {% for mo in values %}
-                           <input type="radio" name="{{key}}" value="" id="losung" >
-                           <label for="losung">{{mo}}</label><br/>
-                        {% endfor %}
-                    </div>
+              <p class="enonce">
+                  <!-- affichagge du key qui represente la question -->
+                  {{ key }}
+              </p>
+                <div class="aufgabes">
+                    {% for mo in values %}
+                        <!-- 'values' represente  les choix possibles -->
+                       <input type="radio" name="{{ key }}" value="{{mo}}" id="{{mo}}"  >
+                       <label for="{{mo}}">{{mo}}</label><br/>
+
+                    {% endfor %}
+                </div>
 
             {% endfor %}
 
 
+                <span class="submit"><input type="submit" value="VALIDER" ></span><br/>
+                <span id="msg">{{message}}</span>
+
+            </form>
+         {% else %}
+            {% for key,values in dictionnaire.items %}
+                <h2> AUFGABE {{forloop.counter}} :</h2>
+
+              <p class="enonce">
+                  {{ key }}
+
+              </p>
+                <div class="aufgabes">
+
+                        {% for mo in values %}
+                        <div class="alignement">
+                           {% if validator.key %}
+                            <!-- rep correcte -->
+                                {% for keyo, value in reponses.items %}
+                            <!-- rponses est un dic stockant les questions ss-frme clee et la val associe est la reponse  -->
+                                    {% if mo == value and key == keyo %}
+                            <!-- verification du question si elle est la mm car key est ubung.frage pr 'validator ' et auussi pr keyo  -->
+                                        <div class="image">
+                                            <img src="{% static 'outils/success.png'%}" alt="sss"/>
+                                        </div>
+                                    {% endif %}
+                                        <div class="google">
+                                            <input type="radio" name="{{ key }}" value="{{mo}}" id="{{mo}}2"  >
+                                            <label for="{{mo}}2">{{mo}}</label><br/>
+                                        </div>
+                                {% endfor %}
+
+                           {% else %}
+                            <!-- rep fausse -->
+                                {% for keyo, value in erreurs.items %}
+                                  <!-- affichage du rep fausse -->
+                                    {% if mo == value and key == keyo%}
+                                           <div class="image">
+                                                <img src="{% static 'css/wrong.png'%}" alt="sss"/>
+                                           </div>
+                                    {% endif %}
+                                {% endfor %}
+                                {% for keyo, value in reponses.items %}
+                                  <!-- affichage du rep juste -->
+                                        {% if mo == value and key == keyo %}
+                                            <div class="image">
+                                                <img src="{% static 'outils/success.png'%}" alt="sss"/>
+                                            </div>
+                                        {% endif %}
+                                {% endfor %}
+                                <div class="google">
+                                            <input type="radio" name="{{ key }}" value="{{mo}}" id="{{mo}}1"  >
+                                            <label for="{{mo}}1">{{mo}}</label><br/>
+                                </div>
+
+                           {% endif %}
+                            </div>
+                        {% endfor %}
 
 
-               <span class="submit"><input type="submit" value="VALIDER" ></span>
-          {{message}}
-      </form>
+                </div>
+
+            {% endfor %}
+                <p>{{message}}</p>
+         {%endif%}
+
+        </div>
+ </div>
 {% endblock %}
