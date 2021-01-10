@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^adverbes', views.adverbs, name="adverbes"),
     url(r'^numeraux',views.numeraux,name="numeraux"),
     url(r'^quiz',views.quiz,name="quiz"),
+    url(r'^unbestimmte-artikel',views.ua,name="unbestimmte-artikel"),
     url(r'^$', views.general, name="menu")
 ]

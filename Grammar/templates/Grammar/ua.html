@@ -19,7 +19,7 @@
 
      <div>
          {% if validator == None %}
-            <form method="post" action="/Grammar/bestimmte artikel">
+            <form method="post" action="/Grammar/unbestimmte-artikel">
                 {% csrf_token %}
             {% for key,values in dictionnaire.items %}
                 <h2> AUFGABE {{forloop.counter}} :</h2>
