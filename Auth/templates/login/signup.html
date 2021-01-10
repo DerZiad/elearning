@@ -33,6 +33,14 @@
 			color:#00b0ff;
 			text-decoration:none;
 		}
+		.rot{
+			font-size:18px;
+			padding:30px;
+			color:red;
+			border:2px solid red;
+			background-color:#ffa4a2;
+			margin-bottom:15px;
+		}
 	</style>
 	{% endblock %}
 
@@ -49,6 +57,9 @@
 							{% csrf_token %}
 							<div id="Error"></div>
 							 <div id="Connector">
+								 						<div id="#rot"class="rot" data-validate = "Valid email is required: ex@abc.xyz">
+															<p>Le mot de passe doit contenir au moins 4 chiffres <br> et une  lettre en majiscule<br>Mieux d'ajouter caractère speciaux</p>
+														</div>
 														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 															<input class="input100" type="text" name="username" placeholder="Username">
 															<span class="focus-input100"></span>
@@ -73,6 +84,9 @@
 															</span>
 														</div>
 														<p id="cfpassword" class="error"></p>
+								 <div id="Inscription" class="container-login100-form-btn">
+											<button class="login100-form-btn">Inscription</button>
+								</div>
 							</div>
 							<div id="ja-ss">
 														<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -126,9 +140,9 @@
 															</span>
 														</div>
 														<p id="email" class="error"></p>
-							</div>
-							<div id="Suivant" class="container-login100-form-btn">
+								<div id="Suivant" class="container-login100-form-btn">
 											<button class="login100-form-btn">Suivant</button>
+								</div>
 							</div>
 							<div id="Precedent"class="container-login100-form-btn">
 											<button class="login100-form-btn">Precedent</button>

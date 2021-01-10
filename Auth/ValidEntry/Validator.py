@@ -39,3 +39,22 @@ def validDate(list):
 def validAdress(adress):
     if len(adress) < 10 or len(adress) > 40:
         raise ValueError
+def validpassword(password,cfpassword):
+    test = False
+    for lettre in password:
+        if str(lettre) == str(lettre).upper():
+            test = True
+    if test:
+        cmp = 0
+        for lettre in password:
+            try:
+                int(lettre)
+                cmp += 1
+            except:
+                pass
+        if cmp >= 4 and len(password) >= 9:
+            return True
+        else:
+            return False
+    else:
+        return False

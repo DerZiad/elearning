@@ -602,7 +602,7 @@ h1, h2, h5 {
 }
 
 #header {
-	background-color: #0d5673;
+	background-color: rgba(13, 86, 115, 0.5);
 	width: 100%;
 	z-index: 100
 }
@@ -627,7 +627,7 @@ h1, h2, h5 {
 
 #header .navbar-collapse {
 	-webkit-box-shadow: none;
-	background-color: #0d5673
+	background-color: rgba(13, 86, 115, 0.5)
 }
 
 .menu.navbar-default .navbar-nav>li.active>a {
@@ -647,7 +647,7 @@ h1, h2, h5 {
 
 #header .navbar-default .navbar-toggle:focus .icon-bar, #header .navbar-default .navbar-toggle:hover .icon-bar
 	{
-	background-color: #0d5673
+	background-color: rgba(13, 86, 115, 0.5)
 }
 
 #header .navbar-brand {

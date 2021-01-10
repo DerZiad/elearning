@@ -1,0 +1,79 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block besoin %}
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/animate/animate.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/css-hamburgers/hamburgers.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/vendor/select2/select2.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login_design/css/main.css'%}">
+
+<!--===============================================================================================-->
+
+
+
+
+<!--===============================================================================================-->
+	<script src="{% static 'login_design/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'login_design/vendor/bootstrap/js/popper.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'login_design/vendor/select2/select2.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'login_design/vendor/tilt/tilt.jquery.min.js'%}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'login_design/js/main.js'%}"></script>
+{% endblock %}
+{% block body %}
+	<div class="bg-image">
+	<div class="limiter">
+
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method="post" action="{% url 'Authentification:confirm' %}">
+					{% csrf_token %}
+                    <input type="hidden" name="email" value="{{email}}"/>
+					<span class="login100-form-title">
+						Code Mail
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="code" placeholder="############">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+					<span style="color:red" class="error"><p>{{codeerror}}</p></span>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Confirmer
+						</button>
+					</div>
+				</form>
+				<form method="post" action="{% url 'Authentification:delete'%}">
+						{% csrf_token %}
+                        <div class="container-login100-form-btn">
+							<input type="hidden" name="email" value="{{email}}"/>
+                            <button class="login100-form-btn">
+                                Suprimer
+                            </button>
+                        </div>
+									</form>
+			</div>
+		</div>
+	</div>
+	</div>
+{% endblock %}

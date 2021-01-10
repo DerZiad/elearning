@@ -6,13 +6,28 @@
 {% block body %}
 <section>
     <div class="redemittel">
-        <p>Redemittel</p>
+        <div class="redemittel-image">
+            <img src="{% static 'schreiben.jpg'%}" alt=""/>
+        </div>
+        <div class="redemittelb">
+            <div class="redemittel-titre">
+                <p>Redemittel</p>
+            </div>
+            <div class="redemittel-body">
+                <a href=""><p>Redemiitel</p></a>
+                <a href=""><p>Wortschatz-1</p></a>
+                <a href=""><p>Wortschatz-2</p></a>
+                <a href=""><p>komminikation</p></a>
+                <a href=""><p>sprechen</p></a>
+            </div>
+        </div>
+
     </div>
     <div class="contenu">
         <div class="schreiben-enonce">
             <div class="schreiben">
                 <div class="schreiben-sujet">
-                    <p2>Théma ist " {{exercice.sujet}} " </p2>
+                    <p2>Théma : {{exercice.sujet}} </p2>
                 </div>
                 <div class="schreiben-text">
                     <p>{{exercice.text}}</p>

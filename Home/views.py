@@ -9,6 +9,7 @@ import hashlib
 import Auth.ValidEntry.sender as sender
 import Auth.ValidEntry.random as randomer
 import Auth.ValidEntry.Validator as valid
+from Schreiben.models import Reponse,Correction
 import datetime
 from Home.funktions.funktion import checkSession
 # Create your views here.
@@ -20,10 +21,9 @@ def principale(request):
         return HttpResponse(template.render(request=request))
     else:
         succes_grammar = request.session['succes_lesen']
-        succes_schreiben = request.session['succes_schreiben']
         succes_horen = request.session['succes_horen']
         succes_lesen = request.session['succes_lesen']
-        total = int((succes_lesen + succes_horen + succes_schreiben + succes_grammar) / 4)
+        total = int(succes_lesen + succes_horen + succes_grammar)
         context = {
             'total': total
         }
@@ -107,6 +107,12 @@ def edit(request):
                 if action == 'delete':
                     personne = Personne.objects.get(username = request.session['username'])
                     message = Message.objects.filter(personne = personne)
+                    reponses = Reponse.objects.filter(personne = personne)
+                    for rep in reponses:
+                        corrections = Correction.objects.filter(reponse = rep)
+                        for correction in corrections:
+                            correction.delete()
+                        rep.delete()
                     personne.delete()
                     message.delete()
                     request.session.flush()
@@ -257,5 +263,11 @@ def edit(request):
     except IndexError:
         return HttpResponseRedirect("/")
 
-def test(request):
-    return HttpResponse(loader.get_template("forum/forum.html").render())
+def delete(request):
+    try:
+        checkSession(request)
+        reponse = Message.objects.get(id = request.GET['id'])
+        reponse.delete()
+        return HttpResponseRedirect("/forum")
+    except:
+        pass

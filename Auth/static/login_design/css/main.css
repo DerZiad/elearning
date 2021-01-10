@@ -44,7 +44,7 @@ section a {
 
 section a:hover {
 	text-decoration: none;
-    color: #57b846;
+    color: rgb(242, 139, 0);
 }
 
 /*---------------------------------------------*/
@@ -283,7 +283,7 @@ iframe {
 }
 
 .input100:focus + .focus-input100 + .symbol-input100 {
-  color: #57b846;
+  color: rgb(242, 139, 0);
   padding-left: 28px;
 }
 
@@ -311,7 +311,7 @@ iframe {
   width: 100%;
   height: 50px;
   border-radius: 10px;
-  background: #57b846;
+  background: rgb(242, 139, 0);
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -337,7 +337,7 @@ iframe {
   width: 100%;
   height: 50px;
   border-radius: 25px;
-  background: #57b846;
+  background: rgb(242, 139, 0);
   display: -webkit-box;
   display: -webkit-flexf;
   display: -moz-box;
