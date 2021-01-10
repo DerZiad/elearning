@@ -1,10 +1,13 @@
 from builtins import print
+
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 from Home.funktions.funktion import checkSession
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
 from . import models
-
+from .random import generateRandom
 from Grammar.models import Ubung, Essai, Quiz, Tipps, Choix
 
 
@@ -15,12 +18,20 @@ def grammarex(request):
 
         losung = request.POST
         cmp = 0
-        erreur = {}
+        validator = {}
+        reponsejuste = {}
+        erreurfausse = {}
         for ubung in ubungs:
             try:
-                if str(losung[ubung.losung]) == str(ubung.losung):
+                if str(losung[ubung.frage]) == str(ubung.losung):
                     cmp += 1
-                msg = "le nombre de question Juste est ", cmp
+                    validator[ubung.frage] = True
+                    reponsejuste[ubung.frage] = losung[ubung.frage]
+                    msg = "le nombre de question Juste est ", cmp
+                else:
+                    validator[ubung.frage] = False
+                    erreurfausse[ubung.frage] = losung[ubung.frage]
+                    reponsejuste[ubung.frage] = ubung.losung
             except:
                 msg = "Veuillez selectionner tous les questions "
 
@@ -41,8 +52,10 @@ def grammarex(request):
             'ubungs': ubungs,
 
             'dictionnaire': dic,
-            'erreur': erreur,
-            'message': msg,
+            'erreurs': erreurfausse,
+            'reponses':reponsejuste,
+            'validator':validator,
+            'message': msg
         }
         return render(request, 'Grammar/index.html', context)
 
@@ -55,10 +68,11 @@ def grammarex(request):
         i = 1
         list = []
         for ubung in ubungs:
-            list.append(ubung.losung)
+
             for mog in moglichkeit:
                 if mog.numf == ubung:
                     list.append(mog.choix)
+            list.insert(generateRandom(),ubung.losung)
             dic[str(ubung.frage)] = list
             list = []
 
@@ -84,9 +98,8 @@ def gegenteile(request):
 
         for ubung in ubungs:
             try:
-                if str(losung[ubung.losung]) == str(ubung.losung):
+                if str(losung[ubung.frage]) == str(ubung.losung):
                     cmp += 1
-                print(str(losung[ubung.losung]), 'et', str(ubung.losung))
                 msg = "le nombre de question juste", cmp
             except:
                 msg = "Veuillez selectionnez tous les questions "
@@ -147,7 +160,7 @@ def bartikel(request):
 
             for ubung in ubungs:
                 try:
-                    if str(losung[ubung.losung]) == str(ubung.losung):
+                    if str(losung[ubung.frage]) == str(ubung.losung):
                         cmp += 1
                     msg = "le nombre de question acuis", cmp
                 except:
@@ -555,11 +568,42 @@ def numeraux(request):
 
 
 def quiz(request):
+    quizat = Quiz.objects.all()
+    essais = Choix.objects.all()
     if request.method == "GET":
-        quizat = Quiz.objects.all()
-        essais = Choix.objects.all()
+        paginator = Paginator(quizat, 1)
+        page = request.GET.get('page')
+        try:
+            pp = paginator.page(page)
+        except PageNotAnInteger:
+            pp = paginator.page(1)
+        except EmptyPage:
+            pp = paginator.page(paginator.num_pages)
         dic = {}
         lista = []
+        for quiz in quizat:
+            lista.append(quiz.losung)
+            for essai in essais:
+                if essai.numf == quiz:
+                    lista.append(essai.mog)
+            dic[str(quiz.jeu)] = lista
+            lista = []
+        context = {
+            'dictionnaire': dic,
+            'paginate':True,
+            'pp':pp
+        }
+        return render(request, 'Grammar/quiz.html', context)
+    else:
+        rep = None
+        for quiz in quizat:
+            try:
+                if str(request.POST[quizat.losung]) == str(quiz.losung):
+                    rep = "Correcte"
+                msg = "Cette rep est ", rep
+            except:
+                msg = "Veuillez selectionner un choix "
+        dic = {}
         for quiz in quizat:
             lista.append(quiz.jeu)
             for essai in essais:
@@ -567,8 +611,9 @@ def quiz(request):
                     lista.append(essai.mog)
             dic[str(quiz.jeu)] = lista
             lista = []
-    context = {
-        'dictionnaire': dic,
-    }
-
-    return render(request, 'Grammar/quiz.html', context)
+        context = {
+            'quizat': quizat,
+            'dictionnaire ': dic,
+            'message': msg,
+        }
+        return render(request, 'Grammar/quiz.html', context)

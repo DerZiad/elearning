@@ -1,12 +1,19 @@
 {% extends 'Ba.html' %}
 {% block body %}
-  {% for key , values in dictionnaire.items %}
-        <p>{{key}}</p>
+    <form method="post" action="/Grammar/quiz">
+        {% csrf_token %}
+          {% for key , values in dictionnaire.items %}
+                <p>{{key}}</p>
 
+              {% for mo in values %}
+                <input type="radio" name="{{mo}}" value="{{mo}}" id="losung"  >
+                <label for="losung">{{mo}}</label><br/>
+              {% endfor %}
+                     <p>{{message}}</p>
 
-      {% for mo in values %}
-        <input type="radio" name="{{mo}}" value="{{mo}}" id="losung"  >
-        <label for="losung">{{mo}}</label><br/>
-      {% endfor %}
-  {% endfor %}
+              <div class="clearfix"></div>
+
+          {% endfor %}
+    <input type="submit" value="Valider">
+</form>
 {% endblock %}
