@@ -3,5 +3,5 @@ from Lesen import views
 
 app_name = "Lesen"
 urlpatterns = [
-    url(r'^$', views.listing),
+    url(r'^$', views.generateText,name="exo"),
 ]

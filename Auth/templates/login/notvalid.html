@@ -63,11 +63,11 @@
 						</button>
 					</div>
 				</form>
-				<form method="post" action="{% url 'Authentification:delete'%}">
+									<form method="post" action="{% url 'Authentification:delete'%}">
 						{% csrf_token %}
                         <div class="container-login100-form-btn">
 							<input type="hidden" name="email" value="{{email}}"/>
-                            <button class="login100-form-btn">
+                            <button style="margin-right:75px" class="login100-form-btn">
                                 Suprimer
                             </button>
                         </div>
