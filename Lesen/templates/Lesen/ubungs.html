@@ -1,44 +1,43 @@
-{% extends 'Ba.html'%}
-{% block body %}
+{% extends 'Ba.html'%} {% block body %} {% load static %}
+<link href="{% static 'Lesen_files/ubu.css'%}" rel="stylesheet" xmlns="http://www.w3.org/1999/html"
+	  xmlns="http://www.w3.org/1999/html">
+<div class="content background-lightgrey"
+	style="height: auto !important;">
+	{% csrf_token %} {% for key,values in dictionnaire_text.items %}
+	<div class="content background-lightgrey"
+		style="height: auto !important;">
+		<div class="panel" id="exercise" style="height: auto !important;">
+			<div class="fifty_left" style="height: auto !important;">
+				<h1>{{key}}</h1>
+				<div class="photo"><img src="{%static 'lesen_files/person_in_deutschland.jpg'%}"></div>
 
-{% load static %}
-<link href="{% static 'Lesen_files/a.css'%}" rel="stylesheet">
-{% csrf_token %}
-{% for key,values in dictionnaire_text.items %}
-<div class="content background-lightgrey" style="height: auto !important;">
-	<div class="panel" id="exercise" style="height: auto !important;">
-		<div class="fifty_left" style="height: auto !important;">
-			<img src="{%static 'lesen_files/person_in_deutschland.jpg'%}"class="photo" width="500">
-			<h1>{{key}}</h1>
-			<p class="enonce">{{values}}</p>
+				</br><p class="enonce">{{values}}</p>
 
-		</div>
-		<div class="fifty_right">
-			<h2>Verstehst du den Text?</h2><p>Dann beantworte die folgenden Fragen zum Text:</p>
-		{% for key,values in dictionnaire_ans.items %}
-		<div class="question-box">
-			<div class="question-number">Frage {{forloop.counter}}:</div>
-			<div class="question">{{key}}</div>
-			{% for val in values %}
-			<div class="answers long-answers">
-				<div class="answers-row">
-					<div class="answer active-answer option1" ><span class="mc_number">{{forloop.counter}}</span> {{val}} </div>
+			</div>
+			<div class="fifty_right">
+				<h2>Verstehst du den Text?</h2>
+				<p>Dann beantworte die folgenden Fragen zum Text:</p>
+				{% for key,values in dictionnaire_ans.items %}
+				<div class="question-box">
+					<div class="question-number">Frage {{forloop.counter}}:</div>
+					<div class="question">{{key}}</div>
+					{% for val in values %}
+						<input type="button" name="{{val}}" value="{{ val }}" id="losung">
+					{% endfor %}
 				</div>
-
+				{% endfor %}
+				{% endfor %}
 			</div>
-			{% endfor %}
-		</div>
-			{% endfor %}
-{% endfor %}
-			</div>
-			<div style="border-top: 3px solid #E8E8E8; border-style: dotted; padding-top: 2%;">
-				<div class="info not-finished">Bitte beantworte alle Fragen zum Text.<br>Du hast <b><span class="infofield-answered">0</span></b> von <b><span class="infofield-questions">5</span></b> Fragen beantwortet.</div>
+			<div
+				style="border-top: 3px solid #E8E8E8; border-style: dotted; padding-top: 2%;">
+				<div class="info not-finished">
+					Bitte beantworte alle Fragen zum Text.<br>Du hast <b><span
+						class="infofield-answered">0</span></b> von <b><span
+						class="infofield-questions">5</span></b> Fragen beantwortet.
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</div>
-
 </div>
 
 

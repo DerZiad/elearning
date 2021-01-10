@@ -1,9 +1,12 @@
 from django.shortcuts import render
-
+from django.http import HttpResponse, HttpResponseRedirect
+from Home.funktions.funktion import checkSession
 from Lesen.models import Text, Fragen, Answers
 
 
 def listing(request):
+    # try:
+    # checkSession(request)
     if request.method == "GET":
         texts = Text.objects.all()
         fragen = Fragen.objects.all()
@@ -29,5 +32,7 @@ def listing(request):
         'dictionnaire_ans': dic
     }
     return render(request, 'Lesen/ubungs.html', context)
+# except:
+# return HttpResponseRedirect("/")
 
 # Create your views here.

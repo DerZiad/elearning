@@ -10,7 +10,7 @@ class Text (models.Model):
 class Fragen (models.Model):
     id = models.IntegerField(primary_key=True)
     frage = models.TextField()
-    losung = models.SmallIntegerField()
+    losung = models.CharField(max_length=50)
     numtext = models.ForeignKey(Text, on_delete=models.CASCADE)
 
 
