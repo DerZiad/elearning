@@ -271,3 +271,9 @@ def delete(request):
         return HttpResponseRedirect("/forum")
     except:
         pass
+def aboutus(request):
+    try:
+        checkSession(request)
+        return render(request,"aboutus/aboutussession.html")
+    except:
+        return  render(request,"aboutus/aboutusnotsession.html")
