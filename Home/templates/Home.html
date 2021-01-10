@@ -12,24 +12,14 @@
     <script src="{% static 'Home_files/jquery-ui.min.js.download'%}"></script>
     <script src="{% static 'Home_files/jquery.jplayer.min.js.download'%}"></script>
     <script src="{% static 'Home_files/bootstrap.min.js.download'%}"></script>
-
-    <script type="text/javascript" src="{% static 'Home_files/main.min.js.download'%}"></script>
-    <script type="text/javascript" src="{% static 'Home_files/jquery.ui.touch-punch.min.js.download'%}"></script>
-
-    <script type="text/javascript" src="{% static 'Home_files/select2.min.js.download'%}"></script>
-    <link href="{% static 'Home_files/select2.min.css'%}" rel="stylesheet">
-    <link href="{% static 'Home_files/select2-bootstrap.min.css'%}" rel="stylesheet">
-
             <link rel="stylesheet" type="text/css" href="{% static 'Home_files/cookieconsent.min.css'%}">
-        <script src="{% static 'Home_files/cookieconsent.min.js.download'%}"></script>
-    
+
     <title>Apprenez l’allemand gratuitement sur Internet - deutsch lernen</title>
 
 <style></style></head>
 
 <body class="translation">
 <div id="wrapper" class="main">
-    <a class="sr-only sr-only-focusable" href="https://deutsch.info/fr#content">Aller au contenu</a>
 
     {% include 'header.html'%}
     <div class="content">
@@ -67,8 +57,7 @@
             <div class="col-sm-6 col-md-3 ng h content-block-2 grammar" style="height: 339px;">
                 <a href="/Auth/signin"><div class="icon svg-sprite svg"><svg xmlns="http://www.w3.org/2000/svg" id="icon-grammar" viewBox="0 0 130 100"><g><path d="M107.118 97.973v5.91H69.79v-5.91c6.708 0 8.968-6.883 7.155-11.787-1.322-3.6-7.373-19.81-7.373-19.81H34.578s-5.14 12.986-8.22 20.958c-3.08 7.974 4.137 10.64 10.772 10.64v5.91H4.47v-5.91s5.03-2.14 7.503-4.596c2.473-2.46 4.626-6.69 4.626-6.69L52.35-3.116h8.334l34.45 89.037s1.796 4.5 5.373 8.25c3.58 3.753 6.61 3.803 6.61 3.803m-39.74-40.61L52.913 16.61 36.92 57.363h30.456zM113.873 18.083s8.247-2.322 8.247-9.51c0-7.21-6.547-11.69-12.094-11.69H89.764V-.48c3.698.867 3.698 1.438 3.698 4.222V34.25c0 2.083-1.848 3.298-3.698 3.593v3.283h20.19c5.73 0 14.516-3.34 14.516-11.283 0-9.217-10.597-11.76-10.597-11.76m-11.165-15.67h5.47c3.7 0 4.81 3.244 4.81 6.45 0 3.192-1.11 6.455-4.81 6.455h-5.47V2.413zm5.527 33.18h-5.527V20.85h5.47c4.68 0 6.785 3.677 6.785 8.007 0 4.315-2.625 6.737-6.728 6.737"></path></g></svg></div><h3>Grammaire</h3><p>Les règles les plus importantes de la grammaire allemande illustrées par des exemples</p></a>            </div>
             <div class="col-sm-6 col-md-3 ng h content-block-3 library" style="height: 339px;">
-                <a href="https://deutsch.info/fr/mediathek"><div class="icon svg-sprite svg"><svg xmlns="http://www.w3.org/2000/svg" id="icon-library" viewBox="0 0 110 107"><path d="M29.21 68.333s2.292 6.794 2.292 18.178-2.292 18.214-2.292 18.214c0 1.253-1.03 2.276-2.292 2.276H15.326c-1.262 0-1.576-1.023-1.576-2.276V68.37c0-1.253.313-2.35 1.576-2.35H26.92c1.26 0 2.29 1.06 2.29 2.313m65.465-2.312H83.082c-1.263 0-2.292 1.06-2.292 2.313 0 0-2.29 6.776-2.29 18.16 0 11.383 2.29 18.222 2.29 18.222 0 1.253 1.03 2.285 2.292 2.285h11.593c1.262 0 1.574-1.023 1.574-2.276V68.37c0-1.253-.313-2.35-1.575-2.35M55 0C25.938 0 0 25.768 0 54.638v27.318c0 1.255 1.03 2.277 2.292 2.277h4.583c1.262 0 2.292-1.022 2.292-2.277V54.638C9.167 30.786 30.99 13.66 55 13.66s45.833 17.126 45.833 40.98v27.317c0 1.255 1.03 2.277 2.292 2.277h4.583c1.263 0 2.292-1.022 2.292-2.277v-27.32C110 25.768 84.06 0 55 0"></path></svg></div><h3>Forum</h3><p>Contenu social:Vous allez pouvoir poster des questions sur la langue allemande</p></a>            </div>
-
+                <a href="{% url 'Home:forum'%}"><div class="icon svg-sprite svg"><svg xmlns="http://www.w3.org/2000/svg" id="icon-library" viewBox="0 0 110 107"><path d="M29.21 68.333s2.292 6.794 2.292 18.178-2.292 18.214-2.292 18.214c0 1.253-1.03 2.276-2.292 2.276H15.326c-1.262 0-1.576-1.023-1.576-2.276V68.37c0-1.253.313-2.35 1.576-2.35H26.92c1.26 0 2.29 1.06 2.29 2.313m65.465-2.312H83.082c-1.263 0-2.292 1.06-2.292 2.313 0 0-2.29 6.776-2.29 18.16 0 11.383 2.29 18.222 2.29 18.222 0 1.253 1.03 2.285 2.292 2.285h11.593c1.262 0 1.574-1.023 1.574-2.276V68.37c0-1.253-.313-2.35-1.575-2.35M55 0C25.938 0 0 25.768 0 54.638v27.318c0 1.255 1.03 2.277 2.292 2.277h4.583c1.262 0 2.292-1.022 2.292-2.277V54.638C9.167 30.786 30.99 13.66 55 13.66s45.833 17.126 45.833 40.98v27.317c0 1.255 1.03 2.277 2.292 2.277h4.583c1.263 0 2.292-1.022 2.292-2.277v-27.32C110 25.768 84.06 0 55 0"></path></svg></div><h3>Forum</h3><p>Contenu social:Vous allez pouvoir poster des questions sur la langue allemande</p></a>            </div>
             <div class="col-sm-6 col-md-3 ng h content-block-6 info" style="height: 353px;">
                 <a href="{% url 'Home:info'%}"><div class="icon svg-sprite svg"><svg xmlns="http://www.w3.org/2000/svg" id="icon-info" viewBox="0 0 118 118"><path d="M59 0C26.4 0 0 26.4 0 59s26.4 59 59 59 59-26.4 59-59S91.6 0 59 0M48.8 20.7c0-1.4 1-2.6 2.5-2.6h15.4c1.4 0 2.5 1.3 2.5 2.7V36c0 1.4-1 2.6-2.5 2.6H51.3c-1.4 0-2.5-1.2-2.5-2.6V20.7zM79.4 87c0 1.5-1 2.7-2.5 2.7H41c-1.3 0-2.4-1.2-2.4-2.6v-5c0-1.4 1-2.6 2.5-2.6H49V59H41c-1.3 0-2.4-1.2-2.4-2.6v-5c0-1.5 1-2.6 2.5-2.6h25.7c1.4 0 2.5 1 2.5 2.5v28H77c1.3 0 2.4 1.3 2.4 2.7v5z"></path></svg></div><h3>Informations utiles</h3><p>Des informations pratiques sur la vie en Allemagne et en Autriche, particulièrement utiles pour les migrants</p></a>            </div>
         </div>

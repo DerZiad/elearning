@@ -3,7 +3,6 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.http import JsonResponse
 from django.template import loader
 from .models import Personne
-from Auth.models import temporals
 import Auth.ValidEntry.sender as emailsend
 import hashlib
 import Auth.ValidEntry.ValidatorInscript as validator
@@ -12,32 +11,42 @@ import Auth.ValidEntry.utilconverter as Converter
 import Auth.ValidEntry.random as randomer
 import Auth.ValidEntry.sender as send
 import datetime
+from Home.funktions import funktion as checker
 import json
 from django.core import serializers
 # Create your views here.
 def index(request):
-    template = loader.get_template("session/session.html")
-    return HttpResponse(template.render(request = request))
+    try:
+        checker.checkSession(request)
+        return HttpResponseRedirect("/")
+    except IndexError:
+        template = loader.get_template("session/session.html")
+        return HttpResponse(template.render(request = request))
+
 
 
 def inscription(request):
-    if(request.method == 'GET'):
-        test = Converter.testerSession(request)
-        if test == False:
-            template = loader.get_template("login/signup.html")
-            return HttpResponse(template.render(request = request))
+    try:
+        checker.checkSession(request)
+        return HttpResponseRedirect("/")
+    except IndexError:
+        if request.method == 'GET':
+            test = Converter.testerSession(request)
+            if not test:
+                template = loader.get_template("login/signup.html")
+                return HttpResponse(template.render(request=request))
+            else:
+                return HttpResponseRedirect("/")
         else:
-            return HttpResponseRedirect("/")
-    else:
-        id = request.POST.get('id')
-        if id=="1":
-            firstpane = validator.checkFirstPanelInBase(request)
-            return JsonResponse(firstpane)
-        elif id=="2":
-            secondpane = validator.checkSecondPaneInBase(request)
-            return JsonResponse(secondpane)
-        else:
-            try:
+            id = request.POST.get('id')
+            if id == "1":
+                firstpane = validator.checkFirstPanelInBase(request)
+                return JsonResponse(firstpane)
+            elif id == "2":
+                secondpane = validator.checkSecondPaneInBase(request)
+                return JsonResponse(secondpane)
+            else:
+                try:
                     attribut = request.POST
                     nom = attribut['nom']
                     prenom = attribut['prenom']
@@ -55,74 +64,186 @@ def inscription(request):
                     valid.validSexe(sexe)
                     valid.validAdress(address)
                     valid.validEmail(email)
-                    valid.validinfo(email,username)
+                    valid.validinfo(email, username)
+                    if not valid.validpassword(password,password):
+                        raise ValueError
                     cpassword = hashlib.md5(password.encode())
-                    personneG = Personne(nom=nom,prenom=prenom,datedenaissance=datetime.date(year=int(list[2]), month=int(list[1]), day=int(list[0])),username=username,password = cpassword.hexdigest(),
-                        email = email,Sexe = sexe,Address = address)
+                    print("1")
+                    personneG = Personne(nom=nom, prenom=prenom,
+                                         datedenaissance=datetime.date(year=int(list[2]), month=int(list[1]),
+                                                                       day=int(list[0])), username=username,
+                                         password=cpassword.hexdigest(),
+                                         email=email, Sexe=sexe, Address=address)
                     personneG.save()
                     context = {
-                        "error":"",
-                        "email":personneG.email
+                        "error": "",
+                        "email": personneG.email
                     }
                     codeG = randomer.generateRandom()
-                    temporal = temporals(personne = personneG, code = codeG)
-                    temporal.save()
+                    request.session['codeG'] = codeG
                     infos = {
-                        'address':email,
-                        'text':"Votre code de confirmation est {}".format(codeG),
-                        'subject':"Confirmation de votre compte deutsch lernen"
+                        'address': email,
+                        'text': "Votre code de confirmation est {}".format(codeG),
+                        'subject': "Confirmation de votre compte deutsch lernen"
                     }
-                    send.sendEmail(infos,request)
-                    return HttpResponse(render(request,"letter/confirm.html",context))
-            except ValueError:
+                    send.sendEmail(infos, request)
+                    return HttpResponse(render(request, "login/notvalid.html", context))
+                except ValueError:
+                    print("hacking")
                     return HttpResponse("You re trying to hack")
 def seconnecter(request):
-    if(request.method == 'POST'):
-        username = request.POST.get('email')
-        password = request.POST.get('password')
-        cpassword = hashlib.md5(password.encode())
-        users = Personne.objects.filter(email = username,password = cpassword.hexdigest())
-        if len(users) != 0:
-            Converter.converttodata(request,users[0])
+    try:
+            checker.checkSession(request)
             return HttpResponseRedirect("/")
-        else:
-            test = Converter.testerSession(request)
-            if test == True:
-                return HttpResponseRedirect("/")
+    except IndexError:
+            if request.method == 'POST':
+                username = request.POST.get('email')
+                password = request.POST.get('password')
+                cpassword = hashlib.md5(password.encode())
+                user = Personne.objects.filter(email=username, password=cpassword.hexdigest())
+                if len(user) != 0:
+                    users = user[0]
+                    if users.valid:
+                        Converter.converttodata(request, users)
+                        return HttpResponseRedirect("/")
+                    else:
+                        codeG = randomer.generateRandom()
+                        request.session['codeG'] = codeG
+                        infos = {
+                            'address': users.email,
+                            'text': "Votre code de confirmation est {}".format(codeG),
+                            'subject': "Confirmation de votre compte deutsch lernen"
+                        }
+                        send.sendEmail(infos, request)
+                        context = {
+                            "email":user[0].email
+                        }
+                        return render(request,"login/notvalid.html",context)
+                else:
+                    template = loader.get_template("login/signin.html")
+                    erreurs = {"erreur": "Username ou mot de passe est non valide"}
+                    return render(request, "login/signin.html", erreurs)
             else:
-                template = loader.get_template("login/signin.html")
-                erreurs = {"erreur":"Username ou mot de passe est non valide"}
-                return render(request,"login/signin.html",erreurs)
-    else:
-        template = loader.get_template("login/signin.html")
-        return HttpResponse(template.render(request= request))
+                test = Converter.testerSession(request)
+                if test:
+                    return HttpResponseRedirect("/")
+                else:
+                    template = loader.get_template("login/signin.html")
+                    return HttpResponse(template.render(request=request))
+
 def confirm(request):
-    if(request.method=='POST'):
-        confirm = request.POST
-        code = confirm['code']
-        email = confirm['email']
-        personne = Personne.objects.get(email = email)
-        tempo = temporals.objects.get(personne = personne)
-        if(tempo != None and personne != None):
-            if(code == str(tempo.code)):
-                tempo.delete()
-                personne.save()
-                Converter.converttodata(request,personne)
-                return HttpResponseRedirect("/")
+    try:
+        checker.checkSession(request)
+        return HttpResponseRedirect("/")
+    except IndexError:
+        if request.method == 'POST':
+            confirm = request.POST
+            code = confirm['code']
+            email = confirm['email']
+            print("your email is ",email)
+            personne = Personne.objects.get(email=email)
+            codeG = request.session['codeG']
+            if code != None and personne != None :
+                if code == str(codeG):
+                    personne.valid = True
+                    personne.save()
+                    Converter.converttodata(request,personne)
+                    return HttpResponseRedirect("/")
+                else:
+                    context = {
+                        "codeerror":"Votre code est erroné"
+                    }
+                    return render(request,"login/notvalid.html",context)
             else:
                 context = {
-                    "codeerror":"Votre code est erroné"
+                    "codeerror": "Vous êtes introuvable"
                 }
-                return render(request,"letter/confirm.html",context)
-        else:
-            context = {
-                "codeerror": "Vous êtes introuvable"
-            }
-            return render(request, "letter/confirm.html", context)
+                return render(request, "login/notvalid.html", context)
 
 
 
 def disconnect(request):
-    request.session.flush()
-    request.session.clear_expired()
+    try:
+        checker.checkSession(request)
+        request.session.flush()
+        request.session.clear_expired()
+        return HttpResponseRedirect("/")
+    except:
+        return  HttpResponseRedirect("/")
+def suprimerNotValid(request):
+    email = request.POST['email']
+    personne = Personne.objects.get(email = email)
+    personne.delete()
     return HttpResponseRedirect("/")
+
+def recoverPassword(request):
+    try:
+        checker.checkSession(request)
+        return HttpResponseRedirect("/")
+    except:
+        if request.method == "GET":
+            try:
+                id = request.GET['id']
+                if id == None:
+                    raise IndexError
+                if id == request.session['codeh']:
+                    context = {
+                        "id": id
+                    }
+                    return render(request, "recover/password.html", context)
+            except:
+                return render(request, "recover/recoverpassword.html")
+        else:
+            code = randomer.generateRandom()
+            email = request.POST['email']
+            link = "http://127.0.0.1:8000/Auth/recover?id=" + code
+            request.session['codeh'] = str(code)
+            request.session['email'] = email
+            info = {
+                'address': email,
+                'text': "Votre lien de récuperation de mot de passe est : " + link,
+                'subject': "Recuperer le mot de passe"
+            }
+            send.sendEmail(info, request)
+            return render(request, "recover/message.html")
+
+def changePassword(request):
+    try:
+        checker.checkSession(request)
+        return HttpResponseRedirect("/")
+    except:
+        if request.method == "POST":
+            id = request.POST['id']
+            if id == request.session['codeh']:
+                password = request.POST['password']
+                cfpassword = request.POST['cfpassword']
+                passwordvalid = valid.validpassword(password,cfpassword)
+                if not passwordvalid:
+                    context = {
+                        "id" : id,
+                        "message":"Le mot de passe doit respecter les critères suivant \n Premiere lettre doit être en majiscule \n Au mois 4 chiffre"
+                    }
+                    return render(request,"recover/password.html",context)
+                else:
+                    password = request.POST['password']
+                    cpassword = hashlib.md5(password.encode())
+                    personne = Personne.objects.get(email = request.session["email"])
+                    personne.password = cpassword.hexdigest()
+                    personne.save()
+                    request.session['codeh'] = None
+                    if personne.valid:
+                        Converter.converttodata(request, personne)
+                        return HttpResponseRedirect("/")
+                    else:
+                        codeG = randomer.generateRandom()
+                        request.session['codeG'] = codeG
+                        infos = {
+                            'address': personne.email,
+                            'text': "Votre code de confirmation est {}".format(codeG),
+                            'subject': "Confirmation de votre compte deutsch lernen"
+                        }
+                        send.sendEmail(infos, request)
+                        context = {
+                            "email": personne.email
+                        }
+                        return render(request, "login/notvalid.html", context)

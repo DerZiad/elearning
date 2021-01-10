@@ -5,30 +5,48 @@
 {% endblock %}
 {% block body %}
 <section>
-    <div class="schreiben-enonce">
-        <div class="schreiben">
-            <div class="schreiben-sujet">
-                <p2>Théma ist " {{exercice.sujet}} " </p2>
+    <div class="redemittel">
+        <div class="redemittel-image">
+            <img src="{% static 'schreiben.jpg'%}" alt=""/>
+        </div>
+        <div class="redemittelb">
+            <div class="redemittel-titre">
+                <p>Redemittel</p>
             </div>
-            <div class="schreiben-text">
-                <p>{{exercice.text}}</p>
+            <div class="redemittel-body">
+                <a href=""><p>Redemiitel</p></a>
+                <a href=""><p>Wortschatz-1</p></a>
+                <a href=""><p>Wortschatz-2</p></a>
+                <a href=""><p>komminikation</p></a>
+                <a href=""><p>sprechen</p></a>
             </div>
         </div>
-    </div>
-    <br><br><br>
-    <div class="schreiben-reponse">
-        <form action="{% url 'Schreiben:homeschreiben'%}" method="post">
-            {% csrf_token %}
-            <input name="id" value="{{reponse.id}}" type="hidden"/>
-            <input name="idperso" value="{{reponseperso.id}}" type="hidden"/>
-            <input type="hidden" name="id" value="4">
-            <textarea id="schreiben" name="schreiben" value="" placeholder="Gebe deine schreiben hier" maxlength="500 wörter"></textarea>
-            <br><br>
-            <div class="btn-submit">
-                <input type="submit" value="Senden">
-            </div>
-        </form>
 
+    </div>
+    <div class="contenu">
+        <div class="schreiben-enonce">
+            <div class="schreiben">
+                <div class="schreiben-sujet">
+                    <p2>Théma : {{exercice.sujet}} </p2>
+                </div>
+                <div class="schreiben-text">
+                    <p>{{exercice.text}}</p>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+        <div class="schreiben-reponse">
+            <form action="{% url 'Schreiben:homeschreiben'%}" method="post">
+                {% csrf_token %}
+                <input name="id" value="{{exercice.id}}" type="hidden"/>
+                <textarea id="schreiben" name="schreiben" value="" placeholder="Gebe deine schreiben hier" maxlength="500 wörter"></textarea>
+                <br><br>
+                <div class="btn-submit">
+                    <input type="submit" value="Senden">
+                </div>
+            </form>
+
+        </div>
     </div>
 </section>
 {% endblock %}

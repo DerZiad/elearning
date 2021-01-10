@@ -1,0 +1,130 @@
+{% extends 'Ba.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="">
+<div id="content">
+	<h1>Les déterminants et pronoms allemands</h1>
+	<section class="mod_article first last block" id="les-pronoms">
+		<div class="ce_text first block">
+			<h2 id="a-introduction">Introduction</h2>
+			<p>
+				La fonction des <b>pronoms</b> est de remplacer un nom. En allemand, les pronoms se
+				déclinent. Quant aux <b>déterminants</b><span>, ils
+					accompagnent un <span class="glossary" data-term="420">nom</span>
+					en apportant une nuance de sens.
+				</span>
+			</p>
+			<p>En allemand comme en français, il existe des pronoms
+				personnels, des déterminants et pronoms possessifs, des pronoms
+				réfléchis, des pronoms relatifs, des pronoms interrogatifs, des
+				pronoms indéfinis, des déterminants et pronoms démonstratifs.</p>
+			<p>
+				<span>En cliquant sur le type de déterminants/pronoms de ton
+					choix, tu pourras en apprendre plus sur sa définition, son emploi
+					et la <span class="glossary" data-term="347">déclinaison</span> qui
+					lui correspond. Teste ensuite tes nouvelles connaissances avec nos
+					exercices&nbsp;!
+				</span>
+			</p>
+		</div>
+		<div class="sc-container">
+			<div class="sc-col sc-col-lg-2-1 sc-col-sm-1-1">
+				<div class="ce_page_teaser ce_teaser_link block"
+					data-url="fr/grammaire/les-pronoms/pronoms-personnels">
+					<h2 id="a-les-pronoms-personnels">
+						<a
+							href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-personnels"
+							title="Les pronoms personnels allemands">Les pronoms
+							personnels</a>
+					</h2>
+					<p>
+						Les pronoms personnels sont <em>ich, du, er, sie, es, wir,
+							ihr, sie</em> et leurs formes déclinées<em>.</em> Les pronoms
+						personnels remplacent un nom habituellement déjà mentionné.
+					</p>
+				</div>
+			</div>
+			<div class="sc-col sc-col-lg-2-1 sc-col-sm-1-1">
+				<div class="ce_page_teaser ce_teaser_link block"
+					data-url="fr/grammaire/les-pronoms/pronoms-possessifs">
+					<h2 id="a-les-determinants-et-pronoms-poss">
+						<a
+							href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-possessifs"
+							title="Les déterminants et pronoms possessifs allemands">Les
+							déterminants et pronoms possessifs</a>
+					</h2>
+					<p>Les déterminants et pronoms possessifs marquent la
+						possession ou l’appartenance. Ils peuvent accompagner le nom à la
+						place de l’article ou bien remplacer le nom.</p>
+				</div>
+			</div>
+
+			<div class="sc-col sc-col-lg-2-1 sc-col-sm-1-1">
+				<div class="ce_page_teaser ce_teaser_link block"
+					data-url="fr/grammaire/les-pronoms/pronoms-relatifs">
+					<h2 id="a-les-pronoms-relatifs">
+						<a
+							href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-relatifs"
+							title="Les pronoms relatifs allemands">Les pronoms relatifs</a>
+					</h2>
+					<p>
+						Les pronoms relatifs (<em>der, die, das, welche...</em>)
+						permettent en allemand comme en français d’introduire une
+						proposition relative qui suit une proposition principale.
+					</p>
+				</div>
+			</div>
+			<div class="sc-col sc-col-lg-2-1 sc-col-sm-1-1">
+				<div class="ce_page_teaser ce_teaser_link block"
+					data-url="fr/grammaire/les-pronoms/pronoms-interrogatifs">
+					<h2 id="a-les-pronoms-interrogatifs">
+						<a
+							href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-interrogatifs"
+							title="Les pronoms interrogatifs allemands">Les pronoms
+							interrogatifs</a>
+					</h2>
+					<p>
+						L’allemand connaît principalement deux pronoms
+						interrogatifs&nbsp;: <em>wer/wen/wem/wessen (qui) </em>et <em>was
+							(que)</em>. Ils remplacent dans la phrase interrogative le nom à
+						propos duquel on pose une question.
+					</p>
+				</div>
+			</div>
+			<div class="sc-col sc-col-lg-2-1 sc-col-sm-1-1">
+				<div class="ce_page_teaser ce_teaser_link block"
+					data-url="fr/grammaire/les-pronoms/pronoms-demonstratifs">
+					<h2 id="a-les-determinants-et-pronoms-demo">
+						<a
+							href="https://deutsch.lingolia.com/fr/grammaire/les-pronoms/pronoms-demonstratifs"
+							title="Les déterminants et pronoms démonstratifs allemands">Les
+							déterminants et pronoms démonstratifs</a>
+					</h2>
+					<p>
+						Les déterminants et pronoms démonstratifs allemands sont notamment
+						<i>dieser, jener, derjenige</i>..<i>. </i>Ils permettent de
+						désigner quelqu’un ou quelque chose en insistant ou d'éviter une
+						répétition.
+					</p>
+				</div>
+			</div>
+			<div class="sc-col sc-col-lg-2-1 sc-col-sm-1-1">
+				<div class="ce_page_teaser ce_teaser_link block"
+					data-url="fr/grammaire/les-pronoms/pronoms-indefinis">
+					<h2 id="a-les-pronoms-indefinis">
+						<a
+							href="{% url 'Grammar:pronomsindefinis'%}"
+							title="Les pronoms indéfinis allemands">Les pronoms indéfinis</a>
+					</h2>
+					<p>
+						Les pronoms indéfinis allemands sont par exemple <em>etwas,
+							nichts, man, jemand, niemand, jeder</em>. Ils désignent quelque chose
+						ou quelqu’un de façon générale ou indéterminée.
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+</div>
+{% endblock %}

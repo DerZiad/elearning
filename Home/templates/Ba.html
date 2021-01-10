@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html dir="ltr" class=" svg" lang="fr"><head>
+<html><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     {% load static %}
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     {% include 'icon.html'%}
+
     <link href="{% static 'session_fichiers/bootstrap.css'%}" rel="stylesheet">
     <link href="{% static 'session_fichiers/main.css'%}" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/d3js/6.3.1/d3.min.js"></script>
-
-    <link rel="image_src" href="https://deutsch.info/images/logos/deutsch_info_logo_color_250px.png">
     <script src="{% static 'session_fichiers/jquery-2.js'%}"></script>
     <script src="{% static 'session_fichiers/jquery-ui.js'%}"></script>
     <script src="{% static 'session_fichiers/jquery_002.js'%}"></script>
     <script src="{% static 'session_fichiers/bootstrap.js'%}"></script>
 
-    <!-- <script type="text/javascript" src="{% static 'session_fichiers/main.js'%}"></script>-->
-    <script type="text/javascript" src="{% static 'session_fichiers/jquery.js'%}"></script>
+    <script type="text/javascript" src="session_fichiers/main.js'%}"></script>
+    <script type="text/javascript" src="session_fichiers/jquery.js'%}"></script>
 
     <script type="text/javascript" src="{% static 'session_fichiers/select2.js'%}"></script>
     <link href="{% static 'session_fichiers/select2.css'%}" rel="stylesheet">
     <link href="{% static 'session_fichiers/select2-bootstrap.css'%}" rel="stylesheet">
-
     {% block besoin %}
     <title>Cours - deutsch lernen</title>
     {%endblock %}
@@ -59,7 +55,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-            <a class="navbar-brand" href="/"><img class="logo icon svg-sprite svg" src="{% static 'session_fichiers/logo.png'%}" style="height:70px;"/></a>
+            <a class="navbar-brand" href="/"><img class="logo icon svg-sprite svg" src="{% static 'session_fichiers/logo.png'%}" style="width:250px;" style="height:180px;"/></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="main_menu">

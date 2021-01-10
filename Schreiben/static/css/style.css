@@ -2,34 +2,86 @@ body{
 	background-color: #eeeeee;
 	font-family: sans-serif;
 }
+section{
+    display:flex;
+    flex-direction:row;
+    padding:30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.redemittel{
+    color:red;
+    font-size:19px;
+    margin-top: 80px;
+    margin:left:580px;
+    padding-top:30px;
+    padding-bottom: 30px;
+    padding-right: 120px;
+    padding-left: 120px;
+
+}
+.redemittel-titre{
+	font-weight: bold;
+	padding: 30px;
+	padding-right: 50px;
+	padding-left: 50px;
+	background-color:rgba(255, 121, 97, 0.9);
+}
+.redemittel-body{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color:rgba(255, 121, 97, 0.9);
+	padding: 30px;
+	padding-right: 50px;
+	padding-left: 50px;
+}
+.redemittelb{
+	border:2px solid red;
+    border-radius: 10px;
+}
+.redemittel-image img{
+	height: 150px;
+	width: 250px;
+	margin-bottom: 80px;
+	border-radius: 10px;
+}
 .schreiben{
-	border:2px solid rgb(243, 146, 31);
-	border-radius: 20px;
+	border:2px solid #0d5673;
+	border-radius: 5px;
 	padding: 15px;
+	padding-left:300px;
+	padding-right: 300px;
 }
 .schreiben .schreiben-sujet{
-	color: rgb(243, 146, 31);
+	color: #0d5673;
 	font-weight: bold;
 	font-size:19px;
 }
 .schreiben-reponse #schreiben{
-	border:2px solid rgb(243, 146, 31);
+	border:2px solid #0d5673;
+	margin-top: 40px;
 	border-radius: 10px;
-	padding: 20px;
+	padding: 10px;
 	height: 480px;
 	-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
 }
-section{
-	border:2px solid black;
+.contenu{
 	border-radius:10px;
-	background-color: white;
-	padding: 15px;
-	margin:20px;
+	background-color: rgba(255,255,255,0.8);
+	padding:20px;
 	display: flex;
 	flex-direction: column;
+	margin-left: 150px;
+
 }
 .btn-submit{
 	display: flex;
@@ -37,19 +89,19 @@ section{
 }
 .btn-submit input{
 	background:none;
-	border:2px solid rgb(243, 146, 31);
-	border-radius: 20px;
-	color:rgb(243, 146, 31);
+	border:2px solid #0d5673;
+	border-radius: 5px;
+	color:#0d5673;
 	font-size: 20px;
 	font-weight: bold;
 
 	padding-top: 15px;
 	padding-bottom: 15px;
 	padding-left:80px;
-	padding-right: 80px; 
+	padding-right: 80px;
 	text-align: center;
 }
 .btn-submit input:hover{
 	color:white;
-	background-color: rgb(243, 146, 31);
+	background-color: #0d5673;
 }
