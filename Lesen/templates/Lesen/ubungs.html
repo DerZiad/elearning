@@ -1,12 +1,13 @@
 {% extends 'Ba.html'%} {% block body %} {% load static %}
 <link href="{% static 'Lesen_files/ubu.css'%}" rel="stylesheet" xmlns="http://www.w3.org/1999/html"
-	  xmlns="http://www.w3.org/1999/html">
+	  xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <div class="content background-lightgrey"
 	style="height: auto !important;">
 	{% csrf_token %} {% for key,values in dictionnaire_text.items %}
 	<div class="content background-lightgrey"
 		style="height: auto !important;">
 		<div class="panel" id="exercise" style="height: auto !important;">
+			<form method="post" action="/Lesen">
 			<div class="fifty_left" style="height: auto !important;">
 				<h1>{{key}}</h1>
 				<div class="photo"><img src="{%static 'lesen_files/person_in_deutschland.jpg'%}"></div>
@@ -33,9 +34,11 @@
 				<div class="info not-finished">
 					Bitte beantworte alle Fragen zum Text.<br>Du hast <b><span
 						class="infofield-answered">0</span></b> von <b><span
-						class="infofield-questions">5</span></b> Fragen beantwortet.
+						class="infofield-questions">5</span></b> Fragen beantwortet.</br>
+					<button type="submit"><span>Confirm</span></button>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 </div>
