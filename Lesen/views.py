@@ -1,32 +1,38 @@
 from django.shortcuts import render
-
+from django.http import HttpResponse, HttpResponseRedirect
+from Home.funktions.funktion import checkSession
 from Lesen.models import Text, Fragen, Answers
 
 
 def listing(request):
+    # try:
+    # checkSession(request)
     if request.method == "GET":
         texts = Text.objects.all()
         fragen = Fragen.objects.all()
         answers = Answers.objects.all()
-
+        dic1 = {
+        }
         dic = {
         }
-        list = []
+        liste = []
         for texte in texts:
-            list.append(texte.text)
+            dic1[str(texte.title)] = texte.text
             for frag in fragen:
-
                 if frag.numtext == texte:
-                    list.append(frag.frage)
                     for ans in answers:
                         if ans.numfra == frag:
-                            list.append(ans.an)
-                list = []
-                dic[str(texte.title)] = list
+                            liste.append(ans.an)
+
+                dic[str(frag.frage)] = liste
+                liste = []
 
     context = {
-        'dictionnaire': dic
+        'dictionnaire_text': dic1,
+        'dictionnaire_ans': dic
     }
     return render(request, 'Lesen/ubungs.html', context)
+# except:
+# return HttpResponseRedirect("/")
 
 # Create your views here.
