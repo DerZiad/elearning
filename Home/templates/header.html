@@ -16,11 +16,11 @@
             <div class="collapse navbar-collapse" id="main_menu">
                 <ul class="nav navbar-nav navbar-right" id="yw0">
 <li><a href="{% url 'Authentification:signin'%}">Cours</a></li>
-<li><a href="{% url 'Authentification:signin'%}">A propos</a></li>
+<li><a href="{% url 'Home:aboutus'%}">A propos</a></li>
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Informations utiles <b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li><a href="{% url 'Home:info'%}">Histoire</a></li>
-<li><a href="https://deutsch.info/fr/test">Forum</a></li>
+<li><a href="{% url 'Home:forum'%}">Forum</a></li>
 </ul>
 </li>
 <li><a class="btn-sm btn-white" href="{% url 'Authentification:signin' %}">Connexion</a></li>
