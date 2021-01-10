@@ -20,10 +20,12 @@ def grammarex(request):
             for ubung in c:
                 if ubung.frage == frage:
                     ubungs.append(Ubung.objects.get(frage = frage,type="frage"))
+        losung = request.POST
         cmp = 0
         validator = {}
         reponsejuste = {}
         erreurfausse = {}
+        msg = "le nombre de question Juste est ",0
         for ubung in ubungs:
                 if str(losung[ubung.frage]) == str(ubung.losung):
                     cmp += 1
@@ -34,10 +36,6 @@ def grammarex(request):
                     validator[ubung.frage] = False
                     erreurfausse[ubung.frage] = losung[ubung.frage]
                     reponsejuste[ubung.frage] = ubung.losung
-
-
-
-
         dic = {
         }
 
