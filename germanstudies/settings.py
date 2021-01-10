@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'germanstudies.wsgi.application'
 DATABASES = {
     'default' : {
        'ENGINE': 'django.db.backends.mysql', # on utilise l'adaptateur postgresql
-        'NAME': 'django', # le nom de notre base de donnees creee precedemment
+        'NAME': 'django1', # le nom de notre base de donnees creee precedemment
         'USER': 'root', # attention : remplacez par votre nom d'utilisateur
-        'PASSWORD': 'ziad20021960+',
+        'PASSWORD': 'Ayman2002+',
         'HOST': 'localhost',
         'PORT': '3306',
     }

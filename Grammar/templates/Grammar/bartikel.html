@@ -16,8 +16,8 @@
               </p>
                 <div class="aufgabes">
                     {% for mo in values %}
-                       <input type="radio" name="{{key}}" value="{{ key }}" id="losung"  >
-                       <label for="losung">{{mo}}</label><br/>
+                       <input type="radio" name="{{ key }}" value="{{mo}}" id="{{mo}}"  >
+                       <label for="{{mo}}">{{mo}}</label><br/>
                     {% endfor %}
                 </div>
 

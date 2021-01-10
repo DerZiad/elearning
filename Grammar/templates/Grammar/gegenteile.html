@@ -2,7 +2,9 @@
 {% load static %}
 {% block body %}
 <link href="{% static 'css/cours.css'%}" rel="stylesheet">
+
 <h1>Deutsch Adjektive und ihre Gegenteile</h1>
+ <button><a class="retour" href="{% url 'Grammar:grammar'%}"> << ALLE UBUNGEN</a></button>
        <p>Welches Adjektiv bedeutet das Gegenteil? Multiple-Choice-Übung zu
            den deutschen Adjektiven: Finde das Adjektiv, dass die gegenteilige Bedeutung hat.</p>
        <p>Diese Übung enthält die für Anfänger wichtigsten Adjektive (
@@ -19,8 +21,8 @@
                   </p>
                     <div class="aufgabes">
                         {% for mo in values %}
-                           <input type="radio" name="{{key}}" value="" id="losung" >
-                           <label for="losung">{{mo}}</label><br/>
+                           <input type="radio" name="{{key}}" value="{{mo}}" id="{{mo}}" >
+                           <label for="{{mo}}">{{mo}}</label><br/>
                         {% endfor %}
                     </div>
 
@@ -28,8 +30,7 @@
 
 
 
-
-               <span class="submit"><input type="submit" value="VALIDER" ></span>
+          <span class="submit"><input type="submit" value="VALIDER" ></span>
           {{message}}
       </form>
 {% endblock %}

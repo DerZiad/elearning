@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block body %}
- <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-icon-180x180.png' %}">
+
   <link href="./assets/favicon.ico" rel="icon">
-<link href="{ static 'css/main.3f6952e4.css'%}" rel="stylesheet">
+<link href="{% static 'css/gg.css' %}" rel="stylesheet">
 <div class="container">
 	<button type="button" class="navbar-toggle collapsed"
 		data-toggle="collapse" data-target="#navbar-collapse"
@@ -23,7 +23,7 @@
 
 			<div class="col-sm-8 col-sm-offset-2 section-container-spacer">
 				<div class="text-center">
-					<h1 class="h2"> GRAMMAIR</h1>
+					<h1 class="h1"> GRAMMAIR</h1>
 					<p>Pour parler et écrire correctement l’allemand, il est important de connaître les principales règles de grammaire et certains termes techniques. Nos explications ont été conçues pour que
 						tu puisses les apprendre facilement et faire des progrès rapides. Tous les points
 						essentiels sont résumés de manière simple et claire. Les exercices te permettent d’appliquer et de conforter
@@ -72,7 +72,7 @@
 									</div>
 								</div>
 								<div class="col-sm-4">
-									<a href="./work.html" title=""
+									<a href="" title=""
 										class="black-image-project-hover"> <img
 										src="{% static 'work001-03.jpg' %}" alt=""
 										class="img-responsive">
@@ -82,7 +82,7 @@
 										<h3>L'ALLEMAND AUTREMENT</h3>
 										<p> quizz et jeux pour vous divertir en approfondissant vos connaissances
 											de la civilisation des pays de langue allemande</p>
-										<a href="" title="" class="btn btn-default">Discover</a>
+										<a href="{% url 'Grammar:quiz'%}" title="" class="btn btn-default">Discover</a>
 									</div>
 								</div>
 
