@@ -21,9 +21,20 @@ button:hover {
 }
 form{
 margin : 100px;
+
 }
 #msg
 {
 font-size : 18px;
 color : orange ;
+}
+h2{
+text-align:center ;
+font-style : oblic ;
+color :  #0066cc ;
+
+}
+h3
+{
+color :  #ff6600 ;
 }
