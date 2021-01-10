@@ -29,9 +29,7 @@ input[type=button]:hover {
 input[type=button]:focus{
 background-color:#a6a6a6;
 }
-input[type=button]:focus{
-background-color:#a6a6a6;
-}
+
 input[type=button] {
 background-color: #e7e7e7; color: black;
 text-decoration: none;
