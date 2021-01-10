@@ -27,11 +27,30 @@ def listing(request):
                 dic[str(frag.frage)] = liste
                 liste = []
 
-    context = {
-        'dictionnaire_text': dic1,
-        'dictionnaire_ans': dic
-    }
-    return render(request, 'Lesen/ubungs.html', context)
+        context = {
+            'dictionnaire_text': dic1,
+            'dictionnaire_ans': dic
+        }
+        return render(request, 'Lesen/ubungs.html', context)
+    else:
+        fragen = Fragen.objects.all()
+        answers = Answers.objects.all()
+        losung = request.POST
+        validator = {}
+        reponsejuste = {}
+        erreurfausse = {}
+        cmp = 0
+        try:
+            if str(losung[fragen.frage]) == fragen.losung:
+                cmp += 1
+                validator[fragen.frage] = True
+                reponsejuste[fragen.frage] = losung[fragen.frage]
+            else:
+                validator[fragen.frage] = False
+                erreurfausse[fragen.frage] = losung[fragen.frage]
+                reponsejuste[fragen.frage] = fragen.losung
+        except:
+            msg = "Veuillez répondre a toutes les questions les questions "
 # except:
 # return HttpResponseRedirect("/")
 
