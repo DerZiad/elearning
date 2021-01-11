@@ -1,8 +1,16 @@
 {%extends 'Ba.html'%}
+{% load static %}
 {%block body %}
+<link rel="stylesheet" type="text/css" href="{%static 'css/index.css'%}" xmlns="http://www.w3.org/1999/html">
+<div class="container">
 <h1>Hören</h1>
-<li><a href="/Horen/modeltest1">ModelTest1</a></li>
-<li><a href="/Horen/modeltest2">ModelTest2</a></li>
-<li><a href="/Horen/modeltest3">ModelTest3</a></li>
-<li><a href="/Horen/poadcast">Poadcast</a></li>
+<!--<li ><a class="cool-link" href="/Horen/modeltest1">ModelTest1</a></li>
+<li ><a class="cool-link" href="/Horen/modeltest2">ModelTest2</a></li>
+<li ><a class="cool-link" href="/Horen/modeltest3">ModelTest3</a></li>
+<li ><a class="cool-link" href="/Horen/poadcast">Poadcast</a></li>-->
+    <a class="cool-link" href="/Horen/modeltest1" ><img src="{%static '/Pictures/modeltest1.png'%}"></a>
+    <a class="cool-link" href="/Horen/modeltest2" ><img src="{%static '/Pictures/modeltest2.png'%}"></a>
+    <a class="cool-link" href="/Horen/modeltest3" ><img src="{%static '/Pictures/modeltest3.png'%}"></a>
+    <a class="cool-link" href="/Horen/poadcast" ><img src="{%static '/Pictures/podcast.png'%}"></a>
+</div>
 {%endblock%}

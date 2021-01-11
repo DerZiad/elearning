@@ -1,8 +1,47 @@
 {%extends 'Ba.html'%}
-{% block title %}
-    <title> Hören - Modeltest2</title>
+{% load static %}
+
+{% block besoin %}
+<title > Hören - Modeltest2</title>
 {%endblock%}
 {% block body %}
-    <h1>ModelTest2</h1>
-
+<link rel="stylesheet" type="text/css" href="{%static 'css/modeltest2.css'%}">
+<!--
+{% for key,value in questions.items %}
+    {% for keyo,valueo in audios.items %}
+        {% if keyo == key %}
+            <audio controls src="{{valueo.track.url}}"></audio>
+        {% endif %}
+    {% endfor %}
+    <p> Frage : {{key}}</p>
+    {% for mo in value %}
+        <input type="radio" name="{{key}}" value="{{ mo }}" id="{{mo}}" checked >
+        <label for="{{mo}}">{{mo}}</label><br/>
+    {% endfor %}
+    {% endfor %}-->
+<section>
+    <h2 class="MD"> ModelTest 2</h2>
+    <form method='POST'>
+        {% csrf_token %}
+            {% for t in audios%}
+        <div align="center">
+            <audio controls src="{{t.track.url}}"></audio></br></div>
+            {% for q in question%}
+                {% if q.audio_id == t.id%}
+                    <div class="frages">
+                        <p class="frage"> <b>Frage {{forloop.counter}} : </b> {{q.quest}}</p></div>
+                        {%for c in choix%}
+                            {%if c.question_id == q.id%}
+                                <div class="select">
+                                <input class="ch" type="radio" name="{{c.choix}}" value="{{c.choix}}" id="solution" >
+                                    <label for="solution">{{c.choix}}</label><br/></div>
+                            {%endif%}
+                        {%endfor%}
+                {%endif%}
+            {%endfor%}
+            {%endfor%}
+        <input type="submit" value="Submit">
+        <p align="center" class="message">{{message}}</p>
+    </form>
+</section>
 {%endblock %}

@@ -1,15 +1,9 @@
-
 p.frage{
 	font-size: 20px;
 	font-family: verdana;
 	color: orange;
 	}
-audio{
-	filter: sepia(20%) saturate(20%)  contrast(99%) invert(12%)  drop-shadow(5px 5px 6px gray);
-    width: 400px;
-    height: 30px;
 
-}
 
 
 h2.MD {
@@ -27,7 +21,12 @@ h2.MD {
     margin-left:500px;
     margin-top: 10px;
 }
+audio{
+	filter: sepia(20%) saturate(20%)  contrast(99%) invert(12%)  drop-shadow(5px 5px 6px gray);
+    width: 400px;
+    height: 30px;
 
+}
 p.message {
 	color: #0d5673;
 	size: 15px;

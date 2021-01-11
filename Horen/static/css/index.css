@@ -1,0 +1,38 @@
+.container{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+	text-align: center;	
+	padding-bottom: 30px;
+}
+
+
+a{
+	text-decoration: none;
+	display: inline-block;
+	color: #0b0b0b;
+	font-family: verdana;
+	font-weight: lighter;
+	font-size: 25px;
+	padding: 0 50px;
+
+}
+.cool-link::after{
+	content: '';
+	display: block;
+	width: 0;
+	height: 5px;
+	background: #0d5673;
+	transition: width .3s;
+	transition: height .3s;
+
+}
+.cool-link:hover::after{
+	width: 100%;
+	transition: width .3s;
+
+}
+img {
+	width: 150px;
+	height: 120px;
+}
