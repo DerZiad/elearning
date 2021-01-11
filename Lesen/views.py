@@ -74,55 +74,53 @@ def generateText(request):
                 reponse = Reponse.objects.filter(ubung=ubung, pers=personne)
                 if len(reponse) == 0:
                     ubungso.append(ubung)
-            textop = randomer.getRandomText(ubungso,request)
-            ubungs = Ubung.objects.filter(numtext = textop)
-            if len(ubungs) != 0:
-                    dic = {
-                    }
-                    i = 1
-                    list = []
-                    paginator = Paginator(ubungs, 4)
-                    page = request.GET.get('page')
-                    try:
-                        exe = paginator.page(page)
-                    except PageNotAnInteger:
-                        page = 1
-                        exe = paginator.page(1)
-                    except EmptyPage:
-                        page = 1
-                        exe = paginator.page(paginator.num_pages)
+            if len(ubungso) != 0:
+                            textop = randomer.getRandomText(ubungso,request)
+                            ubungs = Ubung.objects.filter(numtext = textop)
+                            dic = {
+                            }
+                            i = 1
+                            list = []
+                            paginator = Paginator(ubungs, 4)
+                            page = request.GET.get('page')
+                            try:
+                                exe = paginator.page(page)
+                            except PageNotAnInteger:
+                                page = 1
+                                exe = paginator.page(1)
+                            except EmptyPage:
+                                page = 1
+                                exe = paginator.page(paginator.num_pages)
 
-                    for ubung in ubungs:
-                        moglichkeit = Essai.objects.filter(numf=ubung)
-                        for mog in moglichkeit:
-                            if mog.numf == ubung:
-                                list.append(mog.choix)
-                        list.insert(randomer.generateRandom(), ubung.losung)
-                        dic[str(ubung.frage)] = list
-                        list = []
-                    jo = {}
-                    for ubung in paginator.page(page).object_list:
-                        jo[ubung.frage] = dic[str(ubung.frage)]
+                            for ubung in ubungs:
+                                moglichkeit = Essai.objects.filter(numf=ubung)
+                                for mog in moglichkeit:
+                                    if mog.numf == ubung:
+                                        list.append(mog.choix)
+                                list.insert(randomer.generateRandom(), ubung.losung)
+                                dic[str(ubung.frage)] = list
+                                list = []
+                            jo = {}
+                            for ubung in paginator.page(page).object_list:
+                                jo[ubung.frage] = dic[str(ubung.frage)]
 
-                    print(dic)
-                    text =  ""
-                    if len(ubungs) != 0:
-                        text = ubungs[0]
-                    context = {
-                        'ubungs': ubungs,
-                        'textf':textop,
-                        'paginator': True,
-                        'messages': exe,
-                        'dictionnaire': jo
-                    }
-                    return render(request, 'Lesen/ubungs.html', context)
+                            print(dic)
+                            text =  ""
+                            if len(ubungs) != 0:
+                                text = ubungs[0]
+                            context = {
+                                'ubungs': ubungs,
+                                'textf':textop,
+                                'paginator': True,
+                                'messages': exe,
+                                'dictionnaire': jo
+                            }
+                            return render(request, 'Lesen/ubungs.html', context)
             else:
-                context = {
-                    "error": "Desolé, nous avons plus d'exercice"
-                }
-                return render(request, "errorpagesession.html", context)
+                            context = {
+                                "error": "Desolé, nous avons plus d'exercice"
+                            }
+                            return render(request, "errorpagesession.html", context)
 
     except:
-        return HttpResponseRedirect('/')
-
-
+        return HttpResponseRedirect("/")
