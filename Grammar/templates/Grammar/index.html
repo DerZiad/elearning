@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-<link href="{% static 'css/index.css'%}" rel="stylesheet">
+<link href="{% static 'css/indexo.css'%}" rel="stylesheet">
 <style>
     .alignement{
         display:flex;
@@ -41,7 +41,7 @@
 
 
                 <span class="submit"><input type="submit" value="VALIDER" ></span><br/>
-                <span id="msg">{{message}}</span>
+                <span >{{message}}</span>
 
             </form>
          <nav class="text-center content-item"><div class="pagination"><ul id="yw11" class="yiiPager">
@@ -55,7 +55,7 @@
 </ul></div></nav>
          {% else %}
             {% for key,values in dictionnaire.items %}
-                <h2> AUFGABE {{forloop.counter}} :</h2>
+                <h3> AUFGABE {{forloop.counter}} :</h3>
 
               <p class="enonce">
                   {{ key }}
@@ -121,7 +121,7 @@
     {% endif %}
 
 </ul></div></nav>
-                <p>{{message}}</p>
+                <p id="msg">{{message}}</p>
          {%endif%}
 
         </div>

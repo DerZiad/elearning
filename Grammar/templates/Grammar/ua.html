@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-<link href="{% static 'css/cours.css'%}" rel="stylesheet">
+<link href="{% static 'css/indexo.css'%}" rel="stylesheet">
 <style>
     .alignement{
         display:flex;
@@ -14,7 +14,7 @@
     }
 </style>
  <div class="general">
-     <h1> APPRENDRE LA LANGUE ALLEMANDE DANS UN SEUL CLIC  </h1>
+     <h1> APPRENDRE LA LANGUE ALLEMANDE EN UN SEUL CLIC  </h1>
      <button><a class="retour" href="{% url 'Grammar:grammar'%}"> << ALLE UBUNGEN</a></button>
 
      <div>
@@ -22,7 +22,7 @@
             <form method="post" action="/Grammar/unbestimmte-artikel">
                 {% csrf_token %}
             {% for key,values in dictionnaire.items %}
-                <h2> AUFGABE {{forloop.counter}} :</h2>
+                <h3> AUFGABE {{forloop.counter}} :</h3>
 
               <p class="enonce">
                   <!-- affichagge du key qui represente la question -->

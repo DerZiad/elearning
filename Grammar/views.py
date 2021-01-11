@@ -31,9 +31,10 @@ def grammarex(request):
             msg = "le nombre de question Juste est ",0
             personne = Personne.objects.get(username = request.session['username'])
             for ubung in ubungs:
-                    reponse = Reponse(ubung = ubung,valide = True,pers=personne)
-                    reponse.save()
+               try:
                     if str(losung[ubung.frage]) == str(ubung.losung):
+                        reponse = Reponse(ubung=ubung, valide=True, pers=personne)
+                        reponse.save()
                         cmp += 1
                         validator[ubung.frage] = True
                         reponsejuste[ubung.frage] = losung[ubung.frage]
@@ -42,6 +43,8 @@ def grammarex(request):
                         validator[ubung.frage] = False
                         erreurfausse[ubung.frage] = losung[ubung.frage]
                         reponsejuste[ubung.frage] = ubung.losung
+               except :
+                    msg="Veuillez selectionner tous les choix "
             saveSucess('succes_grammar',getSuccess('succes_grammar',request) + cmp,request)
             dic = {
             }
@@ -58,8 +61,6 @@ def grammarex(request):
 
             context = {
                 'ubungs': ubungs,
-                'paginator': True,
-
                 'dictionnaire': dic,
                 'erreurs': erreurfausse,
                 'reponses':reponsejuste,
@@ -81,7 +82,7 @@ def grammarex(request):
             }
             i = 1
             list = []
-            paginator=Paginator(ubungs,6)
+            paginator=Paginator(ubungs,3)
             page=request.GET.get('page')
             try:
                 exe = paginator.page(page)
@@ -132,7 +133,7 @@ def gegenteile(request):
         for frage, losung in losung.items():
             for ubung in c:
                 if ubung.frage == frage:
-                    ubungs.append(Ubung.objects.get(frage=frage, type="frage"))
+                    ubungs.append(Ubung.objects.get(frage=frage, type="gegen"))
         losung = request.POST
         cmp = 0
         validator = {}
@@ -229,14 +230,14 @@ def gegenteile(request):
 def bartikel(request):
     # try :
     # checkSession(request)
-    c = Ubung.objects.filter(type="frage")
+    c = Ubung.objects.filter(type="bestimmte")
     if request.method == "POST":
         losung = request.POST
         ubungs = []
         for frage, losung in losung.items():
             for ubung in c:
                 if ubung.frage == frage:
-                    ubungs.append(Ubung.objects.get(frage=frage, type="frage"))
+                    ubungs.append(Ubung.objects.get(frage=frage, type="bestimmte"))
         losung = request.POST
         cmp = 0
         validator = {}
@@ -280,10 +281,10 @@ def bartikel(request):
             'validator': validator,
             'message': msg
         }
-        return render(request, 'Grammar/gegenteile.html', context)
+        return render(request, 'Grammar/bartikel.html', context)
 
     else:
-        ubungse = Ubung.objects.filter(type="gegen")
+        ubungse = Ubung.objects.filter(type="bestimmte")
         personne = Personne.objects.get(username=request.session['username'])
         ubungs = []
         for ubung in ubungse:
@@ -325,7 +326,7 @@ def bartikel(request):
             'messages': exe,
             'dictionnaire': jo
         }
-        return render(request, 'Grammar/gegenteile.html', context)
+        return render(request, 'Grammar/bartikel.html', context)
 
 
 ''' except :
@@ -688,14 +689,7 @@ def quiz(request):
     quizat = Quiz.objects.all()
     essais = Choix.objects.all()
     if request.method == "GET":
-        paginator = Paginator(quizat, 1)
-        page = request.GET.get('page')
-        try:
-            pp = paginator.page(page)
-        except PageNotAnInteger:
-            pp = paginator.page(1)
-        except EmptyPage:
-            pp = paginator.page(paginator.num_pages)
+
         dic = {}
         lista = []
         for quiz in quizat:
@@ -707,8 +701,7 @@ def quiz(request):
             lista = []
         context = {
             'dictionnaire': dic,
-            'paginate':True,
-            'pp':pp
+
         }
         return render(request, 'Grammar/quiz.html', context)
     else:
@@ -716,8 +709,8 @@ def quiz(request):
         for quiz in quizat:
             try:
                 if str(request.POST[quizat.losung]) == str(quiz.losung):
-                    rep = "Correcte"
-                msg = "Cette rep est ", rep
+                    rep = rep+1
+                msg = "Votre Score est  ", rep
             except:
                 msg = "Veuillez selectionner un choix "
         dic = {}

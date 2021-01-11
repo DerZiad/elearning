@@ -63,5 +63,12 @@ padding : 30px;
 font-family : 100em;
 position : relative ;
 }
+@media screen and (max-width :992px){
+
+.photo{
+width:250px;
+}
+}
+
 
 
