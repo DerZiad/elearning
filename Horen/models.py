@@ -1,10 +1,10 @@
 from django.db import models
 from Auth.models import Personne
-
 class ModelTest(models.Model):
     titre = models.CharField(max_length=30)
     niveau= models.CharField(max_length=3, default='A1')
     note= models.IntegerField(default=0)
+    imagedemodel = models.ImageField(upload_to="pics/", max_length=255, default="pictures/user_200_200.jpg")
     def __str__(self):
         return self.titre+' niveau '+self.niveau
 
@@ -27,3 +27,7 @@ class Choix(models.Model):
     question= models.ForeignKey(Question,default=None,on_delete=models.CASCADE)
     def __str__(self):
         return self.choix
+class ReponseHoren(models.Model):
+    valid = models.BooleanField(default=False)
+    personnes = models.ForeignKey(Personne,on_delete=models.CASCADE,related_name="personnetrack")
+    modeltest = models.OneToOneField(ModelTest,on_delete=models.CASCADE)

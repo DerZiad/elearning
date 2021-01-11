@@ -5,3 +5,5 @@ def generateRandom():
     # make choices from the sequence
 
     return choice(sequence)
+def getRandom(sequence):
+    return choice(sequence)

@@ -1,89 +1,84 @@
-from django.http import HttpResponse,HttpResponseRedirect
-from Home.funktions import funktion as sv
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from . import randomer as random
-from Auth.models import Personne
 from .models import *
 from Home.funktions import funktion as valide
 
+def index(request):
+    try:
+            valide.checkSession(request)
+            if request.method == "GET":
+                    attributs = request.GET
+                    try:
+                        ids = attributs['id']
+                    except:
+                        ids = None
+                    if ids ==  None:
+                            personne = Personne.objects.get(username = request.session['username'])
+                            models = ModelTest.objects.all()
+                            reponses = ReponseHoren.objects.filter(personnes = personne)
+                            checker = False
+                            listmodeltest = []
+                            for model in models:
+                                for reponse in reponses:
+                                    if reponse.modeltest == model:
+                                        checker = True
+                                if not checker:
+                                    print("adding model",model.id)
+                                    listmodeltest.append(model)
+                                checker = False
+                            context = {
+                                "modeles":listmodeltest
+                            }
+                            return render(request,"Horen/index.html",context)
+                    else:
+                        id = int(ids)
+                        audio = Track.objects.filter(modeltest_id=int(id))
+                        question = Question.objects.filter(audio__modeltest_id=int(id))
+                        choix = Choix.objects.filter(question__audio__modeltest_id=int(id))
+                        message = ""
+                        context = {
+                            'audios': audio,
+                            'question': question,
+                            'choix': choix,
+                            'message': message,
+                            "id":id
+                        }
+                        return render(request, 'Horen/modeltest.html', context)
 
-def Horen(request):
-    return render(request, 'Horen/index.html')
-
-
-def modeltest1(request):
-        audio= Track.objects.filter(modeltest_id=1)
-        question= Question.objects.filter(audio__modeltest_id=1)
-        choix= Choix.objects.filter(question__audio__modeltest_id=1)
-        message = ""
-        choixCocher = request.POST
-        if (request.method =='POST'):
-            note=0
-            for reponseQuestion in question:
-                for c in choixCocher:
-                    if(c==reponseQuestion.reponse):
-                            note=note+1
-            if (note >= 5):
-                message = "Vous avez validé le module"
             else:
-                message = "Essayez une autre fois"
-        context = {
-            'audios': audio,
-            'question': question,
-            'choix': choix,
-            'message': message
-        }
-        return render(request, 'Horen/modeltest1.html', context)
-
-
-def modeltest2(request):
-    audio = Track.objects.filter(modeltest_id=2)
-    question = Question.objects.filter(audio__modeltest_id=2)
-    choix = Choix.objects.filter(question__audio__modeltest_id=2)
-    message = ""
-    choixCocher = request.POST
-    if (request.method == 'POST'):
-        note = 0
-        for reponseQuestion in question:
-            for c in choixCocher:
-                if (c == reponseQuestion.reponse):
-                    note = note + 1
-        if (note >= 5):
-            message = "Vous avez validé le module"
-        else:
-            message = "Essayez une autre fois"
-    context = {
-        'audios': audio,
-        'question': question,
-        'choix': choix,
-        'message': message
-    }
-    return render(request, 'Horen/modeltest2.html', context)
-
-
-def modeltest3(request):
-    audio = Track.objects.filter(modeltest_id=3)
-    question = Question.objects.filter(audio__modeltest_id=3)
-    choix = Choix.objects.filter(question__audio__modeltest_id=3)
-    message = ""
-    choixCocher = request.POST
-    if (request.method == 'POST'):
-        note = 0
-        for reponseQuestion in question:
-            for c in choixCocher:
-                if (c == reponseQuestion.reponse):
-                    note = note + 1
-        if (note >= 5):
-            message = "Vous avez validé le module"
-        else:
-            message = "Essayez une autre fois"
-    context = {
-        'audios': audio,
-        'question': question,
-        'choix': choix,
-        'message': message
-    }
-    return render(request, 'Horen/modeltest3.html',context)
-
+                    id = request.POST['id']
+                    modeltest = ModelTest.objects.get(id = id)
+                    audio = Track.objects.filter(modeltest_id=int(id))
+                    question = Question.objects.filter(audio__modeltest_id=int(id))
+                    choix = Choix.objects.filter(question__audio__modeltest_id=int(id))
+                    message = ""
+                    choixCocher = request.POST
+                    note=0
+                    for reponseQuestion in question:
+                        if choixCocher[reponseQuestion.quest] == reponseQuestion.reponse :
+                            note=note+1
+                    if note >= 2:
+                        message = "Vous avez validé le module"
+                        personne = Personne.objects.filter(username=request.session['username']).first()
+                        reponse = ReponseHoren(personnes = personne,modeltest = modeltest,valid=True)
+                        reponse.save()
+                        valide.saveSucess("succes_horen",valide.getSuccess("succes_horen",request) + 1,request)
+                        return HttpResponseRedirect("/Horen")
+                    else:
+                        message = "Essayez une autre fois"
+                        context = {
+                            'audios': audio,
+                            'question': question,
+                            'choix': choix,
+                            'message': message,
+                            "id":id
+                        }
+                        return render(request, 'Horen/modeltest.html', context)
+    except:
+        return HttpResponseRedirect("/")
 def poadcast(request):
-    return render(request , 'Horen/poadcast.html')
+    try:
+        valide.checkSession(request)
+        return render(request , 'Horen/poadcast.html')
+    except:
+        return HttpResponseRedirect("/")

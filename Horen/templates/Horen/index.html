@@ -8,9 +8,9 @@
 <li ><a class="cool-link" href="/Horen/modeltest2">ModelTest2</a></li>
 <li ><a class="cool-link" href="/Horen/modeltest3">ModelTest3</a></li>
 <li ><a class="cool-link" href="/Horen/poadcast">Poadcast</a></li>-->
-    <a class="cool-link" href="/Horen/modeltest1" ><img src="{%static '/Pictures/modeltest1.png'%}"></a>
-    <a class="cool-link" href="/Horen/modeltest2" ><img src="{%static '/Pictures/modeltest2.png'%}"></a>
-    <a class="cool-link" href="/Horen/modeltest3" ><img src="{%static '/Pictures/modeltest3.png'%}"></a>
+    {% for model in modeles %}
+        <a class="cool-link" href="{% url 'Horen:index'%}?id={{model.id}}" ><img src="/media/{{model.imagedemodel}}"></a>
+    {% endfor %}
     <a class="cool-link" href="/Horen/poadcast" ><img src="{%static '/Pictures/podcast.png'%}"></a>
 </div>
 {%endblock%}
