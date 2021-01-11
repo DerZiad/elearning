@@ -4,11 +4,19 @@ let vars = new Map();
 function addError(key, value) {
 	erreurs.set(key, value)
 }
+function validateAddress(adress){
+    if (adress.length == 0) {
+		addError("nom", "Le nom ne doit pas être vide")
+	} else {
+		if (adress.trim().length > 40 || adress.trim().length < 10) {
+			addError("address", "L'addresse doit figurer entre 10 et 40 caractères");
+		}
+	}
+}
 function validate_date(date) {
 	year = parseInt(date.substr(0, 4), 10);
 	month = parseInt(date.substr(5, 2), 10);
 	day = parseInt(date.substr(8, 2));
-
 	if (isNaN(month) || isNaN(day) || isNaN(year)) {
 		addError("dateerror", "Le format de la date est incompatible")
 	} else {
@@ -16,11 +24,11 @@ function validate_date(date) {
 			addError("dateerror", "le jour doit être entre 1 et 31");
 		}
 
-		if (month < 1 || day > 12) {
+		if (month < 1 || month > 12) {
 			addError("dateerror", "le mois doit être entre 1 et 12");
 		}
-		if (year < 1940 || year > 2020) {
-			addError("dateerror", "l'année doit être entre 1941 et 2100");
+		if (year < 1979 || year > 2012) {
+			addError("dateerror", "l'année doit être entre 1980 et 2011");
 		}
 	}
 
@@ -160,7 +168,7 @@ jQuery(document).ready(function() {
 
 		verifier_nom_prenom(nom, prenom);
 		verifierEmail(email);
-		//validatedate(birthday);
+		validateAddress(address);
 		validate_date(birthday);
 		$.ajax({
 			url: '/Auth/signup',

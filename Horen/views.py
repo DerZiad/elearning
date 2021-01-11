@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import *
 from Home.funktions import funktion as valide
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def index(request):
     try:
@@ -26,8 +27,19 @@ def index(request):
                                     print("adding model",model.id)
                                     listmodeltest.append(model)
                                 checker = False
+                            paginator = Paginator(listmodeltest, 5)
+                            page = request.GET.get('page')
+                            try:
+                                exe = paginator.page(page)
+                            except PageNotAnInteger:
+                                page = 1
+                                exe = paginator.page(1)
+                            except EmptyPage:
+                                page = 1
+                                exe = paginator.page(paginator.num_pages)
+
                             context = {
-                                "modeles":listmodeltest
+                                "messages":exe
                             }
                             return render(request,"Horen/index.html",context)
                     else:
