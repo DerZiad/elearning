@@ -77,42 +77,47 @@ def grammarex(request):
                 reponse = Reponse.objects.filter(ubung=ubung,pers=personne)
                 if len(reponse) == 0:
                     ubungs.append(ubung)
+            if len(ubungs) != 0:
+                    dic = {
+                    }
+                    i = 1
+                    list = []
+                    paginator=Paginator(ubungs,3)
+                    page=request.GET.get('page')
+                    try:
+                        exe = paginator.page(page)
+                    except PageNotAnInteger:
+                        page = 1
+                        exe = paginator.page(1)
+                    except EmptyPage:
+                        page = 1
+                        exe= paginator.page(paginator.num_pages)
 
-            dic = {
-            }
-            i = 1
-            list = []
-            paginator=Paginator(ubungs,3)
-            page=request.GET.get('page')
-            try:
-                exe = paginator.page(page)
-            except PageNotAnInteger:
-                page = 1
-                exe = paginator.page(1)
-            except EmptyPage:
-                page = 1
-                exe= paginator.page(paginator.num_pages)
+                    for ubung in ubungs:
+                        moglichkeit = Essai.objects.filter(numf=ubung)
+                        for mog in moglichkeit:
+                            if mog.numf == ubung:
+                                list.append(mog.choix)
+                        list.insert(generateRandom(),ubung.losung)
+                        dic[str(ubung.frage)] = list
+                        list = []
+                    jo = {}
+                    for ubung in paginator.page(page).object_list:
+                        jo[ubung.frage] = dic[str(ubung.frage)]
 
-            for ubung in ubungs:
-                moglichkeit = Essai.objects.filter(numf=ubung)
-                for mog in moglichkeit:
-                    if mog.numf == ubung:
-                        list.append(mog.choix)
-                list.insert(generateRandom(),ubung.losung)
-                dic[str(ubung.frage)] = list
-                list = []
-            jo = {}
-            for ubung in paginator.page(page).object_list:
-                jo[ubung.frage] = dic[str(ubung.frage)]
-
-            print(dic)
-            context = {
-                'ubungs': ubungs,
-                'paginator': True,
-                'messages': exe,
-                'dictionnaire': jo
-            }
-            return render(request, 'Grammar/index.html', context)
+                    print(dic)
+                    context = {
+                        'ubungs': ubungs,
+                        'paginator': True,
+                        'messages': exe,
+                        'dictionnaire': jo
+                    }
+                    return render(request, 'Grammar/index.html', context)
+            else:
+                context = {
+                    "error": "Nous nous sommes désolé , nous ne avons pas autre client pour que vous corrigé"
+                }
+                return render(request, "errorpagesession.html", context)
    except:
         return HttpResponseRedirect('/')
 
