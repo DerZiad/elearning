@@ -13,8 +13,8 @@ from Grammar.models import Ubung, Essai, Quiz, Tipps, Choix,Reponse
 
 
 def grammarex(request):
- #try :
-        #checkSession(request)
+   try :
+        checkSession(request)
         c = Ubung.objects.filter(type="frage")
         if request.method == "POST":
             losung = request.POST
@@ -113,8 +113,8 @@ def grammarex(request):
                 'dictionnaire': jo
             }
             return render(request, 'Grammar/index.html', context)
-''' except :
-    return HttpResponseRedirect('/')'''
+   except:
+        return HttpResponseRedirect('/')
 
 def ubung(request):
    try :
@@ -124,8 +124,8 @@ def ubung(request):
     return HttpResponseRedirect('/')
 
 def gegenteile(request):
-    # try :
-    # checkSession(request)
+  try :
+    checkSession(request)
     c = Ubung.objects.filter(type="gegen")
     if request.method == "POST":
         losung = request.POST
@@ -223,13 +223,11 @@ def gegenteile(request):
             'dictionnaire': jo
         }
         return render(request, 'Grammar/gegenteile.html', context)
-
-
-''' except :
-    return HttpResponseRedirect('/')'''
+  except :
+     return HttpResponseRedirect('/')
 def bartikel(request):
-    # try :
-    # checkSession(request)
+  try :
+    checkSession(request)
     c = Ubung.objects.filter(type="bestimmte")
     if request.method == "POST":
         losung = request.POST
@@ -327,42 +325,42 @@ def bartikel(request):
             'dictionnaire': jo
         }
         return render(request, 'Grammar/bartikel.html', context)
+  except :
+    return HttpResponseRedirect('/')
 
-
-''' except :
-    return HttpResponseRedirect('/')'''
 def test(request):
-    ubungs = Ubung.objects.all()
-    dic = {}
-    for ubung in ubungs:
-        lists = Essai.objects.filter(numf=ubung)
-        dic[ubung.frage] = lists
-    list = []
-    i = 1
-    for ubung in ubungs:
-        list.append("ubung" + str(i) + '= Ubung(frage=\"' + ubung.frage + '\",losung=\"' + ubung.losung + '\")')
-        list.append("ubung" + str(i) + ".save()")
-        i += 1
-    listp = []
-    i = 1
-    for ubung in ubungs:
-        essai = dic[ubung.frage]
-        p = 1
-        for ess in essai:
-            listp.append("essai" + str(p) + " =" + 'Essai(choix = \"' + ess.choix + '\",numf=ubung' + str(i) + ')')
-            listp.append("essai" + str(p) + ".save()")
-            p += 1
-        i += 1
+        ubungs = Ubung.objects.all()
+        dic = {}
+        for ubung in ubungs:
+            lists = Essai.objects.filter(numf=ubung)
+            dic[ubung.frage] = lists
+        list = []
+        i = 1
+        for ubung in ubungs:
+            list.append("ubung" + str(i) + '= Ubung(frage=\"' + ubung.frage + '\",losung=\"' + ubung.losung + '\")')
+            list.append("ubung" + str(i) + ".save()")
+            i += 1
+        listp = []
+        i = 1
+        for ubung in ubungs:
+            essai = dic[ubung.frage]
+            p = 1
+            for ess in essai:
+                listp.append("essai" + str(p) + " =" + 'Essai(choix = \"' + ess.choix + '\",numf=ubung' + str(i) + ')')
+                listp.append("essai" + str(p) + ".save()")
+                p += 1
+            i += 1
 
-    f = open("base.py", "w", encoding='utf-8')
-    f.write("import os \n")
-    f.write('from Grammar.models import Essai,Ubung \n')
-    f.write('os.system("python manage.py shell") \n')
-    for ele in list:
-        f.write(ele + '\n')
-    for ele in listp:
-        f.write(ele + '\n')
-    return HttpResponse("ok")
+        f = open("base.py", "w", encoding='utf-8')
+        f.write("import os \n")
+        f.write('from Grammar.models import Essai,Ubung \n')
+        f.write('os.system("python manage.py shell") \n')
+        for ele in list:
+            f.write(ele + '\n')
+        for ele in listp:
+            f.write(ele + '\n')
+        return HttpResponse("ok")
+
 
 
 #### ziad ###
@@ -392,7 +390,7 @@ def general(request):
 
 def artikel(request):
     try:
-        # checkSession(request)
+        checkSession(request)
         return render(request, 'Grammar/artikelcours.html')
     except:
         return HttpResponseRedirect('/')
@@ -404,7 +402,7 @@ def pronoms(request):
 
 def adjektive(request):
     try:
-        # checkSession(request)
+        checkSession(request)
         return render(request, 'Grammar/adjektive.html')
     except:
         return HttpResponseRedirect('/')
@@ -412,7 +410,7 @@ def adjektive(request):
 
 def pronomsindefinis(request):
     try:
-        # checkSession(request)
+        checkSession(request)
         return render(request, 'Grammar/pronomsindefinis.html')
     except:
         return HttpResponseRedirect('/')
@@ -674,63 +672,79 @@ def save(request):
 
 
 def pronompersonnels(request):
-    return render(request, 'Grammar/pronompersonnels.html')
+    try:
+        checkSession(request)
+        return render(request, 'Grammar/pronompersonnels.html')
+    except:
+        return HttpResponseRedirect("/")
 
 
 def adverbs(request):
-    return render(request, 'Grammar/adverbs.html')
+    try:
+        checkSession(request)
+        return render(request, 'Grammar/adverbs.html')
+    except:
+        return HttpResponseRedirect("/")
 
 
 def numeraux(request):
-    return render(request, 'Grammar/numeraux.html')
+    try:
+        checkSession(request)
+        return render(request, 'Grammar/numeraux.html')
+    except:
+        return HttpResponseRedirect("/")
 
 
 def quiz(request):
-    quizat = Quiz.objects.all()
-    essais = Choix.objects.all()
-    if request.method == "GET":
+    try:
+            checkSession(request)
+            quizat = Quiz.objects.all()
+            essais = Choix.objects.all()
+            if request.method == "GET":
 
-        dic = {}
-        lista = []
-        for quiz in quizat:
-            lista.append(quiz.losung)
-            for essai in essais:
-                if essai.numf == quiz:
-                    lista.append(essai.mog)
-            dic[str(quiz.jeu)] = lista
-            lista = []
-        context = {
-            'dictionnaire': dic,
+                dic = {}
+                lista = []
+                for quiz in quizat:
+                    lista.append(quiz.losung)
+                    for essai in essais:
+                        if essai.numf == quiz:
+                            lista.append(essai.mog)
+                    dic[str(quiz.jeu)] = lista
+                    lista = []
+                context = {
+                    'dictionnaire': dic,
 
-        }
-        return render(request, 'Grammar/quiz.html', context)
-    else:
-        rep = None
-        for quiz in quizat:
-            try:
-                if str(request.POST[quizat.losung]) == str(quiz.losung):
-                    rep = rep+1
-                msg = "Votre Score est  ", rep
-            except:
-                msg = "Veuillez selectionner un choix "
-        dic = {}
-        for quiz in quizat:
-            lista.append(quiz.jeu)
-            for essai in essais:
-                if essai.numf == quiz:
-                    lista.append(essai.mog)
-            dic[str(quiz.jeu)] = lista
-            lista = []
-        context = {
-            'quizat': quizat,
-            'dictionnaire ': dic,
-            'message': msg,
-        }
-        return render(request, 'Grammar/quiz.html', context)
+                }
+                return render(request, 'Grammar/quiz.html', context)
+            else:
+                rep = None
+                for quiz in quizat:
+                    try:
+                        if str(request.POST[quizat.losung]) == str(quiz.losung):
+                            rep = rep+1
+                        msg = "Votre Score est  ", rep
+                    except:
+                        msg = "Veuillez selectionner un choix "
+                dic = {}
+                for quiz in quizat:
+                    lista.append(quiz.jeu)
+                    for essai in essais:
+                        if essai.numf == quiz:
+                            lista.append(essai.mog)
+                    dic[str(quiz.jeu)] = lista
+                    lista = []
+                context = {
+                    'quizat': quizat,
+                    'dictionnaire ': dic,
+                    'message': msg,
+                }
+                return render(request, 'Grammar/quiz.html', context)
+    except:
+        return HttpResponseRedirect("/")
 
 def ua(request):
-    # try :
-    # checkSession(request)
+  try :
+    checkSession(request)
     c = Ubung.objects.filter(type="unbestimmte")
     if request.method == "POST":
         losung = request.POST
@@ -828,7 +842,5 @@ def ua(request):
             'dictionnaire': jo
         }
         return render(request, 'Grammar/ua.html', context)
-
-
-''' except :
-    return HttpResponseRedirect('/')'''
+  except :
+        return HttpResponseRedirect('/')
