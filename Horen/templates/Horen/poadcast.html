@@ -1,9 +1,13 @@
 {%extends 'Ba.html'%}
+{%load static %}
 {% block title %}
     <title> Hören - Podcast</title>
 {%endblock%}
 {% block body %}
+<link rel="stylesheet" type="text/css" href="{%static 'css/poadcast.css'%}">
+<div align="center">
     <h1>Podcast</h1>
+    <p><b>Ecouter et bénéficier</b></p>
     <iframe src="https://open.spotify.com/embed-podcast/show/2rnCPyV8A9J80QtmGj2pAx" width="80%" height="200"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <iframe src="https://open.spotify.com/embed-podcast/episode/5dumlFNLn18594Wt3Gmn9g" width="80%" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <iframe src="https://open.spotify.com/embed-podcast/episode/10ZlPg0bVl4pKy3rrI6rrU" width="80%" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -11,4 +15,5 @@
     <iframe src="https://open.spotify.com/embed-podcast/episode/51j7SkYb58dbpM3IJMfQeT" width="80%" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <iframe src="https://open.spotify.com/embed-podcast/episode/52qmYGp7fo9TKacH8xqgCH" width="80%" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <iframe src="https://open.spotify.com/embed-podcast/episode/4dAFeDQd98Et5hQhk5gZ7D" width="80%" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
 {%endblock %}
