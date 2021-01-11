@@ -1,6 +1,7 @@
 let erreurs;
 let day, month, year;
 let vars = new Map();
+let keys = ["address","nom","prenom","dateerror","email"]
 function addError(key, value) {
 	erreurs.set(key, value)
 }
@@ -272,6 +273,10 @@ jQuery(document).ready(function() {
 		$('#Precedent').hide();
 		$('#ja-ss').show();
 		$('#Connector').hide();
+		for (jo of keys) {
+		    $("#" + jo).html("").hide();
+	    }
+	    erreurs = new Map();
 	});
 
 
