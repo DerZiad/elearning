@@ -277,3 +277,9 @@ def aboutus(request):
         return render(request,"aboutus/aboutussession.html")
     except:
         return  render(request,"aboutus/aboutusnotsession.html")
+def zhome(request):
+    try:
+        checkSession(request)
+        return render(request,"zhome.html")
+    except:
+        return HttpResponseRedirect("/")
