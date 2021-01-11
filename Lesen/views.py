@@ -8,18 +8,14 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from Lesen import random as randomer
 
 def generateText(request):
-    try:
+    #try:
         checkSession(request)
         if request.method == "POST":
             losung = request.POST
             text = Text.objects.get(id = int(losung['id']))
-            c = Ubung.objects.filter(type="frage",numtext = text)
+            ubungs = Ubung.objects.filter(type="frage",numtext = text)
 
-            ubungs = []
-            for frage, losung in losung.items():
-                for ubung in c:
-                    if ubung.frage == frage:
-                        ubungs.append(Ubung.objects.get(frage=frage, type="frage"))
+            print(ubungs)
             losung = request.POST
             cmp = 0
             validator = {}
@@ -28,6 +24,7 @@ def generateText(request):
             msg = "le nombre de question Juste est ", 0
             personne = Personne.objects.get(username=request.session['username'])
             for ubung in ubungs:
+                print(ubung.id)
                 reponse = Reponse(ubung=ubung, valide=True, pers=personne)
                 reponse.save()
                 if str(losung[ubung.frage]) == str(ubung.losung):
@@ -104,7 +101,6 @@ def generateText(request):
                             for ubung in paginator.page(page).object_list:
                                 jo[ubung.frage] = dic[str(ubung.frage)]
 
-                            print(dic)
                             text =  ""
                             if len(ubungs) != 0:
                                 text = ubungs[0]
@@ -121,6 +117,3 @@ def generateText(request):
                                 "error": "Desolé, nous avons plus d'exercice"
                             }
                             return render(request, "errorpagesession.html", context)
-
-    except:
-        return HttpResponseRedirect("/")
