@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% load static %}
 {% block besoin %}
 <style>
 	section{
@@ -34,6 +35,9 @@
 		padding-bottom: 10px;
 		font-size:19px;
 	}
+	.about-body2{
+		margin-left: 90px;
+	}
 	.about-body2 iframe{
 		margin-top: 20px;
 		width: 500px;
@@ -57,7 +61,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		margin-left: 200px;
+		margin-left: 250px;
 		margin-right: 200px;
 		margin-top: 80px;
 	}
@@ -87,6 +91,26 @@
 	.slide{
 		float: left;
 		animation: glisse 10s infinite;
+	}
+	@media (max-width: 1554px) {
+		.about-body{
+		display:flex;
+		flex-direction: column;
+		justify-content: center;
+		}
+		.about-body2{
+			margin-left: 0px;
+		}
+		.images{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			margin-left: 150px;
+			padding-bottom: 20px;
+		}
+		.videos{
+			margin-top: 20px;
+		}
 	}
 
 	@keyframes glisse{

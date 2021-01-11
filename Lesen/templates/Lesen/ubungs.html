@@ -1,31 +1,56 @@
-{% extends 'Ba.html'%} {% block body %} {% load static %}
+{% extends 'Ba.html'%} {% load static %} {% block besoin %}
 <link href="{% static 'Lesen_files/ubu.css'%}" rel="stylesheet" xmlns="http://www.w3.org/1999/html"
-	  xmlns="http://www.w3.org/1999/html">
+	  xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<style>
+    .alignement{
+        display:flex;
+        flex-direction:row;
+    }
+    .mogs{
+		display:flex;
+		flex-direction:column;
+    }
+    .image img{
+        height:20px;
+        width:20px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+{% if validator == None %}
 <div class="content background-lightgrey"
 	style="height: auto !important;">
-	{% csrf_token %} {% for key,values in dictionnaire_text.items %}
+
+
 	<div class="content background-lightgrey"
 		style="height: auto !important;">
 		<div class="panel" id="exercise" style="height: auto !important;">
+			<form method="post" action="{% url 'Lesen:exo' %}">
+				<input type="hidden" name="id" value="{{textf.id}}"/>
+				{% csrf_token %}
 			<div class="fifty_left" style="height: auto !important;">
-				<h1>{{key}}</h1>
+				<h1>Excercice </h1>
 				<div class="photo"><img src="{%static 'lesen_files/person_in_deutschland.jpg'%}"></div>
 
-				</br><p class="enonce">{{values}}</p>
+				</br><p class="enonce">{{textf.text}}</p>
 
 			</div>
 			<div class="fifty_right">
 				<h2>Verstehst du den Text?</h2>
 				<p>Dann beantworte die folgenden Fragen zum Text:</p>
-				{% for key,values in dictionnaire_ans.items %}
+				{% for key,values in dictionnaire.items %}
 				<div class="question-box">
 					<div class="question-number">Frage {{forloop.counter}}:</div>
 					<div class="question">{{key}}</div>
-					{% for val in values %}
-						<input type="button" name="{{ val }}" value="{{ val }}" id="losung">
-					{% endfor %}
+					<div class="mogs">
+						{% for val in values %}
+							<div class="mog">
+								<input type="radio" name="{{key}}" value="{{ val }}" id="{{val}}">
+								<label for="{{val}}">{{val}}</label>
+							</div>
+						{% endfor %}
+					</div>
 				</div>
-				{% endfor %}
 				{% endfor %}
 			</div>
 			<div
@@ -33,12 +58,108 @@
 				<div class="info not-finished">
 					Bitte beantworte alle Fragen zum Text.<br>Du hast <b><span
 						class="infofield-answered">0</span></b> von <b><span
-						class="infofield-questions">5</span></b> Fragen beantwortet.
+						class="infofield-questions">5</span></b> Fragen beantwortet.</br>
+					<button type="submit"><span>Confirm</span></button>
 				</div>
+			</div>
+			</form>
+			         <nav class="text-center content-item"><div class="pagination"><ul id="yw11" class="yiiPager">
+    {% if messages.has_previous %}
+        <li class="previous"><a href="{% url 'Grammar:frage'%}?page={{messages.previous_page_number}}">&lt;</a></li>
+    {% endif %}
+    {% if messages.has_next%}
+        <li class="next"><a href="{% url 'Grammar:frage'%}?page={{messages.next_page_number}}">&gt;</a></li>
+    {% endif %}
+
+</ul></div></nav>
+		</div>
+	</div>
+
+
+
+
+
+
+</div>
+{% else %}
+<div class="content background-lightgrey"
+	style="height: auto !important;">
+
+
+	<div class="content background-lightgrey"
+		style="height: auto !important;">
+		<div class="panel" id="correction" style="height: auto !important;">
+			<div class="fifty_left" style="height: auto !important;">
+				<h1>Excercice </h1>
+				<div class="photo"><img src="{%static 'lesen_files/person_in_deutschland.jpg'%}"></div>
+
+				</br><p class="enonce">{{textf}}</p>
+
+			</div>
+			<div class="fifty_right">
+				<h2>Verstehst du den Text?</h2>
+				<p>Dann beantworte die folgenden Fragen zum Text:</p>
+				{% for key,values in dictionnaire.items %}
+				<div class="question-box">
+					<div class="question-number">Frage {{forloop.counter}}:</div>
+					{% for mo in values %}
+                        <div class="alignement">
+                           {% if validator.key %}
+                            <!-- rep correcte -->
+                                {% for keyo, value in reponses.items %}
+                            <!-- rponses est un dic stockant les questions ss-frme clee et la val associe est la reponse  -->
+                                    {% if mo == value and key == keyo %}
+                            <!-- verification du question si elle est la mm car key est ubung.frage pr 'validator ' et auussi pr keyo  -->
+                                        <div class="image">
+                                            <img src="{% static 'outils/success.png'%}" alt="sss"/>
+                                        </div>
+                                    {% endif %}
+                                        <div class="google">
+                                            <input type="radio" name="{{ key }}" value="{{mo}}" id="{{mo}}2"  >
+                                            <label for="{{mo}}2">{{mo}}</label><br/>
+                                        </div>
+                                {% endfor %}
+
+                           {% else %}
+                            <!-- rep fausse -->
+                                {% for keyo, value in erreurs.items %}
+                                  <!-- affichage du rep fausse -->
+                                    {% if mo == value and key == keyo%}
+                                           <div class="image">
+                                                <img src="{% static 'css/wrong.png'%}" alt="sss"/>
+                                           </div>
+                                    {% endif %}
+                                {% endfor %}
+                                {% for keyo, value in reponses.items %}
+                                  <!-- affichage du rep juste -->
+                                        {% if mo == value and key == keyo %}
+                                            <div class="image">
+                                                <img src="{% static 'outils/success.png'%}" alt="sss"/>
+                                            </div>
+                                        {% endif %}
+                                {% endfor %}
+                                <div class="google">
+                                            <input type="radio" name="{{ key }}" value="{{mo}}" id="{{mo}}1"  >
+                                            <label for="{{mo}}1">{{mo}}</label><br/>
+                                </div>
+
+                           {% endif %}
+                            </div>
+                        {% endfor %}
+				</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>
+
+
+
+
+
+
 </div>
+
+{% endif %}
 
 
 {% endblock %}

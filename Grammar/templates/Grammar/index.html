@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-<link href="{% static 'css/cours.css'%}" rel="stylesheet">
+<link href="{% static 'css/index.css'%}" rel="stylesheet">
 <style>
     .alignement{
         display:flex;
@@ -14,15 +14,15 @@
     }
 </style>
  <div class="general">
-     <h1> APPRENDRE LA LANGUE ALLEMANDE DANS UN SEUL CLIC  </h1>
+     <h1> APPRENDRE LA LANGUE ALLEMANDE EN UN SEUL CLIC  </h1>
      <button><a class="retour" href="{% url 'Grammar:grammar'%}"> << ALLE UBUNGEN</a></button>
-
+     <h2> FRAGEWORTER </h2>
      <div>
          {% if validator == None %}
             <form method="post" action="/Grammar/frage">
                 {% csrf_token %}
             {% for key,values in dictionnaire.items %}
-                <h2> AUFGABE {{forloop.counter}} :</h2>
+                <h3> AUFGABE {{forloop.counter}} :</h3>
 
               <p class="enonce">
                   <!-- affichagge du key qui represente la question -->
@@ -112,6 +112,15 @@
                 </div>
 
             {% endfor %}
+             <nav class="text-center content-item"><div class="pagination"><ul id="yw1" class="yiiPager">
+    {% if messages.has_previous %}
+        <li class="previous"><a href="{% url 'Grammar:frage'%}?page={{messages.previous_page_number}}"><</a></li>
+    {% endif %}
+    {% if messages.has_next%}
+        <li class="next"><a href="{% url 'Grammar:frage'%}?page={{messages.next_page_number}}">*</a></li>
+    {% endif %}
+
+</ul></div></nav>
                 <p>{{message}}</p>
          {%endif%}
 
