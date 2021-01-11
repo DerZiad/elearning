@@ -2,18 +2,21 @@
 {% block body %}
     <form method="post" action="/Grammar/quiz">
         {% csrf_token %}
+
           {% for key , values in dictionnaire.items %}
-                <p>{{key}}</p>
+                <h5>{{key}}</h5>
 
               {% for mo in values %}
-                <input type="radio" name="{{mo}}" value="{{mo}}" id="losung"  >
+                <input type="radio" name="{{key}}" value="{{mo}}" id="losung"  >
                 <label for="losung">{{mo}}</label><br/>
               {% endfor %}
-                     <p>{{message}}</p>
+  <P>{{tipps.titre}}</P>
 
               <div class="clearfix"></div>
 
           {% endfor %}
     <input type="submit" value="Valider">
+
+        <p>{{message}}</p>
 </form>
 {% endblock %}

@@ -701,7 +701,7 @@ def numeraux(request):
 
 
 def quiz(request):
-    try:
+
             checkSession(request)
             quizat = Quiz.objects.all()
             essais = Choix.objects.all()
@@ -722,15 +722,18 @@ def quiz(request):
                 }
                 return render(request, 'Grammar/quiz.html', context)
             else:
-                rep = None
+                rep = 0
+
                 for quiz in quizat:
-                    try:
-                        if str(request.POST[quizat.losung]) == str(quiz.losung):
-                            rep = rep+1
-                        msg = "Votre Score est  ", rep
-                    except:
-                        msg = "Veuillez selectionner un choix "
+                    tipps = Tipps.objects.filter(NQ=quiz).first()
+
+                    if str(request.POST[quiz.jeu]) == str(quiz.losung):
+                            rep+=1
+                    msg = "Votre Score est  ", rep
+
+
                 dic = {}
+                lista = []
                 for quiz in quizat:
                     lista.append(quiz.jeu)
                     for essai in essais:
@@ -742,10 +745,10 @@ def quiz(request):
                     'quizat': quizat,
                     'dictionnaire ': dic,
                     'message': msg,
+                    'tipps':tipps
                 }
                 return render(request, 'Grammar/quiz.html', context)
-    except:
-        return HttpResponseRedirect("/")
+
 
 def ua(request):
   try :
