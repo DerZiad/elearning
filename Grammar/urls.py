@@ -22,7 +22,6 @@ urlpatterns = [
     url(r'^pronompersonnels', views.pronompersonnels, name="pronompersonnels"),
     url(r'^adverbes', views.adverbs, name="adverbes"),
     url(r'^numeraux',views.numeraux,name="numeraux"),
-    url(r'^quiz',views.quiz,name="quiz"),
     url(r'^unbestimmte-artikel',views.ua,name="unbes-art"),
     url(r'^$', views.general, name="menu")
 ]

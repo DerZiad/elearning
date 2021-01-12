@@ -9,7 +9,7 @@ from django.template import loader
 from . import models
 from Auth.models import Personne
 from .random import generateRandom
-from Grammar.models import Ubung, Essai, Quiz,  Choix,Reponse
+from Grammar.models import Ubung, Essai,Reponse
 
 
 def grammarex(request):
