@@ -233,14 +233,14 @@ def gegenteile(request):
 def bartikel(request):
   try :
     checkSession(request)
-    c = Ubung.objects.filter(type="bestimmte")
+    c = Ubung.objects.filter(type="ba")
     if request.method == "POST":
         losung = request.POST
         ubungs = []
         for frage, losung in losung.items():
             for ubung in c:
                 if ubung.frage == frage:
-                    ubungs.append(Ubung.objects.get(frage=frage, type="bestimmte"))
+                    ubungs.append(Ubung.objects.get(frage=frage, type="ba"))
         losung = request.POST
         cmp = 0
         validator = {}
@@ -287,7 +287,7 @@ def bartikel(request):
         return render(request, 'Grammar/bartikel.html', context)
 
     else:
-        ubungse = Ubung.objects.filter(type="bestimmte")
+        ubungse = Ubung.objects.filter(type="ba")
         personne = Personne.objects.get(username=request.session['username'])
         ubungs = []
         for ubung in ubungse:
@@ -704,14 +704,14 @@ def numeraux(request):
 def ua(request):
   try :
     checkSession(request)
-    c = Ubung.objects.filter(type="unbestimmte")
+    c = Ubung.objects.filter(type="ua")
     if request.method == "POST":
         losung = request.POST
         ubungs = []
         for frage, losung in losung.items():
             for ubung in c:
                 if ubung.frage == frage:
-                    ubungs.append(Ubung.objects.get(frage=frage, type="unbestimmte"))
+                    ubungs.append(Ubung.objects.get(frage=frage, type="ua"))
         losung = request.POST
         cmp = 0
         validator = {}
@@ -758,7 +758,7 @@ def ua(request):
         return render(request, 'Grammar/ua.html', context)
 
     else:
-        ubungse = Ubung.objects.filter(type="unbestimmte")
+        ubungse = Ubung.objects.filter(type="ua")
         personne = Personne.objects.get(username=request.session['username'])
         ubungs = []
         for ubung in ubungse:

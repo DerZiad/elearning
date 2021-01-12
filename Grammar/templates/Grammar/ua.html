@@ -44,6 +44,13 @@
                 <span id="msg">{{message}}</span>
 
             </form>
+           <nav class="text-center content-item"><div class="pagination"><ul id="yw11" class="yiiPager">
+    {% if messages.has_previous %}
+        <li class="previous"><a href="{% url 'Grammar:unbes-art'%}?page={{messages.previous_page_number}}">&lt;</a></li>
+    {% endif %}
+    {% if messages.has_next%}
+        <li class="next"><a href="{% url 'Grammar:unbes-art'%}?page={{messages.next_page_number}}">&gt;</a></li>
+    {% endif %}
          {% else %}
             {% for key,values in dictionnaire.items %}
                 <h2> AUFGABE {{forloop.counter}} :</h2>
