@@ -17,7 +17,13 @@ color : #ff944d;
 
 }
 button:hover {
+ color : blue ;
 
+}
+input {
+margin : auto;
+width : 100 px ;
+background : orange ;
 }
 form{
 margin : 100px;

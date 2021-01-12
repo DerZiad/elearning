@@ -13,7 +13,7 @@ from Grammar.models import Ubung, Essai,Reponse
 
 
 def grammarex(request):
-   try :
+   #try :
         checkSession(request)
         c = Ubung.objects.filter(type="frage")
         if request.method == "POST":
@@ -115,11 +115,11 @@ def grammarex(request):
                     return render(request, 'Grammar/index.html', context)
             else:
                 context = {
-                    "error": "Nous nous sommes désolé , nous ne avons pas autre client pour que vous corrigé"
+                    "error": "Desolé, nous avons plus d'exercice"
                 }
-                return render(request, "errorpagesession.html", context)
-   except:
-        return HttpResponseRedirect('/')
+                return render(request, "Grammar/errorpages.html", context)
+   #except:
+    #    return HttpResponseRedirect('/')
 
 def ubung(request):
    try :
