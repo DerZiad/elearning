@@ -9,7 +9,7 @@ from django.template import loader
 from . import models
 from Auth.models import Personne
 from .random import generateRandom
-from Grammar.models import Ubung, Essai, Quiz, Tipps, Choix,Reponse
+from Grammar.models import Ubung, Essai, Quiz,  Choix,Reponse
 
 
 def grammarex(request):
@@ -699,55 +699,6 @@ def numeraux(request):
     except:
         return HttpResponseRedirect("/")
 
-
-def quiz(request):
-
-            checkSession(request)
-            quizat = Quiz.objects.all()
-            essais = Choix.objects.all()
-            if request.method == "GET":
-
-                dic = {}
-                lista = []
-                for quiz in quizat:
-                    lista.append(quiz.losung)
-                    for essai in essais:
-                        if essai.numf == quiz:
-                            lista.append(essai.mog)
-                    dic[str(quiz.jeu)] = lista
-                    lista = []
-                context = {
-                    'dictionnaire': dic,
-
-                }
-                return render(request, 'Grammar/quiz.html', context)
-            else:
-                rep = 0
-
-                for quiz in quizat:
-                    tipps = Tipps.objects.filter(NQ=quiz).first()
-
-                    if str(request.POST[quiz.jeu]) == str(quiz.losung):
-                            rep+=1
-                    msg = "Votre Score est  ", rep
-
-
-                dic = {}
-                lista = []
-                for quiz in quizat:
-                    lista.append(quiz.jeu)
-                    for essai in essais:
-                        if essai.numf == quiz:
-                            lista.append(essai.mog)
-                    dic[str(quiz.jeu)] = lista
-                    lista = []
-                context = {
-                    'quizat': quizat,
-                    'dictionnaire ': dic,
-                    'message': msg,
-                    'tipps':tipps
-                }
-                return render(request, 'Grammar/quiz.html', context)
 
 
 def ua(request):
