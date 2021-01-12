@@ -28,7 +28,7 @@ def grammarex(request):
             validator = {}
             reponsejuste = {}
             erreurfausse = {}
-            msg = "le nombre de question Juste est ",0
+
             personne = Personne.objects.get(username = request.session['username'])
             for ubung in ubungs:
                try:

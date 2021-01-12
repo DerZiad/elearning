@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^gegenteile', views.gegenteile, name="gegenteile"),
     url(r'^bestimmte-artikel', views.bartikel, name="bestimmte artikel"),
     url(r'^register', views.test, name="register"),
-    url(r'^save', views.save, name="save"),
+
     url(r'^alphabet', views.alphabet, name="alphabet"),
     url(r'^menuCours', views.menu, name="menuCours"),
     url(r'^artikel', views.artikel, name="artikel"),
