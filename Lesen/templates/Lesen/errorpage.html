@@ -1,0 +1,24 @@
+{% extends 'Ba.html'%}
+{% block body %}{% load static %}
+<style>
+.anima
+{
+border: 2px solid #e8e8e8;
+  border-radius: 4px;
+  padding: 5px;
+}
+	.anim{
+	text-align: center;
+	}
+	.text{
+	 text-align: center;
+	}
+
+</style>
+<div class="anim">
+<IMG class="anima" SRC="{% static 'lesen_files/finished.gif'%}">
+</div>
+<div class="text">
+<p>Well done you have answered all the possible texts.</p>
+</div>
+{% endblock %}

@@ -2,10 +2,14 @@
 <link href="{% static 'Lesen_files/ubu.css'%}" rel="stylesheet" xmlns="http://www.w3.org/1999/html"
 	  xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <style>
+	.mog{
+	width: 50%
+	}
     .alignement{
         display:flex;
         flex-direction:row;
     }
+
     .mogs{
 		display:flex;
 		flex-direction:column;
@@ -29,7 +33,7 @@
 				<input type="hidden" name="id" value="{{textf.id}}"/>
 				{% csrf_token %}
 			<div class="fifty_left" style="height: auto !important;">
-				<h1>Excercice </h1>
+				<h1>Excercice {{forloop.counter}}</h1>
 				<div class="photo"><img src="{%static 'lesen_files/person_in_deutschland.jpg'%}"></div>
 
 				</br><p class="enonce">{{textf.text}}</p>
@@ -52,23 +56,19 @@
 					</div>
 				</div>
 				{% endfor %}
+				<button type="submit"><span>Confirm</span></button>
 			</div>
 			<div
 				style="border-top: 3px solid #E8E8E8; border-style: dotted; padding-top: 2%;">
-				<div class="info not-finished">
-					Bitte beantworte alle Fragen zum Text.<br>Du hast <b><span
-						class="infofield-answered">0</span></b> von <b><span
-						class="infofield-questions">5</span></b> Fragen beantwortet.</br>
-					<button type="submit"><span>Confirm</span></button>
-				</div>
+
 			</div>
 			</form>
 			         <nav class="text-center content-item"><div class="pagination"><ul id="yw11" class="yiiPager">
     {% if messages.has_previous %}
-        <li class="previous"><a href="{% url 'Grammar:frage'%}?page={{messages.previous_page_number}}">&lt;</a></li>
+        <li class="previous"><a href="{% url 'Lesen:exo'%}?page={{messages.previous_page_number}}">&lt;</a></li>
     {% endif %}
     {% if messages.has_next%}
-        <li class="next"><a href="{% url 'Grammar:frage'%}?page={{messages.next_page_number}}">&gt;</a></li>
+        <li class="next"><a href="{% url 'Lesen:exo'%}?page={{messages.next_page_number}}">&gt;</a></li>
     {% endif %}
 
 </ul></div></nav>
@@ -113,6 +113,7 @@
                                         <div class="image">
                                             <img src="{% static 'outils/success.png'%}" alt="sss"/>
                                         </div>
+										</br><p class="enonce">{{textf}}</p>
                                     {% endif %}
                                         <div class="google">
                                             <input type="radio" name="{{ key }}" value="{{mo}}" id="{{mo}}2"  >
@@ -128,6 +129,7 @@
                                            <div class="image">
                                                 <img src="{% static 'css/wrong.png'%}" alt="sss"/>
                                            </div>
+											</br><p class="enonce">{{textf}}</p>
                                     {% endif %}
                                 {% endfor %}
                                 {% for keyo, value in reponses.items %}
