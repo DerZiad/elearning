@@ -11,6 +11,9 @@ import Auth.ValidEntry.random as randomer
 import Auth.ValidEntry.Validator as valid
 from Schreiben.models import Reponse,Correction
 import datetime
+import Grammar.models as ayman
+import Lesen.models as bouchakor
+import Horen.models as yasser
 from Home.funktions.funktion import checkSession
 # Create your views here.
 
@@ -23,9 +26,13 @@ def principale(request):
         succes_grammar = request.session['succes_lesen']
         succes_horen = request.session['succes_horen']
         succes_lesen = request.session['succes_lesen']
+        ubungsayman = ayman.Ubung.objects.all()
+        ubungsbouchakor = bouchakor.Ubung.objects.all()
+        ubungsyasser = yasser.ModelTest.objects.all()
         total = int(succes_lesen + succes_horen + succes_grammar)
         context = {
-            'total': total
+            'total': total,
+            'nbexo':len(ubungsayman) + len(ubungsbouchakor) + len(ubungsyasser)
         }
         return render(request, "session/session.html", context)
 
