@@ -78,25 +78,56 @@ def forum(request):
             return render(request,"forum/forum.html",context)
         else:
             attributs = request.POST
+            words = open("Home/badword.txt","r",encoding="UTF-8")
             sujet = attributs['subject']
             message = attributs['message']
-            username = request.session['username']
-            personne = Personne.objects.get(username =  username)
-            messagess = Message(message = message,personne = personne,subject = sujet)
-            messagess.save()
-            messages = Message.objects.all()
-            paginator = Paginator(messages,5)
-            idpage = request.GET.get('page')
-            try:
-                messagesG = paginator.page(idpage)
-            except PageNotAnInteger:
-                messagesG = paginator.page(1)
-            except EmptyPage:
-                messagesG = paginator.page(paginator.num_pages)
-            context = {
-                "messages":messagesG
-            }
-            return render(request,"forum/forum.html",context)
+            erreur = ""
+            checker = True
+            for word in words.read().split("\n"):
+                try:
+                    message.index(word,0,len(message) - 1)
+                    erreur = "Veuillez ne pas dire les gros mot"
+                    checker = False
+                except:
+                    pass
+                try:
+                    sujet.index(word.trim(),0,len(sujet))
+                    checker = False
+                except:
+                    pass
+            if checker:
+                    username = request.session['username']
+                    personne = Personne.objects.get(username =  username)
+                    messagess = Message(message = message,personne = personne,subject = sujet)
+                    messagess.save()
+                    messages = Message.objects.all()
+                    paginator = Paginator(messages,5)
+                    idpage = request.GET.get('page')
+                    try:
+                        messagesG = paginator.page(idpage)
+                    except PageNotAnInteger:
+                        messagesG = paginator.page(1)
+                    except EmptyPage:
+                        messagesG = paginator.page(paginator.num_pages)
+                    context = {
+                        "messages":messagesG
+                    }
+                    return render(request,"forum/forum.html",context)
+            else:
+                messages = Message.objects.all()
+                paginator = Paginator(messages, 5)
+                idpage = request.GET.get('page')
+                try:
+                    messagesG = paginator.page(idpage)
+                except PageNotAnInteger:
+                    messagesG = paginator.page(1)
+                except EmptyPage:
+                    messagesG = paginator.page(paginator.num_pages)
+                context = {
+                    "messages": messagesG,
+                    "erreur": erreur
+                }
+                return render(request,"forum/forum.html",context)
     except IndexError:
             return HttpResponseRedirect("/")
 def edit(request):

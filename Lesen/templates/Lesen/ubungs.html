@@ -3,7 +3,7 @@
 	  xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <style>
 	.mog{
-	width: 50%
+	width: 100%
 	}
     .alignement{
         display:flex;
@@ -93,7 +93,7 @@
 				<h1>Excercice </h1>
 				<div class="photo"><img src="{%static 'lesen_files/person_in_deutschland.jpg'%}"></div>
 
-				</br><p class="enonce">{{textf}}</p>
+				</br><p class="enonce">{{textf.text}}</p>
 
 			</div>
 			<div class="fifty_right">
@@ -113,7 +113,7 @@
                                         <div class="image">
                                             <img src="{% static 'outils/success.png'%}" alt="sss"/>
                                         </div>
-										</br><p class="enonce">{{textf}}</p>
+										</br><p class="enonce">{{textf.text}}</p>
                                     {% endif %}
                                         <div class="google">
                                             <input type="radio" name="{{ key }}" value="{{mo}}" id="{{mo}}2"  >

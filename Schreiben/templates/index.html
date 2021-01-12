@@ -39,6 +39,7 @@
             <form action="{% url 'Schreiben:homeschreiben'%}" method="post">
                 {% csrf_token %}
                 <input name="id" value="{{exercice.id}}" type="hidden"/>
+
                 <textarea id="schreiben" name="schreiben" value="" placeholder="Gebe deine schreiben hier" maxlength="500 wörter"></textarea>
                 <br><br>
                 <div class="btn-submit">

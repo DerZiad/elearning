@@ -8,14 +8,12 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from Lesen import random as randomer
 
 def generateText(request):
-    #try:
+    try:
         checkSession(request)
         if request.method == "POST":
             losung = request.POST
             text = Text.objects.get(id = int(losung['id']))
             ubungs = Ubung.objects.filter(type="frage",numtext = text)
-
-            print(ubungs)
             losung = request.POST
             cmp = 0
             validator = {}
@@ -23,21 +21,22 @@ def generateText(request):
             erreurfausse = {}
             msg = "le nombre de question Juste est ", 0
             personne = Personne.objects.get(username=request.session['username'])
+            for ubunge in ubungs:
+                try:
+                    losung[ubunge]
+                except:
+                    error = {"error": "Vous devez répondre à toutes les questions"}
+                    return render(request, "errorpagesession.html", error)
             for ubung in ubungs:
-                print(ubung.id)
                 reponse = Reponse(ubung=ubung, valide=True, pers=personne)
                 reponse.save()
-                if len(losung[ubung.frage]) == 0:
-                    error = {"erreur": "Vous devez répondre à toutes les questions"}
-                    return render(request, "errorpagesession.html", error)
-                else:
-                    if str(losung[ubung.frage]) == str(ubung.losung):
+                if str(losung[ubung.frage]) == str(ubung.losung):
                         cmp += 1
                         validator[ubung.frage] = True
                         reponsejuste[ubung.frage] = losung[ubung.frage]
                         msg = "le nombre de question Juste est ", cmp
 
-                    else:
+                else:
                         validator[ubung.frage] = False
                         erreurfausse[ubung.frage] = losung[ubung.frage]
                         reponsejuste[ubung.frage] = ubung.losung
@@ -121,3 +120,5 @@ def generateText(request):
                                 "error": "Desolé, nous avons plus d'exercice"
                             }
                             return render(request, "Lesen/errorpage.html", context)
+    except:
+        return HttpResponseRedirect("/")
