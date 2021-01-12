@@ -21,12 +21,7 @@ def generateText(request):
             erreurfausse = {}
             msg = "le nombre de question Juste est ", 0
             personne = Personne.objects.get(username=request.session['username'])
-            for ubunge in ubungs:
-                try:
-                    losung[ubunge]
-                except:
-                    error = {"error": "Vous devez répondre à toutes les questions"}
-                    return render(request, "errorpagesession.html", error)
+
             for ubung in ubungs:
                 reponse = Reponse(ubung=ubung, valide=True, pers=personne)
                 reponse.save()
@@ -53,11 +48,11 @@ def generateText(request):
                         list.append(mog.choix)
                 dic[str(ubung.frage)] = list
                 list = []
-
+            text = ubungs[0].numtext
             context = {
                 'ubungs': ubungs,
                 'paginator': True,
-
+                'textf':text,
                 'dictionnaire': dic,
                 'erreurs': erreurfausse,
                 'reponses': reponsejuste,
