@@ -69,7 +69,7 @@ def generateText(request):
                 reponse = Reponse.objects.filter(ubung=ubung, pers=personne)
                 if len(reponse) == 0:
                     ubungso.append(ubung)
-            if len(ubungso) != 0:
+            if len(ubungso) == 4:
                             textop = randomer.getRandomText(ubungso,request)
                             ubungs = Ubung.objects.filter(numtext = textop)
                             dic = {

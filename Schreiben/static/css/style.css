@@ -10,7 +10,7 @@ section{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
-    background-image: url("background.jpg");
+    background-image: url("hbackground.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
