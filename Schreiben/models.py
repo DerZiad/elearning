@@ -1,12 +1,6 @@
 from django.db import models
 from Auth.models import Personne
 
-# Create your models here.
-class TexT(models.Model):
-    titre = models.CharField(max_length=200, unique=True)
-    corps = models.TextField(blank=True)
-
-
 
 class Excercice(models.Model):
     text = models.TextField(blank=True)
