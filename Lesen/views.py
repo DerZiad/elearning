@@ -27,16 +27,20 @@ def generateText(request):
                 print(ubung.id)
                 reponse = Reponse(ubung=ubung, valide=True, pers=personne)
                 reponse.save()
-                if str(losung[ubung.frage]) == str(ubung.losung):
-                    cmp += 1
-                    validator[ubung.frage] = True
-                    reponsejuste[ubung.frage] = losung[ubung.frage]
-                    msg = "le nombre de question Juste est ", cmp
-
+                if len(losung[ubung.frage]) == 0:
+                    error = {"erreur": "Vous devez répondre à toutes les questions"}
+                    return render(request, "errorpagesession.html", error)
                 else:
-                    validator[ubung.frage] = False
-                    erreurfausse[ubung.frage] = losung[ubung.frage]
-                    reponsejuste[ubung.frage] = ubung.losung
+                    if str(losung[ubung.frage]) == str(ubung.losung):
+                        cmp += 1
+                        validator[ubung.frage] = True
+                        reponsejuste[ubung.frage] = losung[ubung.frage]
+                        msg = "le nombre de question Juste est ", cmp
+
+                    else:
+                        validator[ubung.frage] = False
+                        erreurfausse[ubung.frage] = losung[ubung.frage]
+                        reponsejuste[ubung.frage] = ubung.losung
             saveSucess('succes_lesen', getSuccess('succes_lesen', request) + cmp, request)
             dic = {
             }
@@ -116,4 +120,4 @@ def generateText(request):
                             context = {
                                 "error": "Desolé, nous avons plus d'exercice"
                             }
-                            return render(request, "errorpagesession.html", context)
+                            return render(request, "Lesen/errorpage.html", context)

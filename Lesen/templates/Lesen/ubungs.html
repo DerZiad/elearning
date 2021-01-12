@@ -56,10 +56,11 @@
 					</div>
 				</div>
 				{% endfor %}
+				<button type="submit"><span>Confirm</span></button>
 			</div>
 			<div
 				style="border-top: 3px solid #E8E8E8; border-style: dotted; padding-top: 2%;">
-					<button type="submit"><span>Confirm</span></button>
+
 			</div>
 			</form>
 			         <nav class="text-center content-item"><div class="pagination"><ul id="yw11" class="yiiPager">
@@ -112,6 +113,7 @@
                                         <div class="image">
                                             <img src="{% static 'outils/success.png'%}" alt="sss"/>
                                         </div>
+										</br><p class="enonce">{{textf}}</p>
                                     {% endif %}
                                         <div class="google">
                                             <input type="radio" name="{{ key }}" value="{{mo}}" id="{{mo}}2"  >
@@ -127,6 +129,7 @@
                                            <div class="image">
                                                 <img src="{% static 'css/wrong.png'%}" alt="sss"/>
                                            </div>
+											</br><p class="enonce">{{textf}}</p>
                                     {% endif %}
                                 {% endfor %}
                                 {% for keyo, value in reponses.items %}
