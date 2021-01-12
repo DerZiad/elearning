@@ -82,7 +82,7 @@ def grammarex(request):
                     }
                     i = 1
                     list = []
-                    paginator=Paginator(ubungs,3)
+                    paginator=Paginator(ubungs,6)
                     page=request.GET.get('page')
                     try:
                         exe = paginator.page(page)
