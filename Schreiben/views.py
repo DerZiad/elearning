@@ -17,7 +17,6 @@ def index(request):
                     "error": "Nous nous somme désolé , nous avons pas encore d'excercices de schreiben"
                 }
                 return render(request, "errorpagesession.html", context)
-            print(exercice.sujet)
             context = {
                 "exercice":exercice
             }
@@ -65,8 +64,10 @@ def correction(request):
                     return render(request,"reponse.html",context)
                 else:
                     reponse.legal = True
+                    reponse.save()
                     etrresponse.corrected= True
-
+                    etrresponse.save()
+                    print("ziad")
                     if reponse.corrected:
                         correction = Correction.objects.get(reponse = reponse)
                         info = {
@@ -97,6 +98,5 @@ def correction(request):
                 }
                 return render(request,"errorpagesession.html",context)
     except:
-        return HttpResponseRedirect("/")
         return HttpResponseRedirect("/")
 

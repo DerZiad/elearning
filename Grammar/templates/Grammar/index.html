@@ -19,10 +19,10 @@
     .submit input{
         color:white;
         border:none;
-        padding-right:30px;
-        padding-left:30px;
+
         font-size:25px;
         margin:auto;
+        width :500px;
         }
     #msg{
         color:green;
@@ -34,6 +34,9 @@
         margin-left:250px;
         margin-right:250px;
         margin-bottom:250px;
+    }
+    form{
+        margin-left:500px;
     }
 </style>
  <div class="general">
@@ -63,7 +66,7 @@
             {% endfor %}
 
 
-                <span class="submit"><input type="submit" value="VALIDER" ></span><br/>
+                <div class="submit"><input type="submit" value="VALIDER" ></div><br/>
                 <span >{{message}}</span>
 
             </form>
