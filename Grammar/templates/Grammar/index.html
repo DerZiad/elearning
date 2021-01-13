@@ -25,11 +25,12 @@
         width :500px;
         }
     #msg{
-        color:green;
+        font-family:serif;
+        font-weight:bolder
     }
     .box-msg{
         padding:30px;
-        background-color:red;
+        background-color:#80bfff;
         font-size:18px;
         margin-left:250px;
         margin-right:250px;
@@ -37,6 +38,13 @@
     }
     form{
         margin-left:500px;
+    }
+    li{
+       margin : auto ;
+       width : 100px;
+    }
+    li:hover{
+     color :blue;
     }
 </style>
  <div class="general">
@@ -143,7 +151,7 @@
         <li class="previous"><a href="{% url 'Grammar:frage'%}?page={{messages.previous_page_number}}"><</a></li>
     {% endif %}
     {% if messages.has_next%}
-        <li class="next"><a href="{% url 'Grammar:frage'%}?page={{messages.next_page_number}}">*</a></li>
+        <li class="next"><a href="{% url 'Grammar:frage'%}?page={{messages.next_page_number}}"><</a></li>
     {% endif %}
 
 </ul></div></nav>
