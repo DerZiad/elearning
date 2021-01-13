@@ -23,6 +23,14 @@ def generateText(request):
             personne = Personne.objects.get(username=request.session['username'])
 
             for ubung in ubungs:
+                try:
+                    reponseutilisateur = str(losung[ubung.frage])
+                    reponsejuste = ubung.losung
+                except:
+                    context = {
+                        "error":"Veuillez remplir tous les réponsees"
+                    }
+                    return render(request,"errorpagesession.html",context)
                 reponse = Reponse(ubung=ubung, valide=True, pers=personne)
                 reponse.save()
                 if str(losung[ubung.frage]) == str(ubung.losung):
@@ -67,9 +75,10 @@ def generateText(request):
             ubungso = []
             for ubung in ubungse:
                 reponse = Reponse.objects.filter(ubung=ubung, pers=personne)
+                print(reponse)
                 if len(reponse) == 0:
                     ubungso.append(ubung)
-            if len(ubungso) == 4:
+            if len(ubungso) != 4:
                             textop = randomer.getRandomText(ubungso,request)
                             ubungs = Ubung.objects.filter(numtext = textop)
                             dic = {
@@ -110,10 +119,5 @@ def generateText(request):
                                 'dictionnaire': jo
                             }
                             return render(request, 'Lesen/ubungs.html', context)
-            else:
-                            context = {
-                                "error": "Desolé, nous avons plus d'exercice"
-                            }
-                            return render(request, "Lesen/errorpage.html", context)
     except:
         return HttpResponseRedirect("/")
