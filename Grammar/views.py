@@ -48,7 +48,7 @@ def grammarex(request):
                             context = {
                                 "error": "Veuillez selectionner tous les choix "
                             }
-                            return render(request, "Lesen/errorpage.html", context)
+                            return render(request, "Grammar/errorpages.html", context)
                     saveSucess('succes_grammar',getSuccess('succes_grammar',request) + cmp,request)
                     dic = {
                     }
@@ -76,7 +76,7 @@ def grammarex(request):
                 context = {
                     "error": "Veuillez selectionner tous les choix "
                 }
-                return render(request, "Lesen/errorpage.html", context)
+                return render(request, "Grammar/errorpages.html", context)
 
         else:
             ubungse = Ubung.objects.filter(type="frage")
