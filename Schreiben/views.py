@@ -24,17 +24,24 @@ def index(request):
         else:
             text = request.POST['schreiben']
             id = request.POST['id']
-            print(id)
             reponse = Reponse(rep=text,personne = Personne.objects.get(username = request.session['username']),excercice = Excercice.objects.get(id=int(id)))
             reponse.save()
-            reponses = Reponse.objects.all()
+            personneactuel = Personne.objects.get(username = request.session['username'])
+            reponsesa = Reponse.objects.filter(corrected = False)
+            reponses = [
+            ]
+            for rek in reponsesa:
+                if rek.personne != personneactuel:
+                    reponses.append(rek)
             list = []
             for rep in reponses:
                 if reponse != rep:
                     list.append(rep)
             try:
-                reponse = list[0]
+                list[0]
             except:
+                reponse.legal = True
+                reponse.save()
                 context = {
                     "error": "Nous nous sommes désolé , nous ne avons pas autre client pour que vous corrigé"
                 }
@@ -47,7 +54,6 @@ def index(request):
     except IndexError:
         return HttpResponseRedirect("/")
 def correction(request):
-    try:
             checkSession(request)
             if request.method == "POST":
                 textcorr = request.POST['correction']
@@ -67,7 +73,6 @@ def correction(request):
                     reponse.save()
                     etrresponse.corrected= True
                     etrresponse.save()
-                    print("ziad")
                     if reponse.corrected:
                         correction = Correction.objects.get(reponse = reponse)
                         info = {
@@ -75,17 +80,16 @@ def correction(request):
                             "text": correction.text +'\n Remarques \n' + correction.remarque,
                             "subject":"Correction d'excercice" + correction.reponse.excercice.sujet
                         }
-                        print("sending1")
-                        sendEmail(info)
+                        sendEmail(info,request)
+
                     if etrresponse.legal:
-                        print("sending2")
                         correction1 = Correction(text = textcorr,remarque = remarque,reponse = etrresponse)
                         info = {
                             "address": etrresponse.personne.email,
-                            "text": correction.text + '\n Remarques \n' + correction1.remarque,
+                            "text": correction1.text + '\n Remarques \n' + correction1.remarque,
                             "subject": "Correction d'excercice" + correction1.reponse.excercice.sujet
                         }
-                        sendEmail(info)
+                        sendEmail(info,request)
                     context = {
                         "keyword":"success",
                         "success":"Votre corrigé a été bien reçu, vous allez reçevoir votre correction sur votre email"
@@ -97,6 +101,4 @@ def correction(request):
                     "error": "n'essaye pas de pirater"
                 }
                 return render(request,"errorpagesession.html",context)
-    except:
-        return HttpResponseRedirect("/")
 
