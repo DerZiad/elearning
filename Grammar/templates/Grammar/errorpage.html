@@ -1,22 +1,32 @@
 {% extends 'Ba.html'%}
 {% block body %}{% load static %}
 <style>
-.anima
+.a
 {
-border: 2px solid #e8e8e8;
+border: 2px solid gray  ;
   border-radius: 4px;
-  padding: 5px;
+  padding : 5px;
+  width :800px;
+  height : 400px;
 }
 	.anim{
 	text-align: center;
 	}
 	.text{
 	 text-align: center;
+	 font-size : medium ;
+	 background : orange ;
+	 margin : auto ;
+	 width: 400px;
+	 padding: 5px;
+	 margin-top:75px;
+     margin-bottom:25px;
 	}
+
 
 </style>
 <div class="anim">
-<IMG class="anima" SRC="{% static 'lesen_files/finished.gif'%}">
+<IMG class="anima" SRC="{% static 'css/warnin.gif'%}">
 </div>
 <div class="text">
 <p>Vous devez selectionner tous les choix</p>

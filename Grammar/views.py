@@ -13,7 +13,7 @@ from Grammar.models import Ubung, Essai,Reponse
 
 
 def grammarex(request):
-   try :
+  # try :
         checkSession(request)
         c = Ubung.objects.filter(type="frage")
         if request.method == "POST":
@@ -23,7 +23,7 @@ def grammarex(request):
                 for ubung in c:
                     if ubung.frage == frage:
                         ubungs.append(Ubung.objects.get(frage = frage,type="frage"))
-            if len(ubungs) == 6:
+            if len(ubungs) == 1:
                     losung = request.POST
                     cmp = 0
                     validator = {}
@@ -123,9 +123,9 @@ def grammarex(request):
                     }
                     return render(request, 'Grammar/index.html', context)
             else:
-                return render(request, "Grammar/success")
-   except:
-        return HttpResponseRedirect('/')
+                return render(request, "Grammar/sucess.html")
+  # except:
+  #S      return HttpResponseRedirect('/')
 
 def ubung(request):
    try :
