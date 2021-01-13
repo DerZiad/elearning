@@ -13,7 +13,7 @@ from Grammar.models import Ubung, Essai,Reponse
 
 
 def grammarex(request):
-   #try :
+   try :
         checkSession(request)
         c = Ubung.objects.filter(type="frage")
         if request.method == "POST":
@@ -48,7 +48,7 @@ def grammarex(request):
                             context = {
                                 "error": "Veuillez selectionner tous les choix "
                             }
-                            return render(request, "Grammar/errorpages.html", context)
+                            return render(request, "Grammar/errorpage.html", context)
                     saveSucess('succes_grammar',getSuccess('succes_grammar',request) + cmp,request)
                     dic = {
                     }
@@ -76,7 +76,7 @@ def grammarex(request):
                 context = {
                     "error": "Veuillez selectionner tous les choix "
                 }
-                return render(request, "Grammar/errorpages.html", context)
+                return render(request, "Grammar/errorpage.html", context)
 
         else:
             ubungse = Ubung.objects.filter(type="frage")
@@ -123,12 +123,9 @@ def grammarex(request):
                     }
                     return render(request, 'Grammar/index.html', context)
             else:
-                context = {
-                    "error": "Desolé, nous avons plus d'exercice"
-                }
-                return render(request, "Grammar/errorpages.html", context)
-   #except:
-    #    return HttpResponseRedirect('/')
+                return render(request, "Grammar/success")
+   except:
+        return HttpResponseRedirect('/')
 
 def ubung(request):
    try :

@@ -12,6 +12,29 @@
         height:20px;
         width:20px;
     }
+    .submit{
+        color:white
+        margin-left:500px;
+    }
+    .submit input{
+        color:white;
+        border:none;
+        padding-right:30px;
+        padding-left:30px;
+        font-size:25px;
+        margin:auto;
+        }
+    #msg{
+        color:green;
+    }
+    .box-msg{
+        padding:30px;
+        background-color:red;
+        font-size:18px;
+        margin-left:250px;
+        margin-right:250px;
+        margin-bottom:250px;
+    }
 </style>
  <div class="general">
      <h1> APPRENDRE LA LANGUE ALLEMANDE EN UN SEUL CLIC  </h1>
@@ -121,7 +144,9 @@
     {% endif %}
 
 </ul></div></nav>
+            <div class="box-msg">
                 <p id="msg">{{message}}</p>
+            </div>
          {%endif%}
 
         </div>
