@@ -3,7 +3,7 @@ body{
 	font-family: sans-serif;
 }
 .schreiben{
-	border:2px solid rgb(243, 146, 31);
+	border:2px solid #0d5673;
 	border-radius: 20px;
 	padding: 15px;
 }
@@ -11,13 +11,13 @@ body{
 	margin-bottom: 100px;
 }
 .schreiben .schreiben-sujet{
-	color: rgb(243, 146, 31);
+	color: #0d5673;
 	font-weight: bold;
 	font-size:19px;
 	margin:20px;
 }
 .schreiben-reponse #schreiben{
-	border:2px solid rgb(243, 146, 31);
+	border:2px solid #0d5673;
 	border-radius: 10px;
 	padding: 20px;
 	height: 480px;
@@ -39,18 +39,16 @@ section{
 	-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    width: 100%;
+    width:50%;
     margin:20px;
 }
 .deusiemesection{
 	border:2px solid black;
 	border-radius:10px;
 	background-color: white;
+
 	padding: 15px;
-	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
+	width: 850px;
     margin:20px;
 }
 .btn-submit{
@@ -59,9 +57,9 @@ section{
 }
 .btn-submit input{
 	background:none;
-	border:2px solid rgb(243, 146, 31);
-	border-radius: 20px;
-	color:rgb(243, 146, 31);
+	border:2px solid #0d5673;
+	border-radius: 5px;
+	color:#0d5673;
 	font-size: 20px;
 	font-weight: bold;
 
@@ -73,7 +71,7 @@ section{
 }
 .btn-submit input:hover{
 	color:white;
-	background-color: rgb(243, 146, 31);
+	background-color: #0d5673;
 }
 .correction-input{
 	display: flex;
@@ -88,13 +86,13 @@ section{
     width: 100%;
     height: 150px;
     border-radius: 20px;
-    border:2px solid rgb(243, 146, 31);
+    border:2px solid #0d5673;
     resize: none;
     padding:20px;
 }
 .correction-input label{
 	margin-top: 60px;
-	color:rgb(243, 146, 31);
+	color:#0d5673;
 	font-weight: bold;
 }
 form{
@@ -105,4 +103,11 @@ form{
 }
 .correction-input{
 
+}
+.schreiben-reponse{
+	border:2px solid #0d5673;
+	border-radius: 15px;
+	padding: 15px;
+	word-wrap: break-word;
+	margin-top: 40px;
 }
