@@ -1,0 +1,32 @@
+{% extends 'Ba.html'%}
+{% block body %}{% load static %}
+<style>
+.a
+{
+border: 2px solid gray  ;
+  border-radius: 4px;
+  padding : 5px;
+  width :800px;
+  height : 400px;
+}
+	.anim{
+	text-align: center;
+	}
+	.text{
+	 text-align: center;
+	 font-size : medium ;
+	 background : orange ;
+	 margin : auto ;
+	 width: 400px;
+	 padding: 5px;
+
+	}
+
+</style>
+<div class="anim">
+<IMG class="a" SRC="{% static '200.gif'%}">
+</div>
+<div class="text">
+   <p>Sehr gut du hast alle ubungen gut gemacht .</p>
+</div>
+{% endblock %}
