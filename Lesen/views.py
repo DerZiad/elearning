@@ -21,53 +21,57 @@ def generateText(request):
             erreurfausse = {}
             msg = "le nombre de question Juste est ", 0
             personne = Personne.objects.get(username=request.session['username'])
-
+            cmp = 0
             for ubung in ubungs:
                 try:
-                    reponseutilisateur = str(losung[ubung.frage])
-                    reponsejuste = ubung.losung
+                    str(losung[ubung.frage])
+                    cmp += 1
                 except:
-                    context = {
-                        "error":"Veuillez remplir tous les réponsees"
-                    }
-                    return render(request,"errorpagesession.html",context)
-                reponse = Reponse(ubung=ubung, valide=True, pers=personne)
-                reponse.save()
-                if str(losung[ubung.frage]) == str(ubung.losung):
-                        cmp += 1
-                        validator[ubung.frage] = True
-                        reponsejuste[ubung.frage] = losung[ubung.frage]
-                        msg = "le nombre de question Juste est ", cmp
+                    pass
+            if cmp ==4:
+                        for ubung in ubungs:
+                            reponse = Reponse(ubung=ubung, valide=True, pers=personne)
+                            reponse.save()
+                            if str(losung[ubung.frage]) == str(ubung.losung):
+                                    cmp += 1
+                                    validator[ubung.frage] = True
+                                    reponsejuste[ubung.frage] = losung[ubung.frage]
+                                    msg = "le nombre de question Juste est ", cmp
 
-                else:
-                        validator[ubung.frage] = False
-                        erreurfausse[ubung.frage] = losung[ubung.frage]
-                        reponsejuste[ubung.frage] = ubung.losung
-            saveSucess('succes_lesen', getSuccess('succes_lesen', request) + cmp, request)
-            dic = {
-            }
+                            else:
+                                    validator[ubung.frage] = False
+                                    erreurfausse[ubung.frage] = losung[ubung.frage]
+                                    reponsejuste[ubung.frage] = ubung.losung
+                        saveSucess('succes_lesen', getSuccess('succes_lesen', request) + cmp, request)
+                        dic = {
+                        }
 
-            list = []
-            for ubung in ubungs:
-                list.append(ubung.losung)
-                moglichkeit = Essai.objects.filter(numf=ubung)
-                for mog in moglichkeit:
-                    if mog.numf == ubung:
-                        list.append(mog.choix)
-                dic[str(ubung.frage)] = list
-                list = []
-            text = ubungs[0].numtext
-            context = {
-                'ubungs': ubungs,
-                'paginator': True,
-                'textf':text,
-                'dictionnaire': dic,
-                'erreurs': erreurfausse,
-                'reponses': reponsejuste,
-                'validator': validator,
-                'message': msg
-            }
-            return render(request, 'Lesen/ubungs.html', context)
+                        list = []
+                        for ubung in ubungs:
+                            list.append(ubung.losung)
+                            moglichkeit = Essai.objects.filter(numf=ubung)
+                            for mog in moglichkeit:
+                                if mog.numf == ubung:
+                                    list.append(mog.choix)
+                            dic[str(ubung.frage)] = list
+                            list = []
+                        text = ubungs[0].numtext
+                        context = {
+                            'ubungs': ubungs,
+                            'paginator': True,
+                            'textf':text,
+                            'dictionnaire': dic,
+                            'erreurs': erreurfausse,
+                            'reponses': reponsejuste,
+                            'validator': validator,
+                            'message': msg
+                        }
+                        return render(request, 'Lesen/ubungs.html', context)
+            else:
+                context = {
+                    "error":"Veuillez insérer tous les questions"
+                }
+                return render(request,"errorpagesession.html",context)
 
         else:
             ubungse = Ubung.objects.filter(type="frage")
@@ -107,10 +111,6 @@ def generateText(request):
                             jo = {}
                             for ubung in paginator.page(page).object_list:
                                 jo[ubung.frage] = dic[str(ubung.frage)]
-
-                            text =  ""
-                            if len(ubungs) != 0:
-                                text = ubungs[0]
                             context = {
                                 'ubungs': ubungs,
                                 'textf':textop,

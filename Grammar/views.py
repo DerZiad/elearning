@@ -13,7 +13,7 @@ from Grammar.models import Ubung, Essai,Reponse
 
 
 def grammarex(request):
-  # try :
+  try :
         checkSession(request)
         c = Ubung.objects.filter(type="frage")
         if request.method == "POST":
@@ -23,7 +23,7 @@ def grammarex(request):
                 for ubung in c:
                     if ubung.frage == frage:
                         ubungs.append(Ubung.objects.get(frage = frage,type="frage"))
-            if len(ubungs) == 1:
+            if len(ubungs) == 6:
                     losung = request.POST
                     cmp = 0
                     validator = {}
@@ -124,8 +124,8 @@ def grammarex(request):
                     return render(request, 'Grammar/index.html', context)
             else:
                 return render(request, "Grammar/sucess.html")
-  # except:
-  #S      return HttpResponseRedirect('/')
+  except:
+        return HttpResponseRedirect('/')
 
 def ubung(request):
    try :
@@ -145,50 +145,56 @@ def gegenteile(request):
             for ubung in c:
                 if ubung.frage == frage:
                     ubungs.append(Ubung.objects.get(frage=frage, type="gegen"))
-        losung = request.POST
-        cmp = 0
-        validator = {}
-        reponsejuste = {}
-        erreurfausse = {}
-        msg = "le nombre de question Juste est ", 0
-        personne = Personne.objects.get(username=request.session['username'])
-        for ubung in ubungs:
-            reponse = Reponse(ubung=ubung, valide=True, pers=personne)
-            reponse.save()
-            if str(losung[ubung.frage]) == str(ubung.losung):
-                cmp += 1
-                validator[ubung.frage] = True
-                reponsejuste[ubung.frage] = losung[ubung.frage]
-                msg = "le nombre de question Juste est ", cmp
-            else:
-                validator[ubung.frage] = False
-                erreurfausse[ubung.frage] = losung[ubung.frage]
-                reponsejuste[ubung.frage] = ubung.losung
-        saveSucess('succes_grammar', getSuccess('succes_grammar', request) + cmp, request)
-        dic = {
-        }
+        if len(ubungs) == 6:
+                losung = request.POST
+                cmp = 0
+                validator = {}
+                reponsejuste = {}
+                erreurfausse = {}
+                msg = "le nombre de question Juste est ", 0
+                personne = Personne.objects.get(username=request.session['username'])
+                for ubung in ubungs:
+                    reponse = Reponse(ubung=ubung, valide=True, pers=personne)
+                    reponse.save()
+                    if str(losung[ubung.frage]) == str(ubung.losung):
+                        cmp += 1
+                        validator[ubung.frage] = True
+                        reponsejuste[ubung.frage] = losung[ubung.frage]
+                        msg = "le nombre de question Juste est ", cmp
+                    else:
+                        validator[ubung.frage] = False
+                        erreurfausse[ubung.frage] = losung[ubung.frage]
+                        reponsejuste[ubung.frage] = ubung.losung
+                saveSucess('succes_grammar', getSuccess('succes_grammar', request) + cmp, request)
+                dic = {
+                }
 
-        list = []
-        for ubung in ubungs:
-            list.append(ubung.losung)
-            moglichkeit = Essai.objects.filter(numf=ubung)
-            for mog in moglichkeit:
-                if mog.numf == ubung:
-                    list.append(mog.choix)
-            dic[str(ubung.frage)] = list
-            list = []
+                list = []
+                for ubung in ubungs:
+                    list.append(ubung.losung)
+                    moglichkeit = Essai.objects.filter(numf=ubung)
+                    for mog in moglichkeit:
+                        if mog.numf == ubung:
+                            list.append(mog.choix)
+                    dic[str(ubung.frage)] = list
+                    list = []
 
-        context = {
-            'ubungs': ubungs,
-            'paginator': True,
+                context = {
+                    'ubungs': ubungs,
+                    'paginator': True,
 
-            'dictionnaire': dic,
-            'erreurs': erreurfausse,
-            'reponses': reponsejuste,
-            'validator': validator,
-            'message': msg
-        }
-        return render(request, 'Grammar/index.html', context)
+                    'dictionnaire': dic,
+                    'erreurs': erreurfausse,
+                    'reponses': reponsejuste,
+                    'validator': validator,
+                    'message': msg
+                }
+                return render(request, 'Grammar/index.html', context)
+        else:
+            context = {
+                "error": "Veuillez selectionner tous les choix "
+            }
+            return render(request, "Grammar/errorpage.html", context)
 
     else:
         ubungse = Ubung.objects.filter(type="gegen")
@@ -198,42 +204,44 @@ def gegenteile(request):
             reponse = Reponse.objects.filter(ubung=ubung, pers=personne)
             if len(reponse) == 0:
                 ubungs.append(ubung)
-
-        dic = {
-        }
-        i = 1
-        list = []
-        paginator = Paginator(ubungs, 6)
-        page = request.GET.get('page')
-        try:
-            exe = paginator.page(page)
-        except PageNotAnInteger:
-            page = 1
-            exe = paginator.page(1)
-        except EmptyPage:
-            page = 1
-            exe = paginator.page(paginator.num_pages)
-
-        for ubung in ubungs:
-            moglichkeit = Essai.objects.filter(numf=ubung)
-            for mog in moglichkeit:
-                if mog.numf == ubung:
-                    list.append(mog.choix)
-            list.insert(generateRandom(), ubung.losung)
-            dic[str(ubung.frage)] = list
+        if len(ubungs) != 0:
+            dic = {
+            }
+            i = 1
             list = []
-        jo = {}
-        for ubung in paginator.page(page).object_list:
-            jo[ubung.frage] = dic[str(ubung.frage)]
+            paginator = Paginator(ubungs, 6)
+            page = request.GET.get('page')
+            try:
+                exe = paginator.page(page)
+            except PageNotAnInteger:
+                page = 1
+                exe = paginator.page(1)
+            except EmptyPage:
+                page = 1
+                exe = paginator.page(paginator.num_pages)
 
-        print(dic)
-        context = {
-            'ubungs': ubungs,
-            'paginator': True,
-            'messages': exe,
-            'dictionnaire': jo
-        }
-        return render(request, 'Grammar/gegenteile.html', context)
+            for ubung in ubungs:
+                moglichkeit = Essai.objects.filter(numf=ubung)
+                for mog in moglichkeit:
+                    if mog.numf == ubung:
+                        list.append(mog.choix)
+                list.insert(generateRandom(), ubung.losung)
+                dic[str(ubung.frage)] = list
+                list = []
+            jo = {}
+            for ubung in paginator.page(page).object_list:
+                jo[ubung.frage] = dic[str(ubung.frage)]
+
+            print(dic)
+            context = {
+                'ubungs': ubungs,
+                'paginator': True,
+                'messages': exe,
+                'dictionnaire': jo
+            }
+            return render(request, 'Grammar/index.html', context)
+        else:
+            return render(request, "Grammar/sucess.html")
   except :
      return HttpResponseRedirect('/')
 def bartikel(request):
@@ -247,50 +255,57 @@ def bartikel(request):
             for ubung in c:
                 if ubung.frage == frage:
                     ubungs.append(Ubung.objects.get(frage=frage, type="ba"))
-        losung = request.POST
-        cmp = 0
-        validator = {}
-        reponsejuste = {}
-        erreurfausse = {}
-        msg = "le nombre de question Juste est ", 0
-        personne = Personne.objects.get(username=request.session['username'])
-        for ubung in ubungs:
-            reponse = Reponse(ubung=ubung, valide=True, pers=personne)
-            reponse.save()
-            if str(losung[ubung.frage]) == str(ubung.losung):
-                cmp += 1
-                validator[ubung.frage] = True
-                reponsejuste[ubung.frage] = losung[ubung.frage]
-                msg = "le nombre de question Juste est ", cmp
-            else:
-                validator[ubung.frage] = False
-                erreurfausse[ubung.frage] = losung[ubung.frage]
-                reponsejuste[ubung.frage] = ubung.losung
-        saveSucess('succes_grammar', getSuccess('succes_grammar', request) + cmp, request)
-        dic = {
-        }
+        if len(ubungs) == 6:
+                losung = request.POST
+                cmp = 0
+                validator = {}
+                reponsejuste = {}
+                erreurfausse = {}
+                msg = "le nombre de question Juste est ", 0
+                personne = Personne.objects.get(username=request.session['username'])
+                for ubung in ubungs:
+                    reponse = Reponse(ubung=ubung, valide=True, pers=personne)
+                    reponse.save()
+                    if str(losung[ubung.frage]) == str(ubung.losung):
+                        cmp += 1
+                        validator[ubung.frage] = True
+                        reponsejuste[ubung.frage] = losung[ubung.frage]
+                        msg = "le nombre de question Juste est ", cmp
+                    else:
+                        validator[ubung.frage] = False
+                        erreurfausse[ubung.frage] = losung[ubung.frage]
+                        reponsejuste[ubung.frage] = ubung.losung
+                saveSucess('succes_grammar', getSuccess('succes_grammar', request) + cmp, request)
+                dic = {
+                }
 
-        list = []
-        for ubung in ubungs:
-            list.append(ubung.losung)
-            moglichkeit = Essai.objects.filter(numf=ubung)
-            for mog in moglichkeit:
-                if mog.numf == ubung:
-                    list.append(mog.choix)
-            dic[str(ubung.frage)] = list
-            list = []
+                list = []
+                for ubung in ubungs:
+                    list.append(ubung.losung)
+                    moglichkeit = Essai.objects.filter(numf=ubung)
+                    for mog in moglichkeit:
+                        if mog.numf == ubung:
+                            list.append(mog.choix)
+                    dic[str(ubung.frage)] = list
+                    list = []
 
-        context = {
-            'ubungs': ubungs,
-            'paginator': True,
+                context = {
+                    'ubungs': ubungs,
+                    'paginator': True,
 
-            'dictionnaire': dic,
-            'erreurs': erreurfausse,
-            'reponses': reponsejuste,
-            'validator': validator,
-            'message': msg
-        }
-        return render(request, 'Grammar/bartikel.html', context)
+                    'dictionnaire': dic,
+                    'erreurs': erreurfausse,
+                    'reponses': reponsejuste,
+                    'validator': validator,
+                    'message': msg
+                }
+                return render(request, 'Grammar/bartikel.html', context)
+        else:
+            context = {
+                "error": "Veuillez selectionner tous les choix "
+            }
+            return render(request, "Grammar/errorpage.html", context)
+
 
     else:
         ubungse = Ubung.objects.filter(type="ba")
@@ -300,42 +315,44 @@ def bartikel(request):
             reponse = Reponse.objects.filter(ubung=ubung, pers=personne)
             if len(reponse) == 0:
                 ubungs.append(ubung)
-
-        dic = {
-        }
-        i = 1
-        list = []
-        paginator = Paginator(ubungs, 6)
-        page = request.GET.get('page')
-        try:
-            exe = paginator.page(page)
-        except PageNotAnInteger:
-            page = 1
-            exe = paginator.page(1)
-        except EmptyPage:
-            page = 1
-            exe = paginator.page(paginator.num_pages)
-
-        for ubung in ubungs:
-            moglichkeit = Essai.objects.filter(numf=ubung)
-            for mog in moglichkeit:
-                if mog.numf == ubung:
-                    list.append(mog.choix)
-            list.insert(generateRandom(), ubung.losung)
-            dic[str(ubung.frage)] = list
+        if len(ubungs) != 0:
+            dic = {
+            }
+            i = 1
             list = []
-        jo = {}
-        for ubung in paginator.page(page).object_list:
-            jo[ubung.frage] = dic[str(ubung.frage)]
+            paginator = Paginator(ubungs, 6)
+            page = request.GET.get('page')
+            try:
+                exe = paginator.page(page)
+            except PageNotAnInteger:
+                page = 1
+                exe = paginator.page(1)
+            except EmptyPage:
+                page = 1
+                exe = paginator.page(paginator.num_pages)
 
-        print(dic)
-        context = {
-            'ubungs': ubungs,
-            'paginator': True,
-            'messages': exe,
-            'dictionnaire': jo
-        }
-        return render(request, 'Grammar/bartikel.html', context)
+            for ubung in ubungs:
+                moglichkeit = Essai.objects.filter(numf=ubung)
+                for mog in moglichkeit:
+                    if mog.numf == ubung:
+                        list.append(mog.choix)
+                list.insert(generateRandom(), ubung.losung)
+                dic[str(ubung.frage)] = list
+                list = []
+            jo = {}
+            for ubung in paginator.page(page).object_list:
+                jo[ubung.frage] = dic[str(ubung.frage)]
+
+            print(dic)
+            context = {
+                'ubungs': ubungs,
+                'paginator': True,
+                'messages': exe,
+                'dictionnaire': jo
+            }
+            return render(request, 'Grammar/index.html', context)
+        else:
+            return render(request, "Grammar/sucess.html")
   except :
     return HttpResponseRedirect('/')
 
@@ -463,50 +480,57 @@ def ua(request):
             for ubung in c:
                 if ubung.frage == frage:
                     ubungs.append(Ubung.objects.get(frage=frage, type="ua"))
-        losung = request.POST
-        cmp = 0
-        validator = {}
-        reponsejuste = {}
-        erreurfausse = {}
-        msg = "le nombre de question Juste est ", 0
-        personne = Personne.objects.get(username=request.session['username'])
-        for ubung in ubungs:
-            reponse = Reponse(ubung=ubung, valide=True, pers=personne)
-            reponse.save()
-            if str(losung[ubung.frage]) == str(ubung.losung):
-                cmp += 1
-                validator[ubung.frage] = True
-                reponsejuste[ubung.frage] = losung[ubung.frage]
-                msg = "le nombre de question Juste est ", cmp
-            else:
-                validator[ubung.frage] = False
-                erreurfausse[ubung.frage] = losung[ubung.frage]
-                reponsejuste[ubung.frage] = ubung.losung
-        saveSucess('succes_grammar', getSuccess('succes_grammar', request) + cmp, request)
-        dic = {
-        }
+        if len(ubungs) == 6:
+            losung = request.POST
+            cmp = 0
+            validator = {}
+            reponsejuste = {}
+            erreurfausse = {}
+            msg = "le nombre de question Juste est ", 0
+            personne = Personne.objects.get(username=request.session['username'])
+            for ubung in ubungs:
+                reponse = Reponse(ubung=ubung, valide=True, pers=personne)
+                reponse.save()
+                if str(losung[ubung.frage]) == str(ubung.losung):
+                    cmp += 1
+                    validator[ubung.frage] = True
+                    reponsejuste[ubung.frage] = losung[ubung.frage]
+                    msg = "le nombre de question Juste est ", cmp
+                else:
+                    validator[ubung.frage] = False
+                    erreurfausse[ubung.frage] = losung[ubung.frage]
+                    reponsejuste[ubung.frage] = ubung.losung
+            saveSucess('succes_grammar', getSuccess('succes_grammar', request) + cmp, request)
+            dic = {
+            }
 
-        list = []
-        for ubung in ubungs:
-            list.append(ubung.losung)
-            moglichkeit = Essai.objects.filter(numf=ubung)
-            for mog in moglichkeit:
-                if mog.numf == ubung:
-                    list.append(mog.choix)
-            dic[str(ubung.frage)] = list
             list = []
+            for ubung in ubungs:
+                list.append(ubung.losung)
+                moglichkeit = Essai.objects.filter(numf=ubung)
+                for mog in moglichkeit:
+                    if mog.numf == ubung:
+                        list.append(mog.choix)
+                dic[str(ubung.frage)] = list
+                list = []
 
-        context = {
-            'ubungs': ubungs,
-            'paginator': True,
+            context = {
+                'ubungs': ubungs,
+                'paginator': True,
 
-            'dictionnaire': dic,
-            'erreurs': erreurfausse,
-            'reponses': reponsejuste,
-            'validator': validator,
-            'message': msg
-        }
-        return render(request, 'Grammar/ua.html', context)
+                'dictionnaire': dic,
+                'erreurs': erreurfausse,
+                'reponses': reponsejuste,
+                'validator': validator,
+                'message': msg
+            }
+            return render(request, 'Grammar/ua.html', context)
+        else:
+            context = {
+                "error": "Veuillez selectionner tous les choix "
+            }
+            return render(request, "Grammar/errorpage.html", context)
+
 
     else:
         ubungse = Ubung.objects.filter(type="ua")
@@ -516,41 +540,43 @@ def ua(request):
             reponse = Reponse.objects.filter(ubung=ubung, pers=personne)
             if len(reponse) == 0:
                 ubungs.append(ubung)
-
-        dic = {
-        }
-        i = 1
-        list = []
-        paginator = Paginator(ubungs, 6)
-        page = request.GET.get('page')
-        try:
-            exe = paginator.page(page)
-        except PageNotAnInteger:
-            page = 1
-            exe = paginator.page(1)
-        except EmptyPage:
-            page = 1
-            exe = paginator.page(paginator.num_pages)
-
-        for ubung in ubungs:
-            moglichkeit = Essai.objects.filter(numf=ubung)
-            for mog in moglichkeit:
-                if mog.numf == ubung:
-                    list.append(mog.choix)
-            list.insert(generateRandom(), ubung.losung)
-            dic[str(ubung.frage)] = list
+        if len(ubungs) != 0:
+            dic = {
+            }
+            i = 1
             list = []
-        jo = {}
-        for ubung in paginator.page(page).object_list:
-            jo[ubung.frage] = dic[str(ubung.frage)]
+            paginator = Paginator(ubungs, 6)
+            page = request.GET.get('page')
+            try:
+                exe = paginator.page(page)
+            except PageNotAnInteger:
+                page = 1
+                exe = paginator.page(1)
+            except EmptyPage:
+                page = 1
+                exe = paginator.page(paginator.num_pages)
 
-        print(dic)
-        context = {
-            'ubungs': ubungs,
-            'paginator': True,
-            'messages': exe,
-            'dictionnaire': jo
-        }
-        return render(request, 'Grammar/ua.html', context)
+            for ubung in ubungs:
+                moglichkeit = Essai.objects.filter(numf=ubung)
+                for mog in moglichkeit:
+                    if mog.numf == ubung:
+                        list.append(mog.choix)
+                list.insert(generateRandom(), ubung.losung)
+                dic[str(ubung.frage)] = list
+                list = []
+            jo = {}
+            for ubung in paginator.page(page).object_list:
+                jo[ubung.frage] = dic[str(ubung.frage)]
+
+            print(dic)
+            context = {
+                'ubungs': ubungs,
+                'paginator': True,
+                'messages': exe,
+                'dictionnaire': jo
+            }
+            return render(request, 'Grammar/index.html', context)
+        else:
+            return render(request, "Grammar/sucess.html")
   except :
         return HttpResponseRedirect('/')
