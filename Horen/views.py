@@ -69,7 +69,7 @@ def index(request):
                     for reponseQuestion in question:
                         if choixCocher[reponseQuestion.quest] == reponseQuestion.reponse :
                             note=note+1
-                    if note >= 2:
+                    if note >= 5:
                         message = "Vous avez validé le module"
                         personne = Personne.objects.filter(username=request.session['username']).first()
                         reponse = ReponseHoren(personnes = personne,modeltest = modeltest,valid=True)
