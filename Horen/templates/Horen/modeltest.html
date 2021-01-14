@@ -23,30 +23,49 @@
     <h2 class="MD"> ModelTest 1</h2>
     <form method='POST' action="{% url 'Horen:index'%}">
         <input type="hidden" name="id" value="{{id}}"/>
+        <div class="general">
         {% csrf_token %}
             {% for t in audios%}
-        <div align="center">
-            <audio controls style="" src="{{t.track.url}}" ></audio></br></div>
-            {% for q in question%}
-                {% if q.audio_id == t.id%}
-                    <div class="frages">
-                        <p class="frage"> <b>Frage {{forloop.counter}} : </b> {{q.quest}}</p></div>
-                    <div class="select">
-                        {%for c in choix%}
-                            {%if c.question_id == q.id%}
-
-                                <input class="ch" type="radio" name="{{q.quest}}" value="{{c.choix}}" id="{{q.question}}" >
-                                    <label for="{{q.question}}">{{c.choix}}</label><br/>
-                            {%endif%}
-                        {%endfor%}
-                        <input class="ch" type="radio" name="{{q.quest}}" value="{{q.reponse}}" id="{{q.question}}" >
-                                    <label for="{{q.question}}">{{q.reponse}}</label><br/></div>
+            <div class="partie">
+                <div class="premierepartie">
+                    <div class="audio">
+                        <audio controls style="" src="{{t.track.url}}" ></audio>
+                    </div>
+                {% for q in question%}
+                    {% if q.audio_id == t.id%}
+                        <div class="frages">
+                            <p class="frage"> <span class="titre">Frage {{forloop.counter}} : </span>{{q.quest}}</p>
                         </div>
-                {%endif%}
+                    </div>
+                <div class="deusiemepartie">
+                        <div class="choix">
+                            {%for c in choix%}
+                                {%if c.question_id == q.id%}
+                                  <div class="unchoix">
+                                    <input class="ch" type="radio" name="{{q.quest}}" value="{{c.choix}}" id="{{q.question}}" >
+                                        <label for="{{q.question}}">{{c.choix}}</label><br/>
+                                  </div>
+                                {%endif%}
+                            {%endfor%}
+                                <div class="unchoix">
+                                    <input class="ch" type="radio" name="{{q.quest}}" value="{{q.reponse}}" id="{{q.question}}" >
+                                    <label for="{{q.question}}">{{q.reponse}}</label><br/>
+                                </div>
+                        </div>
+                </div>
+                    {%endif%}
+                {%endfor%}
+            </div>
             {%endfor%}
-            {%endfor%}
-        <input type="submit" value="Submit">
-        <p align="center" class="message">{{message}}</p>
+         <div class="footer-btn">
+            <div class="btn-submit">
+                <input type="submit" value="Submit">
+            </div>
+            <div class="btn-message">
+                <p align="center" class="message">{{message}}</p>
+            </div>
+         </div>
+        </div>
     </form>
 </section>
 {%endblock %}
