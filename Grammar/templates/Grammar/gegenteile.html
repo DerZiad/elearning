@@ -15,7 +15,7 @@
 </style>
  <div class="general">
      <h1> APPRENDRE LA LANGUE ALLEMANDE EN UN SEUL CLIC  </h1>
-     <button><a class="retour" href="{% url 'Grammar:grammar'%}"> << ALLE UBUNGEN</a></button>
+     <button><a class="retour" href="{% url 'Grammar:grammar'%}"> << Alle Ubungen</a></button>
 
      <div>
          {% if validator == None %}
@@ -46,10 +46,10 @@
             </form>
           <nav class="text-center content-item"><div class="pagination"><ul id="yw11" class="yiiPager">
     {% if messages.has_previous %}
-        <li class="previous"><a href="{% url 'Grammar:gegenteile'%}?page={{messages.previous_page_number}}">&lt;</a></li>
+        <li class="previous"><a href="{% url 'Grammar:gegenteile'%}?page={{messages.previous_page_number}}">Page Suivante</a></li>
     {% endif %}
     {% if messages.has_next%}
-        <li class="next"><a href="{% url 'Grammar:gegenteile'%}?page={{messages.next_page_number}}">&gt;</a></li>
+        <li class="next"><a href="{% url 'Grammar:gegenteile'%}?page={{messages.next_page_number}}">Page Precedente</a></li>
     {% endif %}
          {% else %}
             {% for key,values in dictionnaire.items %}
