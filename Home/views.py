@@ -147,14 +147,24 @@ def edit(request):
                 if action == 'delete':
                     personne = Personne.objects.get(username = request.session['username'])
                     message = Message.objects.filter(personne = personne)
+                    ReponseHorens = yasser.ReponseHoren.objects.filter(personnes = personne)
+                    GrammarReponse = ayman.Reponse.objects.filter(pers = personne)
+                    LesenReponse = bouchakor.Reponse.objects.filter(pers = personne)
                     reponses = Reponse.objects.filter(personne = personne)
                     for rep in reponses:
                         corrections = Correction.objects.filter(reponse = rep)
                         for correction in corrections:
                             correction.delete()
                         rep.delete()
+                    for mes in message:
+                        mes.delete()
+                    for rh in ReponseHorens:
+                        rh.delete()
+                    for gr in GrammarReponse:
+                        gr.delete()
+                    for lr in LesenReponse:
+                        lr.delete()
                     personne.delete()
-                    message.delete()
                     request.session.flush()
                     request.session.clear_expired()
                     return HttpResponseRedirect("/")
