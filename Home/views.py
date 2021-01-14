@@ -96,12 +96,14 @@ def forum(request):
                     erreur = "Veuillez ne pas dire les gros mot"
                     checker = False
                 except:
+                    print("Ok")
                     pass
                 try:
                     sujet.index(word.trim(),0,len(sujet))
                     checker = False
                 except:
                     pass
+            print(checker)
             if checker:
                     username = request.session['username']
                     personne = Personne.objects.get(username =  username)

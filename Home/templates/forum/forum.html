@@ -39,9 +39,12 @@
                         <span class="small">{{message.date}}</span>
                     </p>
                 </div>
-                <div class="col-xs-4">
-                    <a style="text-decoration:none" style="color:white" href="{% url 'Home:deletemessage'%}?id={{message.id}}">delete</a>
-                </div>
+
+               {% if message.personne.username == request.session.username %}
+                    <div class="col-xs-4">
+                        <a style="text-decoration:none" style="color:white" href="{% url 'Home:deletemessage'%}?id={{message.id}}">delete</a>
+                    </div>
+                {% endif %}
             </div>
 
             <div class="forum-text bbcode">
