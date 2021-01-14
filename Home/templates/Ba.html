@@ -71,8 +71,10 @@
         </div><!-- /.container-fluid -->
     </nav>
 </header>
-    {% block body %}
-    {% endblock %}
+    <div context="contexte">
+        {% block body %}
+        {% endblock %}
+    </div>
     {% include 'footer.html'%}
 
 
