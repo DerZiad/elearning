@@ -9,9 +9,9 @@ Django
 
 
 
-
-pip install Pillow
-pip install mysqlclient
+if faut installer ces libraries
+#pip install Pillow
+#pip install mysqlclient
 
 
 
