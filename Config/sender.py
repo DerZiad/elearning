@@ -6,8 +6,8 @@ from django.template import loader
 def sendEmail(infos,request):
         mail_content = infos['text']
         #The mail addresses and password
-        sender_address = 'email'
-        sender_pass = 'password'
+        sender_address = '{{email}}'
+        sender_pass = '{{password}}'
         receiver_address = infos['address']
 
         context = {
