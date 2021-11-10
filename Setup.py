@@ -3,9 +3,9 @@
         AUTHOR ZIAD BOUGRINE
 
 '''
+import os,sys,colorama
 
 
-import os,sys
 DJANGO_SETTINGS_TEMPLATE = "Config/settings.py"
 DJANGO_SETTINGS = "germanstudies/settings.py"
 DATABASE_USERNAME = "{{username}}"
@@ -17,9 +17,44 @@ DATABASE_NAME = "{{database}}"
 
 
 
+class Writer:
+    def __init__(self):
+        colorama.init()
+    def writeSuccess(self, msg):
+        return "{} {} {}".format(colorama.Fore.LIGHTGREEN_EX,msg,colorama.Style.RESET_ALL)
 
+    def writeError(self, msg):
+        return "{} {} {}".format(colorama.Fore.RED,msg,colorama.Style.RESET_ALL)
 
-def configureSetting(data):
+    def writeWarning(self, msg):
+        return "{} {} {}".format(colorama.Fore.LIGHTYELLOW_EX, msg, colorama.Style.RESET_ALL)
+
+    def writeRequest(self, msg):
+        colorama.init()
+        return "{} {} {}".format(colorama.Fore.CYAN, msg, colorama.Style.RESET_ALL)
+
+    def writeProposition(self, msg):
+        return "{} {} {}".format(colorama.Fore.LIGHTBLUE_EX, msg, colorama.Style.RESET_ALL)
+
+    def writeStep(self, msg):
+        return "{} {} {}".format(colorama.Fore.WHITE, msg, colorama.Style.RESET_ALL)
+
+def configureSetting():
+        wr = Writer()
+        print(wr.writeSuccess("[+] - Recovering Informations"))
+        databaseUsername = str(input("====> Enter Database username:"))
+        databasePassword = str(input("====> Enter Database password:"))
+        databasePort = int(input("====> Enter Database port:"))
+        databaseHost = str(input("====> Enter Database host(Default localhost):"))
+        databaseName = str(input("====> Enter Database Name(Default GermanStudies):"))
+
+        data = {}
+        data[DATABASE_USERNAME] = databaseUsername
+        data[DATABASE_PASSWORD] = databasePassword
+        data[DATABASE_PORT] = databasePort
+        data[DATABASE_HOST] = databaseHost
+        data[DATABASE_NAME] = databaseName
+
         print("[+] - Configuring Django Settings")
         fileSetting = open(DJANGO_SETTINGS_TEMPLATE, mode="r", encoding="utf-8")
         settings = fileSetting.read()
@@ -33,19 +68,10 @@ def configureSetting(data):
         replateSetting.write(settings)
         replateSetting.close()
 
+def installRequirement():
+        print("[+] - Installing Requirements")
+        os.system("pip install -r requirements.txt")
 
+configureSetting()
+installRequirement()
 
-databaseUsername = str(input("Enter Database username:"))
-databasePassword = str(input("Enter Database password:"))
-databasePort = int(input("Enter Database port:"))
-databaseHost = str(input("Enter Database host(Default localhost):"))
-databaseName = str(input("Enter Database Name(Default GermanStudies):"))
-
-data = {}
-data[DATABASE_USERNAME] = databaseUsername
-data[DATABASE_PASSWORD] = databasePassword
-data[DATABASE_PORT] = databasePort
-data[DATABASE_HOST] = databaseHost
-data[DATABASE_NAME] = databaseName
-
-configureSetting(data)
